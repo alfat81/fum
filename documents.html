@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полезные документы | Комиссия по фигурному управлению мотоциклом | МФР</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="win-header">
+            <div class="logo-container">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <img src="images/logo_fum.jpg" alt="Логотип комиссии по мотоджимхане" class="logo-img">
+            </div>
+        </header>
+
+        <main class="page-content">
+            <section class="section-card blue">
+                <h2 class="section-title"><i class="fas fa-file-alt"></i> Полезные документы</h2>
+                <div class="section-content">
+                    <div class="documents-filters">
+                        <button class="filter-button active" data-filter="all">Все документы</button>
+                        <button class="filter-button" data-filter="regulations">Регламенты</button>
+                        <button class="filter-button" data-filter="rules">Правила</button>
+                        <button class="filter-button" data-filter="licenses">Лицензии</button>
+                        <button class="filter-button" data-filter="reports">Отчеты</button>
+                    </div>
+                    <div class="documents-grid" id="documents-grid">
+                        <div class="document-card blue-border" data-category="regulations">
+                            <i class="fas fa-file-pdf document-icon"></i>
+                            <div class="document-info">
+                                <h4>Регламент Кубка России 2025</h4>
+                                <p>Официальный регламент проведения соревнований по фигурному управлению мотоциклом в 2025 году</p>
+                                <div class="document-meta">
+                                    <span class="document-date">15.01.2025</span>
+                                    <span class="document-size">1.2 МБ</span>
+                                </div>
+                                <button class="view-button">Просмотреть</button>
+                            </div>
+                        </div>
+                        <div class="document-card red-border" data-category="rules">
+                            <i class="fas fa-file-pdf document-icon"></i>
+                            <div class="document-info">
+                                <h4>Правила соревнований по ФУМ</h4>
+                                <p>Правила проведения официальных соревнований по фигурному управлению мотоциклом</p>
+                                <div class="document-meta">
+                                    <span class="document-date">20.11.2024</span>
+                                    <span class="document-size">2.4 МБ</span>
+                                </div>
+                                <button class="view-button">Просмотреть</button>
+                            </div>
+                        </div>
+                        <div class="document-card yellow-border" data-category="licenses">
+                            <i class="fas fa-file-pdf document-icon"></i>
+                            <div class="document-info">
+                                <h4>Порядок оформления лицензий</h4>
+                                <p>Инструкция по оформлению спортивных лицензий для участников соревнований</p>
+                                <div class="document-meta">
+                                    <span class="document-date">10.01.2025</span>
+                                    <span class="document-size">0.8 МБ</span>
+                                </div>
+                                <button class="view-button">Просмотреть</button>
+                            </div>
+                        </div>
+                        <div class="document-card blue-border" data-category="regulations">
+                            <i class="fas fa-file-pdf document-icon"></i>
+                            <div class="document-info">
+                                <h4>Положение о проведении соревнований</h4>
+                                <p>Общее положение о проведении официальных соревнований по фигурному управлению мотоциклом</p>
+                                <div class="document-meta">
+                                    <span class="document-date">05.12.2024</span>
+                                    <span class="document-size">1.5 МБ</span>
+                                </div>
+                                <button class="view-button">Просмотреть</button>
+                            </div>
+                        </div>
+                        <div class="document-card red-border" data-category="reports">
+                            <i class="fas fa-file-pdf document-icon"></i>
+                            <div class="document-info">
+                                <h4>Отчет о развитии ФУМ в 2024 году</h4>
+                                <p>Аналитический отчет о развитии фигурного управления мотоциклом в России за 2024 год</p>
+                                <div class="document-meta">
+                                    <span class="document-date">15.02.2025</span>
+                                    <span class="document-size">3.1 МБ</span>
+                                </div>
+                                <button class="view-button">Просмотреть</button>
+                            </div>
+                        </div>
+                        <div class="document-card yellow-border" data-category="rules">
+                            <i class="fas fa-file-pdf document-icon"></i>
+                            <div class="document-info">
+                                <h4>Требования к экипировке</h4>
+                                <p>Требования безопасности и экипировки для участников соревнований по фигурному управлению</p>
+                                <div class="document-meta">
+                                    <span class="document-date">30.11.2024</span>
+                                    <span class="document-size">0.9 МБ</span>
+                                </div>
+                                <button class="view-button">Просмотреть</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="document-viewer" id="document-viewer">
+                        <div class="viewer-header">
+                            <h3 id="viewer-title">Просмотр документа</h3>
+                            <button id="close-viewer" class="close-button"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="viewer-content">
+                            <iframe id="document-iframe" src="" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="win-footer">
+            <div class="footer-content">
+                <p>© 2025 Федерация мотоциклетного спорта России</p>
+                <div class="footer-links">
+                    <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
