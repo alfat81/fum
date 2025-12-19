@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000 + index * 100);
     });
 
+    // Contact links functionality
+    // Email links (mailto:) and phone links (tel:) work natively in browsers
+    // No additional JavaScript needed for basic functionality
+    
     // Back to top button
     const backToTopButton = document.createElement('button');
     backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -121,4 +125,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 
     console.log('Сайт комиссии по мотоджимхане МФР загружен');
+    console.log('Кликабельные контакты: email (serovdima@list.ru) и телефон (+7 977 823-63-90)');
 });
