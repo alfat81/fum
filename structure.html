@@ -80,9 +80,53 @@
                         <!-- Карта России -->
                         <div class="map-container">
                             <div class="map-controls">
-                                <div class="search-box">
-                                    <input type="text" id="region-search" placeholder="Поиск региона...">
-                                    <i class="fas fa-search"></i>
+                                <div class="region-selector">
+                                    <select id="region-select" class="region-dropdown">
+                                        <option value="">Выберите регион</option>
+                                        <option value="moscow">Москва</option>
+                                        <option value="stpetersburg">Санкт-Петербург</option>
+                                        <option value="tver">Тверская область</option>
+                                        <option value="nnovgorod">Нижегородская область</option>
+                                        <option value="smolensk">Смоленская область</option>
+                                        <option value="vologda">Вологодская область</option>
+                                        <option value="ulyanovsk">Ульяновская область</option>
+                                        <option value="tatarstan">Республика Татарстан</option>
+                                        <option value="kaluga">Калужская область</option>
+                                        <option value="tula">Тульская область</option>
+                                        <option value="rostov">Ростовская область</option>
+                                        <option value="perm">Пермский край</option>
+                                        <option value="kursk">Курская область</option>
+                                        <option value="voronezh">Воронежская область</option>
+                                        <option value="saratov">Саратовская область</option>
+                                        <option value="ryazan">Рязанская область</option>
+                                        <option value="lipetsk">Липецкая область</option>
+                                        <option value="belgorod">Белгородская область</option>
+                                        <option value="bryansk">Брянская область</option>
+                                        <option value="novgorod">Новгородская область</option>
+                                        <option value="yaroslavl">Ярославская область</option>
+                                        <option value="kostroma">Костромская область</option>
+                                        <option value="ivanovo">Ивановская область</option>
+                                        <option value="vladimir">Владимирская область</option>
+                                        <option value="murmansk">Мурманская область</option>
+                                        <option value="karelia">Республика Карелия</option>
+                                        <option value="komi">Республика Коми</option>
+                                        <option value="arkhangelsk">Архангельская область</option>
+                                        <option value="tambov">Тамбовская область</option>
+                                        <option value="penza">Пензенская область</option>
+                                        <option value="samara">Самарская область</option>
+                                        <option value="volgograd">Волгоградская область</option>
+                                        <option value="astrakhan">Астраханская область</option>
+                                        <option value="kalmykia">Республика Калмыкия</option>
+                                        <option value="dagestan">Республика Дагестан</option>
+                                        <option value="stavropol">Ставропольский край</option>
+                                        <option value="kuban">Краснодарский край</option>
+                                        <option value="adigea">Республика Адыгея</option>
+                                        <option value="kabardino">Кабардино-Балкарская Республика</option>
+                                        <option value="north-ossetia">Республика Северная Осетия</option>
+                                        <option value="ingushetia">Республика Ингушетия</option>
+                                        <option value="chechnya">Чеченская Республика</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down dropdown-icon"></i>
                                 </div>
                                 <div class="map-zoom">
                                     <button id="zoom-in" class="map-button"><i class="fas fa-plus"></i></button>
