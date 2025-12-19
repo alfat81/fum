@@ -76,44 +76,150 @@
 
                     <div class="russia-map-section">
                         <h3>Региональные представители</h3>
-                        <div class="russia-map">
-                            <div class="region" data-region="moscow" data-coords="55.7558,37.6176">
-                                <span>Москва</span>
+                        
+                        <!-- Карта России -->
+                        <div class="map-container">
+                            <div class="map-controls">
+                                <div class="search-box">
+                                    <input type="text" id="region-search" placeholder="Поиск региона...">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="map-zoom">
+                                    <button id="zoom-in" class="map-button"><i class="fas fa-plus"></i></button>
+                                    <button id="zoom-out" class="map-button"><i class="fas fa-minus"></i></button>
+                                </div>
                             </div>
-                            <div class="region" data-region="stpetersburg" data-coords="59.9343,30.3351">
-                                <span>Санкт-Петербург</span>
-                            </div>
-                            <div class="region" data-region="tver" data-coords="56.8584,35.9176">
-                                <span>Тверская область</span>
-                            </div>
-                            <div class="region" data-region="nnovgorod" data-coords="56.3287,44.002">
-                                <span>Нижний Новгород</span>
-                            </div>
-                            <div class="region" data-region="smolensk" data-coords="54.7903,32.0508">
-                                <span>Смоленская область</span>
-                            </div>
-                            <div class="region" data-region="vologda" data-coords="59.226,39.9094">
-                                <span>Вологодская область</span>
-                            </div>
-                            <div class="region" data-region="ulyanovsk" data-coords="54.3088,48.3642">
-                                <span>Ульяновская область</span>
-                            </div>
-                            <div class="region" data-region="tatarstan" data-coords="55.8302,49.0672">
-                                <span>Республика Татарстан</span>
-                            </div>
-                            <div class="region" data-region="kaluga" data-coords="54.5293,36.2754">
-                                <span>Калужская область</span>
-                            </div>
-                            <div class="region" data-region="tula" data-coords="54.196,37.6185">
-                                <span>Тульская область</span>
-                            </div>
-                            <div class="region" data-region="rostov" data-coords="47.2313,39.7204">
-                                <span>Ростовская область</span>
-                            </div>
-                            <div class="region" data-region="perm" data-coords="58.0105,56.2294">
-                                <span>Пермский край</span>
+                            
+                            <div class="russia-map">
+                                <div class="region" data-region="moscow" data-coords="55.7558,37.6176" data-name="Москва">
+                                    <span>Москва</span>
+                                </div>
+                                <div class="region" data-region="stpetersburg" data-coords="59.9343,30.3351" data-name="Санкт-Петербург">
+                                    <span>СПб</span>
+                                </div>
+                                <div class="region" data-region="tver" data-coords="56.8584,35.9176" data-name="Тверская область">
+                                    <span>Тверь</span>
+                                </div>
+                                <div class="region" data-region="nnovgorod" data-coords="56.3287,44.002" data-name="Нижегородская область">
+                                    <span>Н.Новгород</span>
+                                </div>
+                                <div class="region" data-region="smolensk" data-coords="54.7903,32.0508" data-name="Смоленская область">
+                                    <span>Смоленск</span>
+                                </div>
+                                <div class="region" data-region="vologda" data-coords="59.226,39.9094" data-name="Вологодская область">
+                                    <span>Вологда</span>
+                                </div>
+                                <div class="region" data-region="ulyanovsk" data-coords="54.3088,48.3642" data-name="Ульяновская область">
+                                    <span>Ульяновск</span>
+                                </div>
+                                <div class="region" data-region="tatarstan" data-coords="55.8302,49.0672" data-name="Республика Татарстан">
+                                    <span>Казань</span>
+                                </div>
+                                <div class="region" data-region="kaluga" data-coords="54.5293,36.2754" data-name="Калужская область">
+                                    <span>Калуга</span>
+                                </div>
+                                <div class="region" data-region="tula" data-coords="54.196,37.6185" data-name="Тульская область">
+                                    <span>Тула</span>
+                                </div>
+                                <div class="region" data-region="rostov" data-coords="47.2313,39.7204" data-name="Ростовская область">
+                                    <span>Ростов-на-Дону</span>
+                                </div>
+                                <div class="region" data-region="perm" data-coords="58.0105,56.2294" data-name="Пермский край">
+                                    <span>Пермь</span>
+                                </div>
+                                <div class="region" data-region="kursk" data-coords="51.7374,36.1875" data-name="Курская область">
+                                    <span>Курск</span>
+                                </div>
+                                <div class="region" data-region="voronezh" data-coords="51.6607,39.1997" data-name="Воронежская область">
+                                    <span>Воронеж</span>
+                                </div>
+                                <div class="region" data-region="saratov" data-coords="51.5395,46.0139" data-name="Саратовская область">
+                                    <span>Саратов</span>
+                                </div>
+                                <div class="region" data-region="ryazan" data-coords="54.6235,39.7204" data-name="Рязанская область">
+                                    <span>Рязань</span>
+                                </div>
+                                <div class="region" data-region="lipetsk" data-coords="52.6097,39.5929" data-name="Липецкая область">
+                                    <span>Липецк</span>
+                                </div>
+                                <div class="region" data-region="belgorod" data-coords="50.5953,36.5879" data-name="Белгородская область">
+                                    <span>Белгород</span>
+                                </div>
+                                <div class="region" data-region="bryansk" data-coords="53.2507,34.3639" data-name="Брянская область">
+                                    <span>Брянск</span>
+                                </div>
+                                <div class="region" data-region="novgorod" data-coords="58.5235,31.2754" data-name="Новгородская область">
+                                    <span>Великий Новгород</span>
+                                </div>
+                                <div class="region" data-region="yaroslavl" data-coords="57.6235,39.8704" data-name="Ярославская область">
+                                    <span>Ярославль</span>
+                                </div>
+                                <div class="region" data-region="kostroma" data-coords="57.7635,40.9704" data-name="Костромская область">
+                                    <span>Кострома</span>
+                                </div>
+                                <div class="region" data-region="ivanovo" data-coords="56.9907,40.9704" data-name="Ивановская область">
+                                    <span>Иваново</span>
+                                </div>
+                                <div class="region" data-region="vladimir" data-coords="56.1235,41.4504" data-name="Владимирская область">
+                                    <span>Владимир</span>
+                                </div>
+                                <div class="region" data-region="murmansk" data-coords="68.9597,33.0879" data-name="Мурманская область">
+                                    <span>Мурманск</span>
+                                </div>
+                                <div class="region" data-region="karelia" data-coords="61.7823,34.3429" data-name="Республика Карелия">
+                                    <span>Петрозаводск</span>
+                                </div>
+                                <div class="region" data-region="komi" data-coords="61.6597,50.8079" data-name="Республика Коми">
+                                    <span>Сыктывкар</span>
+                                </div>
+                                <div class="region" data-region="arkhangelsk" data-coords="64.5395,40.5339" data-name="Архангельская область">
+                                    <span>Архангельск</span>
+                                </div>
+                                <div class="region" data-region="tambov" data-coords="52.726,41.4504" data-name="Тамбовская область">
+                                    <span>Тамбов</span>
+                                </div>
+                                <div class="region" data-region="penza" data-coords="53.2097,45.0139" data-name="Пензенская область">
+                                    <span>Пенза</span>
+                                </div>
+                                <div class="region" data-region="samara" data-coords="53.2097,50.1339" data-name="Самарская область">
+                                    <span>Самара</span>
+                                </div>
+                                <div class="region" data-region="volgograd" data-coords="48.7097,44.5139" data-name="Волгоградская область">
+                                    <span>Волгоград</span>
+                                </div>
+                                <div class="region" data-region="astrakhan" data-coords="46.3597,48.0139" data-name="Астраханская область">
+                                    <span>Астрахань</span>
+                                </div>
+                                <div class="region" data-region="kalmykia" data-coords="46.1235,44.3429" data-name="Республика Калмыкия">
+                                    <span>Элиста</span>
+                                </div>
+                                <div class="region" data-region="dagestan" data-coords="42.9097,47.5139" data-name="Республика Дагестан">
+                                    <span>Махачкала</span>
+                                </div>
+                                <div class="region" data-region="stavropol" data-coords="45.0395,41.9704" data-name="Ставропольский край">
+                                    <span>Ставрополь</span>
+                                </div>
+                                <div class="region" data-region="kuban" data-coords="45.4497,38.9704" data-name="Краснодарский край">
+                                    <span>Краснодар</span>
+                                </div>
+                                <div class="region" data-region="adigea" data-coords="44.9097,40.5139" data-name="Республика Адыгея">
+                                    <span>Майкоп</span>
+                                </div>
+                                <div class="region" data-region="kabardino" data-coords="43.3597,43.0139" data-name="Кабардино-Балкарская Республика">
+                                    <span>Нальчик</span>
+                                </div>
+                                <div class="region" data-region="north-ossetia" data-coords="43.0097,44.6704" data-name="Республика Северная Осетия">
+                                    <span>Владикавказ</span>
+                                </div>
+                                <div class="region" data-region="ingushetia" data-coords="43.1597,44.6704" data-name="Республика Ингушетия">
+                                    <span>Магас</span>
+                                </div>
+                                <div class="region" data-region="chechnya" data-coords="43.3097,45.7704" data-name="Чеченская Республика">
+                                    <span>Грозный</span>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="region-info">
                             <h4 id="region-name">Выберите регион на карте</h4>
                             <p id="region-contact">Информация о региональном представителе появится здесь</p>
