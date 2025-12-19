@@ -1,200 +1,217 @@
-/* Russia map styles */
-.russia-map-section {
-    margin-top: 40px;
+:root {
+    --blue: #0078D7;      /* Cones to be passed on the right */
+    --red: #E74C3C;       /* Cones to be passed on the left */
+    --yellow: #F39C12;    /* Cones for rotation */
+    --dark-blue: #1A2C56;
+    --light-gray: #F8F9FA;
+    --dark-gray: #2C3E50;
+    --white: #FFFFFF;
+    --text-dark: #333333;
+    --text-light: #F8F9FA;
 }
 
-.russia-map-section h3 {
-    color: var(--dark-blue);
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.region-selector-container {
-    margin-bottom: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.region-selector {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid var(--blue);
-    border-radius: 8px;
-    font-size: 1.1rem;
-    background: var(--white);
+body {
+    background-color: var(--light-gray);
     color: var(--text-dark);
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.region-selector:focus {
-    outline: none;
-    border-color: var(--dark-blue);
-    box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.3);
-}
-
-.russia-svg-map-container {
-    height: 600px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    border: 2px solid var(--blue);
-    margin-bottom: 30px;
-    background: linear-gradient(135deg, #e8f4ff, #d4e8ff);
-    position: relative;
-}
-
-.russia-svg-map {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.region {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.region:hover {
-    fill: #a7c7e7;
-    stroke-width: 2;
-    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
-}
-
-.region-tooltip {
-    position: absolute;
-    background: var(--white);
-    border: 3px solid var(--blue);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    z-index: 1000;
-    max-width: 400px;
-    display: none;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(20px, 0) scale(0.95); }
-    to { opacity: 1; transform: translate(0, 0) scale(1); }
-}
-
-.region-tooltip h4 {
-    color: var(--dark-blue);
-    margin-bottom: 10px;
-    font-size: 1.4rem;
-    border-bottom: 2px solid var(--yellow);
-    padding-bottom: 8px;
-}
-
-.region-tooltip p {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
     line-height: 1.6;
 }
 
-.tooltip-region-photo {
-    width: 120px;
-    height: 120px;
+.container {
+    max-width: 1400px;
     margin: 0 auto;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue), var(--yellow));
+    padding: 20px;
+}
+
+/* Windows Mobile Header */
+.win-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 3px solid var(--blue);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.logo-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.logo-img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+}
+
+.back-button {
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.back-button:hover {
+    color: var(--dark-blue);
+}
+
+/* Tiles container */
+.tiles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 1400px;
+}
+
+.tile {
+    display: block;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    text-decoration: none;
+    transition: all 0.3s ease;
     color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    border: 4px solid white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.tooltip-region-photo img {
-    width: 100%;
+.tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.tile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
 }
 
-/* Responsive design for map */
-@media (max-width: 1200px) {
-    .russia-svg-map-container {
-        height: 500px;
-    }
-    
-    .region-tooltip {
-        max-width: 350px;
-    }
+.tile-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
 }
 
-@media (max-width: 992px) {
-    .russia-svg-map-container {
-        height: 450px;
-    }
+.tile-text h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 768px) {
-    .region-selector {
-        font-size: 1rem;
-    }
-    
-    .russia-svg-map-container {
-        height: 400px;
-    }
-    
-    .region-tooltip {
-        left: 50% !important;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 350px;
-    }
-    
-    .region-tooltip::before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid var(--blue);
-    }
+.blue { 
+    background: linear-gradient(135deg, var(--dark-blue), var(--blue));
+    border: 2px solid var(--blue);
 }
 
-@media (max-width: 480px) {
-    .russia-svg-map-container {
-        height: 350px;
-    }
-    
-    .region-tooltip {
-        padding: 15px;
-    }
-    
-    .tooltip-region-photo {
-        width: 100px;
-        height: 100px;
-        font-size: 1.8rem;
-    }
+.red { 
+    background: linear-gradient(135deg, #c0392b, var(--red));
+    border: 2px solid var(--red);
 }
 
-/* Leadership grid */
+.yellow { 
+    background: linear-gradient(135deg, #d39e00, var(--yellow));
+    border: 2px solid var(--yellow);
+}
+
+/* Page content */
+.page-content {
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.section-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    padding: 20px 30px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--dark-blue), var(--blue));
+}
+
+.section-content {
+    padding: 30px;
+}
+
+/* Footer */
+.win-footer {
+    background: var(--dark-blue);
+    color: var(--white);
+    padding: 20px 0;
+    margin-top: 40px;
+    border-radius: 8px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--yellow);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+/* Leadership styles */
 .leadership-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
 .leader-card {
     display: flex;
-    gap: 20px;
-    padding: 20px;
+    gap: 15px;
+    padding: 15px;
     border-radius: 10px;
     background: rgba(0,0,0,0.02);
     transition: all 0.3s ease;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .leader-card:hover {
@@ -203,12 +220,12 @@
 }
 
 .leader-photo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    border: 4px solid;
+    border: 3px solid;
 }
 
 .blue-border { border-color: var(--blue); }
@@ -227,29 +244,29 @@
 }
 
 .leader-name {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--dark-blue);
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .leader-position {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--red);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .leader-contact, .leader-region {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--dark-gray);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .leader-contact i {
     color: var(--blue);
-    margin-right: 8px;
-    font-size: 1.1rem;
+    margin-right: 5px;
+    font-size: 1rem;
 }
 
 .contact-link {
@@ -263,4 +280,94 @@
 .contact-link:hover {
     color: var(--red);
     text-decoration: underline;
+}
+
+/* Russia map section */
+.russia-map-section {
+    margin-top: 30px;
+}
+
+.russia-map-section h3 {
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .tiles-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .tiles-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .tile {
+        height: 200px;
+    }
+    
+    .tile-icon {
+        font-size: 2.5rem;
+    }
+    
+    .tile-text h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .tiles-container {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    
+    .tile {
+        height: 180px;
+    }
+    
+    .tile-icon {
+        font-size: 2rem;
+    }
+    
+    .tile-text h3 {
+        font-size: 1.3rem;
+    }
+    
+    .leadership-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .tile {
+        height: 160px;
+    }
+    
+    .tile-icon {
+        font-size: 1.8rem;
+    }
+    
+    .tile-text h3 {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .leader-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .leader-photo {
+        margin: 0 auto;
+    }
 }
