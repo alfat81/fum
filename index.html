@@ -3,221 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Комиссия по фигурному управлению мотоциклом (мотоджимхана) МФР</title>
+    <title>Комиссия по фигурному управлению мотоциклом (мотоджимхана) | ФМСРО</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="win-content">
-        <section class="hero-card blue">
-            <div class="card-content">
-                <h1>Комиссия по фигурному управлению мотоциклом (мотоджимхана)</h1>
-                <p>Федерация мотоциклетного спорта России</p>
-                <div class="hero-buttons">
-                    <button class="win-button yellow">О комиссии</button>
-                    <button class="win-button red">Контакты</button>
+    <div class="container">
+        <section class="hero-section blue">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <i class="fas fa-motorcycle"></i>
+                    <h1>Комиссия по фигурному управлению мотоциклом</h1>
+                </div>
+                <p class="hero-subtitle">Ростовская областная федерация мотоциклетного спорта</p>
+                <div class="hero-actions">
+                    <a href="#commission" class="action-button yellow">Состав комиссии</a>
+                    <a href="#contacts" class="action-button red">Контакты</a>
                 </div>
             </div>
         </section>
 
-        <section class="commission-card">
-            <h2 class="section-title">Состав комиссии</h2>
+        <section id="commission" class="section-card">
+            <div class="section-header blue">
+                <h2><i class="fas fa-users"></i> Состав комиссии</h2>
+            </div>
             <div class="members-grid">
-                <div class="member-card blue">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo blue-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg" alt="Дмитрий Серов">
                     </div>
                     <div class="member-info">
-                        <h3>Дмитрий Серов</h3>
-                        <p class="position">Председатель Комиссии</p>
-                        <p class="contact">+7 977 823-63-90</p>
-                        <p class="region">Тверская область</p>
+                        <h3 class="member-name">Дмитрий Серов</h3>
+                        <div class="member-position">Председатель Комиссии</div>
+                        <div class="member-contact">
+                            <i class="fas fa-phone"></i> +7 977 823-63-90
+                        </div>
+                        <div class="member-region">Тверская область</div>
+                        <div class="member-bio">
+                            <p>За два года руководства Дмитрий доказал свои профессиональные компетенции и преданность делу. Благодаря Дмитрию и с его непосредственным участием проведён не только ряд федеральных мероприятий - кроме этого состоялись официальные соревнования в Санкт-Петербурге, Тверской, Ленинградской, Смоленской, Нижегородской, Вологодской областях и Пермском крае.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card red">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo red-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg" alt="Алексей Фатьянов">
                     </div>
                     <div class="member-info">
-                        <h3>Алексей Фатьянов</h3>
-                        <p class="position">Заместитель Председателя</p>
-                        <p class="region">Нижний Новгород</p>
+                        <h3 class="member-name">Алексей Фатьянов</h3>
+                        <div class="member-position">Заместитель Председателя</div>
+                        <div class="member-region">Нижний Новгород</div>
+                        <div class="member-bio">
+                            <p>Человек неравнодушный к развитию дисциплины не только у себя в регионе, но и во всей страны. Нижегородская область - одна из немногих территорий, где активно подхватили задачу по популяризации мотоджимханы. Под руководством Алексея в регионе прошли Всероссийские соревнования, а также Чемпионат и Кубок региона.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card yellow">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo yellow-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg" alt="Наталия Недайводина">
                     </div>
                     <div class="member-info">
-                        <h3>Наталия Недайводина</h3>
-                        <p class="position">Главный секретарь</p>
-                        <p class="region">Вологодская область</p>
+                        <h3 class="member-name">Наталия Недайводина</h3>
+                        <div class="member-position">Главный секретарь</div>
+                        <div class="member-region">Вологодская область</div>
+                        <div class="member-bio">
+                            <p>Наталья - человек увлечённый и активный - успешно развивает мотоджимхану в своем регионе. Одна из задач Наталии на ближайшие несколько лет - налаживание международного сотрудничества.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card blue">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo blue-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg" alt="Глеб Симдянкин">
                     </div>
                     <div class="member-info">
-                        <h3>Глеб Симдянкин</h3>
-                        <p class="position">Член Комиссии</p>
-                        <p class="region">Смоленская область</p>
+                        <h3 class="member-name">Глеб Симдянкин</h3>
+                        <div class="member-position">Член Комиссии</div>
+                        <div class="member-region">Смоленская область</div>
+                        <div class="member-bio">
+                            <p>Вклад Глеба в развитие официальных соревнований колоссален. Именно он и его команда одними из первых включились в проведение Кубка России и сделали это первоклассно. Подтверждением значения этой работы стала награда за сезон 2024 года «Лучшая площадка проведения Кубка России».</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card red">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo red-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg" alt="Андрей Сальников">
                     </div>
                     <div class="member-info">
-                        <h3>Андрей Сальников</h3>
-                        <p class="position">Член Комиссии</p>
-                        <p class="region">Ульяновская область</p>
+                        <h3 class="member-name">Андрей Сальников</h3>
+                        <div class="member-position">Член Комиссии</div>
+                        <div class="member-region">Ульяновская область</div>
+                        <div class="member-bio">
+                            <p>Это человек, который внёс значительный вклад в историю официальной мотоджимханы. Именно ульяновские организаторы первыми в стране начали проводить официальные соревнования, и именно ульяновские спортсмены первыми получили спортивные разряды за соревнования по мотоджимжане.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card yellow">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo yellow-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg" alt="Ильшат Сафаров">
                     </div>
                     <div class="member-info">
-                        <h3>Ильшат Сафаров</h3>
-                        <p class="position">Член Комиссии</p>
-                        <p class="region">Республика Татарстан</p>
+                        <h3 class="member-name">Ильшат Сафаров</h3>
+                        <div class="member-position">Член Комиссии</div>
+                        <div class="member-region">Республика Татарстан</div>
+                        <div class="member-bio">
+                            <p>Ильшат с командой увлечённых мотоджимханой делают в своем регионе акцент на детских тренировках и соревнованиях. Комиссия будет перенимать и транслировать их опыт на федеральном уровне.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card blue">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo blue-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg" alt="Максим Гаранин">
                     </div>
                     <div class="member-info">
-                        <h3>Максим Гаранин</h3>
-                        <p class="position">Член Комиссии</p>
-                        <p class="region">Калужская область</p>
+                        <h3 class="member-name">Максим Гаранин</h3>
+                        <div class="member-position">Член Комиссии</div>
+                        <div class="member-region">Калужская область</div>
+                        <div class="member-bio">
+                            <p>Максим так же ставит в приоритеты развития мотоджимханы страны детские тренировки и соревнования. Совместно с Ильшатом Сафаровым ему предстоит проделать большую и, безусловно, полезную работу по этому направлению.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card red">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo red-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg" alt="Александр Акимов">
                     </div>
                     <div class="member-info">
-                        <h3>Александр Акимов</h3>
-                        <p class="position">Член Комиссии</p>
-                        <p class="region">Тульская область</p>
+                        <h3 class="member-name">Александр Акимов</h3>
+                        <div class="member-position">Член Комиссии</div>
+                        <div class="member-region">Тульская область</div>
+                        <div class="member-bio">
+                            <p>Представитель мотоджимханы из Тульской области.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="member-card yellow">
-                    <div class="member-photo">
+                <div class="member-card">
+                    <div class="member-photo yellow-border">
                         <img src="https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg" alt="Александр Ципилев">
                     </div>
                     <div class="member-info">
-                        <h3>Александр Ципилев</h3>
-                        <p class="position">Член Комиссии</p>
-                        <p class="region">Москва, МОО "Федерация Мотоджимханы"</p>
+                        <h3 class="member-name">Александр Ципилев</h3>
+                        <div class="member-position">Член Комиссии</div>
+                        <div class="member-region">Москва, МОО "Федерация Мотоджимханы"</div>
+                        <div class="member-bio">
+                            <p>Представитель МОО "Федерация Мотоджимханы".</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="about-card blue">
-            <h2 class="card-title">О комиссии</h2>
-            <div class="card-content">
-                <p>31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии по фигурному управлению мотоциклом.</p>
-                <p>За два года руководства Дмитрий Серов доказал свои профессиональные компетенции и преданность делу. Благодаря Дмитрию и с его непосредственным участием проведён не только ряд федеральных мероприятий - кроме этого состоялись официальные соревнования в Санкт-Петербурге, Тверской, Ленинградской, Смоленской, Нижегородской, Вологодской областях и Пермском крае.</p>
-                <p>Прикладное значение деятельности очевидно: участникам официальных соревнований присваиваются спортивные разряды, а спортивные судьи получают практику судейства. В региональных федерациях появляются комиссии по мотоджимхане.</p>
-                <p>На 2026 год запланировано ещё больше мероприятий и всё больше регионов проявляют интерес к проведению официальных соревнований.</p>
+        <section class="section-card">
+            <div class="section-header blue">
+                <h2><i class="fas fa-info-circle"></i> О комиссии</h2>
+            </div>
+            <div class="section-content">
+                <p class="section-text">
+                    31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии по фигурному управлению мотоциклом.
+                </p>
+                <p class="section-text">
+                    Прикладное значение деятельности очевидно: участникам официальных соревнований присваиваются спортивные разряды, а спортивные судьи получают практику судейства. В региональных федерациях появляются комиссии по мотоджимхане.
+                </p>
+                <p class="section-text">
+                    На 2026 год запланировано ещё больше мероприятий и всё больше регионов проявляют интерес к проведению официальных соревнований.
+                </p>
+                <div class="quote-box yellow">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="quote-text">Уверен, с такой командой мы сможем выполнить поставленные перед комиссией задачи: международные соревнования, внесение изменений в ЕВСК (включение женского и юношеских зачётов) и развитие официальной мотоджимханы в регионах.</p>
+                    <div class="quote-author">— Дмитрий Серов, Председатель Комиссии</div>
+                </div>
             </div>
         </section>
 
-        <section class="contacts-card red">
-            <h2 class="card-title">Контакты</h2>
-            <div class="card-content">
+        <section id="contacts" class="section-card">
+            <div class="section-header red">
+                <h2><i class="fas fa-address-book"></i> Контакты</h2>
+            </div>
+            <div class="section-content contacts-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>dzhimhana@mfr-ro.ru</span>
+                        <i class="fas fa-envelope contact-icon blue"></i>
+                        <div class="contact-details">
+                            <h4>Электронная почта</h4>
+                            <p>dzhimhana@mfr-ro.ru</p>
+                        </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+7 (977) 823-63-90</span>
+                        <i class="fas fa-phone contact-icon red"></i>
+                        <div class="contact-details">
+                            <h4>Телефон</h4>
+                            <p>+7 (977) 823-63-90</p>
+                        </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>г. Москва, ул. Давыдковская, д. 15</span>
+                        <i class="fas fa-map-marker-alt contact-icon yellow"></i>
+                        <div class="contact-details">
+                            <h4>Адрес</h4>
+                            <p>г. Ростов-на-Дону, ул. Давыдковская, д. 15</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock contact-icon blue"></i>
+                        <div class="contact-details">
+                            <h4>Режим работы</h4>
+                            <p>Пн-Пт: 9:00 - 18:00</p>
+                        </div>
                     </div>
                 </div>
                 <div class="social-links">
-                    <a href="https://vk.com/motodzhimhana_russia" target="_blank" class="social-link yellow">
-                        <i class="fab fa-vk"></i>
-                        <span>ВКонтакте</span>
-                    </a>
-                    <a href="https://t.me/motodzhimhana" target="_blank" class="social-link blue">
-                        <i class="fab fa-telegram"></i>
-                        <span>Telegram</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="documents-card yellow">
-            <h2 class="card-title">Документы</h2>
-            <div class="card-content">
-                <div class="document-list">
-                    <div class="document-item">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Положение о проведении соревнований по фигурному управлению мотоциклом</span>
-                    </div>
-                    <div class="document-item">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Правила МинСпорта по мотоциклетному спорту (раздел "фигурное управление мотоциклом")</span>
-                    </div>
-                    <div class="document-item">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Регламент Кубка России по фигурному управлению мотоциклом на 2025 год</span>
-                    </div>
-                    <div class="document-item">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Требования к спортсменам и экипировке</span>
+                    <h3>Мы в социальных сетях</h3>
+                    <div class="social-grid">
+                        <a href="https://vk.com/motodzhimhana_russia" target="_blank" class="social-item blue">
+                            <i class="fab fa-vk"></i>
+                            <span>ВКонтакте</span>
+                        </a>
+                        <a href="https://t.me/motodzhimhana" target="_blank" class="social-item red">
+                            <i class="fab fa-telegram"></i>
+                            <span>Telegram</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="competitions-card blue">
-            <h2 class="card-title">Планы на 2025-2026 годы</h2>
-            <div class="card-content">
+        <section class="section-card">
+            <div class="section-header yellow">
+                <h2><i class="fas fa-file-alt"></i> Документы</h2>
+            </div>
+            <div class="section-content">
+                <div class="documents-grid">
+                    <div class="document-item blue-border">
+                        <i class="fas fa-file-pdf document-icon"></i>
+                        <div class="document-info">
+                            <h4>Положение о проведении соревнований</h4>
+                            <p>Утверждено 15.01.2025</p>
+                        </div>
+                    </div>
+                    <div class="document-item red-border">
+                        <i class="fas fa-file-pdf document-icon"></i>
+                        <div class="document-info">
+                            <h4>Правила МинСпорта по мотоциклетному спорту</h4>
+                            <p>Раздел "фигурное управление мотоциклом"</p>
+                        </div>
+                    </div>
+                    <div class="document-item yellow-border">
+                        <i class="fas fa-file-pdf document-icon"></i>
+                        <div class="document-info">
+                            <h4>Регламент Кубка России 2025</h4>
+                            <p>Сезон 2025 года</p>
+                        </div>
+                    </div>
+                    <div class="document-item blue-border">
+                        <i class="fas fa-file-pdf document-icon"></i>
+                        <div class="document-info">
+                            <h4>Требования к спортсменам и экипировке</h4>
+                            <p>Обновлено 20.11.2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <div class="section-header blue">
+                <h2><i class="fas fa-calendar-alt"></i> Планы на 2025-2026 годы</h2>
+            </div>
+            <div class="section-content">
                 <ul class="plans-list">
-                    <li>Проведение 5 этапов Кубка России и 3 межрегиональных соревнований</li>
-                    <li>Второй сезон Женского Кубка МФР по фигурному управлению мотоциклом</li>
-                    <li>Развитие международного сотрудничества</li>
-                    <li>Внесение изменений в ЕВСК (включение женского и юношеских зачётов)</li>
-                    <li>Расширение географии официальных соревнований</li>
-                    <li>Акцент на детских тренировках и соревнованиях</li>
+                    <li><i class="fas fa-check-circle green-icon"></i> Проведение 5 этапов Кубка России и 3 межрегиональных соревнований</li>
+                    <li><i class="fas fa-check-circle green-icon"></i> Второй сезон Женского Кубка МФР по фигурному управлению мотоциклом</li>
+                    <li><i class="fas fa-check-circle green-icon"></i> Развитие международного сотрудничества</li>
+                    <li><i class="fas fa-check-circle green-icon"></i> Внесение изменений в ЕВСК (включение женского и юношеских зачётов)</li>
+                    <li><i class="fas fa-check-circle green-icon"></i> Расширение географии официальных соревнований</li>
+                    <li><i class="fas fa-check-circle green-icon"></i> Акцент на детских тренировках и соревнованиях</li>
                 </ul>
             </div>
         </section>
-    </main>
 
-    <footer class="win-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-motorcycle"></i>
-                <span>Комиссия ФУМ/мотоджимхана МФР</span>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-motorcycle footer-icon"></i>
+                    <div class="footer-text">
+                        <h3>РООФСО "ФМСРО"</h3>
+                        <p>Ростовская областная федерация мотоциклетного спорта</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <a href="https://mfr-ro.ru/" target="_blank" class="footer-link">
+                        <i class="fas fa-globe"></i> Официальный сайт ФМСРО
+                    </a>
+                    <a href="https://www.mfr.ru/" target="_blank" class="footer-link">
+                        <i class="fas fa-globe"></i> Официальный сайт МФР
+                    </a>
+                </div>
+                <div class="footer-copyright">
+                    <p>© 2025 Федерация мотоциклетного спорта России. Все права защищены.</p>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="https://www.mfr.ru" target="_blank">Официальный сайт МФР</a>
-            </div>
-            <div class="footer-copyright">
-                <p>© 2025 Федерация мотоциклетного спорта России</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
