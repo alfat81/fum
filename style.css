@@ -1,198 +1,266 @@
-:root {
-    --blue: #0078D7;      /* Cones to be passed on the right */
-    --red: #E74C3C;       /* Cones to be passed on the left */
-    --yellow: #F39C12;    /* Cones for rotation */
-    --dark-blue: #1A2C56;
-    --light-gray: #F8F9FA;
-    --dark-gray: #2C3E50;
-    --white: #FFFFFF;
-    --text-dark: #333333;
-    --text-light: #F8F9FA;
+/* Russia map styles */
+.russia-map-section {
+    margin-top: 40px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.russia-map-section h3 {
+    color: var(--dark-blue);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
 }
 
-body {
-    background-color: var(--light-gray);
+.region-selector-container {
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.region-selector {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--blue);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: var(--white);
     color: var(--text-dark);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.region-selector:focus {
+    outline: none;
+    border-color: var(--dark-blue);
+    box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.3);
+}
+
+.russia-svg-map-container {
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    border: 2px solid var(--blue);
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #e8f4ff, #d4e8ff);
+    position: relative;
+}
+
+.russia-svg-map {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.region {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.region:hover {
+    fill: #a7c7e7;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+}
+
+.region-tooltip {
+    position: absolute;
+    background: var(--white);
+    border: 3px solid var(--blue);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    z-index: 1000;
+    max-width: 400px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(20px, 0) scale(0.95); }
+    to { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+.region-tooltip h4 {
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 8px;
+}
+
+.region-tooltip p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
     line-height: 1.6;
 }
 
-.container {
-    max-width: 1400px;
+.tooltip-region-photo {
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
-    padding: 20px;
-}
-
-/* Windows Mobile Header */
-.win-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 3px solid var(--blue);
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.logo-container {
-    position: relative;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--yellow));
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.logo-img {
-    max-width: 200px;
-    height: auto;
-    display: block;
-}
-
-/* Tiles container */
-.tiles-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 25px;
-    margin: 40px auto;
-    max-width: 1400px;
-}
-
-.tile {
-    display: block;
-    height: 500px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    text-decoration: none;
-    transition: all 0.3s ease;
     color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.tile:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.tile-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.tooltip-region-photo img {
+    width: 100%;
     height: 100%;
-    padding: 20px;
-    text-align: center;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
-.tile-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-}
-
-.tile-text h3 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.blue { background: linear-gradient(135deg, var(--dark-blue), var(--blue)); }
-.red { background: linear-gradient(135deg, #c0392b, var(--red)); }
-.yellow { background: linear-gradient(135deg, #d39e00, var(--yellow)); }
-
-/* Footer */
-.win-footer {
-    background: var(--dark-blue);
-    color: var(--white);
-    padding: 20px 0;
-    margin-top: 40px;
-    border-radius: 8px;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: var(--yellow);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: opacity 0.3s ease;
-}
-
-.footer-links a:hover {
-    opacity: 0.8;
-}
-
-/* Responsive design */
+/* Responsive design for map */
 @media (max-width: 1200px) {
-    .tiles-container {
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    .russia-svg-map-container {
+        height: 500px;
     }
     
-    .tile {
-        height: 450px;
+    .region-tooltip {
+        max-width: 350px;
     }
 }
 
 @media (max-width: 992px) {
-    .tiles-container {
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    }
-    
-    .tile {
-        height: 400px;
+    .russia-svg-map-container {
+        height: 450px;
     }
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
+    .region-selector {
+        font-size: 1rem;
     }
     
-    .tiles-container {
-        grid-template-columns: 1fr;
+    .russia-svg-map-container {
+        height: 400px;
     }
     
-    .tile {
-        height: 350px;
+    .region-tooltip {
+        left: 50% !important;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 350px;
     }
     
-    .tile-icon {
-        font-size: 3rem;
-    }
-    
-    .tile-text h3 {
-        font-size: 1.8rem;
+    .region-tooltip::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid var(--blue);
     }
 }
 
 @media (max-width: 480px) {
-    .tile {
-        height: 300px;
+    .russia-svg-map-container {
+        height: 350px;
     }
     
-    .tile-icon {
-        font-size: 2.5rem;
+    .region-tooltip {
+        padding: 15px;
     }
     
-    .tile-text h3 {
-        font-size: 1.5rem;
+    .tooltip-region-photo {
+        width: 100px;
+        height: 100px;
+        font-size: 1.8rem;
     }
+}
+
+/* Leadership grid */
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.leader-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    align-items: center;
+}
+
+.leader-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.leader-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 4px solid;
+}
+
+.blue-border { border-color: var(--blue); }
+.red-border { border-color: var(--red); }
+.yellow-border { border-color: var(--yellow); }
+
+.leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.leader-info {
+    flex: 1;
+}
+
+.leader-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+}
+
+.leader-position {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 10px;
+}
+
+.leader-contact, .leader-region {
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+    margin-bottom: 8px;
+}
+
+.leader-contact i {
+    color: var(--blue);
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.contact-link {
+    color: var(--dark-blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact-link:hover {
+    color: var(--red);
+    text-decoration: underline;
 }
