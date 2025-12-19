@@ -6,6 +6,148 @@
     <title>Структура комиссии | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для карты */
+        .russia-map-container {
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 2px solid var(--blue);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #e8f4ff, #d4e8ff);
+            position: relative;
+        }
+        
+        .russia-map-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .region-path {
+            fill: #e0e7ff;
+            stroke: var(--blue);
+            stroke-width: 1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .region-path:hover {
+            fill: #a7c7e7;
+            stroke-width: 2;
+        }
+        
+        .region-path.active {
+            fill: rgba(243, 156, 18, 0.3);
+            stroke: var(--yellow);
+            stroke-width: 3;
+        }
+        
+        .region-tooltip {
+            position: absolute;
+            background: var(--white);
+            border: 3px solid var(--blue);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            z-index: 1000;
+            max-width: 400px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(20px, 0) scale(0.95); }
+            to { opacity: 1; transform: translate(0, 0) scale(1); }
+        }
+        
+        .region-tooltip h4 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--yellow);
+            padding-bottom: 8px;
+        }
+        
+        .region-tooltip p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .tooltip-photo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--yellow));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tooltip-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .region-selector-container {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .region-selector {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--blue);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            background: var(--white);
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .region-selector:focus {
+            outline: none;
+            border-color: var(--dark-blue);
+            box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.3);
+        }
+        
+        .map-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .map-button {
+            padding: 8px 15px;
+            border: 2px solid var(--blue);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .map-button:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -72,61 +214,6 @@
                                 <div class="leader-region">Смоленская область</div>
                             </div>
                         </div>
-
-                        <div class="leader-card">
-                            <div class="leader-photo yellow-border">
-                                <img src="https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg" alt="Андрей Сальников">
-                            </div>
-                            <div class="leader-info">
-                                <h3 class="leader-name">Андрей Сальников</h3>
-                                <div class="leader-position">Член Комиссии</div>
-                                <div class="leader-region">Ульяновская область</div>
-                            </div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-photo blue-border">
-                                <img src="https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg" alt="Ильшат Сафаров">
-                            </div>
-                            <div class="leader-info">
-                                <h3 class="leader-name">Ильшат Сафаров</h3>
-                                <div class="leader-position">Член Комиссии</div>
-                                <div class="leader-region">Республика Татарстан</div>
-                            </div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-photo red-border">
-                                <img src="https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg" alt="Максим Гаранин">
-                            </div>
-                            <div class="leader-info">
-                                <h3 class="leader-name">Максим Гаранин</h3>
-                                <div class="leader-position">Член Комиссии</div>
-                                <div class="leader-region">Калужская область</div>
-                            </div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-photo yellow-border">
-                                <img src="https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg" alt="Александр Акимов">
-                            </div>
-                            <div class="leader-info">
-                                <h3 class="leader-name">Александр Акимов</h3>
-                                <div class="leader-position">Член Комиссии</div>
-                                <div class="leader-region">Тульская область</div>
-                            </div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-photo blue-border">
-                                <img src="https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg" alt="Александр Ципилев">
-                            </div>
-                            <div class="leader-info">
-                                <h3 class="leader-name">Александр Ципилев</h3>
-                                <div class="leader-position">Член Комиссии</div>
-                                <div class="leader-region">Москва, МОО "Федерация Мотоджимханы"</div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="russia-map-section">
@@ -139,7 +226,7 @@
                                 <option value="moscow">Москва</option>
                                 <option value="stpetersburg">Санкт-Петербург</option>
                                 <option value="tver">Тверская область</option>
-                                <option value="nnovgorod">Нижегородская область</option>
+                                <option value="nnovgorod">Нижний Новгород</option>
                                 <option value="smolensk">Смоленская область</option>
                                 <option value="vologda">Вологодская область</option>
                                 <option value="ulyanovsk">Ульяновская область</option>
@@ -148,134 +235,34 @@
                                 <option value="tula">Тульская область</option>
                                 <option value="rostov">Ростовская область</option>
                                 <option value="perm">Пермский край</option>
-                                <option value="kursk">Курская область</option>
-                                <option value="voronezh">Воронежская область</option>
-                                <option value="saratov">Саратовская область</option>
-                                <option value="ryazan">Рязанская область</option>
-                                <option value="lipetsk">Липецкая область</option>
-                                <option value="belgorod">Белгородская область</option>
-                                <option value="bryansk">Брянская область</option>
-                                <option value="novgorod">Новгородская область</option>
-                                <option value="yaroslavl">Ярославская область</option>
-                                <option value="kostroma">Костромская область</option>
-                                <option value="ivanovo">Ивановская область</option>
-                                <option value="vladimir">Владимирская область</option>
-                                <option value="murmansk">Мурманская область</option>
-                                <option value="karelia">Республика Карелия</option>
-                                <option value="komi">Республика Коми</option>
-                                <option value="arkhangelsk">Архангельская область</option>
-                                <option value="tambov">Тамбовская область</option>
-                                <option value="penza">Пензенская область</option>
-                                <option value="samara">Самарская область</option>
-                                <option value="volgograd">Волгоградская область</option>
-                                <option value="astrakhan">Астраханская область</option>
-                                <option value="kalmykia">Республика Калмыкия</option>
-                                <option value="dagestan">Республика Дагестан</option>
-                                <option value="stavropol">Ставропольский край</option>
-                                <option value="kuban">Краснодарский край</option>
-                                <option value="adigea">Республика Адыгея</option>
-                                <option value="kabardino">Кабардино-Балкарская Республика</option>
-                                <option value="north-ossetia">Республика Северная Осетия</option>
-                                <option value="ingushetia">Республика Ингушетия</option>
-                                <option value="chechnya">Чеченская Республика</option>
                             </select>
                         </div>
                         
-                        <!-- SVG карта России -->
-                        <div class="russia-svg-map-container">
-                            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" class="russia-svg-map">
-                                <!-- Центральный федеральный округ -->
-                                <path class="region" data-region="moscow" d="M500,300 L520,280 L540,300 L530,320 L510,330 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="tver" d="M480,260 L500,240 L520,260 L510,280 L490,290 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="smolensk" d="M450,290 L470,270 L490,290 L480,310 L460,320 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kaluga" d="M470,320 L490,300 L510,320 L500,340 L480,350 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="tula" d="M460,350 L480,330 L500,350 L490,370 L470,380 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="ryazan" d="M510,350 L530,330 L550,350 L540,370 L520,380 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="vladimir" d="M540,320 L560,300 L580,320 L570,340 L550,350 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="ivanovo" d="M570,290 L590,270 L610,290 L600,310 L580,320 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="yaroslavl" d="M550,260 L570,240 L590,260 L580,280 L560,290 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kostroma" d="M580,230 L600,210 L620,230 L610,250 L590,260 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="bryansk" d="M440,320 L460,300 L480,320 L470,340 L450,350 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="belgorod" d="M490,410 L510,390 L530,410 L520,430 L500,440 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="voronezh" d="M520,380 L540,360 L560,380 L550,400 L530,410 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kursk" d="M480,380 L500,360 L520,380 L510,400 L490,410 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="lipetsk" d="M510,360 L530,340 L550,360 L540,380 L520,390 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="tambov" d="M530,350 L550,330 L570,350 L560,370 L540,380 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="orenburg" d="L630,350 L650,330 L670,350 L660,370 L640,380 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Северо-Западный федеральный округ -->
-                                <path class="region" data-region="stpetersburg" d="M400,200 L420,180 L440,200 L430,220 L410,230 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="leningrad" d="M430,180 L450,160 L470,180 L460,200 L440,210 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="novgorod" d="M460,200 L480,180 L500,200 L490,220 L470,230 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="pskov" d="M430,230 L450,210 L470,230 L460,250 L440,260 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="murmansk" d="M350,150 L370,130 L390,150 L380,170 L360,180 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="karelia" d="M380,170 L400,150 L420,170 L410,190 L390,200 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="komi" d="M410,140 L430,120 L450,140 L440,160 L420,170 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="arkhangelsk" d="M440,120 L460,100 L480,120 L470,140 L450,150 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="vologda" d="M470,190 L490,170 L510,190 L500,210 L480,220 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Приволжский федеральный округ -->
-                                <path class="region" data-region="nnovgorod" d="M530,240 L550,220 L570,240 L560,260 L540,270 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kirov" d="M590,200 L610,180 L630,200 L620,220 L600,230 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="perm" d="M640,190 L660,170 L680,190 L670,210 L650,220 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="ulyanovsk" d="M580,350 L600,330 L620,350 L610,370 L590,380 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="samara" d="M610,330 L630,310 L650,330 L640,350 L620,360 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="saratov" d="M600,380 L620,360 L640,380 L630,400 L610,410 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="penza" d="M570,370 L590,350 L610,370 L600,390 L580,400 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="mari-el" d="M560,280 L580,260 L600,280 L590,300 L570,310 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="chuvashia" d="M550,310 L570,290 L590,310 L580,330 L560,340 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="mordovia" d="M540,340 L560,320 L580,340 L570,360 L550,370 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="tatarstan" d="M570,320 L590,300 L610,320 L600,340 L580,350 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="bashkortostan" d="M600,300 L620,280 L640,300 L630,320 L610,330 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="udmurtia" d="M590,270 L610,250 L630,270 L620,290 L600,300 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Южный федеральный округ -->
-                                <path class="region" data-region="rostov" d="M550,450 L570,430 L590,450 L580,470 L560,480 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="volgograd" d="M590,430 L610,410 L630,430 L620,450 L600,460 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="astrakhan" d="M620,450 L640,430 L660,450 L650,470 L630,480 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kalmykia" d="M600,470 L620,450 L640,470 L630,490 L610,500 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Северо-Кавказский федеральный округ -->
-                                <path class="region" data-region="dagestan" d="M610,490 L630,470 L650,490 L640,510 L620,520 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="chechnya" d="M590,480 L610,460 L630,480 L620,500 L600,510 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="ingushetia" d="M580,470 L600,450 L620,470 L610,490 L590,500 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="north-ossetia" d="M570,460 L590,440 L610,460 L600,480 L580,490 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kabardino-balkaria" d="M560,450 L580,430 L600,450 L590,470 L570,480 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="karachay-cherkessia" d="M550,440 L570,420 L590,440 L580,460 L560,470 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="stavropol" d="M540,430 L560,410 L580,430 L570,450 L550,460 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="adigea" d="M530,470 L550,450 L570,470 L560,490 L540,500 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kuban" d="M555,480 L575,460 L595,480 L585,500 L565,510 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Уральский федеральный округ -->
-                                <path class="region" data-region="sverdlovsk" d="M650,210 L670,190 L690,210 L680,230 L660,240 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="chelyabinsk" d="M640,250 L660,230 L680,250 L670,270 L650,280 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="tyumen" d="M620,200 L640,180 L660,200 L650,220 L630,230 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kurgan" d="M600,240 L620,220 L640,240 L630,260 L610,270 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Сибирский федеральный округ -->
-                                <path class="region" data-region="tomsk" d="M670,180 L690,160 L710,180 L700,200 L680,210 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="novosibirsk" d="M680,240 L700,220 L720,240 L710,260 L690,270 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="omsk" d="M660,280 L680,260 L700,280 L690,300 L670,310 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kemerovo" d="M650,200 L670,180 L690,200 L680,220 L660,230 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="altai" d="M630,300 L650,280 L670,300 L660,320 L640,330 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="altai-kray" d="M610,270 L630,250 L650,270 L640,290 L620,300 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="tuvа" d="M720,290 L740,270 L760,290 L750,310 L730,320 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="khakassia" d="M710,260 L730,240 L750,260 L740,280 L720,290 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="krasnoyarsk" d="M690,150 L710,130 L730,150 L720,170 L700,180 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="irkutsk" d="M740,210 L760,190 L780,210 L770,230 L750,240 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="buryatia" d="M770,240 L790,220 L810,240 L800,260 L780,270 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="zabaykalsky" d="M790,270 L810,250 L830,270 L820,290 L800,300 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="amur" d="M820,300 L840,280 L860,300 L850,320 L830,330 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-
-                                <!-- Дальневосточный федеральный округ -->
-                                <path class="region" data-region="khabarovsk" d="M850,250 L870,230 L890,250 L880,270 L860,280 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="primorsky" d="M880,280 L900,260 L920,280 L910,300 L890,310 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="kamchatka" d="M890,150 L910,130 L930,150 L920,170 L900,180 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="magadan" d="M860,120 L880,100 L900,120 L890,140 L870,150 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="chukotka" d="M820,80 L840,60 L860,80 L850,100 L830,110 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="yamalo-nenets" d="M550,100 L570,80 L590,100 L580,120 L560,130 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="khanty-mansi" d="M580,130 L600,110 L620,130 L610,150 L590,160 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
-                                <path class="region" data-region="sakha" d="M780,160 L800,140 L820,160 L810,180 L790,190 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                        <!-- Карта России -->
+                        <div class="map-controls">
+                            <div class="map-controls-left">
+                                <button id="reset-map" class="map-button"><i class="fas fa-sync-alt"></i> Сбросить</button>
+                            </div>
+                            <div class="map-zoom">
+                                <button id="zoom-in" class="map-button"><i class="fas fa-plus"></i></button>
+                                <button id="zoom-out" class="map-button"><i class="fas fa-minus"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="russia-map-container">
+                            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" class="russia-map-svg">
+                                <!-- Простая карта России для демонстрации -->
+                                <path class="region-path" data-region="moscow" d="M500,300 L550,280 L600,300 L580,350 L520,350 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="tver" d="M450,250 L500,230 L550,250 L530,300 L470,300 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="nnovgorod" d="M550,250 L600,230 L650,250 L630,300 L570,300 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="smolensk" d="M400,280 L450,260 L500,280 L480,330 L420,330 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="vologda" d="M500,200 L550,180 L600,200 L580,250 L520,250 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="ulyanovsk" d="M600,350 L650,330 L700,350 L680,400 L620,400 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="tatarstan" d="M650,350 L700,330 L750,350 L730,400 L670,400 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="kaluga" d="M450,330 L500,310 L550,330 L530,380 L470,380 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="tula" d="M450,380 L500,360 L550,380 L530,430 L470,430 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="rostov" d="M500,450 L550,430 L600,450 L580,500 L520,500 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
+                                <path class="region-path" data-region="perm" d="M700,250 L750,230 L800,250 L780,300 L720,300 Z" fill="#e0e7ff" stroke="#0078d7" stroke-width="1" />
                             </svg>
                         </div>
                         
@@ -283,7 +270,7 @@
                         <div class="region-tooltip" id="region-tooltip">
                             <h4 id="tooltip-region-name">Название региона</h4>
                             <p id="tooltip-region-contact">Контактная информация регионального представителя</p>
-                            <div id="tooltip-region-photo" class="tooltip-region-photo"></div>
+                            <div id="tooltip-photo" class="tooltip-photo"></div>
                         </div>
                     </div>
                 </div>
@@ -301,7 +288,180 @@
         </footer>
     </div>
 
-    <script src="map.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Данные о регионах
+            const regionData = {
+                "tver": {
+                    "name": "Тверская область",
+                    "contact_person": "Дмитрий Серов",
+                    "phone": "+7 (977) 823-63-90",
+                    "email": "serovdima@list.ru",
+                    "position": "Председатель Комиссии",
+                    "photo_url": "https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg"
+                },
+                "moscow": {
+                    "name": "Москва",
+                    "contact_person": "Александр Ципилев",
+                    "email": "moscow-fum@mfr.ru",
+                    "position": "Представитель МОО \"Федерация Мотоджимханы\"",
+                    "photo_url": "https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg"
+                },
+                "nnovgorod": {
+                    "name": "Нижний Новгород",
+                    "contact_person": "Алексей Фатьянов",
+                    "phone": "+7 (905) 234-56-78",
+                    "email": "fatyanov@mfr-nnov.ru",
+                    "position": "Заместитель Председателя",
+                    "photo_url": "https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg"
+                },
+                "vologda": {
+                    "name": "Вологодская область",
+                    "contact_person": "Наталия Недайводина",
+                    "email": "vologda-fum@mfr.ru",
+                    "position": "Главный секретарь",
+                    "photo_url": "https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg"
+                },
+                "smolensk": {
+                    "name": "Смоленская область",
+                    "contact_person": "Глеб Симдянкин",
+                    "email": "smolensk-fum@mfr.ru",
+                    "position": "Член Комиссии",
+                    "photo_url": "https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg"
+                }
+            };
+            
+            // Инициализация карты
+            function initMap() {
+                const regionPaths = document.querySelectorAll('.region-path');
+                const tooltip = document.getElementById('region-tooltip');
+                const regionName = document.getElementById('tooltip-region-name');
+                const regionContact = document.getElementById('tooltip-region-contact');
+                const photoPlaceholder = document.getElementById('tooltip-photo');
+                const resetButton = document.getElementById('reset-map');
+                
+                // Обработчики событий для регионов
+                regionPaths.forEach(path => {
+                    const regionId = path.dataset.region;
+                    
+                    path.addEventListener('mouseenter', function(e) {
+                        showRegionTooltip(e, regionId);
+                    });
+                    
+                    path.addEventListener('mouseleave', function() {
+                        tooltip.style.display = 'none';
+                    });
+                    
+                    path.addEventListener('click', function() {
+                        // Убираем активный класс у всех регионов
+                        document.querySelectorAll('.region-path').forEach(p => {
+                            p.classList.remove('active');
+                        });
+                        
+                        // Добавляем активный класс к выбранному региону
+                        this.classList.add('active');
+                    });
+                });
+                
+                // Обработчик выбора региона из меню
+                document.getElementById('region-selector').addEventListener('change', function() {
+                    const regionId = this.value;
+                    if (regionId) {
+                        // Убираем активный класс у всех регионов
+                        document.querySelectorAll('.region-path').forEach(p => {
+                            p.classList.remove('active');
+                        });
+                        
+                        // Находим и активируем соответствующий регион
+                        const regionPath = document.querySelector(`.region-path[data-region="${regionId}"]`);
+                        if (regionPath) {
+                            regionPath.classList.add('active');
+                            highlightRegionOnMap(regionId);
+                            
+                            // Закрываем выпадающее меню
+                            this.blur();
+                        }
+                    } else {
+                        // Сбрасываем выделение
+                        document.querySelectorAll('.region-path').forEach(p => {
+                            p.classList.remove('active');
+                        });
+                        tooltip.style.display = 'none';
+                    }
+                });
+                
+                // Обработчик сброса карты
+                resetButton.addEventListener('click', function() {
+                    document.querySelectorAll('.region-path').forEach(p => {
+                        p.classList.remove('active');
+                    });
+                    tooltip.style.display = 'none';
+                    document.getElementById('region-selector').value = '';
+                });
+                
+                // Функция показа подсказки
+                function showRegionTooltip(event, regionId) {
+                    const regionInfo = regionData[regionId];
+                    if (!regionInfo) return;
+                    
+                    // Заполняем информацию
+                    regionName.textContent = regionInfo.name;
+                    regionContact.innerHTML = `
+                        <strong>${regionInfo.contact_person}</strong><br>
+                        Должность: ${regionInfo.position}<br>
+                        Телефон: ${regionInfo.phone || 'не указан'}<br>
+                        Email: ${regionInfo.email || 'не указан'}
+                    `;
+                    
+                    // Устанавливаем фото
+                    if (regionInfo.photo_url) {
+                        photoPlaceholder.innerHTML = `<img src="${regionInfo.photo_url}" alt="${regionInfo.name}">`;
+                    } else {
+                        const initials = regionInfo.contact_person ? 
+                            regionInfo.contact_person.split(' ').map(word => word[0]).join('') : '?';
+                        photoPlaceholder.innerHTML = initials;
+                    }
+                    
+                    // Позиционируем подсказку
+                    const mapRect = document.querySelector('.russia-map-container').getBoundingClientRect();
+                    const tooltipWidth = tooltip.offsetWidth;
+                    const tooltipHeight = tooltip.offsetHeight;
+                    
+                    let x = event.clientX + 20;
+                    let y = event.clientY + 20;
+                    
+                    // Проверяем, не выходит ли подсказка за границы экрана
+                    if (x + tooltipWidth > window.innerWidth) {
+                        x = event.clientX - tooltipWidth - 20;
+                    }
+                    if (y + tooltipHeight > window.innerHeight) {
+                        y = event.clientY - tooltipHeight - 20;
+                    }
+                    
+                    tooltip.style.left = `${x}px`;
+                    tooltip.style.top = `${y}px`;
+                    tooltip.style.display = 'block';
+                }
+                
+                // Функция подсветки региона на карте
+                function highlightRegionOnMap(regionId) {
+                    const regionPath = document.querySelector(`.region-path[data-region="${regionId}"]`);
+                    if (regionPath) {
+                        // Убираем активный класс у всех регионов
+                        document.querySelectorAll('.region-path').forEach(p => {
+                            p.classList.remove('active');
+                        });
+                        
+                        // Добавляем активный класс к выбранному региону
+                        regionPath.classList.add('active');
+                    }
+                }
+            }
+            
+            // Инициализация карты
+            initMap();
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
