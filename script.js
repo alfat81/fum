@@ -46,9 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopButton.style.opacity = '0';
     backToTopButton.style.transform = 'scale(0.8)';
 
-    document.querySelector('.back-to-top').addEventListener('click', function() {
-        this.classList.remove('show');
-    });
+    // Initialize animations
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+        document.body.style.transition = 'opacity 0.5s ease';
+    }, 100);
     
     console.log('Сайт комиссии по мотоджимхане МФР загружен');
 });
