@@ -47,19 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Обработчик поиска регионов
-        const searchBox = document.getElementById('region-search');
-        if (searchBox) {
-            searchBox.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                regions.forEach(region => {
-                    const regionName = region.dataset.name.toLowerCase();
-                    if (regionName.includes(searchTerm)) {
-                        region.style.display = 'flex';
-                    } else {
-                        region.style.display = 'none';
+        // Обработчик выбора региона из меню
+        const regionSelect = document.getElementById('region-select');
+        if (regionSelect) {
+            regionSelect.addEventListener('change', function() {
+                const selectedRegionId = this.value;
+                if (selectedRegionId) {
+                    const selectedRegion = document.querySelector(`.region[data-region="${selectedRegionId}"]`);
+                    if (selectedRegion) {
+                        // Имитировать наведение на регион
+                        const mouseEvent = new MouseEvent('mouseenter', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window
+                        });
+                        selectedRegion.dispatchEvent(mouseEvent);
+                        
+                        // Прокрутить к карте
+                        map.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
-                });
+                }
             });
         }
         
@@ -69,23 +76,71 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (zoomIn && zoomOut) {
             let scale = 1;
+            let translateX = 0;
+            let translateY = 0;
             
             zoomIn.addEventListener('click', function() {
                 if (scale < 2) {
                     scale += 0.1;
-                    map.style.transform = `scale(${scale})`;
-                    map.style.transformOrigin = 'center';
+                    updateMapTransform(scale, translateX, translateY);
                 }
             });
             
             zoomOut.addEventListener('click', function() {
                 if (scale > 0.8) {
                     scale -= 0.1;
-                    map.style.transform = `scale(${scale})`;
-                    map.style.transformOrigin = 'center';
+                    updateMapTransform(scale, translateX, translateY);
                 }
             });
+            
+            // Поддержка перетаскивания карты
+            let isDragging = false;
+            let startX, startY;
+            let startTranslateX = 0;
+            let startTranslateY = 0;
+            
+            map.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                startTranslateX = translateX;
+                startTranslateY = translateY;
+                map.style.cursor = 'grabbing';
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    const dx = (e.clientX - startX) / scale;
+                    const dy = (e.clientY - startY) / scale;
+                    translateX = startTranslateX + dx;
+                    translateY = startTranslateY + dy;
+                    updateMapTransform(scale, translateX, translateY);
+                }
+            });
+            
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    map.style.cursor = 'grab';
+                }
+            });
+            
+            map.addEventListener('mouseleave', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    map.style.cursor = 'grab';
+                }
+            });
+            
+            // Инициализация курсора
+            map.style.cursor = 'grab';
         }
+    }
+    
+    function updateMapTransform(scale, translateX, translateY) {
+        const map = document.querySelector('.russia-map');
+        map.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+        map.style.transformOrigin = 'center';
     }
     
     // Получить контактную информацию для региона
