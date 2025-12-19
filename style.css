@@ -204,6 +204,32 @@ body {
     color: var(--text-dark);
 }
 
+/* Contact links */
+.contact-link {
+    color: var(--dark-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact-link:hover {
+    color: var(--red);
+    text-decoration: underline;
+}
+
+.email-link {
+    background: rgba(243, 156, 18, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.phone-link {
+    background: rgba(231, 76, 60, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
 /* Buttons */
 .action-button {
     display: inline-block;
@@ -559,5 +585,10 @@ body {
     .footer-links {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .contact-link {
+        display: block;
+        margin: 5px 0;
     }
 }
