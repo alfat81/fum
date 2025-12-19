@@ -1,254 +1,220 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Russia map functionality
+    // Russia map with regions
     function initMap() {
-        // Позиционирование регионов на карте
-        const regions = document.querySelectorAll('.region');
-        const map = document.querySelector('.russia-map');
-        const mapRect = map.getBoundingClientRect();
+        const mapSvg = document.querySelector('.map-svg');
+        const mapContainer = document.querySelector('.russia-map');
+        const tooltip = document.getElementById('map-tooltip');
+        const resetButton = document.getElementById('reset-map');
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
         
-        regions.forEach(region => {
-            const coords = region.dataset.coords.split(',');
-            const lat = parseFloat(coords[0]);
-            const lng = parseFloat(coords[1]);
-            
-            // Простая проекция для карты России
-            const x = (lng + 10) / 90 * mapRect.width;
-            const y = (70 - lat) / 50 * mapRect.height;
-            
-            region.style.left = `${x}px`;
-            region.style.top = `${y}px`;
-        });
-        
-        // Обработчики событий для регионов
-        regions.forEach(region => {
-            region.addEventListener('mouseenter', function() {
-                const regionName = this.dataset.name;
-                const regionId = this.dataset.region;
-                
-                // Показать информацию о регионе
-                document.getElementById('region-name').textContent = regionName;
-                document.getElementById('region-contact').textContent = getRegionContact(regionId);
-                
-                // Показать фото регионального представителя
-                const photoPlaceholder = document.querySelector('.region-photo-placeholder');
-                const photo = getRegionPhoto(regionId);
-                
-                if (photo) {
-                    photoPlaceholder.innerHTML = `<img src="${photo}" alt="${regionName}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
-                } else {
-                    photoPlaceholder.innerHTML = '?';
-                }
-            });
-            
-            region.addEventListener('mouseleave', function() {
-                document.getElementById('region-name').textContent = 'Выберите регион на карте';
-                document.getElementById('region-contact').textContent = 'Информация о региональном представителе появится здесь';
-                document.querySelector('.region-photo-placeholder').innerHTML = '?';
-            });
-        });
-        
-        // Обработчик выбора региона из меню
-        const regionSelect = document.getElementById('region-select');
-        if (regionSelect) {
-            regionSelect.addEventListener('change', function() {
-                const selectedRegionId = this.value;
-                if (selectedRegionId) {
-                    const selectedRegion = document.querySelector(`.region[data-region="${selectedRegionId}"]`);
-                    if (selectedRegion) {
-                        // Имитировать наведение на регион
-                        const mouseEvent = new MouseEvent('mouseenter', {
-                            bubbles: true,
-                            cancelable: true,
-                            view: window
-                        });
-                        selectedRegion.dispatchEvent(mouseEvent);
-                        
-                        // Прокрутить к карте
-                        map.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
-            });
-        }
-        
-        // Обработчики зума карты
-        const zoomIn = document.getElementById('zoom-in');
-        const zoomOut = document.getElementById('zoom-out');
-        
-        if (zoomIn && zoomOut) {
-            let scale = 1;
-            let translateX = 0;
-            let translateY = 0;
-            
-            zoomIn.addEventListener('click', function() {
-                if (scale < 2) {
-                    scale += 0.1;
-                    updateMapTransform(scale, translateX, translateY);
-                }
-            });
-            
-            zoomOut.addEventListener('click', function() {
-                if (scale > 0.8) {
-                    scale -= 0.1;
-                    updateMapTransform(scale, translateX, translateY);
-                }
-            });
-            
-            // Поддержка перетаскивания карты
-            let isDragging = false;
-            let startX, startY;
-            let startTranslateX = 0;
-            let startTranslateY = 0;
-            
-            map.addEventListener('mousedown', function(e) {
-                isDragging = true;
-                startX = e.clientX;
-                startY = e.clientY;
-                startTranslateX = translateX;
-                startTranslateY = translateY;
-                map.style.cursor = 'grabbing';
-            });
-            
-            document.addEventListener('mousemove', function(e) {
-                if (isDragging) {
-                    const dx = (e.clientX - startX) / scale;
-                    const dy = (e.clientY - startY) / scale;
-                    translateX = startTranslateX + dx;
-                    translateY = startTranslateY + dy;
-                    updateMapTransform(scale, translateX, translateY);
-                }
-            });
-            
-            document.addEventListener('mouseup', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    map.style.cursor = 'grab';
-                }
-            });
-            
-            map.addEventListener('mouseleave', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    map.style.cursor = 'grab';
-                }
-            });
-            
-            // Инициализация курсора
-            map.style.cursor = 'grab';
-        }
-    }
-    
-    function updateMapTransform(scale, translateX, translateY) {
-        const map = document.querySelector('.russia-map');
-        map.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
-        map.style.transformOrigin = 'center';
-    }
-    
-    // Получить контактную информацию для региона
-    function getRegionContact(regionId) {
-        const regionalRepresentatives = {
-            'moscow': 'Александр Петров, +7 (903) 123-45-67, moscow-fum@mfr.ru',
-            'stpetersburg': 'Михаил Соколов, +7 (989) 123-45-67, spb-fum@mfr.ru',
-            'tver': 'Дмитрий Серов, +7 (977) 823-63-90, serovdima@list.ru',
-            'nnovgorod': 'Алексей Фатьянов, +7 (905) 234-56-78, fatyanov@mfr-nnov.ru',
-            'smolensk': 'Глеб Симдянкин, +7 (910) 345-67-89, smolensk-fum@mfr.ru',
-            'vologda': 'Наталия Недайводина, +7 (911) 456-78-90, vologda-fum@mfr.ru',
-            'ulyanovsk': 'Андрей Сальников, +7 (923) 567-89-01, ul-fum@mfr.ru',
-            'tatarstan': 'Ильшат Сафаров, +7 (934) 678-90-12, tatarstan-fum@mfr.ru',
-            'kaluga': 'Максим Гаранин, +7 (945) 789-01-23, kaluga-fum@mfr.ru',
-            'tula': 'Александр Акимов, +7 (956) 890-12-34, tula-fum@mfr.ru',
-            'rostov': 'Сергей Кузнецов, +7 (967) 901-23-45, rostov-fum@mfr.ru',
-            'perm': 'Олег Иванов, +7 (978) 012-34-56, perm-fum@mfr.ru',
-            'kursk': 'Иван Сидоров, +7 (956) 123-45-67, kursk-fum@mfr.ru',
-            'voronezh': 'Александр Иванов, +7 (956) 234-56-78, voronezh-fum@mfr.ru',
-            'saratov': 'Виктор Петров, +7 (956) 345-67-89, saratov-fum@mfr.ru',
-            'ryazan': 'Евгений Смирнов, +7 (956) 456-78-90, ryazan-fum@mfr.ru',
-            'lipetsk': 'Анна Кузнецова, +7 (956) 567-89-01, lipetsk-fum@mfr.ru',
-            'belgorod': 'Дмитрий Сидоров, +7 (956) 678-90-12, belgorod-fum@mfr.ru',
-            'bryansk': 'Мария Иванова, +7 (956) 789-01-23, bryansk-fum@mfr.ru',
-            'novgorod': 'Иван Смирнов, +7 (956) 890-12-34, novgorod-fum@mfr.ru',
-            'yaroslavl': 'Елена Петрова, +7 (956) 901-23-45, yaroslavl-fum@mfr.ru',
-            'kostroma': 'Алексей Сидоров, +7 (956) 012-34-56, kostroma-fum@mfr.ru',
-            'ivanovo': 'Ольга Иванова, +7 (956) 123-45-67, ivanovo-fum@mfr.ru',
-            'vladimir': 'Дмитрий Кузнецов, +7 (956) 234-56-78, vladimir-fum@mfr.ru',
-            'murmansk': 'Анна Смирнова, +7 (956) 345-67-89, murmansk-fum@mfr.ru',
-            'karelia': 'Иван Петров, +7 (956) 456-78-90, karelia-fum@mfr.ru',
-            'komi': 'Мария Сидорова, +7 (956) 567-89-01, komi-fum@mfr.ru',
-            'arkhangelsk': 'Дмитрий Иванов, +7 (956) 678-90-12, arkhangelsk-fum@mfr.ru',
-            'tambov': 'Елена Кузнецова, +7 (956) 789-01-23, tambov-fum@mfr.ru',
-            'penza': 'Александр Смирнов, +7 (956) 890-12-34, penza-fum@mfr.ru',
-            'samara': 'Иван Иванов, +7 (956) 901-23-45, samara-fum@mfr.ru',
-            'volgograd': 'Мария Кузнецова, +7 (956) 012-34-56, volgograd-fum@mfr.ru',
-            'astrakhan': 'Дмитрий Смирнов, +7 (956) 123-45-67, astrakhan-fum@mfr.ru',
-            'kalmykia': 'Елена Петрова, +7 (956) 234-56-78, kalmykia-fum@mfr.ru',
-            'dagestan': 'Иван Сидоров, +7 (956) 345-67-89, dagestan-fum@mfr.ru',
-            'stavropol': 'Мария Иванова, +7 (956) 456-78-90, stavropol-fum@mfr.ru',
-            'kuban': 'Дмитрий Кузнецов, +7 (956) 567-89-01, kuban-fum@mfr.ru',
-            'adigea': 'Елена Смирнова, +7 (956) 678-90-12, adigea-fum@mfr.ru',
-            'kabardino': 'Иван Петров, +7 (956) 789-01-23, kabardino-fum@mfr.ru',
-            'north-ossetia': 'Мария Сидорова, +7 (956) 890-12-34, north-ossetia-fum@mfr.ru',
-            'ingushetia': 'Дмитрий Иванов, +7 (956) 901-23-45, ingushetia-fum@mfr.ru',
-            'chechnya': 'Елена Кузнецова, +7 (956) 012-34-56, chechnya-fum@mfr.ru'
+        // Упрощенные данные о регионах (для демонстрации)
+        const regionalData = {
+            'moscow': {
+                'name': 'Москва',
+                'contact': 'Александр Петров, +7 (903) 123-45-67, moscow-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg'
+            },
+            'tver': {
+                'name': 'Тверская область',
+                'contact': 'Дмитрий Серов, +7 (977) 823-63-90, serovdima@list.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg'
+            },
+            'nnovgorod': {
+                'name': 'Нижегородская область',
+                'contact': 'Алексей Фатьянов, +7 (905) 234-56-78, fatyanov@mfr-nnov.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg'
+            },
+            'smolensk': {
+                'name': 'Смоленская область',
+                'contact': 'Глеб Симдянкин, +7 (910) 345-67-89, smolensk-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg'
+            },
+            'vologda': {
+                'name': 'Вологодская область',
+                'contact': 'Наталия Недайводина, +7 (911) 456-78-90, vologda-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg'
+            },
+            'ulyanovsk': {
+                'name': 'Ульяновская область',
+                'contact': 'Андрей Сальников, +7 (923) 567-89-01, ul-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg'
+            },
+            'tatarstan': {
+                'name': 'Республика Татарстан',
+                'contact': 'Ильшат Сафаров, +7 (934) 678-90-12, tatarstan-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg'
+            },
+            'kaluga': {
+                'name': 'Калужская область',
+                'contact': 'Максим Гаранин, +7 (945) 789-01-23, kaluga-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg'
+            },
+            'tula': {
+                'name': 'Тульская область',
+                'contact': 'Александр Акимов, +7 (956) 890-12-34, tula-fum@mfr.ru',
+                'photo': 'https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg'
+            }
+            // Другие регионы можно добавить по аналогии
         };
         
-        return regionalRepresentatives[regionId] || 'Контактная информация отсутствует';
-    }
-    
-    // Получить фото регионального представителя
-    function getRegionPhoto(regionId) {
-        const regionPhotos = {
-            'moscow': 'https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg',
-            'stpetersburg': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'tver': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'nnovgorod': 'https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg',
-            'smolensk': 'https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg',
-            'vologda': 'https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg',
-            'ulyanovsk': 'https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg',
-            'tatarstan': 'https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg',
-            'kaluga': 'https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg',
-            'tula': 'https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg',
-            'rostov': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'perm': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'kursk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'voronezh': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'saratov': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'ryazan': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'lipetsk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'belgorod': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'bryansk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'novgorod': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'yaroslavl': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'kostroma': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'ivanovo': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'vladimir': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'murmansk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'karelia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'komi': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'arkhangelsk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'tambov': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'penza': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'samara': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'volgograd': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'astrakhan': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'kalmykia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'dagestan': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'stavropol': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'kuban': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'adigea': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'kabardino': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'north-ossetia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'ingushetia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
-            'chechnya': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg'
-        };
+        // Создаем SVG paths для регионов (упрощенные контуры)
+        Object.keys(regionalData).forEach(regionId => {
+            const region = regionalData[regionId];
+            
+            // Создаем путь с упрощенными координатами для демонстрации
+            // В реальном проекте нужно использовать точные координаты контуров регионов России
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('class', `region-path ${regionId}`);
+            path.setAttribute('data-region', regionId);
+            path.setAttribute('data-name', region.name);
+            
+            // Упрощенные координаты для демонстрации (в реальном проекте использовать точные данные)
+            let dAttribute = '';
+            if (regionId === 'moscow') dAttribute = 'M200,150 L250,130 L280,160 L260,200 L220,210 Z';
+            else if (regionId === 'tver') dAttribute = 'M150,100 L180,80 L210,110 L190,140 L160,150 Z';
+            else if (regionId === 'nnovgorod') dAttribute = 'M300,200 L350,180 L380,210 L360,250 L320,260 Z';
+            else if (regionId === 'smolensk') dAttribute = 'M250,250 L280,230 L310,260 L290,300 L260,310 Z';
+            else if (regionId === 'vologda') dAttribute = 'M350,100 L380,80 L410,110 L390,140 L360,150 Z';
+            else if (regionId === 'ulyanovsk') dAttribute = 'M400,300 L450,280 L480,310 L460,350 L420,360 Z';
+            else if (regionId === 'tatarstan') dAttribute = 'M500,350 L550,330 L580,360 L560,400 L520,410 Z';
+            else if (regionId === 'kaluga') dAttribute = 'M220,300 L250,280 L280,310 L260,350 L230,360 Z';
+            else if (regionId === 'tula') dAttribute = 'M270,350 L300,330 L330,360 L310,400 L280,410 Z';
+            else dAttribute = `M${Math.random()*800+100},${Math.random()*400+100} L${Math.random()*800+100},${Math.random()*400+100} L${Math.random()*800+100},${Math.random()*400+100} L${Math.random()*800+100},${Math.random()*400+100} Z`;
+            
+            path.setAttribute('d', dAttribute);
+            mapSvg.appendChild(path);
+            
+            // Добавляем обработчики событий
+            path.addEventListener('mouseenter', function(e) {
+                showTooltip(e, regionId, region);
+            });
+            
+            path.addEventListener('mouseleave', function() {
+                hideTooltip();
+            });
+            
+            path.addEventListener('click', function() {
+                setActiveRegion(regionId);
+            });
+        });
         
-        return regionPhotos[regionId] || null;
+        // Функция показа подсказки
+        function showTooltip(event, regionId, region) {
+            const rect = mapContainer.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            document.getElementById('tooltip-region-name').textContent = region.name;
+            document.getElementById('tooltip-region-contact').textContent = region.contact;
+            
+            // Устанавливаем фото регионального представителя
+            const tooltipPhoto = document.getElementById('tooltip-photo');
+            if (region.photo) {
+                tooltipPhoto.innerHTML = `<img src="${region.photo}" alt="${region.name}">`;
+            } else {
+                tooltipPhoto.innerHTML = region.name.split(' ')[0].charAt(0) + (region.name.split(' ')[1] ? region.name.split(' ')[1].charAt(0) : '');
+            }
+            
+            // Позиционируем подсказку
+            tooltip.style.left = `${x + 20}px`;
+            tooltip.style.top = `${y + 20}px`;
+            tooltip.style.display = 'block';
+        }
+        
+        // Функция скрытия подсказки
+        function hideTooltip() {
+            tooltip.style.display = 'none';
+        }
+        
+        // Функция установки активного региона
+        function setActiveRegion(regionId) {
+            // Убираем активный класс у всех регионов
+            document.querySelectorAll('.region-path').forEach(path => {
+                path.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранному региону
+            const activeRegion = document.querySelector(`.region-path.${regionId}`);
+            if (activeRegion) {
+                activeRegion.classList.add('active');
+            }
+        }
+        
+        // Обработчик сброса карты
+        resetButton.addEventListener('click', function() {
+            document.querySelectorAll('.region-path').forEach(path => {
+                path.classList.remove('active');
+            });
+            hideTooltip();
+        });
+        
+        // Обработчики зума
+        let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
+        
+        zoomInButton.addEventListener('click', function() {
+            if (scale < 3) {
+                scale += 0.5;
+                updateMapTransform();
+            }
+        });
+        
+        zoomOutButton.addEventListener('click', function() {
+            if (scale > 0.5) {
+                scale -= 0.5;
+                updateMapTransform();
+            }
+        });
+        
+        function updateMapTransform() {
+            mapSvg.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+            mapSvg.style.transformOrigin = 'center';
+        }
+        
+        // Перетаскивание карты
+        let isDragging = false;
+        let startX, startY;
+        
+        mapContainer.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'path') return; // Не перетаскиваем, если нажато на регион
+            
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            mapContainer.style.cursor = 'grabbing';
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateMapTransform();
+            }
+        });
+        
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                mapContainer.style.cursor = 'grab';
+            }
+        });
+        
+        mapContainer.addEventListener('mouseleave', function() {
+            if (isDragging) {
+                isDragging = false;
+                mapContainer.style.cursor = 'grab';
+            }
+        });
+        
+        // Инициализация курсора
+        mapContainer.style.cursor = 'grab';
     }
     
     // Инициализация карты при загрузке страницы
     if (document.querySelector('.russia-map')) {
         initMap();
-        
-        // Перезапуск позиционирования при изменении размера окна
-        window.addEventListener('resize', initMap);
     }
     
     // Calendar functionality
