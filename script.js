@@ -120,5 +120,5 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.transition = 'opacity 0.5s ease';
     }, 100);
 
-    console.log('Сайт комиссии по мотоджимхане ФМСРО загружен');
+    console.log('Сайт комиссии по мотоджимхане МФР загружен');
 });
