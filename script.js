@@ -1,23 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Tile navigation
-    const tiles = document.querySelectorAll('.tile');
-    const sections = document.querySelectorAll('.detail-section');
-    
-    tiles.forEach(tile => {
-        tile.addEventListener('click', function() {
-            const targetId = this.id + '-section';
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(targetId).classList.add('active');
-            window.scrollTo({
-                top: document.getElementById(targetId).offsetTop - 20,
-                behavior: 'smooth'
-            });
-        });
-    });
-    
-    // Region map functionality
+    // Russia map functionality
     const regions = document.querySelectorAll('.region');
     const regionName = document.getElementById('region-name');
     const regionContact = document.getElementById('region-contact');
@@ -88,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
     regions.forEach(region => {
         region.addEventListener('mouseenter', function() {
             const regionId = this.dataset.region;
-            const coords = this.dataset.coords.split(',');
             
             if (regionalRepresentatives[regionId]) {
                 regionName.textContent = regionalRepresentatives[regionId].name;
@@ -114,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const lat = parseFloat(coords[0]);
             const lng = parseFloat(coords[1]);
             
-            // Simple projection for Russia map (not geographically accurate but visually pleasing)
+            // Simple projection for Russia map
             const x = (lng + 10) / 90 * mapRect.width;
             const y = (70 - lat) / 50 * mapRect.height;
             
@@ -207,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('tooltip-description').textContent = competitions[0].description;
             document.getElementById('tooltip-contact').textContent = `Контакты: ${competitions[0].contact}`;
             
-            tooltip.style.left = `${rect.left + window.scrollX}px`;
-            tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
+            tooltip.style.left = `${rect.left + window.scrollX - 100}px`;
+            tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
             tooltip.style.display = 'block';
         }
     }
@@ -241,84 +222,148 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCalendar(currentMonth, currentYear);
     });
     
-    // Initial calendar render
-    renderCalendar(currentMonth, currentYear);
+    // Initial calendar render (if calendar page is loaded)
+    if (document.getElementById('calendar-grid')) {
+        renderCalendar(currentMonth, currentYear);
+    }
     
     // Document filtering
     const filterButtons = document.querySelectorAll('.filter-button');
     const documentCards = document.querySelectorAll('.document-card');
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            const filter = this.dataset.filter;
-            
-            // Filter documents
-            documentCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                
+                // Filter documents
+                documentCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
-    });
+    }
     
     // Document viewer
     const viewer = document.getElementById('document-viewer');
     const iframe = document.getElementById('document-iframe');
     const closeBtn = document.getElementById('close-viewer');
     
-    document.querySelectorAll('.view-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const card = this.closest('.document-card');
-            const title = card.querySelector('h4').textContent;
-            document.getElementById('viewer-title').textContent = title;
-            iframe.src = 'https://docs.google.com/gview?url=https://example.com/sample-document.pdf&embedded=true';
-            viewer.style.display = 'flex';
+    if (document.querySelectorAll('.view-button').length > 0) {
+        document.querySelectorAll('.view-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.document-card');
+                const title = card.querySelector('h4').textContent;
+                document.getElementById('viewer-title').textContent = title;
+                iframe.src = 'https://docs.google.com/gview?url=https://example.com/sample-document.pdf&embedded=true';
+                viewer.style.display = 'flex';
+            });
         });
-    });
-    
-    closeBtn.addEventListener('click', function() {
-        viewer.style.display = 'none';
-        iframe.src = '';
-    });
-    
-    // Close viewer when clicking outside
-    viewer.addEventListener('click', function(e) {
-        if (e.target === viewer) {
+        
+        closeBtn.addEventListener('click', function() {
             viewer.style.display = 'none';
             iframe.src = '';
-        }
-    });
+        });
+        
+        // Close viewer when clicking outside
+        viewer.addEventListener('click', function(e) {
+            if (e.target === viewer) {
+                viewer.style.display = 'none';
+                iframe.src = '';
+            }
+        });
+    }
     
     // Partners carousel
     const carouselTrack = document.getElementById('carousel-track');
     const prevBtn = document.getElementById('prev-slide');
     const nextBtn = document.getElementById('next-slide');
-    let slidePosition = 0;
-    const slideWidth = 300; // Approximate width of each slide including margins
     
-    nextBtn.addEventListener('click', function() {
-        slidePosition--;
-        carouselTrack.style.transform = `translateX(${slidePosition * slideWidth}px)`;
-    });
-    
-    prevBtn.addEventListener('click', function() {
-        if (slidePosition < 0) {
-            slidePosition++;
-            carouselTrack.style.transform = `translateX(${slidePosition * slideWidth}px)`;
-        }
-    });
+    if (carouselTrack) {
+        let slidePosition = 0;
+        const slideCount = carouselTrack.children.length;
+        const visibleSlides = Math.floor(carouselTrack.offsetWidth / 450);
+        const maxPosition = -(slideCount - visibleSlides);
+        
+        nextBtn.addEventListener('click', function() {
+            if (slidePosition > maxPosition) {
+                slidePosition--;
+                carouselTrack.style.transform = `translateX(${slidePosition * 450}px)`;
+            }
+        });
+        
+        prevBtn.addEventListener('click', function() {
+            if (slidePosition < 0) {
+                slidePosition++;
+                carouselTrack.style.transform = `translateX(${slidePosition * 450}px)`;
+            }
+        });
+    }
     
     // Initialize animations
     setTimeout(() => {
         document.body.style.opacity = '1';
         document.body.style.transition = 'opacity 0.5s ease';
     }, 100);
+    
+    // Back to top button
+    const backToTopButton = document.createElement('button');
+    backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    backToTopButton.className = 'back-to-top';
+    document.body.appendChild(backToTopButton);
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    // Style the back to top button
+    backToTopButton.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        z-index: 1000;
+    `;
+
+    backToTopButton.style.opacity = '0';
+    backToTopButton.style.transform = 'scale(0.8)';
+
+    document.querySelector('.back-to-top').addEventListener('click', function() {
+        this.classList.remove('show');
+    });
     
     console.log('Сайт комиссии по мотоджимхане МФР загружен');
 });
