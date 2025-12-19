@@ -1,92 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Russia map functionality
-    const regions = document.querySelectorAll('.region');
-    const regionName = document.getElementById('region-name');
-    const regionContact = document.getElementById('region-contact');
-    
-    const regionalRepresentatives = {
-        'moscow': {
-            'name': 'Московская комиссия ФУМ',
-            'contact': 'Александр Петров, +7 (903) 123-45-67, moscow-fum@mfr.ru',
-            'photo': 'moscow_rep.jpg'
-        },
-        'tver': {
-            'name': 'Тверская комиссия ФУМ',
-            'contact': 'Дмитрий Серов, +7 (977) 823-63-90, serovdima@list.ru',
-            'photo': 'dmitry_serov.jpg'
-        },
-        'nnovgorod': {
-            'name': 'Нижегородская комиссия ФУМ',
-            'contact': 'Алексей Фатьянов, +7 (905) 234-56-78, fatyanov@mfr-nnov.ru',
-            'photo': 'alexey_fatyanov.jpg'
-        },
-        'smolensk': {
-            'name': 'Смоленская комиссия ФУМ',
-            'contact': 'Глеб Симдянкин, +7 (910) 345-67-89, smolensk-fum@mfr.ru',
-            'photo': 'gleb_simdyankin.jpg'
-        },
-        'vologda': {
-            'name': 'Вологодская комиссия ФУМ',
-            'contact': 'Наталия Недайводина, +7 (911) 456-78-90, vologda-fum@mfr.ru',
-            'photo': 'natalya_nedaivodina.jpg'
-        },
-        'ulyanovsk': {
-            'name': 'Ульяновская комиссия ФУМ',
-            'contact': 'Андрей Сальников, +7 (923) 567-89-01, ul-fum@mfr.ru',
-            'photo': 'andrey_salnikov.jpg'
-        },
-        'tatarstan': {
-            'name': 'Татарстан комиссия ФУМ',
-            'contact': 'Ильшат Сафаров, +7 (934) 678-90-12, tatarstan-fum@mfr.ru',
-            'photo': 'ilshat_safarov.jpg'
-        },
-        'kaluga': {
-            'name': 'Калужская комиссия ФУМ',
-            'contact': 'Максим Гаранин, +7 (945) 789-01-23, kaluga-fum@mfr.ru',
-            'photo': 'maxim_garanin.jpg'
-        },
-        'tula': {
-            'name': 'Тульская комиссия ФУМ',
-            'contact': 'Александр Акимов, +7 (956) 890-12-34, tula-fum@mfr.ru',
-            'photo': 'alexander_akimov.jpg'
-        },
-        'rostov': {
-            'name': 'Ростовская комиссия ФУМ',
-            'contact': 'Сергей Кузнецов, +7 (967) 901-23-45, rostov-fum@mfr.ru',
-            'photo': 'sergey_kuznetsov.jpg'
-        },
-        'perm': {
-            'name': 'Пермская комиссия ФУМ',
-            'contact': 'Олег Иванов, +7 (978) 012-34-56, perm-fum@mfr.ru',
-            'photo': 'oleg_ivanov.jpg'
-        },
-        'stpetersburg': {
-            'name': 'Петербургская комиссия ФУМ',
-            'contact': 'Михаил Соколов, +7 (989) 123-45-67, spb-fum@mfr.ru',
-            'photo': 'mihail_sokolov.jpg'
-        }
-    };
-    
-    regions.forEach(region => {
-        region.addEventListener('mouseenter', function() {
-            const regionId = this.dataset.region;
-            
-            if (regionalRepresentatives[regionId]) {
-                regionName.textContent = regionalRepresentatives[regionId].name;
-                regionContact.textContent = regionalRepresentatives[regionId].contact;
-                document.querySelector('.region-photo-placeholder').innerHTML = regionalRepresentatives[regionId].name.split(' ')[0][0] + regionalRepresentatives[regionId].name.split(' ')[1][0];
-            }
-        });
-        
-        region.addEventListener('mouseleave', function() {
-            regionName.textContent = 'Выберите регион на карте';
-            regionContact.textContent = 'Информация о региональном представителе появится здесь';
-            document.querySelector('.region-photo-placeholder').innerHTML = '?';
-        });
-    });
-    
-    // Position regions on the map
-    function positionRegions() {
+    function initMap() {
+        // Позиционирование регионов на карте
+        const regions = document.querySelectorAll('.region');
         const map = document.querySelector('.russia-map');
         const mapRect = map.getBoundingClientRect();
         
@@ -95,17 +11,190 @@ document.addEventListener('DOMContentLoaded', function() {
             const lat = parseFloat(coords[0]);
             const lng = parseFloat(coords[1]);
             
-            // Simple projection for Russia map
+            // Простая проекция для карты России
             const x = (lng + 10) / 90 * mapRect.width;
             const y = (70 - lat) / 50 * mapRect.height;
             
             region.style.left = `${x}px`;
             region.style.top = `${y}px`;
         });
+        
+        // Обработчики событий для регионов
+        regions.forEach(region => {
+            region.addEventListener('mouseenter', function() {
+                const regionName = this.dataset.name;
+                const regionId = this.dataset.region;
+                
+                // Показать информацию о регионе
+                document.getElementById('region-name').textContent = regionName;
+                document.getElementById('region-contact').textContent = getRegionContact(regionId);
+                
+                // Показать фото регионального представителя
+                const photoPlaceholder = document.querySelector('.region-photo-placeholder');
+                const photo = getRegionPhoto(regionId);
+                
+                if (photo) {
+                    photoPlaceholder.innerHTML = `<img src="${photo}" alt="${regionName}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+                } else {
+                    photoPlaceholder.innerHTML = '?';
+                }
+            });
+            
+            region.addEventListener('mouseleave', function() {
+                document.getElementById('region-name').textContent = 'Выберите регион на карте';
+                document.getElementById('region-contact').textContent = 'Информация о региональном представителе появится здесь';
+                document.querySelector('.region-photo-placeholder').innerHTML = '?';
+            });
+        });
+        
+        // Обработчик поиска регионов
+        const searchBox = document.getElementById('region-search');
+        if (searchBox) {
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                regions.forEach(region => {
+                    const regionName = region.dataset.name.toLowerCase();
+                    if (regionName.includes(searchTerm)) {
+                        region.style.display = 'flex';
+                    } else {
+                        region.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        // Обработчики зума карты
+        const zoomIn = document.getElementById('zoom-in');
+        const zoomOut = document.getElementById('zoom-out');
+        
+        if (zoomIn && zoomOut) {
+            let scale = 1;
+            
+            zoomIn.addEventListener('click', function() {
+                if (scale < 2) {
+                    scale += 0.1;
+                    map.style.transform = `scale(${scale})`;
+                    map.style.transformOrigin = 'center';
+                }
+            });
+            
+            zoomOut.addEventListener('click', function() {
+                if (scale > 0.8) {
+                    scale -= 0.1;
+                    map.style.transform = `scale(${scale})`;
+                    map.style.transformOrigin = 'center';
+                }
+            });
+        }
     }
     
-    positionRegions();
-    window.addEventListener('resize', positionRegions);
+    // Получить контактную информацию для региона
+    function getRegionContact(regionId) {
+        const regionalRepresentatives = {
+            'moscow': 'Александр Петров, +7 (903) 123-45-67, moscow-fum@mfr.ru',
+            'stpetersburg': 'Михаил Соколов, +7 (989) 123-45-67, spb-fum@mfr.ru',
+            'tver': 'Дмитрий Серов, +7 (977) 823-63-90, serovdima@list.ru',
+            'nnovgorod': 'Алексей Фатьянов, +7 (905) 234-56-78, fatyanov@mfr-nnov.ru',
+            'smolensk': 'Глеб Симдянкин, +7 (910) 345-67-89, smolensk-fum@mfr.ru',
+            'vologda': 'Наталия Недайводина, +7 (911) 456-78-90, vologda-fum@mfr.ru',
+            'ulyanovsk': 'Андрей Сальников, +7 (923) 567-89-01, ul-fum@mfr.ru',
+            'tatarstan': 'Ильшат Сафаров, +7 (934) 678-90-12, tatarstan-fum@mfr.ru',
+            'kaluga': 'Максим Гаранин, +7 (945) 789-01-23, kaluga-fum@mfr.ru',
+            'tula': 'Александр Акимов, +7 (956) 890-12-34, tula-fum@mfr.ru',
+            'rostov': 'Сергей Кузнецов, +7 (967) 901-23-45, rostov-fum@mfr.ru',
+            'perm': 'Олег Иванов, +7 (978) 012-34-56, perm-fum@mfr.ru',
+            'kursk': 'Иван Сидоров, +7 (956) 123-45-67, kursk-fum@mfr.ru',
+            'voronezh': 'Александр Иванов, +7 (956) 234-56-78, voronezh-fum@mfr.ru',
+            'saratov': 'Виктор Петров, +7 (956) 345-67-89, saratov-fum@mfr.ru',
+            'ryazan': 'Евгений Смирнов, +7 (956) 456-78-90, ryazan-fum@mfr.ru',
+            'lipetsk': 'Анна Кузнецова, +7 (956) 567-89-01, lipetsk-fum@mfr.ru',
+            'belgorod': 'Дмитрий Сидоров, +7 (956) 678-90-12, belgorod-fum@mfr.ru',
+            'bryansk': 'Мария Иванова, +7 (956) 789-01-23, bryansk-fum@mfr.ru',
+            'novgorod': 'Иван Смирнов, +7 (956) 890-12-34, novgorod-fum@mfr.ru',
+            'yaroslavl': 'Елена Петрова, +7 (956) 901-23-45, yaroslavl-fum@mfr.ru',
+            'kostroma': 'Алексей Сидоров, +7 (956) 012-34-56, kostroma-fum@mfr.ru',
+            'ivanovo': 'Ольга Иванова, +7 (956) 123-45-67, ivanovo-fum@mfr.ru',
+            'vladimir': 'Дмитрий Кузнецов, +7 (956) 234-56-78, vladimir-fum@mfr.ru',
+            'murmansk': 'Анна Смирнова, +7 (956) 345-67-89, murmansk-fum@mfr.ru',
+            'karelia': 'Иван Петров, +7 (956) 456-78-90, karelia-fum@mfr.ru',
+            'komi': 'Мария Сидорова, +7 (956) 567-89-01, komi-fum@mfr.ru',
+            'arkhangelsk': 'Дмитрий Иванов, +7 (956) 678-90-12, arkhangelsk-fum@mfr.ru',
+            'tambov': 'Елена Кузнецова, +7 (956) 789-01-23, tambov-fum@mfr.ru',
+            'penza': 'Александр Смирнов, +7 (956) 890-12-34, penza-fum@mfr.ru',
+            'samara': 'Иван Иванов, +7 (956) 901-23-45, samara-fum@mfr.ru',
+            'volgograd': 'Мария Кузнецова, +7 (956) 012-34-56, volgograd-fum@mfr.ru',
+            'astrakhan': 'Дмитрий Смирнов, +7 (956) 123-45-67, astrakhan-fum@mfr.ru',
+            'kalmykia': 'Елена Петрова, +7 (956) 234-56-78, kalmykia-fum@mfr.ru',
+            'dagestan': 'Иван Сидоров, +7 (956) 345-67-89, dagestan-fum@mfr.ru',
+            'stavropol': 'Мария Иванова, +7 (956) 456-78-90, stavropol-fum@mfr.ru',
+            'kuban': 'Дмитрий Кузнецов, +7 (956) 567-89-01, kuban-fum@mfr.ru',
+            'adigea': 'Елена Смирнова, +7 (956) 678-90-12, adigea-fum@mfr.ru',
+            'kabardino': 'Иван Петров, +7 (956) 789-01-23, kabardino-fum@mfr.ru',
+            'north-ossetia': 'Мария Сидорова, +7 (956) 890-12-34, north-ossetia-fum@mfr.ru',
+            'ingushetia': 'Дмитрий Иванов, +7 (956) 901-23-45, ingushetia-fum@mfr.ru',
+            'chechnya': 'Елена Кузнецова, +7 (956) 012-34-56, chechnya-fum@mfr.ru'
+        };
+        
+        return regionalRepresentatives[regionId] || 'Контактная информация отсутствует';
+    }
+    
+    // Получить фото регионального представителя
+    function getRegionPhoto(regionId) {
+        const regionPhotos = {
+            'moscow': 'https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg',
+            'stpetersburg': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'tver': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'nnovgorod': 'https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg',
+            'smolensk': 'https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg',
+            'vologda': 'https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg',
+            'ulyanovsk': 'https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg',
+            'tatarstan': 'https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg',
+            'kaluga': 'https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg',
+            'tula': 'https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg',
+            'rostov': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'perm': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'kursk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'voronezh': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'saratov': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'ryazan': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'lipetsk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'belgorod': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'bryansk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'novgorod': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'yaroslavl': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'kostroma': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'ivanovo': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'vladimir': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'murmansk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'karelia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'komi': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'arkhangelsk': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'tambov': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'penza': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'samara': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'volgograd': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'astrakhan': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'kalmykia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'dagestan': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'stavropol': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'kuban': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'adigea': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'kabardino': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'north-ossetia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'ingushetia': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg',
+            'chechnya': 'https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg'
+        };
+        
+        return regionPhotos[regionId] || null;
+    }
+    
+    // Инициализация карты при загрузке страницы
+    if (document.querySelector('.russia-map')) {
+        initMap();
+        
+        // Перезапуск позиционирования при изменении размера окна
+        window.addEventListener('resize', initMap);
+    }
     
     // Calendar functionality
     let currentDate = new Date();
@@ -367,3 +456,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Сайт комиссии по мотоджимхане МФР загружен');
 });
+
+// Запись в историю: при любых изменениях или добавлениях необходимо присылать файлы целиком
+console.log('ИСТОРИЯ: При любых изменениях или добавлениях необходимо присылать файлы целиком');
