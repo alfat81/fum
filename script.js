@@ -1,37 +1,22 @@
-// Основной файл скриптов для сайта комиссии по фигурному управлению мотоциклом
+// Основной JavaScript файл для сайта комиссии
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработка кликов по ссылкам навигации для активного состояния
-    const navLinks = document.querySelectorAll('.nav ul li a');
-    const currentPath = window.location.pathname.split('/').pop();
+    console.log('Сайт комиссии по мотоджимхане успешно загружен');
     
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPath) {
-            link.classList.add('active');
-        }
+    // Плавная прокрутка к якорям
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     });
     
-    // Функция для плавной прокрутки к элементу
-    function scrollToElement(elementId) {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-    
-    // Обработка клика по логотипу для возврата на главную
-    const logo = document.querySelector('.logo img');
-    if (logo) {
-        logo.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'index.html';
-        });
-    }
-    
-    // Анимация появления контента при прокрутке
+    // Анимация при прокрутке
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.section-card, .leader-card, .competition-card, .document-card');
+        const elements = document.querySelectorAll('.tile, .leader-card, .competition-card, .document-card, .contact-card');
         
         elements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
@@ -45,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Установка начальных стилей для анимации
-    const elements = document.querySelectorAll('.section-card, .leader-card, .competition-card, .document-card');
+    const elements = document.querySelectorAll('.tile, .leader-card, .competition-card, .document-card, .contact-card');
     elements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
@@ -56,62 +41,54 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', animateOnScroll);
     window.addEventListener('scroll', animateOnScroll);
     
-    // Обработка формы обратной связи (если будет добавлена)
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Здесь будет логика отправки формы
-            const formData = new FormData(this);
-            const formObject = Object.fromEntries(formData.entries());
-            
-            console.log('Данные формы:', formObject);
-            
-            // Показать сообщение об успешной отправке
-            alert('Ваше сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.');
-            
-            // Очистить форму
-            this.reset();
+    // Отображение модального окна админ-панели
+    const adminBtn = document.getElementById('admin-panel-btn');
+    const adminModal = document.getElementById('admin-modal');
+    const closeBtn = document.querySelector('.close-modal');
+    
+    if (adminBtn && adminModal && closeBtn) {
+        adminBtn.addEventListener('click', function() {
+            adminModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            adminModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === adminModal) {
+                adminModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         });
     }
-    
-    // Функция для сохранения данных в localStorage
-    window.saveDataToLocalStorage = function(key, data) {
-        try {
-            localStorage.setItem(key, JSON.stringify(data));
-            console.log(`Данные успешно сохранены в localStorage под ключом: ${key}`);
-            return true;
-        } catch (error) {
-            console.error(`Ошибка при сохранении данных в localStorage: ${error}`);
-            return false;
-        }
-    };
-    
-    // Функция для загрузки данных из localStorage
-    window.loadDataFromLocalStorage = function(key) {
-        try {
-            const data = localStorage.getItem(key);
-            return data ? JSON.parse(data) : null;
-        } catch (error) {
-            console.error(`Ошибка при загрузке данных из localStorage: ${error}`);
-            return null;
-        }
-    };
-    
-    // Функция для очистки всех данных из localStorage
-    window.clearAllLocalStorage = function() {
-        if (confirm('Вы уверены, что хотите очистить все сохраненные данные? Это действие нельзя отменить.')) {
-            localStorage.clear();
-            alert('Все данные успешно очищены!');
-            location.reload();
-        }
-    };
-    
-    // Инициализация админ-панели (если страница admin.html)
-    if (window.location.pathname.includes('admin.html')) {
-        console.log('Инициализация админ-панели');
-    }
-    
-    console.log('Скрипты сайта успешно загружены');
 });
+
+// Функция для получения региона по ID
+function getRegionName(regionId) {
+    const regions = {
+        'moscow': 'Москва',
+        'spb': 'Санкт-Петербург',
+        'tver': 'Тверская область',
+        'nnovgorod': 'Нижегородская область',
+        'smolensk': 'Смоленская область',
+        'vologda': 'Вологодская область',
+        'ulyanovsk': 'Ульяновская область',
+        'tatarstan': 'Республика Татарстан',
+        'kaluga': 'Калужская область',
+        'tula': 'Тульская область'
+    };
+    return regions[regionId] || regionId;
+}
+
+// Функция для получения статуса по ID
+function getStatusName(statusId) {
+    const statuses = {
+        'active': 'Действующая',
+        'developing': 'Развивается',
+        'planned': 'Планируется'
+    };
+    return statuses[statusId] || statusId;
+}
