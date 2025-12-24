@@ -40,16 +40,17 @@
             flex: 1;
         }
         
-        /* Header styles */
+        /* Header styles - уменьшена высота до 25% экрана */
         header {
             background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
             color: var(--white);
-            padding: 20px 0;
+            padding: 10px 0;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            max-height: 25vh;
         }
         
         .back-button {
@@ -58,9 +59,9 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             text-decoration: none;
-            padding: 10px;
+            padding: 8px;
             transition: all 0.3s ease;
         }
         
@@ -70,90 +71,91 @@
         }
         
         .logo-container {
-            max-width: 200px;
+            max-width: 120px;
             margin: 0 auto;
         }
         
         .logo-img {
             width: 100%;
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            border: 3px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.2);
         }
         
         .page-title {
-            font-size: 2.2rem;
-            margin: 15px 0;
+            font-size: 1.8rem;
+            margin: 10px 0;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         /* Content styles */
         .page-content {
-            margin: 40px 0;
+            margin: 30px 0;
         }
         
         .section {
             background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 30px;
-            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            padding: 25px;
+            margin-bottom: 25px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
         
         .section-title {
             color: var(--dark-blue);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
             border-bottom: 3px solid var(--primary-yellow);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .section-title i {
             color: var(--primary-blue);
+            font-size: 1.2rem;
         }
         
         /* Leadership styles */
         .leadership-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
         }
         
         .leader-card {
             display: flex;
-            gap: 20px;
-            padding: 20px;
-            border-radius: 15px;
+            gap: 15px;
+            padding: 18px;
+            border-radius: 12px;
             background: rgba(0,0,0,0.02);
             transition: all 0.3s ease;
             align-items: center;
         }
         
         .leader-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            background: rgba(0,0,0,0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            background: rgba(0,0,0,0.04);
         }
         
         .leader-photo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            border: 4px solid var(--primary-blue);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
         
         .leader-photo img {
@@ -168,31 +170,31 @@
         }
         
         .leader-name {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--dark-blue);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         
         .leader-position {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--primary-red);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .leader-contact, .leader-region {
-            font-size: 1.1rem;
+            font-size: 1.0rem;
             color: var(--dark-gray);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .leader-contact i, .leader-region i {
             color: var(--primary-blue);
-            font-size: 1.1rem;
+            font-size: 1.0rem;
         }
         
         .contact-link {
@@ -209,22 +211,22 @@
         
         /* Russia map styles */
         .russia-map-section {
-            margin-top: 40px;
+            margin-top: 30px;
         }
         
         .region-selector-container {
-            margin-bottom: 20px;
-            max-width: 600px;
+            margin-bottom: 18px;
+            max-width: 550px;
             margin-left: auto;
             margin-right: auto;
         }
         
         .region-selector {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border: 2px solid var(--primary-blue);
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            font-size: 1.0rem;
             background: var(--white);
             color: var(--text-dark);
             font-weight: 500;
@@ -238,12 +240,12 @@
         }
         
         .russia-map-container {
-            height: 600px;
-            border-radius: 20px;
+            height: 500px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border: 3px solid var(--primary-blue);
-            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border: 2px solid var(--primary-blue);
+            margin-bottom: 25px;
             background: linear-gradient(135deg, #e8f4ff, #d4e8ff);
             position: relative;
             display: flex;
@@ -254,8 +256,8 @@
         .russia-map-svg {
             width: 90%;
             height: 90%;
-            max-width: 800px;
-            max-height: 500px;
+            max-width: 750px;
+            max-height: 450px;
         }
         
         .region-path {
@@ -280,38 +282,38 @@
         .region-tooltip {
             position: absolute;
             background: var(--white);
-            border: 3px solid var(--primary-blue);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             z-index: 1000;
-            max-width: 400px;
+            max-width: 380px;
             display: none;
             animation: fadeIn 0.3s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translate(20px, 0) scale(0.95); }
+            from { opacity: 0; transform: translate(15px, 0) scale(0.95); }
             to { opacity: 1; transform: translate(0, 0) scale(1); }
         }
         
         .region-tooltip h4 {
             color: var(--dark-blue);
-            margin-bottom: 10px;
-            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
             border-bottom: 2px solid var(--primary-yellow);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
         
         .region-tooltip p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 1.0rem;
             line-height: 1.6;
         }
         
         .tooltip-photo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-blue), var(--primary-yellow));
@@ -319,10 +321,10 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            border: 4px solid white;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         .tooltip-photo img {
@@ -335,24 +337,24 @@
         .map-controls {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
         
         .map-button {
-            padding: 10px 20px;
+            padding: 8px 15px;
             border: 2px solid var(--primary-blue);
-            border-radius: 10px;
+            border-radius: 8px;
             background: var(--white);
             color: var(--primary-blue);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .map-button:hover {
@@ -362,19 +364,19 @@
         }
         
         .map-zoom .map-button {
-            padding: 8px;
-            width: 40px;
-            height: 40px;
+            padding: 6px;
+            width: 35px;
+            height: 35px;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         /* Footer styles */
         footer {
             background: linear-gradient(135deg, var(--dark-blue), #0d2142);
             color: var(--white);
-            padding: 30px 0;
-            margin-top: 40px;
+            padding: 25px 0;
+            margin-top: 30px;
             text-align: center;
         }
         
@@ -386,20 +388,20 @@
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 20px 0;
+            gap: 20px;
+            margin: 15px 0;
             flex-wrap: wrap;
         }
         
         .footer-links a {
             color: var(--primary-yellow);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.0rem;
             font-weight: 500;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .footer-links a:hover {
@@ -408,37 +410,37 @@
         }
         
         .copyright {
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 12px;
+            padding-top: 12px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.8;
         }
         
         /* Responsive design */
         @media (max-width: 1200px) {
             .russia-map-container {
-                height: 500px;
+                height: 450px;
             }
         }
         
         @media (max-width: 992px) {
             .leadership-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             }
             
             .russia-map-container {
-                height: 450px;
+                height: 400px;
             }
         }
         
         @media (max-width: 768px) {
             .page-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             
             .leader-card {
@@ -451,15 +453,15 @@
             }
             
             .russia-map-container {
-                height: 400px;
+                height: 350px;
             }
             
             .region-tooltip {
                 left: 50% !important;
                 transform: translateX(-50%);
-                width: 90%;
-                max-width: 350px;
-                padding: 20px;
+                width: 85%;
+                max-width: 320px;
+                padding: 16px;
             }
             
             .map-controls {
@@ -474,47 +476,55 @@
         
         @media (max-width: 480px) {
             .page-title {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
             }
             
             .section {
-                padding: 20px;
+                padding: 18px;
             }
             
             .section-title {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .leader-card {
-                padding: 15px;
+                padding: 12px;
             }
             
             .leader-photo {
-                width: 100px;
-                height: 100px;
+                width: 85px;
+                height: 85px;
             }
             
             .leader-name {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .leader-position {
-                font-size: 1.1rem;
+                font-size: 1.0rem;
             }
             
             .russia-map-container {
-                height: 350px;
-                border-radius: 15px;
+                height: 300px;
+                border-radius: 12px;
             }
             
             .region-tooltip {
-                padding: 15px;
+                padding: 12px;
             }
             
             .tooltip-photo {
-                width: 100px;
-                height: 100px;
-                font-size: 1.8rem;
+                width: 85px;
+                height: 85px;
+                font-size: 1.6rem;
+            }
+            
+            .back-button {
+                font-size: 1.1rem;
+            }
+            
+            .logo-container {
+                max-width: 100px;
             }
         }
     </style>
@@ -639,65 +649,27 @@
                 
                 <div class="russia-map-container">
                     <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" class="russia-map-svg">
-                        <!-- Центральный федеральный округ -->
-                        <path class="region-path" data-region="moscow" d="M500,300 L520,280 L540,300 L530,320 L510,330 Z" />
-                        <path class="region-path" data-region="tver" d="M480,260 L500,240 L520,260 L510,280 L490,290 Z" />
-                        <path class="region-path" data-region="smolensk" d="M450,290 L470,270 L490,290 L480,310 L460,320 Z" />
-                        <path class="region-path" data-region="kaluga" d="M470,320 L490,300 L510,320 L500,340 L480,350 Z" />
-                        <path class="region-path" data-region="tula" d="M460,350 L480,330 L500,350 L490,370 L470,380 Z" />
-                        <path class="region-path" data-region="ryazan" d="M510,350 L530,330 L550,350 L540,370 L520,380 Z" />
-                        <path class="region-path" data-region="vladimir" d="M540,320 L560,300 L580,320 L570,340 L550,350 Z" />
-                        <path class="region-path" data-region="ivanovo" d="M570,290 L590,270 L610,290 L600,310 L580,320 Z" />
-                        <path class="region-path" data-region="yaroslavl" d="M550,260 L570,240 L590,260 L580,280 L560,290 Z" />
-                        <path class="region-path" data-region="kostroma" d="M580,230 L600,210 L620,230 L610,250 L590,260 Z" />
-                        <path class="region-path" data-region="bryansk" d="M440,320 L460,300 L480,320 L470,340 L450,350 Z" />
-                        <path class="region-path" data-region="belgorod" d="M490,410 L510,390 L530,410 L520,430 L500,440 Z" />
-                        <path class="region-path" data-region="voronezh" d="M520,380 L540,360 L560,380 L550,400 L530,410 Z" />
-                        <path class="region-path" data-region="kursk" d="M480,380 L500,360 L520,380 L510,400 L490,410 Z" />
-                        <path class="region-path" data-region="lipetsk" d="M510,360 L530,340 L550,360 L540,380 L520,390 Z" />
-                        <path class="region-path" data-region="tambov" d="M530,350 L550,330 L570,350 L560,370 L540,380 Z" />
-
-                        <!-- Северо-Западный федеральный округ -->
-                        <path class="region-path" data-region="stpetersburg" d="M400,200 L420,180 L440,200 L430,220 L410,230 Z" />
-                        <path class="region-path" data-region="leningrad" d="M430,180 L450,160 L470,180 L460,200 L440,210 Z" />
-                        <path class="region-path" data-region="novgorod" d="M460,200 L480,180 L500,200 L490,220 L470,230 Z" />
-                        <path class="region-path" data-region="pskov" d="M430,230 L450,210 L470,230 L460,250 L440,260 Z" />
-                        <path class="region-path" data-region="murmansk" d="M350,150 L370,130 L390,150 L380,170 L360,180 Z" />
-                        <path class="region-path" data-region="karelia" d="M380,170 L400,150 L420,170 L410,190 L390,200 Z" />
-                        <path class="region-path" data-region="komi" d="M410,140 L430,120 L450,140 L440,160 L420,170 Z" />
-                        <path class="region-path" data-region="arkhangelsk" d="M440,120 L460,100 L480,120 L470,140 L450,150 Z" />
-                        <path class="region-path" data-region="vologda" d="M470,190 L490,170 L510,190 L500,210 L480,220 Z" />
-
-                        <!-- Приволжский федеральный округ -->
-                        <path class="region-path" data-region="nnovgorod" d="M530,240 L550,220 L570,240 L560,260 L540,270 Z" />
-                        <path class="region-path" data-region="kirov" d="M590,200 L610,180 L630,200 L620,220 L600,230 Z" />
-                        <path class="region-path" data-region="perm" d="M640,190 L660,170 L680,190 L670,210 L650,220 Z" />
-                        <path class="region-path" data-region="ulyanovsk" d="M580,350 L600,330 L620,350 L610,370 L590,380 Z" />
-                        <path class="region-path" data-region="samara" d="M610,330 L630,310 L650,330 L640,350 L620,360 Z" />
-                        <path class="region-path" data-region="saratov" d="M600,380 L620,360 L640,380 L630,400 L610,410 Z" />
-                        <path class="region-path" data-region="penza" d="M570,370 L590,350 L610,370 L600,390 L580,400 Z" />
-                        <path class="region-path" data-region="mari-el" d="M560,280 L580,260 L600,280 L590,300 L570,310 Z" />
-                        <path class="region-path" data-region="chuvashia" d="M550,310 L570,290 L590,310 L580,330 L560,340 Z" />
-                        <path class="region-path" data-region="mordovia" d="M540,340 L560,320 L580,340 L570,360 L550,370 Z" />
-                        <path class="region-path" data-region="tatarstan" d="M570,320 L590,300 L610,320 L600,340 L580,350 Z" />
-                        <path class="region-path" data-region="bashkortostan" d="M600,300 L620,280 L640,300 L630,320 L610,330 Z" />
-                        <path class="region-path" data-region="udmurtia" d="M590,270 L610,250 L630,270 L620,290 L600,300 Z" />
-
-                        <!-- Южный федеральный округ -->
-                        <path class="region-path" data-region="rostov" d="M550,450 L570,430 L590,450 L580,470 L560,480 Z" />
-                        <path class="region-path" data-region="volgograd" d="M590,430 L610,410 L630,430 L620,450 L600,460 Z" />
-                        <path class="region-path" data-region="astrakhan" d="M620,450 L640,430 L660,450 L650,470 L630,480 Z" />
-                        <path class="region-path" data-region="kalmykia" d="M600,470 L620,450 L640,470 L630,490 L610,500 Z" />
-
-                        <!-- Северо-Кавказский федеральный округ -->
-                        <path class="region-path" data-region="dagestan" d="M610,490 L630,470 L650,490 L640,510 L620,520 Z" />
-                        <path class="region-path" data-region="chechnya" d="M590,480 L610,460 L630,480 L620,500 L600,510 Z" />
-                        <path class="region-path" data-region="ingushetia" d="M580,470 L600,450 L620,470 L610,490 L590,500 Z" />
-                        <path class="region-path" data-region="north-ossetia" d="M570,460 L590,440 L610,460 L600,480 L580,490 Z" />
-                        <path class="region-path" data-region="kabardino-balkaria" d="M560,450 L580,430 L600,450 L590,470 L570,480 Z" />
-                        <path class="region-path" data-region="karachay-cherkessia" d="M550,440 L570,420 L590,440 L580,460 L560,470 Z" />
-                        <path class="region-path" data-region="stavropol" d="M540,430 L560,410 L580,430 L570,450 L550,460 Z" />
-                        <path class="region-path" data-region="adigea" d="M530,470 L550,450 L570,470 L560,490 L540,500 Z" />
+                        <!-- Упрощенная карта России с 20 регионами для демонстрации -->
+                        <path class="region-path" data-region="moscow" d="M500,300 L530,280 L560,300 L540,330 L510,330 Z" />
+                        <path class="region-path" data-region="tver" d="M460,250 L490,230 L520,250 L500,280 L470,290 Z" />
+                        <path class="region-path" data-region="smolensk" d="M430,280 L460,260 L490,280 L470,310 L440,320 Z" />
+                        <path class="region-path" data-region="kaluga" d="M450,310 L480,290 L510,310 L490,340 L460,350 Z" />
+                        <path class="region-path" data-region="tula" d="M440,340 L470,320 L500,340 L480,370 L450,380 Z" />
+                        <path class="region-path" data-region="ryazan" d="M490,340 L520,320 L550,340 L530,370 L500,380 Z" />
+                        <path class="region-path" data-region="vladimir" d="M530,310 L560,290 L590,310 L570,340 L540,350 Z" />
+                        <path class="region-path" data-region="ivanovo" d="M560,280 L590,260 L620,280 L600,310 L570,320 Z" />
+                        <path class="region-path" data-region="yaroslavl" d="M540,250 L570,230 L600,250 L580,280 L550,290 Z" />
+                        <path class="region-path" data-region="kostroma" d="M570,220 L600,200 L630,220 L610,250 L580,260 Z" />
+                        <path class="region-path" data-region="bryansk" d="M430,310 L460,290 L490,310 L470,340 L440,350 Z" />
+                        <path class="region-path" data-region="belgorod" d="M480,400 L510,380 L540,400 L520,430 L490,440 Z" />
+                        <path class="region-path" data-region="voronezh" d="M510,370 L540,350 L570,370 L550,400 L520,410 Z" />
+                        <path class="region-path" data-region="kursk" d="M470,370 L500,350 L530,370 L510,400 L480,410 Z" />
+                        <path class="region-path" data-region="lipetsk" d="M500,350 L530,330 L560,350 L540,380 L510,390 Z" />
+                        <path class="region-path" data-region="tambov" d="M520,340 L550,320 L580,340 L560,370 L530,380 Z" />
+                        <path class="region-path" data-region="stpetersburg" d="M380,190 L410,170 L440,190 L420,220 L390,230 Z" />
+                        <path class="region-path" data-region="leningrad" d="M410,170 L440,150 L470,170 L450,200 L420,210 Z" />
+                        <path class="region-path" data-region="novgorod" d="M440,190 L470,170 L500,190 L480,220 L450,230 Z" />
+                        <path class="region-path" data-region="pskov" d="M410,220 L440,200 L470,220 L450,250 L420,260 Z" />
                     </svg>
                 </div>
                 
@@ -908,15 +880,15 @@
                     const tooltipWidth = tooltip.offsetWidth;
                     const tooltipHeight = tooltip.offsetHeight;
                     
-                    let x = event.clientX + 20;
-                    let y = event.clientY + 20;
+                    let x = event.clientX + 15;
+                    let y = event.clientY + 15;
                     
                     // Проверяем, не выходит ли подсказка за границы экрана
                     if (x + tooltipWidth > window.innerWidth) {
-                        x = event.clientX - tooltipWidth - 20;
+                        x = event.clientX - tooltipWidth - 15;
                     }
                     if (y + tooltipHeight > window.innerHeight) {
-                        y = event.clientY - tooltipHeight - 20;
+                        y = event.clientY - tooltipHeight - 15;
                     }
                     
                     tooltip.style.left = `${x}px`;
@@ -946,7 +918,7 @@
                         highlightRegionOnMap('tver');
                         document.getElementById('region-selector').value = 'tver';
                     }
-                }, 500);
+                }, 300);
             }
             
             // Страница полностью загружена, инициализируем карту
@@ -960,10 +932,10 @@
             
             backToTopButton.style.cssText = `
                 position: fixed;
-                bottom: 30px;
-                right: 30px;
-                width: 50px;
-                height: 50px;
+                bottom: 25px;
+                right: 25px;
+                width: 45px;
+                height: 45px;
                 border-radius: 50%;
                 background: var(--primary-blue);
                 color: white;
@@ -972,16 +944,16 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 opacity: 0;
                 transform: scale(0.8);
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                box-shadow: 0 4px 15px rgba(0,120,215,0.4);
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: 0 3px 10px rgba(0,120,215,0.4);
                 z-index: 1000;
             `;
             
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
+                if (window.pageYOffset > 250) {
                     backToTopButton.style.opacity = '1';
                     backToTopButton.style.transform = 'scale(1)';
                 } else {
