@@ -5,28 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="Логотип комиссии по мотоджимхане"></a>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-left">
+                    <img src="images/logo.png" alt="Логотип комиссии" class="logo-img">
+                </div>
+                <div class="logo-right">
+                    <div class="official-name">ФЕДЕРАЛЬНАЯ МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
+                    <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
+                </div>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="about.html">О комиссии</a></li>
-                    <li><a href="structure.html">Структура комиссии</a></li>
-                    <li><a href="calendar.html">Календарь соревнований</a></li>
-                    <li><a href="documents.html">Полезные документы</a></li>
-                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="about.html" class="nav-link">О комиссии</a></li>
+                    <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+                    <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
+                    <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                    <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
+                    <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main class="main-content">
-        <div class="container">
+        <main class="content">
             <h1 class="page-title">Контакты</h1>
             
             <section class="contact-info">
@@ -87,35 +93,41 @@
                 </div>
                 <p>Присоединяйтесь к нашим группам в социальных сетях, чтобы быть в курсе последних новостей и событий!</p>
             </section>
-        </div>
-    </main>
+        </main>
 
-    <footer class="footer">
-        <div class="container">
+        <footer class="footer">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank" class="logo-link">
+                <a href="https://www.mfr.ru/" target="_blank">
                     <img src="images/mfr-logo.png" alt="Логотип МФР">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank" class="logo-link">
+                <a href="https://www.minsport.gov.ru/" target="_blank">
                     <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">
-                    <i class="fas fa-cloud"></i> Документы комиссии
-                </a>
-                <a href="https://www.mfr.ru/" target="_blank">
-                    <i class="fas fa-globe"></i> Официальный сайт МФР
-                </a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
-                    <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
-                </a>
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
             </div>
             <div class="copyright">
                 © 2025 Федерация мотоциклетного спорта России
             </div>
+        </footer>
+    </div>
+
+    <!-- Modal for Admin Login -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Вход в админ-панель</h2>
+            <div class="form-group">
+                <label for="admin-password">Пароль</label>
+                <input type="password" id="admin-password" class="form-control">
+                <p class="password-hint">Пароль предоставлен Председателем комиссии</p>
+            </div>
+            <button id="login-btn" class="btn btn-primary">Войти</button>
         </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
