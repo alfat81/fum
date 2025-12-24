@@ -5,28 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Структура комиссии | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="Логотип комиссии по мотоджимхане"></a>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-left">
+                    <img src="images/logo.png" alt="Логотип комиссии" class="logo-img">
+                </div>
+                <div class="logo-right">
+                    <div class="official-name">ФЕДЕРАЛЬНАЯ МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
+                    <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
+                </div>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="about.html">О комиссии</a></li>
-                    <li><a href="structure.html" class="active">Структура комиссии</a></li>
-                    <li><a href="calendar.html">Календарь соревнований</a></li>
-                    <li><a href="documents.html">Полезные документы</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="about.html" class="nav-link">О комиссии</a></li>
+                    <li><a href="structure.html" class="nav-link active">Структура комиссии</a></li>
+                    <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
+                    <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main class="main-content">
-        <div class="container">
+        <main class="content">
             <h1 class="page-title">Структура комиссии</h1>
             
             <section class="leadership-section">
@@ -239,37 +245,29 @@
                     </table>
                 </div>
             </section>
-        </div>
-    </main>
+        </main>
 
-    <footer class="footer">
-        <div class="container">
+        <footer class="footer">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank" class="logo-link">
+                <a href="https://www.mfr.ru/" target="_blank">
                     <img src="images/mfr-logo.png" alt="Логотип МФР">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank" class="logo-link">
+                <a href="https://www.minsport.gov.ru/" target="_blank">
                     <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">
-                    <i class="fas fa-cloud"></i> Документы комиссии
-                </a>
-                <a href="https://www.mfr.ru/" target="_blank">
-                    <i class="fas fa-globe"></i> Официальный сайт МФР
-                </a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
-                    <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
-                </a>
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
             </div>
             <div class="copyright">
                 © 2025 Федерация мотоциклетного спорта России
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
-    <!-- Админ панель (модальное окно) -->
+    <!-- Modal for Admin Panel -->
     <div class="modal" id="admin-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -324,7 +322,7 @@
                     </select>
                 </div>
                 
-                <button class="admin-btn" id="add-commission-btn">
+                <button class="btn btn-primary" id="add-commission-btn">
                     <i class="fas fa-plus"></i> Добавить/Обновить комиссию
                 </button>
             </div>
@@ -346,200 +344,7 @@
     <script>
         // Функционал админ панели
         document.addEventListener('DOMContentLoaded', function() {
-            const adminBtn = document.getElementById('admin-panel-btn');
-            const adminModal = document.getElementById('admin-modal');
-            const closeBtn = document.querySelector('.close-modal');
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            const addCommissionBtn = document.getElementById('add-commission-btn');
-            const regionsTableBody = document.getElementById('regions-table-body');
-            
-            // Открытие модального окна
-            adminBtn.addEventListener('click', function() {
-                adminModal.style.display = 'block';
-            });
-            
-            // Закрытие модального окна
-            closeBtn.addEventListener('click', function() {
-                adminModal.style.display = 'none';
-            });
-            
-            // Закрытие при клике вне окна
-            window.addEventListener('click', function(e) {
-                if (e.target === adminModal) {
-                    adminModal.style.display = 'none';
-                }
-            });
-            
-            // Переключение вкладок
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Убираем активный класс у всех кнопок
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    // Добавляем активный класс к текущей кнопке
-                    this.classList.add('active');
-                    
-                    // Скрываем все вкладки
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Показываем выбранную вкладку
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(`${tabId}-tab`).classList.add('active');
-                });
-            });
-            
-            // Добавление/обновление комиссии
-            addCommissionBtn.addEventListener('click', function() {
-                const region = document.getElementById('region-select').value;
-                const leader = document.getElementById('commission-leader').value;
-                const phone = document.getElementById('leader-phone').value;
-                const email = document.getElementById('leader-email').value;
-                const status = document.getElementById('commission-status').value;
-                
-                if (!region || !leader) {
-                    alert('Пожалуйста, заполните обязательные поля: Регион и ФИО руководителя');
-                    return;
-                }
-                
-                // Создаем новую строку в таблице
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <td>${getRegionName(region)}</td>
-                    <td>${leader}</td>
-                    <td>${getStatusName(status)}</td>
-                    <td>${phone || '-'}</td>
-                    <td>${email || '-'}</td>
-                    <td>
-                        <button class="action-btn edit-btn">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="action-btn delete-btn">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                
-                // Добавляем обработчики для новых кнопок
-                const editBtn = newRow.querySelector('.edit-btn');
-                const deleteBtn = newRow.querySelector('.delete-btn');
-                
-                editBtn.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    editRow(row);
-                });
-                
-                deleteBtn.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    deleteRow(row);
-                });
-                
-                // Добавляем новую строку в таблицу
-                regionsTableBody.appendChild(newRow);
-                
-                // Очищаем форму
-                document.getElementById('region-select').value = '';
-                document.getElementById('commission-leader').value = '';
-                document.getElementById('leader-phone').value = '';
-                document.getElementById('leader-email').value = '';
-                document.getElementById('commission-status').value = 'active';
-                
-                alert('Региональная комиссия успешно добавлена!');
-            });
-            
-            // Редактирование строки
-            function editRow(row) {
-                const cells = row.querySelectorAll('td');
-                const region = getRegionId(cells[0].textContent);
-                const leader = cells[1].textContent;
-                const status = getStatusId(cells[2].textContent);
-                const phone = cells[3].textContent !== '-' ? cells[3].textContent : '';
-                const email = cells[4].textContent !== '-' ? cells[4].textContent : '';
-                
-                document.getElementById('region-select').value = region;
-                document.getElementById('commission-leader').value = leader;
-                document.getElementById('leader-phone').value = phone;
-                document.getElementById('leader-email').value = email;
-                document.getElementById('commission-status').value = status;
-                
-                // Удаляем старую строку
-                row.remove();
-                
-                alert('Данные для редактирования загружены в форму. Нажмите "Добавить/Обновить комиссию" для сохранения.');
-            }
-            
-            // Удаление строки
-            function deleteRow(row) {
-                if (confirm('Вы уверены, что хотите удалить эту региональную комиссию?')) {
-                    row.remove();
-                    alert('Региональная комиссия успешно удалена!');
-                }
-            }
-            
-            // Вспомогательные функции
-            function getRegionName(regionId) {
-                const regions = {
-                    'moscow': 'Москва',
-                    'spb': 'Санкт-Петербург',
-                    'tver': 'Тверская область',
-                    'nnovgorod': 'Нижегородская область',
-                    'smolensk': 'Смоленская область',
-                    'vologda': 'Вологодская область',
-                    'ulyanovsk': 'Ульяновская область',
-                    'tatarstan': 'Республика Татарстан',
-                    'kaluga': 'Калужская область',
-                    'tula': 'Тульская область'
-                };
-                return regions[regionId] || regionId;
-            }
-            
-            function getRegionId(regionName) {
-                const regions = {
-                    'Москва': 'moscow',
-                    'Санкт-Петербург': 'spb',
-                    'Тверская область': 'tver',
-                    'Нижегородская область': 'nnovgorod',
-                    'Смоленская область': 'smolensk',
-                    'Вологодская область': 'vologda',
-                    'Ульяновская область': 'ulyanovsk',
-                    'Республика Татарстан': 'tatarstan',
-                    'Калужская область': 'kaluga',
-                    'Тульская область': 'tula'
-                };
-                return regions[regionName] || '';
-            }
-            
-            function getStatusName(statusId) {
-                const statuses = {
-                    'active': 'Действующая',
-                    'developing': 'Развивается',
-                    'planned': 'Планируется'
-                };
-                return statuses[statusId] || statusId;
-            }
-            
-            function getStatusId(statusName) {
-                const statuses = {
-                    'Действующая': 'active',
-                    'Развивается': 'developing',
-                    'Планируется': 'planned'
-                };
-                return statuses[statusName] || 'active';
-            }
-            
-            // Инициализация обработчиков для существующих кнопок
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    editRow(row);
-                });
-            });
-            
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    deleteRow(row);
-                });
-            });
+            // Код для админ панели
         });
     </script>
 </body>
