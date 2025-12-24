@@ -4,1615 +4,387 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Структура комиссии | Комиссия по фигурному управлению мотоциклом | МФР</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #003366;
-            --secondary-blue: #005599;
-            --accent-red: #cc0000;
-            --light-bg: #f5f7fa;
-            --dark-text: #2c3e50;
-            --light-text: #ffffff;
-            --border-radius: 8px;
-            --shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-bg);
-            color: var(--dark-text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header styles */
-        header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: var(--light-text);
-            padding: 10px 0;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            max-height: 25vh;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo-img {
-            height: 40px;
-            max-height: 50px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        
-        .header-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-right: 15px;
-            letter-spacing: -0.5px;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.4rem;
-            cursor: pointer;
-        }
-        
-        /* Navigation styles */
-        nav {
-            background-color: var(--primary-blue);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .nav-menu li {
-            position: relative;
-        }
-        
-        .nav-menu a {
-            display: block;
-            color: var(--light-text);
-            text-decoration: none;
-            padding: 10px 18px;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .nav-menu a:hover, .nav-menu a.active {
-            background-color: var(--secondary-blue);
-            color: white;
-        }
-        
-        /* Main content styles */
-        main {
-            flex: 1;
-            padding: 25px 0;
-        }
-        
-        .page-title {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            margin-bottom: 18px;
-            text-align: center;
-            font-weight: 600;
-            position: relative;
-            padding-bottom: 8px;
-        }
-        
-        .page-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 3px;
-            background: var(--accent-red);
-            border-radius: 1.5px;
-        }
-        
-        .section {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 22px;
-            margin-bottom: 25px;
-            transition: var(--transition);
-        }
-        
-        .section:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-            transform: translateY(-1px);
-        }
-        
-        .section-title {
-            font-size: 1.65rem;
-            color: var(--primary-blue);
-            margin-bottom: 16px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-red);
-            font-weight: 600;
-        }
-        
-        /* Leadership styles */
-        .commission-intro {
-            background: rgba(204, 0, 0, 0.02);
-            border-left: 3px solid var(--accent-red);
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .commission-intro h2 {
-            color: var(--primary-blue);
-            font-size: 1.7rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        
-        .commission-intro p {
-            margin-bottom: 12px;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-        
-        .leadership-structure {
-            margin-top: 20px;
-        }
-        
-        .leadership-level {
-            margin-bottom: 28px;
-        }
-        
-        .level-title {
-            font-size: 1.55rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin: 20px 0 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--secondary-blue);
-        }
-        
-        .leader-card {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(0, 51, 102, 0.015);
-            transition: var(--transition);
-            margin-bottom: 16px;
-            align-items: flex-start;
-            border: 1px solid rgba(0, 51, 102, 0.06);
-        }
-        
-        .leader-card:hover {
-            transform: translateX(6px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-color: var(--secondary-blue);
-            background: rgba(0, 120, 215, 0.03);
-        }
-        
-        .leader-placeholder {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary-blue), #5588cc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 2.4rem;
-            color: white;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-            border: 2px solid white;
-        }
-        
-        .leader-info {
-            flex: 1;
-        }
-        
-        .leader-name {
-            font-size: 1.55rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin-bottom: 6px;
-        }
-        
-        .leader-position {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--accent-red);
-            margin-bottom: 10px;
-        }
-        
-        .leader-region {
-            font-size: 1.05rem;
-            color: var(--secondary-blue);
-            margin-bottom: 12px;
-            font-weight: 500;
-            padding-left: 24px;
-            position: relative;
-        }
-        
-        .leader-contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin: 12px 0;
-            padding: 12px;
-            background: rgba(0, 120, 215, 0.02);
-            border-radius: 6px;
-            border-left: 3px solid var(--secondary-blue);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: var(--secondary-blue);
-            font-weight: 500;
-            font-size: 1rem;
-        }
-        
-        /* Regional commissions styles */
-        .region-commissions-section {
-            margin-top: 35px;
-        }
-        
-        .admin-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        
-        .controls-left, .controls-right {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .admin-button {
-            padding: 8px 20px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-        
-        .admin-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        }
-        
-        .admin-button.export {
-            background: linear-gradient(135deg, #228833, #33aa44);
-        }
-        
-        .search-box {
-            position: relative;
-            max-width: 280px;
-            width: 100%;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 8px 12px 8px 35px;
-            border: 2px solid var(--secondary-blue);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-        
-        .search-box input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.25);
-        }
-        
-        .search-box i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary-blue);
-            font-size: 1rem;
-        }
-        
-        .regional-commissions-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-        }
-        
-        .regional-commissions-table th {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            font-weight: 500;
-            text-align: left;
-            padding: 12px 10px;
-            position: sticky;
-            top: 0;
-            font-size: 1.05rem;
-        }
-        
-        .regional-commissions-table td {
-            padding: 11px 10px;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            transition: var(--transition);
-            font-size: 0.98rem;
-        }
-        
-        .regional-commissions-table tr:hover td {
-            background-color: rgba(0, 120, 215, 0.03);
-        }
-        
-        .regional-commissions-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .regional-commissions-table .region-name {
-            font-weight: 500;
-            color: var(--primary-blue);
-            font-size: 1.05rem;
-        }
-        
-        .regional-commissions-table .chairman-name {
-            font-weight: 500;
-            color: var(--accent-red);
-        }
-        
-        .regional-commissions-table .contact {
-            color: var(--secondary-blue);
-        }
-        
-        .regional-commissions-table .short-info {
-            max-width: 220px;
-            font-size: 0.93rem;
-            line-height: 1.5;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .action-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-        }
-        
-        .action-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        .action-btn.edit {
-            background: linear-gradient(135deg, #228833, #33aa44);
-        }
-        
-        .action-btn.delete {
-            background: linear-gradient(135deg, #aa3333, var(--accent-red));
-        }
-        
-        .no-commissions {
-            text-align: center;
-            padding: 35px 20px;
-            color: var(--dark-text);
-            font-style: italic;
-            background: rgba(0,0,0,0.01);
-            border-radius: var(--border-radius);
-            margin: 20px 0;
-        }
-        
-        .no-commissions i {
-            font-size: 2.8rem;
-            color: var(--secondary-blue);
-            margin-bottom: 18px;
-            display: block;
-        }
-        
-        .no-commissions p {
-            font-size: 1.15rem;
-            line-height: 1.6;
-        }
-        
-        .no-commissions .add-btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 8px 22px;
-            background: var(--secondary-blue);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-        
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.65);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-            width: 90%;
-            max-width: 650px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            padding: 16px 25px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h3 {
-            margin: 0;
-            font-size: 1.6rem;
-            font-weight: 600;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .close-modal:hover {
-            background: rgba(255,255,255,0.2);
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--primary-blue);
-            font-size: 1rem;
-        }
-        
-        .form-required::after {
-            content: '*';
-            color: var(--accent-red);
-            margin-left: 4px;
-        }
-        
-        .form-note {
-            font-size: 0.88rem;
-            color: var(--accent-red);
-            margin-top: 4px;
-            font-style: italic;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 14px;
-            border: 2px solid var(--secondary-blue);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.2);
-        }
-        
-        .form-control textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 18px;
-            margin: 0 -9px;
-        }
-        
-        .form-col {
-            flex: 1;
-            padding: 0 9px;
-        }
-        
-        .modal-footer {
-            padding: 16px 25px;
-            border-top: 1px solid rgba(0,0,0,0.08);
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            background: rgba(0,0,0,0.01);
-            border-radius: 0 0 12px 12px;
-        }
-        
-        .btn {
-            padding: 10px 24px;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            box-shadow: 0 3px 8px rgba(0, 120, 215, 0.25);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 120, 215, 0.3);
-        }
-        
-        .btn-danger {
-            background: linear-gradient(135deg, #aa3333, var(--accent-red));
-            color: white;
-            box-shadow: 0 3px 8px rgba(204, 0, 0, 0.25);
-        }
-        
-        .btn-danger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(204, 0, 0, 0.3);
-        }
-        
-        /* Footer styles */
-        footer {
-            background: linear-gradient(135deg, var(--primary-blue), #0a1e35);
-            color: var(--light-text);
-            padding: 25px 0;
-            margin-top: 35px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .footer-logo {
-            max-width: 180px;
-            margin: 0 auto 18px;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: #ffcc00;
-            text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .footer-contact {
-            margin: 16px 0;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-        
-        .footer-contact a {
-            color: #ffcc00;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-contact a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .copyright {
-            margin-top: 20px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            font-size: 0.98rem;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-        
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: var(--transition);
-            box-shadow: 0 3px 10px rgba(0, 120, 215, 0.4);
-            z-index: 1000;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .back-to-top:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 120, 215, 0.5);
-        }
-        
-        /* Responsive design */
-        @media (max-width: 1024px) {
-            .form-row {
-                flex-direction: column;
-                gap: 12px;
-            }
-            
-            .form-col {
-                padding: 0;
-            }
-            
-            .leader-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .leader-placeholder {
-                margin: 0 auto;
-            }
-            
-            .leader-contact {
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .nav-menu li {
-                width: 100%;
-            }
-            
-            .nav-menu a {
-                padding: 12px;
-                font-size: 1.1rem;
-            }
-            
-            .header-title {
-                font-size: 1.15rem;
-            }
-            
-            .logo-img {
-                height: 35px;
-            }
-            
-            .page-title {
-                font-size: 1.75rem;
-            }
-            
-            .section-title {
-                font-size: 1.45rem;
-            }
-            
-            .level-title {
-                font-size: 1.4rem;
-            }
-            
-            .admin-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .controls-left, .controls-right {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .search-box {
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            header {
-                padding: 6px 0;
-            }
-            
-            .header-container {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .header-title {
-                font-size: 1.05rem;
-            }
-            
-            .logo-img {
-                height: 30px;
-            }
-            
-            .menu-toggle {
-                position: absolute;
-                right: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            
-            .page-title {
-                font-size: 1.6rem;
-            }
-            
-            .section {
-                padding: 18px 15px;
-            }
-            
-            .section-title {
-                font-size: 1.3rem;
-            }
-            
-            .level-title {
-                font-size: 1.25rem;
-            }
-            
-            .leader-card {
-                padding: 16px 12px;
-            }
-            
-            .leader-placeholder {
-                width: 70px;
-                height: 70px;
-                font-size: 2.1rem;
-            }
-            
-            .leader-name {
-                font-size: 1.4rem;
-            }
-            
-            .leader-position {
-                font-size: 1.1rem;
-            }
-            
-            .leader-region {
-                font-size: 1rem;
-                padding-left: 20px;
-            }
-            
-            .contact-item {
-                font-size: 0.95rem;
-                gap: 5px;
-            }
-            
-            .form-control {
-                padding: 10px 12px;
-                font-size: 0.95rem;
-            }
-            
-            .btn {
-                padding: 8px 20px;
-                font-size: 0.95rem;
-            }
-            
-            .regional-commissions-table th,
-            .regional-commissions-table td {
-                padding: 8px 6px;
-                font-size: 0.9rem;
-            }
-            
-            .regional-commissions-table .region-name {
-                font-size: 0.95rem;
-            }
-            
-            .action-btn {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 1.25rem;
-            }
-            
-            .copyright {
-                font-size: 0.92rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="Логотип комиссии по мотоджимхане" class="logo-img">
-                <div class="header-title">Комиссия по фигурному управлению мотоциклом</div>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="images/logo.png" alt="Логотип комиссии">
             </div>
-            <button class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О комиссии</a></li>
+                    <li><a href="structure.html" class="active">Структура комиссии</a></li>
+                    <li><a href="calendar.html">Календарь соревнований</a></li>
+                    <li><a href="documents.html">Полезные документы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <nav>
-        <div class="container nav-container">
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html">О комиссии</a></li>
-                <li><a href="structure.html" class="active">Структура комиссии</a></li>
-                <li><a href="calendar.html">Календарь соревнований</a></li>
-                <li><a href="documents.html">Документы</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="container">
-        <h1 class="page-title">Структура комиссии</h1>
-        
-        <section class="section">
-            <div class="commission-intro">
-                <h2>Состав комиссии по фигурному управлению мотоциклом</h2>
-                <p>31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии фигурного управления мотоциклом.</p>
-            </div>
+        <main class="content">
+            <h1 class="page-title">Структура комиссии</h1>
             
-            <div class="leadership-structure">
-                <div class="leadership-level">
-                    <h3 class="level-title">Председатель Комиссии</h3>
-                    <div class="leader-card">
-                        <div class="leader-placeholder">
-                            Д.С.
-                        </div>
-                        <div class="leader-info">
-                            <h4 class="leader-name">Дмитрий Серов</h4>
-                            <div class="leader-position">Председатель Комиссии</div>
-                            <div class="leader-region">Тверская область</div>
-                            <div class="leader-contact">
-                                <div class="contact-item">
-                                    <span>+7 (977) 823-63-90</span>
-                                </div>
-                                <div class="contact-item">
-                                    <span>serovdima@list.ru</span>
-                                </div>
-                            </div>
+            <div class="leadership">
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg" alt="Дмитрий Серов">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Дмитрий Серов</h2>
+                        <div class="position">Председатель Комиссии</div>
+                        <div class="region">Тверская область</div>
+                        <div class="contact">
+                            <span>+7 (977) 823-63-90</span>
+                            <span>serovdima@list.ru</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="leadership-level">
-                    <h3 class="level-title">Заместитель Председателя</h3>
-                    <div class="leader-card">
-                        <div class="leader-placeholder">
-                            А.Ф.
-                        </div>
-                        <div class="leader-info">
-                            <h4 class="leader-name">Алексей Фатьянов</h4>
-                            <div class="leader-position">Заместитель Председателя</div>
-                            <div class="leader-region">Нижний Новгород</div>
-                            <div class="leader-contact">
-                                <div class="contact-item">
-                                    <span>+7 (905) 234-56-78</span>
-                                </div>
-                                <div class="contact-item">
-                                    <span>fatyanov@mfr-nnov.ru</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg" alt="Алексей Фатьянов">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Алексей Фатьянов</h2>
+                        <div class="position">Заместитель Председателя</div>
+                        <div class="region">Нижний Новгород</div>
                     </div>
                 </div>
                 
-                <div class="leadership-level">
-                    <h3 class="level-title">Главный секретарь</h3>
-                    <div class="leader-card">
-                        <div class="leader-placeholder">
-                            Н.Н.
-                        </div>
-                        <div class="leader-info">
-                            <h4 class="leader-name">Наталия Недайводина</h4>
-                            <div class="leader-position">Главный секретарь</div>
-                            <div class="leader-region">Вологодская область</div>
-                            <div class="leader-contact">
-                                <div class="contact-item">
-                                    <span>+7 (911) 456-78-90</span>
-                                </div>
-                                <div class="contact-item">
-                                    <span>vologda-fum@mfr.ru</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg" alt="Наталия Недайводина">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Наталия Недайводина</h2>
+                        <div class="position">Главный секретарь</div>
+                        <div class="region">Вологодская область</div>
                     </div>
                 </div>
                 
-                <div class="leadership-level">
-                    <h3 class="level-title">Члены Комиссии</h3>
-                    <div class="members-grid">
-                        <div class="leader-card">
-                            <div class="leader-placeholder">
-                                Г.С.
-                            </div>
-                            <div class="leader-info">
-                                <h4 class="leader-name">Глеб Симдянкин</h4>
-                                <div class="leader-region">Смоленская область</div>
-                                <div class="leader-contact">
-                                    <div class="contact-item">
-                                        <span>+7 (910) 345-67-89</span>
-                                    </div>
-                                    <div class="contact-item">
-                                        <span>smolensk-fum@mfr.ru</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="leader-card">
-                            <div class="leader-placeholder">
-                                А.С.
-                            </div>
-                            <div class="leader-info">
-                                <h4 class="leader-name">Андрей Сальников</h4>
-                                <div class="leader-region">Ульяновская область</div>
-                                <div class="leader-contact">
-                                    <div class="contact-item">
-                                        <span>+7 (923) 567-89-01</span>
-                                    </div>
-                                    <div class="contact-item">
-                                        <span>ul-fum@mfr.ru</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="leader-card">
-                            <div class="leader-placeholder">
-                                И.С.
-                            </div>
-                            <div class="leader-info">
-                                <h4 class="leader-name">Ильшат Сафаров</h4>
-                                <div class="leader-region">Республика Татарстан</div>
-                                <div class="leader-contact">
-                                    <div class="contact-item">
-                                        <span>+7 (934) 678-90-12</span>
-                                    </div>
-                                    <div class="contact-item">
-                                        <span>tatarstan-fum@mfr.ru</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="leader-card">
-                            <div class="leader-placeholder">
-                                М.Г.
-                            </div>
-                            <div class="leader-info">
-                                <h4 class="leader-name">Максим Гаранин</h4>
-                                <div class="leader-region">Калужская область</div>
-                                <div class="leader-contact">
-                                    <div class="contact-item">
-                                        <span>+7 (945) 789-01-23</span>
-                                    </div>
-                                    <div class="contact-item">
-                                        <span>kaluga-fum@mfr.ru</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="leader-card">
-                            <div class="leader-placeholder">
-                                А.А.
-                            </div>
-                            <div class="leader-info">
-                                <h4 class="leader-name">Александр Акимов</h4>
-                                <div class="leader-region">Тульская область</div>
-                                <div class="leader-contact">
-                                    <div class="contact-item">
-                                        <span>+7 (956) 890-12-34</span>
-                                    </div>
-                                    <div class="contact-item">
-                                        <span>tula-fum@mfr.ru</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="leader-card">
-                            <div class="leader-placeholder">
-                                А.Ц.
-                            </div>
-                            <div class="leader-info">
-                                <h4 class="leader-name">Александр Ципилев</h4>
-                                <div class="leader-region">Москва, МОО "Федерация Мотоджимханы"</div>
-                                <div class="leader-contact">
-                                    <div class="contact-item">
-                                        <span>+7 (903) 123-45-67</span>
-                                    </div>
-                                    <div class="contact-item">
-                                        <span>moscow-fum@mfr.ru</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg" alt="Глеб Симдянкин">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Глеб Симдянкин</h2>
+                        <div class="position">Член Комиссии</div>
+                        <div class="region">Смоленская область</div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <section class="section region-commissions-section">
-            <h2 class="section-title">Региональные комиссии</h2>
-            <div class="admin-controls">
-                <div class="controls-left">
-                    <button class="admin-button" id="add-commission-btn">
-                        Добавить комиссию
-                    </button>
-                </div>
-                <div class="controls-right">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="search-regions" placeholder="Поиск по регионам...">
+                
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg" alt="Андрей Сальников">
                     </div>
-                    <button class="admin-button export" id="export-btn">
-                        Экспорт данных
-                    </button>
+                    <div class="leader-info">
+                        <h2>Андрей Сальников</h2>
+                        <div class="position">Член Комиссии</div>
+                        <div class="region">Ульяновская область</div>
+                    </div>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg" alt="Ильшат Сафаров">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Ильшат Сафаров</h2>
+                        <div class="position">Член Комиссии</div>
+                        <div class="region">Республика Татарстан</div>
+                    </div>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg" alt="Максим Гаранин">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Максим Гаранин</h2>
+                        <div class="position">Член Комиссии</div>
+                        <div class="region">Калужская область</div>
+                    </div>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg" alt="Александр Акимов">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Александр Акимов</h2>
+                        <div class="position">Член Комиссии</div>
+                        <div class="region">Тульская область</div>
+                    </div>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <img src="https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg" alt="Александр Ципилев">
+                    </div>
+                    <div class="leader-info">
+                        <h2>Александр Ципилев</h2>
+                        <div class="position">Член Комиссии</div>
+                        <div class="region">Москва, МОО "Федерация Мотоджимханы"</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="table-container" style="overflow-x: auto;">
-                <table class="regional-commissions-table">
+            <h2 class="section-title">Региональные представители</h2>
+            
+            <div class="regions-table">
+                <table>
                     <thead>
                         <tr>
-                            <th>Регион/Область</th>
-                            <th>Председатель комиссии</th>
+                            <th>Регион</th>
+                            <th>Представитель</th>
                             <th>Телефон</th>
                             <th>Email</th>
-                            <th>Информация</th>
-                            <th>Действия</th>
                         </tr>
                     </thead>
-                    <tbody id="commissions-table-body">
+                    <tbody id="regions-tbody">
                         <tr>
-                            <td class="region-name">Тверская область</td>
-                            <td class="chairman-name">Дмитрий Серов</td>
-                            <td class="contact">+7 (977) 823-63-90</td>
-                            <td class="contact">serovdima@list.ru</td>
-                            <td class="short-info">Официальные соревнования по фигурному управлению мотоциклом проводятся ежегодно. Ближайшее соревнование - Чемпионат России 15-17 июня 2025 года.</td>
-                            <td class="action-buttons">
-                                <button class="action-btn edit" title="Редактировать">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="action-btn delete" title="Удалить">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                            <td>Тверская область</td>
+                            <td>Дмитрий Серов</td>
+                            <td>+7 (977) 823-63-90</td>
+                            <td>serovdima@list.ru</td>
                         </tr>
                         <tr>
-                            <td class="region-name">Нижний Новгород</td>
-                            <td class="chairman-name">Алексей Фатьянов</td>
-                            <td class="contact">+7 (905) 234-56-78</td>
-                            <td class="contact">fatyanov@mfr-nnov.ru</td>
-                            <td class="short-info">В регионе активно развивается детский мотоджимхана. Проведен первый детский турнир в 2024 году с участием 50 юных спортсменов.</td>
-                            <td class="action-buttons">
-                                <button class="action-btn edit" title="Редактировать">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="action-btn delete" title="Удалить">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                            <td>Нижний Новгород</td>
+                            <td>Алексей Фатьянов</td>
+                            <td>+7 (905) 234-56-78</td>
+                            <td>fatyanov@mfr-nnov.ru</td>
                         </tr>
                         <tr>
-                            <td class="region-name">Смоленская область</td>
-                            <td class="chairman-name">Глеб Симдянкин</td>
-                            <td class="contact">+7 (910) 345-67-89</td>
-                            <td class="contact">smolensk-fum@mfr.ru</td>
-                            <td class="short-info">Победитель награды «Лучшая площадка проведения Кубка России по фигурному управлению мотоциклом» за сезон 2024 года.</td>
-                            <td class="action-buttons">
-                                <button class="action-btn edit" title="Редактировать">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="action-btn delete" title="Удалить">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                            <td>Вологодская область</td>
+                            <td>Наталия Недайводина</td>
+                            <td>+7 (911) 456-78-90</td>
+                            <td>vologda-fum@mfr.ru</td>
                         </tr>
                         <tr>
-                            <td class="region-name">Вологодская область</td>
-                            <td class="chairman-name">Наталия Недайводина</td>
-                            <td class="contact">+7 (911) 456-78-90</td>
-                            <td class="contact">vologda-fum@mfr.ru</td>
-                            <td class="short-info">Развитие юношеского и детского мотоджимхана. Подготовка команды для участия в международных соревнованиях.</td>
-                            <td class="action-buttons">
-                                <button class="action-btn edit" title="Редактировать">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="action-btn delete" title="Удалить">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                            <td>Смоленская область</td>
+                            <td>Глеб Симдянкин</td>
+                            <td>+7 (910) 345-67-89</td>
+                            <td>smolensk-fum@mfr.ru</td>
                         </tr>
                         <tr>
-                            <td class="region-name">Ульяновская область</td>
-                            <td class="chairman-name">Андрей Сальников</td>
-                            <td class="contact">+7 (923) 567-89-01</td>
-                            <td class="contact">ul-fum@mfr.ru</td>
-                            <td class="short-info">Исторически первая область, где проводились официальные соревнования по фигурному управлению мотоциклом в России.</td>
-                            <td class="action-buttons">
-                                <button class="action-btn edit" title="Редактировать">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="action-btn delete" title="Удалить">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                            <td>Ульяновская область</td>
+                            <td>Андрей Сальников</td>
+                            <td>+7 (923) 567-89-01</td>
+                            <td>ul-fum@mfr.ru</td>
+                        </tr>
+                        <tr>
+                            <td>Республика Татарстан</td>
+                            <td>Ильшат Сафаров</td>
+                            <td>+7 (934) 678-90-12</td>
+                            <td>tatarstan-fum@mfr.ru</td>
+                        </tr>
+                        <tr>
+                            <td>Калужская область</td>
+                            <td>Максим Гаранин</td>
+                            <td>+7 (945) 789-01-23</td>
+                            <td>kaluga-fum@mfr.ru</td>
+                        </tr>
+                        <tr>
+                            <td>Тульская область</td>
+                            <td>Александр Акимов</td>
+                            <td>+7 (956) 890-12-34</td>
+                            <td>tula-fum@mfr.ru</td>
+                        </tr>
+                        <tr>
+                            <td>Москва</td>
+                            <td>Александр Ципилев</td>
+                            <td>+7 (903) 123-45-67</td>
+                            <td>moscow-fum@mfr.ru</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             
-            <div class="no-commissions" id="no-commissions-message" style="display: none;">
-                <p>Региональные комиссии пока не добавлены. Нажмите кнопку "Добавить комиссию" для создания первой записи.</p>
-                <button class="add-btn" id="add-first-commission-btn">Добавить первую комиссию</button>
+            <div class="admin-panel">
+                <button id="edit-regions-btn" class="admin-btn">Редактировать список регионов</button>
             </div>
-        </section>
-    </main>
+        </main>
 
-    <!-- Модальное окно для добавления/редактирования комиссии -->
-    <div class="modal" id="commission-modal">
+        <footer class="footer">
+            <div class="footer-logos">
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <img src="images/mfr-logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank">
+                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+            </div>
+            <div class="copyright">
+                © 2025 Федерация мотоциклетного спорта России
+            </div>
+        </footer>
+    </div>
+    
+    <div id="admin-modal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Добавить региональную комиссию</h3>
-                <button class="close-modal" id="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="commission-form">
-                    <input type="hidden" id="commission-id">
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="region" class="form-label form-required">Регион/Область</label>
-                                <input type="text" id="region" class="form-control" required placeholder="Например: Тверская область">
-                                <div class="form-note">Укажите полное название субъекта РФ</div>
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="chairman" class="form-label form-required">ФИО председателя</label>
-                                <input type="text" id="chairman" class="form-control" required placeholder="Например: Иванов Иван Иванович">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Телефон</label>
-                                <input type="tel" id="phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-                            </div>
-                        </div>
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" placeholder="example@mail.ru">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="info" class="form-label">Краткая информация/новости</label>
-                        <textarea id="info" class="form-control" placeholder="Введите краткую информацию о комиссии или актуальные новости"></textarea>
-                        <div class="form-note">Можно указать планы на сезон, последние достижения или предстоящие соревнования</div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" id="delete-commission-btn" style="display: none;">
-                    Удалить
-                </button>
-                <button class="btn btn-primary" id="save-commission-btn">
-                    Сохранить комиссию
-                </button>
-            </div>
+            <span class="close">&times;</span>
+            <h2>Редактирование списка регионов</h2>
+            <div id="regions-editor"></div>
+            <button id="save-regions-btn" class="admin-btn">Сохранить изменения</button>
         </div>
     </div>
-
-    <footer>
-        <div class="container footer-content">
-            <img src="images/logo.png" alt="Логотип комиссии" class="footer-logo">
-            <div class="footer-links">
-                <a href="https://www.mfr.ru/" target="_blank">
-                    Официальный сайт МФР
-                </a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
-                    Мотоджимхана на сайте МФР
-                </a>
-            </div>
-            
-            <div class="footer-contact">
-                <p><a href="mailto:dzhimhana@mfr-ro.ru">dzhimhana@mfr-ro.ru</a></p>
-                <p><a href="tel:+79778236390">+7 (977) 823-63-90</a></p>
-            </div>
-            
-            <p class="copyright">
-                © 2025 Федерация мотоциклетного спорта России<br>
-                Официальный сайт комиссии по фигурному управлению мотоциклом (мотоджимхане)
-            </p>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
+    
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const menuToggle = document.getElementById('menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            menuToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                this.innerHTML = navMenu.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-            
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-            
-            // Modal functionality
-            const commissionModal = document.getElementById('commission-modal');
-            const closeModalBtn = document.getElementById('close-modal');
-            const addCommissionBtn = document.getElementById('add-commission-btn');
-            const addFirstCommissionBtn = document.getElementById('add-first-commission-btn');
-            const saveCommissionBtn = document.getElementById('save-commission-btn');
-            const deleteCommissionBtn = document.getElementById('delete-commission-btn');
-            const exportBtn = document.getElementById('export-btn');
-            
-            // Open modal
-            function openModal(title, commissionId = null) {
-                document.getElementById('modal-title').textContent = title;
-                document.getElementById('commission-id').value = commissionId || '';
+            // Редактирование региональных представителей
+            document.getElementById('edit-regions-btn').addEventListener('click', function() {
+                const tbody = document.getElementById('regions-tbody');
+                const rows = tbody.querySelectorAll('tr');
                 
-                if (commissionId) {
-                    // Fill form with commission data
-                    const commissionRow = document.querySelector(`#commissions-table-body tr:nth-child(${commissionId})`);
-                    if (commissionRow) {
-                        document.getElementById('region').value = commissionRow.cells[0].textContent;
-                        document.getElementById('chairman').value = commissionRow.cells[1].textContent;
-                        document.getElementById('phone').value = commissionRow.cells[2].textContent;
-                        document.getElementById('email').value = commissionRow.cells[3].textContent;
-                        document.getElementById('info').value = commissionRow.cells[4].textContent;
-                        deleteCommissionBtn.style.display = 'inline-flex';
-                    }
-                } else {
-                    document.getElementById('commission-form').reset();
-                    document.getElementById('commission-id').value = '';
-                    deleteCommissionBtn.style.display = 'none';
-                }
+                let editorHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Регион</th>
+                                <th>Представитель</th>
+                                <th>Телефон</th>
+                                <th>Email</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="editor-tbody">
+                `;
                 
-                commissionModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-            
-            // Close modal
-            function closeModal() {
-                commissionModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            
-            addCommissionBtn.addEventListener('click', () => openModal('Добавить региональную комиссию'));
-            addFirstCommissionBtn.addEventListener('click', () => openModal('Добавить региональную комиссию'));
-            
-            closeModalBtn.addEventListener('click', closeModal);
-            
-            commissionModal.addEventListener('click', function(e) {
-                if (e.target === commissionModal) {
-                    closeModal();
-                }
-            });
-            
-            // Save commission
-            saveCommissionBtn.addEventListener('click', function() {
-                const region = document.getElementById('region').value.trim();
-                const chairman = document.getElementById('chairman').value.trim();
-                
-                if (!region || !chairman) {
-                    alert('Поля "Регион/Область" и "ФИО председателя" обязательны для заполнения');
-                    return;
-                }
-                
-                const commissionId = document.getElementById('commission-id').value;
-                const phone = document.getElementById('phone').value.trim() || 'не указан';
-                const email = document.getElementById('email').value.trim() || 'не указан';
-                const info = document.getElementById('info').value.trim() || 'Информация отсутствует';
-                
-                if (commissionId) {
-                    // Update existing commission
-                    const row = document.querySelector(`#commissions-table-body tr:nth-child(${commissionId})`);
-                    row.innerHTML = `
-                        <td class="region-name">${region}</td>
-                        <td class="chairman-name">${chairman}</td>
-                        <td class="contact">${phone}</td>
-                        <td class="contact">${email}</td>
-                        <td class="short-info">${info}</td>
-                        <td class="action-buttons">
-                            <button class="action-btn edit" title="Редактировать">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="action-btn delete" title="Удалить">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                } else {
-                    // Add new commission
-                    const newRow = document.createElement('tr');
-                    newRow.innerHTML = `
-                        <td class="region-name">${region}</td>
-                        <td class="chairman-name">${chairman}</td>
-                        <td class="contact">${phone}</td>
-                        <td class="contact">${email}</td>
-                        <td class="short-info">${info}</td>
-                        <td class="action-buttons">
-                            <button class="action-btn edit" title="Редактировать">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="action-btn delete" title="Удалить">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                    
-                    document.getElementById('commissions-table-body').appendChild(newRow);
-                    
-                    // Hide "no commissions" message if exists
-                    const noCommissionsMsg = document.getElementById('no-commissions-message');
-                    if (noCommissionsMsg) {
-                        noCommissionsMsg.style.display = 'none';
-                    }
-                }
-                
-                // Add event listeners to new buttons
-                document.querySelectorAll('.action-btn.edit').forEach(btn => {
-                    btn.removeEventListener('click', editHandler);
-                    btn.addEventListener('click', editHandler);
-                });
-                
-                document.querySelectorAll('.action-btn.delete').forEach(btn => {
-                    btn.removeEventListener('click', deleteHandler);
-                    btn.addEventListener('click', deleteHandler);
-                });
-                
-                closeModal();
-            });
-            
-            // Edit handler
-            function editHandler() {
-                const row = this.closest('tr');
-                const rowIndex = Array.from(row.parentNode.children).indexOf(row) + 1;
-                openModal('Редактировать комиссию', rowIndex);
-            }
-            
-            // Delete handler
-            function deleteHandler() {
-                if (confirm('Вы уверены, что хотите удалить эту региональную комиссию?')) {
-                    this.closest('tr').remove();
-                    
-                    // Check if table is empty
-                    if (document.getElementById('commissions-table-body').children.length === 0) {
-                        document.getElementById('no-commissions-message').style.display = 'block';
-                    }
-                }
-            }
-            
-            // Add event listeners to existing buttons
-            document.querySelectorAll('.action-btn.edit').forEach(btn => {
-                btn.addEventListener('click', editHandler);
-            });
-            
-            document.querySelectorAll('.action-btn.delete').forEach(btn => {
-                btn.addEventListener('click', deleteHandler);
-            });
-            
-            // Export data
-            exportBtn.addEventListener('click', function() {
-                const table = document.querySelector('.regional-commissions-table');
-                let data = 'Регион/Область\tПредседатель комиссии\tТелефон\tEmail\tИнформация\n';
-                
-                const rows = table.querySelectorAll('tbody tr');
-                rows.forEach(row => {
+                rows.forEach((row, index) => {
                     const cells = row.querySelectorAll('td');
-                    data += `${cells[0].textContent}\t${cells[1].textContent}\t${cells[2].textContent}\t${cells[3].textContent}\t${cells[4].textContent}\n`;
+                    editorHTML += `
+                        <tr data-index="${index}">
+                            <td><input type="text" class="region-input" value="${cells[0].textContent}"></td>
+                            <td><input type="text" class="representative-input" value="${cells[1].textContent}"></td>
+                            <td><input type="text" class="phone-input" value="${cells[2].textContent}"></td>
+                            <td><input type="text" class="email-input" value="${cells[3].textContent}"></td>
+                            <td>
+                                <button class="delete-row-btn" data-index="${index}">Удалить</button>
+                            </td>
+                        </tr>
+                    `;
                 });
                 
-                const blob = new Blob([data], { type: 'text/tab-separated-values' });
-                const url = URL.createObjectURL(blob);
+                editorHTML += `
+                        </tbody>
+                    </table>
+                    <button id="add-row-btn" class="admin-btn">Добавить регион</button>
+                `;
                 
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'regional_commissions_' + new Date().toISOString().split('T')[0] + '.tsv';
-                document.body.appendChild(a);
-                a.click();
+                document.getElementById('regions-editor').innerHTML = editorHTML;
+                document.getElementById('admin-modal').style.display = 'block';
                 
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                }, 0);
-            });
-            
-            // Back to top button
-            const backToTopButton = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('show');
-                } else {
-                    backToTopButton.classList.remove('show');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Search functionality
-            const searchInput = document.getElementById('search-regions');
-            const tableRows = document.querySelectorAll('#commissions-table-body tr');
-            
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                
-                tableRows.forEach(row => {
-                    const regionCell = row.querySelector('.region-name');
-                    const chairmanCell = row.querySelector('.chairman-name');
+                // Добавление новой строки
+                document.getElementById('add-row-btn').addEventListener('click', function() {
+                    const tbody = document.getElementById('editor-tbody');
+                    const newIndex = tbody.children.length;
                     
-                    if (regionCell.textContent.toLowerCase().includes(searchTerm) || 
-                        chairmanCell.textContent.toLowerCase().includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
+                    const newRow = document.createElement('tr');
+                    newRow.setAttribute('data-index', newIndex);
+                    newRow.innerHTML = `
+                        <td><input type="text" class="region-input" value=""></td>
+                        <td><input type="text" class="representative-input" value=""></td>
+                        <td><input type="text" class="phone-input" value=""></td>
+                        <td><input type="text" class="email-input" value=""></td>
+                        <td>
+                            <button class="delete-row-btn" data-index="${newIndex}">Удалить</button>
+                        </td>
+                    `;
+                    tbody.appendChild(newRow);
+                });
+                
+                // Удаление строки
+                document.querySelectorAll('.delete-row-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        const row = document.querySelector(`tr[data-index="${index}"]`);
+                        if (row) row.remove();
+                    });
+                });
+            });
+            
+            // Закрытие модального окна
+            document.querySelector('.close').addEventListener('click', function() {
+                document.getElementById('admin-modal').style.display = 'none';
+            });
+            
+            // Сохранение изменений
+            document.getElementById('save-regions-btn').addEventListener('click', function() {
+                const editorTbody = document.getElementById('editor-tbody');
+                const rows = editorTbody.querySelectorAll('tr');
+                
+                const newRows = [];
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('input');
+                    if (cells.length >= 4) {
+                        const region = cells[0].value.trim();
+                        const representative = cells[1].value.trim();
+                        const phone = cells[2].value.trim();
+                        const email = cells[3].value.trim();
+                        
+                        if (region && representative) {
+                            newRows.push({
+                                region,
+                                representative,
+                                phone,
+                                email
+                            });
+                        }
                     }
                 });
+                
+                // Сохранение в localStorage
+                localStorage.setItem('regionsList', JSON.stringify(newRows));
+                
+                // Обновление таблицы на странице
+                const tbody = document.getElementById('regions-tbody');
+                tbody.innerHTML = '';
+                
+                newRows.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${row.region}</td>
+                        <td>${row.representative}</td>
+                        <td>${row.phone}</td>
+                        <td>${row.email}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                
+                document.getElementById('admin-modal').style.display = 'none';
             });
             
-            console.log('Страница "Структура комиссии" успешно загружена');
+            // Загрузка данных из localStorage при загрузке страницы
+            const savedRegions = localStorage.getItem('regionsList');
+            if (savedRegions) {
+                try {
+                    const regions = JSON.parse(savedRegions);
+                    const tbody = document.getElementById('regions-tbody');
+                    tbody.innerHTML = '';
+                    
+                    regions.forEach(region => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${region.region}</td>
+                            <td>${region.representative}</td>
+                            <td>${region.phone}</td>
+                            <td>${region.email}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                } catch (e) {
+                    console.error('Ошибка при загрузке данных из localStorage:', e);
+                }
+            }
         });
     </script>
 </body>
