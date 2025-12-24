@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | Комиссия по фигурному управлению мотоциклом | МФР</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="images/logo.png" alt="Логотип комиссии">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О комиссии</a></li>
+                    <li><a href="structure.html">Структура комиссии</a></li>
+                    <li><a href="calendar.html">Календарь соревнований</a></li>
+                    <li><a href="documents.html">Полезные документы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <h1 class="page-title">Админ-панель</h1>
+            
+            <div class="admin-container">
+                <div class="admin-section">
+                    <h2>Редактирование структуры комиссии</h2>
+                    <button id="edit-leadership-btn" class="admin-btn">Редактировать руководство</button>
+                    <button id="edit-regions-btn" class="admin-btn">Редактировать регионы</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h2>Редактирование календаря соревнований</h2>
+                    <button id="edit-competitions-btn" class="admin-btn">Редактировать календарь</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h2>Редактирование документов</h2>
+                    <button id="edit-documents-btn" class="admin-btn">Редактировать документы</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h2>Управление данными</h2>
+                    <button id="export-data-btn" class="admin-btn">Экспортировать данные</button>
+                    <button id="import-data-btn" class="admin-btn">Импортировать данные</button>
+                    <button id="reset-data-btn" class="admin-btn admin-btn-danger">Сбросить все данные</button>
+                </div>
+                
+                <div class="admin-section">
+                    <h2>Информация о системе</h2>
+                    <p>Версия сайта: 1.0</p>
+                    <p>Дата последнего обновления: <span id="last-update-date"></span></p>
+                    <p>Хранилище данных: localStorage браузера</p>
+                    <p>Объем данных: <span id="data-size">0</span> КБ</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-logos">
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <img src="images/mfr-logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank">
+                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+            </div>
+            <div class="copyright">
+                © 2025 Федерация мотоциклетного спорта России
+            </div>
+        </footer>
+    </div>
+    
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Редактирование данных</h2>
+            <div id="modal-content"></div>
+            <button id="save-data-btn" class="admin-btn">Сохранить изменения</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Кнопки админ-панели
+            document.getElementById('edit-leadership-btn').addEventListener('click', function() {
+                // Логика редактирования руководства
+                alert('Функция редактирования руководства будет доступна в следующей версии');
+            });
+            
+            document.getElementById('edit-regions-btn').addEventListener('click', function() {
+                // Логика редактирования регионов
+                alert('Функция редактирования регионов будет доступна в следующей версии');
+            });
+            
+            document.getElementById('edit-competitions-btn').addEventListener('click', function() {
+                // Логика редактирования календаря
+                alert('Функция редактирования календаря будет доступна в следующей версии');
+            });
+            
+            document.getElementById('edit-documents-btn').addEventListener('click', function() {
+                // Логика редактирования документов
+                alert('Функция редактирования документов будет доступна в следующей версии');
+            });
+            
+            document.getElementById('export-data-btn').addEventListener('click', function() {
+                // Экспорт данных
+                const data = {
+                    regionsList: localStorage.getItem('regionsList'),
+                    competitionsList: localStorage.getItem('competitionsList'),
+                    documentsList: localStorage.getItem('documentsList'),
+                    lastUpdate: new Date().toISOString()
+                };
+                
+                const dataStr = JSON.stringify(data, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                
+                const exportFileDefaultName = 'commission_data_' + new Date().toISOString().replace(/[\.:]/g, '-') + '.json';
+                
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            });
+            
+            document.getElementById('import-data-btn').addEventListener('click', function() {
+                // Импорт данных
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json';
+                
+                input.onchange = e => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = event => {
+                            try {
+                                const data = JSON.parse(event.target.result);
+                                
+                                if (data.regionsList) localStorage.setItem('regionsList', data.regionsList);
+                                if (data.competitionsList) localStorage.setItem('competitionsList', data.competitionsList);
+                                if (data.documentsList) localStorage.setItem('documentsList', data.documentsList);
+                                
+                                alert('Данные успешно импортированы!');
+                                location.reload();
+                            } catch (error) {
+                                alert('Ошибка при импорте данных: ' + error.message);
+                            }
+                        };
+                        reader.readAsText(file);
+                    }
+                };
+                
+                input.click();
+            });
+            
+            document.getElementById('reset-data-btn').addEventListener('click', function() {
+                if (confirm('Вы уверены, что хотите сбросить все данные? Это действие нельзя отменить.')) {
+                    localStorage.removeItem('regionsList');
+                    localStorage.removeItem('competitionsList');
+                    localStorage.removeItem('documentsList');
+                    alert('Все данные успешно сброшены!');
+                    location.reload();
+                }
+            });
+            
+            // Обновление информации о системе
+            document.getElementById('last-update-date').textContent = new Date().toLocaleDateString('ru-RU');
+            
+            // Расчет объема данных
+            function calculateDataSize() {
+                let size = 0;
+                for (let key in localStorage) {
+                    if (localStorage.hasOwnProperty(key)) {
+                        size += (localStorage[key].length * 2); // 2 bytes per character
+                    }
+                }
+                return (size / 1024).toFixed(2);
+            }
+            
+            document.getElementById('data-size').textContent = calculateDataSize();
+            
+            // Закрытие модального окна
+            document.querySelector('.close').addEventListener('click', function() {
+                document.getElementById('admin-modal').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
