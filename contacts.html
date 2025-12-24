@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
+    <header class="header">
+        <div class="container">
             <div class="logo">
-                <img src="images/logo.png" alt="Логотип комиссии">
+                <a href="index.html"><img src="images/logo.png" alt="Логотип комиссии по мотоджимхане"></a>
             </div>
-            <nav class="nav">
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Главная</a></li>
                     <li><a href="about.html">О комиссии</a></li>
                     <li><a href="structure.html">Структура комиссии</a></li>
                     <li><a href="calendar.html">Календарь соревнований</a></li>
@@ -22,88 +22,101 @@
                     <li><a href="contacts.html" class="active">Контакты</a></li>
                 </ul>
             </nav>
-        </header>
+        </div>
+    </header>
 
-        <main class="content">
+    <main class="main-content">
+        <div class="container">
             <h1 class="page-title">Контакты</h1>
             
-            <div class="contact-info">
-                <h2 class="section-title">Контактная информация</h2>
-                
+            <section class="contact-info">
                 <div class="contact-card">
-                    <h3>Председатель комиссии</h3>
+                    <div class="contact-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2>Председатель комиссии</h2>
                     <p><strong>Дмитрий Серов</strong></p>
-                    <p>Телефон: +7 (977) 823-63-90</p>
-                    <p>Email: serovdima@list.ru</p>
-                    <p>Регион: Тверская область</p>
+                    <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
+                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Тверская область</p>
                 </div>
                 
                 <div class="contact-card">
-                    <h3>Заместитель председателя</h3>
-                    <p><strong>Алексей Фатьянов</strong></p>
-                    <p>Телефон: +7 (905) 234-56-78</p>
-                    <p>Email: fatyanov@mfr-nnov.ru</p>
-                    <p>Регион: Нижний Новгород</p>
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>Региональные представители</h2>
+                    <p>Полный список региональных представителей можно найти в разделе <a href="structure.html">"Структура комиссии"</a></p>
+                    <p><i class="fas fa-globe"></i> <a href="structure.html">Перейти к списку</a></p>
                 </div>
                 
                 <div class="contact-card">
-                    <h3>Главный секретарь</h3>
-                    <p><strong>Наталия Недайводина</strong></p>
-                    <p>Телефон: +7 (911) 456-78-90</p>
-                    <p>Email: vologda-fum@mfr.ru</p>
-                    <p>Регион: Вологодская область</p>
+                    <div class="contact-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h2>Юридический адрес</h2>
+                    <p>121357, г. Москва,</p>
+                    <p>ул. Давыдковская, д. 15</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> dzhimhana@mfr-ro.ru</p>
                 </div>
                 
                 <div class="contact-card">
-                    <h3>Юридический адрес комиссии</h3>
-                    <p>121357, г. Москва, ул. Давыдковская, д. 15</p>
-                    <p>Телефон для справок: +7 (495) 123-45-67</p>
-                    <p>Email для общих вопросов: dzhimhana@mfr-ro.ru</p>
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h2>График работы</h2>
+                    <p>Председатель комиссии доступен:</p>
+                    <p>Ежедневно с 10:00 до 20:00</p>
+                    <p>по Московскому времени</p>
+                    <p>Выходные дни: суббота, воскресенье</p>
                 </div>
-            </div>
+            </section>
             
-            <div class="map-container">
-                <h2 class="section-title">Карта проезда</h2>
-                <div class="map-placeholder">
-                    <p>Карта будет доступна в ближайшее время</p>
-                </div>
-            </div>
-            
-            <div class="social-links">
+            <section class="social-section">
                 <h2 class="section-title">Социальные сети</h2>
-                <div class="social-container">
-                    <a href="https://vk.com/motodzhimhana_russia" target="_blank" class="social-link">
-                        <img src="images/vk-icon.png" alt="ВКонтакте">
+                <div class="social-links">
+                    <a href="https://vk.com/motodzhimhana_russia" target="_blank" class="social-link vk">
+                        <i class="fab fa-vk"></i>
                         <span>ВКонтакте</span>
                     </a>
-                    <a href="https://t.me/motodzhimkhana" target="_blank" class="social-link">
-                        <img src="images/telegram-icon.png" alt="Telegram">
+                    <a href="https://t.me/motodzhimkhana" target="_blank" class="social-link telegram">
+                        <i class="fab fa-telegram-plane"></i>
                         <span>Telegram</span>
                     </a>
                 </div>
-            </div>
-        </main>
+                <p>Присоединяйтесь к нашим группам в социальных сетях, чтобы быть в курсе последних новостей и событий!</p>
+            </section>
+        </div>
+    </main>
 
-        <footer class="footer">
+    <footer class="footer">
+        <div class="container">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
+                <a href="https://www.mfr.ru/" target="_blank" class="logo-link">
                     <img src="images/mfr-logo.png" alt="Логотип МФР">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
+                <a href="https://www.minsport.gov.ru/" target="_blank" class="logo-link">
                     <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">
+                    <i class="fas fa-cloud"></i> Документы комиссии
+                </a>
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <i class="fas fa-globe"></i> Официальный сайт МФР
+                </a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
+                    <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
+                </a>
             </div>
             <div class="copyright">
                 © 2025 Федерация мотоциклетного спорта России
             </div>
-        </footer>
-    </div>
-    
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
