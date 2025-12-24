@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора | Комиссия по фигурному управлению мотоциклом | МФР</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0078D7;
+            --primary-red: #E74C3C;
+            --primary-yellow: #F39C12;
+            --dark-blue: #1A2C56;
+            --light-gray: #F8F9FA;
+            --dark-gray: #2C3E50;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e8f4ff, #f5f7fa);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: var(--white);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            max-height: 25vh;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: 1.3rem;
+            text-decoration: none;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--primary-yellow);
+            transform: translateY(-50%) translateX(-3px);
+        }
+        
+        .logo-container {
+            max-width: 120px;
+            margin: 0 auto;
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .page-title {
+            font-size: 1.8rem;
+            margin: 10px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Admin panel styles */
+        .admin-container {
+            display: flex;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .admin-sidebar {
+            width: 280px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            padding: 20px;
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+        
+        .admin-content {
+            flex: 1;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            padding: 25px;
+        }
+        
+        .admin-section-title {
+            color: var(--dark-blue);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-yellow);
+        }
+        
+        .admin-menu {
+            list-style: none;
+        }
+        
+        .admin-menu li {
+            margin-bottom: 8px;
+        }
+        
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-menu a:hover, .admin-menu a.active {
+            background: rgba(0,120,215,0.1);
+            color: var(--primary-blue);
+        }
+        
+        .admin-menu a i {
+            font-size: 1.2rem;
+        }
+        
+        .admin-user-info {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .admin-user-name {
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+        }
+        
+        .admin-user-role {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+        
+        .admin-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 1.0rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            font-size: 1.0rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--dark-blue);
+            box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.3);
+        }
+        
+        .form-control textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.0rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,120,215,0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #9a2b2b, var(--primary-red));
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #b07c0f, var(--primary-yellow));
+            color: var(--dark-blue);
+        }
+        
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+        }
+        
+        /* Table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .data-table th, 
+        .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .data-table th {
+            background: rgba(0,120,215,0.1);
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn.edit {
+            background: var(--primary-blue);
+        }
+        
+        .action-btn.delete {
+            background: var(--primary-red);
+        }
+        
+        /* Yandex Disk integration */
+        .yandex-disk-section {
+            background: rgba(243, 156, 18, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-yellow);
+        }
+        
+        .yandex-disk-title {
+            color: var(--dark-blue);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .yandex-disk-url {
+            color: var(--primary-blue);
+            word-break: break-all;
+            margin-bottom: 15px;
+        }
+        
+        .document-upload-area {
+            border: 2px dashed var(--primary-blue);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .document-upload-area:hover {
+            border-color: var(--primary-yellow);
+            background: rgba(243, 156, 18, 0.1);
+        }
+        
+        .document-upload-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .document-upload-text {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .document-upload-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .document-upload-btn:hover {
+            background: var(--dark-blue);
+        }
+        
+        /* Footer styles */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), #0d2142);
+            color: var(--white);
+            padding: 25px 0;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            font-size: 1.0rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 1100px) {
+            .admin-container {
+                flex-direction: column;
+            }
+            
+            .admin-sidebar {
+                position: static;
+                width: 100%;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.6rem;
+            }
+            
+            .admin-section-title {
+                font-size: 1.3rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.4rem;
+            }
+            
+            .admin-content {
+                padding: 18px;
+            }
+            
+            .admin-section-title {
+                font-size: 1.2rem;
+            }
+            
+            .form-label {
+                font-size: 0.95rem;
+            }
+            
+            .form-control {
+                padding: 10px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .document-upload-area {
+                padding: 20px 15px;
+            }
+            
+            .document-upload-icon {
+                font-size: 2.5rem;
+            }
+            
+            .document-upload-text {
+                font-size: 1.0rem;
+            }
+            
+            .back-button {
+                font-size: 1.1rem;
+            }
+            
+            .logo-container {
+                max-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="structure.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Логотип комиссии по мотоджимхане" class="logo-img">
+            </div>
+            <h1 class="page-title">Панель администратора</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="admin-container">
+            <div class="admin-sidebar">
+                <h3 class="admin-section-title"><i class="fas fa-tachometer-alt"></i> Панель управления</h3>
+                <ul class="admin-menu">
+                    <li><a href="#regional-commissions" class="active"><i class="fas fa-sitemap"></i> Региональные комиссии</a></li>
+                    <li><a href="#calendar"><i class="fas fa-calendar-alt"></i> Календарь соревнований</a></li>
+                    <li><a href="#documents"><i class="fas fa-file-alt"></i> Архив документов</a></li>
+                    <li><a href="#statistics"><i class="fas fa-chart-bar"></i> Статистика</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Настройки</a></li>
+                </ul>
+                
+                <div class="admin-user-info">
+                    <div class="admin-user-name">Дмитрий Серов</div>
+                    <div class="admin-user-role">Председатель комиссии</div>
+                </div>
+                
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button class="btn btn-primary" id="save-all-changes">
+                        <i class="fas fa-save"></i> Сохранить все изменения
+                    </button>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); text-align: center;">
+                    <a href="index.html" class="btn btn-warning" style="display: inline-block; width: 100%;">
+                        <i class="fas fa-home"></i> Перейти на главную
+                    </a>
+                </div>
+            </div>
+            
+            <div class="admin-content">
+                <section id="regional-commissions" class="admin-section">
+                    <h2 class="admin-section-title"><i class="fas fa-sitemap"></i> Управление региональными комиссиями</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="region-select" class="form-label">Регион</label>
+                                <select id="region-select" class="form-control">
+                                    <option value="">Выберите регион</option>
+                                    <option value="moscow">Москва</option>
+                                    <option value="spb">Санкт-Петербург</option>
+                                    <option value="tver">Тверская область</option>
+                                    <option value="nnovgorod">Нижегородская область</option>
+                                    <option value="smolensk">Смоленская область</option>
+                                    <option value="vologda">Вологодская область</option>
+                                    <option value="ulyanovsk">Ульяновская область</option>
+                                    <option value="tatarstan">Республика Татарстан</option>
+                                    <option value="kaluga">Калужская область</option>
+                                    <option value="tula">Тульская область</option>
+                                    <option value="rostov">Ростовская область</option>
+                                    <option value="perm">Пермский край</option>
+                                    <option value="kursk">Курская область</option>
+                                    <option value="voronezh">Воронежская область</option>
+                                    <option value="saratov">Саратовская область</option>
+                                    <option value="ryazan">Рязанская область</option>
+                                    <option value="lipetsk">Липецкая область</option>
+                                    <option value="belgorod">Белгородская область</option>
+                                    <option value="bryansk">Брянская область</option>
+                                    <option value="novgorod">Новгородская область</option>
+                                    <option value="yaroslavl">Ярославская область</option>
+                                    <option value="kostroma">Костромская область</option>
+                                    <option value="ivanovo">Ивановская область</option>
+                                    <option value="vladimir">Владимирская область</option>
+                                    <option value="murmansk">Мурманская область</option>
+                                    <option value="karelia">Республика Карелия</option>
+                                    <option value="komi">Республика Коми</option>
+                                    <option value="arkhangelsk">Архангельская область</option>
+                                    <option value="tambov">Тамбовская область</option>
+                                    <option value="penza">Пензенская область</option>
+                                    <option value="samara">Самарская область</option>
+                                    <option value="volgograd">Волгоградская область</option>
+                                    <option value="astrakhan">Астраханская область</option>
+                                    <option value="kalmykia">Республика Калмыкия</option>
+                                    <option value="dagestan">Республика Дагестан</option>
+                                    <option value="stavropol">Ставропольский край</option>
+                                    <option value="kuban">Краснодарский край</option>
+                                    <option value="adigea">Республика Адыгея</option>
+                                    <option value="kabardino">Кабардино-Балкарская Республика</option>
+                                    <option value="north-ossetia">Республика Северная Осетия</option>
+                                    <option value="ingushetia">Республика Ингушетия</option>
+                                    <option value="chechnya">Чеченская Республика</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="commission-status" class="form-label">Статус комиссии</label>
+                                <select id="commission-status" class="form-control">
+                                    <option value="active">Действующая</option>
+                                    <option value="developing">Развивается</option>
+                                    <option value="planned">Планируется</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="commission-leader" class="form-label">Руководитель комиссии</label>
+                                <input type="text" id="commission-leader" class="form-control" placeholder="Введите ФИО руководителя">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="leader-phone" class="form-label">Телефон</label>
+                                <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leader-email" class="form-label">Email</label>
+                        <input type="email" id="leader-email" class="form-control" placeholder="email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commission-notes" class="form-label">Примечания</label>
+                        <textarea id="commission-notes" class="form-control" placeholder="Дополнительная информация о комиссии"></textarea>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="add-commission">
+                            <i class="fas fa-plus"></i> Добавить/Обновить комиссию
+                        </button>
+                        <button class="btn btn-danger" id="delete-commission">
+                            <i class="fas fa-trash"></i> Удалить комиссию
+                        </button>
+                    </div>
+                    
+                    <h3 style="margin: 30px 0 15px; color: var(--dark-blue); font-size: 1.3rem;">
+                        <i class="fas fa-list"></i> Список региональных комиссий
+                    </h3>
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Регион</th>
+                                    <th>Руководитель</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="commissions-table-body">
+                                <tr>
+                                    <td>Тверская область</td>
+                                    <td>Дмитрий Серов</td>
+                                    <td><span class="commission-status status-active">Действующая</span></td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Нижний Новгород</td>
+                                    <td>Алексей Фатьянов</td>
+                                    <td><span class="commission-status status-active">Действующая</span></td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Вологодская область</td>
+                                    <td>Наталия Недайводина</td>
+                                    <td><span class="commission-status status-active">Действующая</span></td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <section id="calendar" class="admin-section" style="display: none;">
+                    <h2 class="admin-section-title"><i class="fas fa-calendar-alt"></i> Управление календарем соревнований</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="competition-name" class="form-label">Название соревнования</label>
+                                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="competition-date" class="form-label">Дата проведения</label>
+                                <input type="date" id="competition-date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="competition-region" class="form-label">Регион проведения</label>
+                                <select id="competition-region" class="form-control">
+                                    <option value="">Выберите регион</option>
+                                    <option value="tver">Тверская область</option>
+                                    <option value="nnovgorod">Нижний Новгород</option>
+                                    <option value="smolensk">Смоленская область</option>
+                                    <option value="moscow">Москва</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="competition-type" class="form-label">Тип соревнования</label>
+                                <select id="competition-type" class="form-control">
+                                    <option value="federal">Федеральные</option>
+                                    <option value="regional">Региональные</option>
+                                    <option value="children">Детские</option>
+                                    <option value="women">Женские</option>
+                                    <option value="youth">Юношеские</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="competition-description" class="form-label">Описание соревнования</label>
+                        <textarea id="competition-description" class="form-control" placeholder="Введите подробное описание соревнования"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="competition-contact" class="form-label">Контактные данные организатора</label>
+                        <input type="text" id="competition-contact" class="form-control" placeholder="ФИО и телефон организатора">
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="add-competition">
+                            <i class="fas fa-plus"></i> Добавить/Обновить соревнование
+                        </button>
+                        <button class="btn btn-danger" id="delete-competition">
+                            <i class="fas fa-trash"></i> Удалить соревнование
+                        </button>
+                    </div>
+                    
+                    <h3 style="margin: 30px 0 15px; color: var(--dark-blue); font-size: 1.3rem;">
+                        <i class="fas fa-list"></i> Календарь соревнований 2025
+                    </h3>
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Название</th>
+                                    <th>Регион</th>
+                                    <th>Тип</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-table-body">
+                                <tr>
+                                    <td>12.05.2025</td>
+                                    <td>2 этап Кубка России</td>
+                                    <td>Смоленск</td>
+                                    <td>Федеральные</td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>15.06.2025</td>
+                                    <td>Чемпионат России</td>
+                                    <td>Тверская область</td>
+                                    <td>Федеральные</td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>05.08.2025</td>
+                                    <td>Женский Кубок МФР</td>
+                                    <td>Нижний Новгород</td>
+                                    <td>Женские</td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <section id="documents" class="admin-section" style="display: none;">
+                    <h2 class="admin-section-title"><i class="fas fa-file-alt"></i> Управление архивом документов</h2>
+                    
+                    <div class="yandex-disk-section">
+                        <h3 class="yandex-disk-title">
+                            <i class="fas fa-cloud"></i> Хранилище документов
+                        </h3>
+                        <p>Все документы хранятся в общем доступе на Яндекс.Диске:</p>
+                        <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank" class="yandex-disk-url">
+                            https://disk.yandex.ru/d/ubxzU_0RzkFsJw
+                        </a>
+                        <p style="color: var(--dark-gray); font-size: 0.95rem; margin-top: 10px;">
+                            <i class="fas fa-info-circle"></i> Для загрузки новых документов используйте интерфейс Яндекс.Диска или загрузите файл через панель ниже
+                        </p>
+                    </div>
+                    
+                    <div class="document-upload-area" id="document-upload-area">
+                        <i class="fas fa-cloud-upload-alt document-upload-icon"></i>
+                        <div class="document-upload-text">Перетащите файлы сюда или нажмите для загрузки</div>
+                        <button class="document-upload-btn">Выбрать файлы</button>
+                        <input type="file" id="file-input" multiple style="display: none;">
+                    </div>
+                    
+                    <h3 style="margin: 30px 0 15px; color: var(--dark-blue); font-size: 1.3rem;">
+                        <i class="fas fa-list"></i> Список документов
+                    </h3>
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Название документа</th>
+                                    <th>Тип</th>
+                                    <th>Дата добавления</th>
+                                    <th>Размер</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="documents-table-body">
+                                <tr>
+                                    <td>Правила соревнований по ФУМ</td>
+                                    <td>Правила</td>
+                                    <td>15.01.2025</td>
+                                    <td>1.2 МБ</td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Регламент Кубка России 2025</td>
+                                    <td>Регламент</td>
+                                    <td>20.11.2024</td>
+                                    <td>2.4 МБ</td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Порядок оформления лицензий</td>
+                                    <td>Лицензии</td>
+                                    <td>10.01.2025</td>
+                                    <td>0.8 МБ</td>
+                                    <td class="action-buttons">
+                                        <span class="action-btn edit" title="Редактировать"><i class="fas fa-edit"></i></span>
+                                        <span class="action-btn delete" title="Удалить"><i class="fas fa-trash"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.mfr.ru/" target="_blank">
+                        <i class="fas fa-globe"></i> Официальный сайт МФР
+                    </a>
+                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
+                        <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
+                    </a>
+                </div>
+                
+                <p class="copyright">
+                    © 2025 Федерация мотоциклетного спорта России<br>
+                    Официальный сайт комиссии по фигурному управлению мотоциклом (мотоджимхане)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Показать/скрыть разделы
+            document.querySelectorAll('.admin-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Убрать активный класс у всех ссылок
+                    document.querySelectorAll('.admin-menu a').forEach(a => {
+                        a.classList.remove('active');
+                    });
+                    
+                    // Добавить активный класс к текущей ссылке
+                    this.classList.add('active');
+                    
+                    // Скрыть все разделы
+                    document.querySelectorAll('.admin-section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Показать выбранный раздел
+                    const sectionId = this.getAttribute('href').substring(1);
+                    document.getElementById(sectionId).style.display = 'block';
+                    
+                    // Прокрутить к разделу
+                    document.getElementById(sectionId).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+            
+            // Обработчик загрузки документов
+            const uploadArea = document.getElementById('document-upload-area');
+            const fileInput = document.getElementById('file-input');
+            
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    alert(`Выбраны файлы для загрузки:\n${files.map(file => file.name).join('\n')}\n\nВ реальном проекте файлы будут загружены в Яндекс.Диск.`);
+                    
+                    // Очистить инпут после выбора
+                    fileInput.value = '';
+                }
+            });
+            
+            // Имитация сохранения изменений
+            document.getElementById('save-all-changes').addEventListener('click', function() {
+                alert('Все изменения успешно сохранены!');
+            });
+            
+            // Back to top button
+            const backToTopButton = document.createElement('button');
+            backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            backToTopButton.className = 'back-to-top';
+            document.body.appendChild(backToTopButton);
+            
+            backToTopButton.style.cssText = `
+                position: fixed;
+                bottom: 25px;
+                right: 25px;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background: var(--primary-blue);
+                color: white;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3rem;
+                opacity: 0;
+                transform: scale(0.8);
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: 0 3px 10px rgba(0,120,215,0.4);
+                z-index: 1000;
+            `;
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 250) {
+                    backToTopButton.style.opacity = '1';
+                    backToTopButton.style.transform = 'scale(1)';
+                } else {
+                    backToTopButton.style.opacity = '0';
+                    backToTopButton.style.transform = 'scale(0.8)';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            console.log('Панель администратора успешно загружена');
+        });
+    </script>
+</body>
+</html>
