@@ -121,6 +121,124 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Панель администратора
+    const adminPanelBtn = document.getElementById('admin-panel-btn');
+    const adminModalContent = document.querySelector('#admin-modal .modal-content');
+    
+    if (adminPanelBtn) {
+        adminPanelBtn.addEventListener('click', function() {
+            adminModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Обновляем контент модального окна для панели администратора
+            adminModalContent.innerHTML = `
+                <span class="close-modal">&times;</span>
+                <h2>Панель администратора</h2>
+                
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="regions">Региональные комиссии</button>
+                    <button class="tab-btn" data-tab="calendar">Календарь соревнований</button>
+                    <button class="tab-btn" data-tab="documents">Документы</button>
+                </div>
+                
+                <div class="tab-content active" id="regions-tab">
+                    <h3>Управление региональными комиссиями</h3>
+                    <div class="form-group">
+                        <label for="region-select">Регион</label>
+                        <select id="region-select" class="form-control">
+                            <option value="">Выберите регион</option>
+                            <option value="moscow">Москва</option>
+                            <option value="spb">Санкт-Петербург</option>
+                            <option value="tver">Тверская область</option>
+                            <option value="nnovgorod">Нижегородская область</option>
+                            <option value="smolensk">Смоленская область</option>
+                            <option value="vologda">Вологодская область</option>
+                            <option value="ulyanovsk">Ульяновская область</option>
+                            <option value="tatarstan">Республика Татарстан</option>
+                            <option value="kaluga">Калужская область</option>
+                            <option value="tula">Тульская область</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commission-leader">ФИО руководителя</label>
+                        <input type="text" id="commission-leader" class="form-control" placeholder="Введите ФИО">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leader-phone">Телефон</label>
+                        <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="leader-email">Email</label>
+                        <input type="email" id="leader-email" class="form-control" placeholder="email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commission-status">Статус комиссии</label>
+                        <select id="commission-status" class="form-control">
+                            <option value="active">Действующая</option>
+                            <option value="developing">Развивается</option>
+                            <option value="planned">Планируется</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="add-commission-btn">
+                        <i class="fas fa-plus"></i> Добавить/Обновить комиссию
+                    </button>
+                </div>
+                
+                <div class="tab-content" id="calendar-tab">
+                    <h3>Управление календарем соревнований</h3>
+                    <p>Функционал для управления календарем соревнований будет доступен в следующей версии</p>
+                </div>
+                
+                <div class="tab-content" id="documents-tab">
+                    <h3>Управление документами</h3>
+                    <p>Все документы хранятся на Яндекс.Диске: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                    <p>Для добавления новых документов используйте интерфейс Яндекс.Диска</p>
+                </div>
+            `;
+            
+            // Добавляем обработчики для новой формы
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                adminModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Переключение вкладок
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(`${this.dataset.tab}-tab`).classList.add('active');
+                });
+            });
+            
+            // Кнопка добавления комиссии
+            const addCommissionBtn = document.getElementById('add-commission-btn');
+            if (addCommissionBtn) {
+                addCommissionBtn.addEventListener('click', function() {
+                    const region = document.getElementById('region-select').value;
+                    const leader = document.getElementById('commission-leader').value;
+                    
+                    if (!region || !leader) {
+                        alert('Пожалуйста, заполните обязательные поля: Регион и ФИО руководителя');
+                        return;
+                    }
+                    
+                    // Здесь будет логика добавления/обновления комиссии
+                    alert('Функционал добавления комиссии будет доступен в следующей версии');
+                    adminModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    }
+    
     // Навигация по стрелкам
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft') {
