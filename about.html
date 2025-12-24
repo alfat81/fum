@@ -4,64 +4,543 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О комиссии | Комиссия по фигурному управлению мотоциклом | МФР</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0078D7;
+            --primary-red: #E74C3C;
+            --primary-yellow: #F39C12;
+            --dark-blue: #1A2C56;
+            --light-gray: #F8F9FA;
+            --dark-gray: #2C3E50;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e8f4ff, #f5f7fa);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: 1.5rem;
+            text-decoration: none;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: var(--primary-yellow);
+            transform: translateY(-50%) translateX(-3px);
+        }
+        
+        .logo-container {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+        
+        .page-title {
+            font-size: 2.2rem;
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Content styles */
+        .page-content {
+            margin: 40px 0;
+        }
+        
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .section-title {
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-yellow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary-blue);
+        }
+        
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        .mission-list {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        .mission-list li {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(243, 156, 18, 0.2));
+            border-left: 4px solid var(--primary-yellow);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 6rem;
+            color: rgba(243, 156, 18, 0.2);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-size: 1.1rem;
+        }
+        
+        /* History timeline */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-blue);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        .timeline-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 3;
+        }
+        
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: calc(50% + 40px);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: calc(50% + 40px);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+        }
+        
+        /* Footer styles */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), #0d2142);
+            color: var(--white);
+            padding: 30px 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 70px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px !important;
+                right: auto !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .quote-box {
+                padding: 20px;
+            }
+            
+            .quote-text {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.6rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .section-content {
+                font-size: 1rem;
+            }
+            
+            .timeline-year {
+                font-size: 1.3rem;
+            }
+            
+            .timeline-text {
+                font-size: 1rem;
+            }
+            
+            .quote-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header class="win-header">
+    <header>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="container">
             <div class="logo-container">
-                <a href="index.html" class="back-button">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                <img src="images/logo_fum.jpg" alt="Логотип комиссии по мотоджимхане" class="logo-img">
+                <img src="https://www.mfr.ru/local/templates/mfr_new/images/logo.png" alt="Логотип МФР" class="logo-img">
             </div>
-        </header>
+            <h1 class="page-title">О комиссии</h1>
+        </div>
+    </header>
 
+    <div class="container">
         <main class="page-content">
-            <section class="section-card blue">
-                <h2 class="section-title"><i class="fas fa-info-circle"></i> О комиссии</h2>
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-history"></i> История комиссии</h2>
                 <div class="section-content">
-                    <div class="history-content">
-                        <div class="history-block">
-                            <h3>История фигурного управления мотоциклом в мире</h3>
-                            <p>Фигурное управление мотоциклом (также известное как мотоджимхана) имеет богатую историю. Впервые эта дисциплина появилась в Японии в 1980-х годах, где получила название "Gymkhana" - от староиндийского слова, означающего "соревнование по навыкам". Японские мотоциклисты разработали специальные техники управления для выполнения сложных маневров на ограниченном пространстве.</p>
-                            <p>В 1990-х годах дисциплина получила распространение в Европе и США, где были разработаны первые официальные правила соревнований. В 2000-х годах появились международные соревнования и чемпионаты мира по мотоджимхане. Сегодня это признанная во всем мире дисциплина, которая развивается и совершенствуется.</p>
+                    <p>Комиссия по фигурному управлению мотоциклом (мотоджимхане) была официально создана в 2020 году при Федерации мотоциклетного спорта России. Это стало важным шагом в признании дисциплины на официальном уровне и развитии мотоджимханы по всей стране.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2010-2015</div>
+                                <p class="timeline-text">Первые неофициальные соревнования по фигурному управлению мотоциклом в России. Энтузиасты собирались на автостоянках и других подходящих площадках для отработки навыков и проведения дружеских заездов в Москве, Санкт-Петербурге, Нижнем Новгороде и других крупных городах.</p>
+                            </div>
                         </div>
-                        <div class="history-block">
-                            <h3>История фигурного управления мотоциклом в России</h3>
-                            <p>В России фигурное управление мотоциклом начало развиваться в начале 2010-х годов. Первоначально это были неофициальные соревнования и тренировки в различных регионах страны. Энтузиасты собирались на автостоянках и других подходящих площадках для отработки навыков и проведения дружеских заездов.</p>
-                            <p>В 2018 году произошел важный поворот - Мотоциклетная Федерация России официально признала фигурное управление мотоциклом как спортивную дисциплину. Это позволило начать проведение официальных соревнований с присвоением спортивных разрядов. В 2020 году была создана первая комиссия по фигурному управлению мотоциклом при МФР.</p>
-                            <p>Сегодня дисциплина активно развивается по всей стране. Проводятся официальные соревнования различного уровня, включая этапы Кубка России и Чемпионаты регионов. Благодаря работе комиссии и энтузиастов в регионах, география соревнований постоянно расширяется, а уровень мастерства спортсменов растет с каждым годом.</p>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2016-2018</div>
+                                <p class="timeline-text">Формирование региональных сообществ мотоджимханы. Появление первых организованных соревнований с регламентами и судейством. Начало взаимодействия с Мотоциклетной Федерацией России для признания дисциплины.</p>
+                            </div>
                         </div>
-                        <div class="mission-block">
-                            <h3>Миссия комиссии</h3>
-                            <p>Основная миссия комиссии — развитие и популяризация фигурного управления мотоциклом (мотоджимханы) в России. Мы стремимся:</p>
-                            <ul>
-                                <li>Создать единую систему официальных соревнований по всей стране</li>
-                                <li>Обеспечить спортсменам возможность получения спортивных разрядов</li>
-                                <li>Развивать детский и юношеский спорт в данной дисциплине</li>
-                                <li>Подготовить российских спортсменов к участию в международных соревнованиях</li>
-                                <li>Поддерживать связь с международными федерациями и обмениваться опытом</li>
-                            </ul>
-                            <p>Комиссия прилагает все усилия для того, чтобы фигурное управление мотоциклом стало доступным и популярным видом спорта в России, способствуя развитию навыков безопасного управления мотоциклом и воспитанию спортивного духа у молодежи.</p>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2018</div>
+                                <p class="timeline-text">Официальное признание фигурного управления мотоциклом как спортивной дисциплины Мотоциклетной Федерацией России. Это позволило начать проведение официальных соревнований с присвоением спортивных разрядов.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2020</div>
+                                <p class="timeline-text">Создание первой комиссии по фигурному управлению мотоциклом при МФР. Начало работы по разработке правил, регламентов и организации официальных соревнований по всей стране.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-year">2023-2024</div>
+                                <p class="timeline-text">Активное развитие дисциплины. Проведение этапов Кубка России, Чемпионатов регионов, создание женского и юношеского зачетов. Утверждение нового состава комиссии во главе с Дмитрием Серовым.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </main>
 
-        <footer class="win-footer">
-            <div class="footer-content">
-                <p>© 2025 Федерация мотоциклетного спорта России</p>
-                <div class="footer-links">
-                    <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Миссия и цели</h2>
+                <div class="section-content">
+                    <p>Основная миссия комиссии — развитие и популяризация фигурного управления мотоциклом (мотоджимханы) в России. Мы стремимся сделать эту дисциплину доступной, безопасной и интересной для всех любителей мотоспорта.</p>
+                    
+                    <p>Наши ключевые цели на 2025-2026 годы:</p>
+                    <ul class="mission-list">
+                        <li>Создание единой системы официальных соревнований по всей стране с возможностью получения спортивных разрядов</li>
+                        <li>Развитие детского и юношеского мотоджимхана как важного направления подготовки юных спортсменов</li>
+                        <li>Подготовка российских спортсменов к участию в международных соревнованиях по фигурному управлению мотоциклом</li>
+                        <li>Внедрение женского и юношеских зачетов в систему официальных соревнований</li>
+                        <li>Совершенствование правил и регламентов с учетом международного опыта</li>
+                        <li>Поддержка и развитие региональных комиссий по мотоджимхане</li>
+                    </ul>
+                    
+                    <div class="quote-box">
+                        <p class="quote-text">Уверен, с такой командой мы сможем выполнить поставленные перед комиссией задачи: международные соревнования, внесение изменений в ЕВСК (включение женского и юношеских зачётов) и развитие официальной мотоджимханы в регионах.</p>
+                        <p class="quote-author">— Дмитрий Серов, Председатель Комиссии</p>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-medal"></i> Прикладное значение деятельности</h2>
+                <div class="section-content">
+                    <p>Деятельность комиссии имеет важное практическое значение для развития мотоспорта в России:</p>
+                    
+                    <p><strong>Для спортсменов:</strong> Участникам официальных соревнований присваиваются спортивные разряды и звания в соответствии с Единой Всероссийской спортивной классификацией. Это открывает возможности для дальнейшего развития в мотоспорте и получения спортивных званий.</p>
+                    
+                    <p><strong>Для судей:</strong> Спортивные судьи получают практику судейства на официальных соревнованиях, что способствует их профессиональному росту и повышению квалификации.</p>
+                    
+                    <p><strong>Для регионов:</strong> В региональных федерациях появляются специализированные комиссии по мотоджимхане, что способствует развитию дисциплины на местах и привлечению новых спортсменов.</p>
+                    
+                    <p><strong>Для безопасности:</strong> Фигурное управление мотоциклом развивает навыки безопасного вождения, что особенно важно для начинающих мотоциклистов. Многие элементы тренировок по мотоджимхане используются в программах по подготовке водителей.</p>
+                    
+                    <p>На 2026 год запланировано проведение еще большего количества мероприятий, и все больше регионов проявляют интерес к проведению официальных соревнований по фигурному управлению мотоциклом.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <script src="script.js"></script>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.mfr.ru/" target="_blank">
+                        <i class="fas fa-globe"></i> Официальный сайт МФР
+                    </a>
+                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
+                        <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
+                    </a>
+                </div>
+                
+                <p class="copyright">
+                    © 2025 Федерация мотоциклетного спорта России<br>
+                    Официальный сайт комиссии по фигурному управлению мотоциклом (мотоджимхане)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Back to top button
+            const backToTopButton = document.createElement('button');
+            backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            backToTopButton.className = 'back-to-top';
+            document.body.appendChild(backToTopButton);
+            
+            backToTopButton.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: var(--primary-blue);
+                color: white;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                opacity: 0;
+                transform: scale(0.8);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: 0 4px 15px rgba(0,120,215,0.4);
+                z-index: 1000;
+            `;
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.opacity = '1';
+                    backToTopButton.style.transform = 'scale(1)';
+                } else {
+                    backToTopButton.style.opacity = '0';
+                    backToTopButton.style.transform = 'scale(0.8)';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            console.log('Страница "О комиссии" успешно загружена');
+        });
+    </script>
 </body>
 </html>
