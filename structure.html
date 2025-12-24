@@ -209,166 +209,76 @@
             text-decoration: underline;
         }
         
-        /* Russia map styles */
-        .russia-map-section {
-            margin-top: 30px;
-        }
-        
-        .region-selector-container {
-            margin-bottom: 18px;
-            max-width: 550px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .region-selector {
-            width: 100%;
-            padding: 10px 15px;
-            border: 2px solid var(--primary-blue);
-            border-radius: 8px;
-            font-size: 1.0rem;
-            background: var(--white);
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .region-selector:focus {
-            outline: none;
-            border-color: var(--dark-blue);
-            box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.3);
-        }
-        
-        .russia-map-container {
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            border: 2px solid var(--primary-blue);
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, #e8f4ff, #d4e8ff);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .russia-map-svg {
-            width: 90%;
-            height: 90%;
-            max-width: 750px;
-            max-height: 450px;
-        }
-        
-        .region-path {
-            fill: #e0e7ff;
-            stroke: var(--primary-blue);
-            stroke-width: 1;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .region-path:hover {
-            fill: #a7c7e7;
-            stroke-width: 2;
-        }
-        
-        .region-path.active {
-            fill: rgba(243, 156, 18, 0.3);
-            stroke: var(--primary-yellow);
-            stroke-width: 3;
-        }
-        
-        .region-tooltip {
-            position: absolute;
-            background: var(--white);
-            border: 2px solid var(--primary-blue);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            z-index: 1000;
-            max-width: 380px;
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(15px, 0) scale(0.95); }
-            to { opacity: 1; transform: translate(0, 0) scale(1); }
-        }
-        
-        .region-tooltip h4 {
-            color: var(--dark-blue);
-            margin-bottom: 8px;
-            font-size: 1.3rem;
-            border-bottom: 2px solid var(--primary-yellow);
-            padding-bottom: 6px;
-        }
-        
-        .region-tooltip p {
-            margin-bottom: 12px;
-            font-size: 1.0rem;
-            line-height: 1.6;
-        }
-        
-        .tooltip-photo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-yellow));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Regional commissions styles */
+        .admin-panel-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
             color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
-            border: 3px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .tooltip-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .map-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .map-button {
-            padding: 8px 15px;
-            border: 2px solid var(--primary-blue);
+            border: none;
+            padding: 10px 20px;
             border-radius: 8px;
-            background: var(--white);
-            color: var(--primary-blue);
             font-weight: 600;
             cursor: pointer;
+            margin: 15px 0;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            text-align: center;
         }
         
-        .map-button:hover {
-            background: var(--primary-blue);
-            color: var(--white);
+        .admin-panel-button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,120,215,0.3);
         }
         
-        .map-zoom .map-button {
-            padding: 6px;
-            width: 35px;
-            height: 35px;
-            justify-content: center;
-            font-size: 1.1rem;
+        .regional-commissions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .regional-commissions-table th, 
+        .regional-commissions-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .regional-commissions-table th {
+            background: rgba(0,120,215,0.1);
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+        
+        .regional-commissions-table tr:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        
+        .commission-status {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background: rgba(39, 174, 96, 0.2);
+            color: #27ae60;
+        }
+        
+        .status-developing {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+        }
+        
+        .status-planned {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+        
+        .no-commissions {
+            text-align: center;
+            padding: 30px;
+            color: var(--dark-gray);
+            font-style: italic;
         }
         
         /* Footer styles */
@@ -418,19 +328,9 @@
         }
         
         /* Responsive design */
-        @media (max-width: 1200px) {
-            .russia-map-container {
-                height: 450px;
-            }
-        }
-        
         @media (max-width: 992px) {
             .leadership-grid {
                 grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            }
-            
-            .russia-map-container {
-                height: 400px;
             }
         }
         
@@ -452,25 +352,13 @@
                 margin: 0 auto;
             }
             
-            .russia-map-container {
-                height: 350px;
+            .regional-commissions-table {
+                font-size: 0.9rem;
             }
             
-            .region-tooltip {
-                left: 50% !important;
-                transform: translateX(-50%);
-                width: 85%;
-                max-width: 320px;
-                padding: 16px;
-            }
-            
-            .map-controls {
-                flex-direction: column;
-            }
-            
-            .map-button {
-                width: 100%;
-                justify-content: center;
+            .regional-commissions-table th, 
+            .regional-commissions-table td {
+                padding: 8px 10px;
             }
         }
         
@@ -504,19 +392,10 @@
                 font-size: 1.0rem;
             }
             
-            .russia-map-container {
-                height: 300px;
-                border-radius: 12px;
-            }
-            
-            .region-tooltip {
-                padding: 12px;
-            }
-            
-            .tooltip-photo {
-                width: 85px;
-                height: 85px;
-                font-size: 1.6rem;
+            .admin-panel-button {
+                width: 100%;
+                padding: 8px;
+                font-size: 0.95rem;
             }
             
             .back-button {
@@ -608,76 +487,114 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Региональные представители</h2>
+                <h2 class="section-title"><i class="fas fa-sitemap"></i> Региональные комиссии</h2>
+                <p style="margin-bottom: 15px; color: var(--dark-gray);">
+                    Ниже представлен список региональных комиссий по фигурному управлению мотоциклом (мотоджимхане) в субъектах Российской Федерации. 
+                    Статус "Действующая" означает, что комиссия официально зарегистрирована и проводит соревнования.
+                </p>
                 
-                <div class="region-selector-container">
-                    <select id="region-selector" class="region-selector">
-                        <option value="">Выберите субъект Российской Федерации</option>
-                        <option value="moscow">Москва</option>
-                        <option value="stpetersburg">Санкт-Петербург</option>
-                        <option value="tver">Тверская область</option>
-                        <option value="nnovgorod">Нижний Новгород</option>
-                        <option value="smolensk">Смоленская область</option>
-                        <option value="vologda">Вологодская область</option>
-                        <option value="ulyanovsk">Ульяновская область</option>
-                        <option value="tatarstan">Республика Татарстан</option>
-                        <option value="kaluga">Калужская область</option>
-                        <option value="tula">Тульская область</option>
-                        <option value="rostov">Ростовская область</option>
-                        <option value="perm">Пермский край</option>
-                        <option value="kursk">Курская область</option>
-                        <option value="voronezh">Воронежская область</option>
-                        <option value="saratov">Саратовская область</option>
-                        <option value="ryazan">Рязанская область</option>
-                        <option value="lipetsk">Липецкая область</option>
-                        <option value="belgorod">Белгородская область</option>
-                        <option value="bryansk">Брянская область</option>
-                    </select>
+                <button class="admin-panel-button" id="admin-panel-button">
+                    <i class="fas fa-user-shield"></i> Перейти в панель администратора
+                </button>
+                
+                <div class="table-container">
+                    <table class="regional-commissions-table">
+                        <thead>
+                            <tr>
+                                <th>Регион</th>
+                                <th>Руководитель</th>
+                                <th>Контакты</th>
+                                <th>Статус</th>
+                                <th>Последнее обновление</th>
+                            </tr>
+                        </thead>
+                        <tbody id="regional-commissions-body">
+                            <tr>
+                                <td><strong>Тверская область</strong></td>
+                                <td>Дмитрий Серов</td>
+                                <td>+7 (977) 823-63-90<br>serovdima@list.ru</td>
+                                <td><span class="commission-status status-active">Действующая</span></td>
+                                <td>15.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Нижний Новгород</strong></td>
+                                <td>Алексей Фатьянов</td>
+                                <td>+7 (905) 234-56-78<br>fatyanov@mfr-nnov.ru</td>
+                                <td><span class="commission-status status-active">Действующая</span></td>
+                                <td>10.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Вологодская область</strong></td>
+                                <td>Наталия Недайводина</td>
+                                <td>vologda-fum@mfr.ru</td>
+                                <td><span class="commission-status status-active">Действующая</span></td>
+                                <td>12.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Смоленская область</strong></td>
+                                <td>Глеб Симдянкин</td>
+                                <td>smolensk-fum@mfr.ru</td>
+                                <td><span class="commission-status status-active">Действующая</span></td>
+                                <td>08.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ульяновская область</strong></td>
+                                <td>Андрей Сальников</td>
+                                <td>ul-fum@mfr.ru</td>
+                                <td><span class="commission-status status-active">Действующая</span></td>
+                                <td>14.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Республика Татарстан</strong></td>
+                                <td>Ильшат Сафаров</td>
+                                <td>tatarstan-fum@mfr.ru</td>
+                                <td><span class="commission-status status-developing">Развивается</span></td>
+                                <td>05.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Калужская область</strong></td>
+                                <td>Максим Гаранин</td>
+                                <td>kaluga-fum@mfr.ru</td>
+                                <td><span class="commission-status status-developing">Развивается</span></td>
+                                <td>07.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Тульская область</strong></td>
+                                <td>Александр Акимов</td>
+                                <td>tula-fum@mfr.ru</td>
+                                <td><span class="commission-status status-developing">Развивается</span></td>
+                                <td>09.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Москва</strong></td>
+                                <td>Александр Ципилев</td>
+                                <td>moscow-fum@mfr.ru</td>
+                                <td><span class="commission-status status-active">Действующая</span></td>
+                                <td>13.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Санкт-Петербург</strong></td>
+                                <td>Михаил Соколов</td>
+                                <td>spb-fum@mfr.ru</td>
+                                <td><span class="commission-status status-planned">Планируется</span></td>
+                                <td>01.11.2024</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ростовская область</strong></td>
+                                <td>Сергей Кузнецов</td>
+                                <td>rostov-fum@mfr.ru</td>
+                                <td><span class="commission-status status-planned">Планируется</span></td>
+                                <td>03.11.2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
-                <div class="map-controls">
-                    <div class="map-controls-left">
-                        <button id="reset-map" class="map-button">
-                            <i class="fas fa-sync-alt"></i> Сбросить карту
-                        </button>
-                    </div>
-                    <div class="map-zoom">
-                        <button id="zoom-in" class="map-button"><i class="fas fa-plus"></i></button>
-                        <button id="zoom-out" class="map-button"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                
-                <div class="russia-map-container">
-                    <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" class="russia-map-svg">
-                        <!-- Упрощенная карта России с 20 регионами для демонстрации -->
-                        <path class="region-path" data-region="moscow" d="M500,300 L530,280 L560,300 L540,330 L510,330 Z" />
-                        <path class="region-path" data-region="tver" d="M460,250 L490,230 L520,250 L500,280 L470,290 Z" />
-                        <path class="region-path" data-region="smolensk" d="M430,280 L460,260 L490,280 L470,310 L440,320 Z" />
-                        <path class="region-path" data-region="kaluga" d="M450,310 L480,290 L510,310 L490,340 L460,350 Z" />
-                        <path class="region-path" data-region="tula" d="M440,340 L470,320 L500,340 L480,370 L450,380 Z" />
-                        <path class="region-path" data-region="ryazan" d="M490,340 L520,320 L550,340 L530,370 L500,380 Z" />
-                        <path class="region-path" data-region="vladimir" d="M530,310 L560,290 L590,310 L570,340 L540,350 Z" />
-                        <path class="region-path" data-region="ivanovo" d="M560,280 L590,260 L620,280 L600,310 L570,320 Z" />
-                        <path class="region-path" data-region="yaroslavl" d="M540,250 L570,230 L600,250 L580,280 L550,290 Z" />
-                        <path class="region-path" data-region="kostroma" d="M570,220 L600,200 L630,220 L610,250 L580,260 Z" />
-                        <path class="region-path" data-region="bryansk" d="M430,310 L460,290 L490,310 L470,340 L440,350 Z" />
-                        <path class="region-path" data-region="belgorod" d="M480,400 L510,380 L540,400 L520,430 L490,440 Z" />
-                        <path class="region-path" data-region="voronezh" d="M510,370 L540,350 L570,370 L550,400 L520,410 Z" />
-                        <path class="region-path" data-region="kursk" d="M470,370 L500,350 L530,370 L510,400 L480,410 Z" />
-                        <path class="region-path" data-region="lipetsk" d="M500,350 L530,330 L560,350 L540,380 L510,390 Z" />
-                        <path class="region-path" data-region="tambov" d="M520,340 L550,320 L580,340 L560,370 L530,380 Z" />
-                        <path class="region-path" data-region="stpetersburg" d="M380,190 L410,170 L440,190 L420,220 L390,230 Z" />
-                        <path class="region-path" data-region="leningrad" d="M410,170 L440,150 L470,170 L450,200 L420,210 Z" />
-                        <path class="region-path" data-region="novgorod" d="M440,190 L470,170 L500,190 L480,220 L450,230 Z" />
-                        <path class="region-path" data-region="pskov" d="M410,220 L440,200 L470,220 L450,250 L420,260 Z" />
-                    </svg>
-                </div>
-                
-                <div class="region-tooltip" id="region-tooltip">
-                    <h4 id="tooltip-region-name">Название региона</h4>
-                    <p id="tooltip-region-contact">Контактная информация регионального представителя</p>
-                    <div id="tooltip-photo" class="tooltip-photo"></div>
-                </div>
+                <p style="margin-top: 20px; color: var(--dark-gray); font-style: italic;">
+                    <i class="fas fa-info-circle"></i> Нужно добавить или обновить информацию о региональной комиссии? 
+                    Обратитесь к Председателю комиссии Дмитрию Серову по телефону +7 (977) 823-63-90 или 
+                    воспользуйтесь панелью администратора для внесения изменений.
+                </p>
             </section>
         </main>
     </div>
@@ -704,225 +621,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Данные о регионах
-            const regionData = {
-                "tver": {
-                    "name": "Тверская область",
-                    "contact_person": "Дмитрий Серов",
-                    "phone": "+7 (977) 823-63-90",
-                    "email": "serovdima@list.ru",
-                    "position": "Председатель Комиссии",
-                    "photo_url": "https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg",
-                    "notes": "За два года руководства Дмитрий доказал свои профессиональные компетенции и преданность делу. Благодаря Дмитрию и с его непосредственным участием проведён не только ряд федеральных мероприятий - кроме этого состоялись официальные соревнования в Санкт-Петербурге, Тверской, Ленинградской, Смоленской, Нижегородской, Вологодской областях и Пермском крае."
-                },
-                "moscow": {
-                    "name": "Москва",
-                    "contact_person": "Александр Ципилев",
-                    "email": "dzhimhana@mfr-ro.ru",
-                    "position": "Представитель МОО \"Федерация Мотоджимханы\"",
-                    "photo_url": "https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg"
-                },
-                "nnovgorod": {
-                    "name": "Нижний Новгород",
-                    "contact_person": "Алексей Фатьянов",
-                    "phone": "+7 (905) 234-56-78",
-                    "email": "fatyanov@mfr-nnov.ru",
-                    "position": "Заместитель Председателя",
-                    "photo_url": "https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg"
-                },
-                "vologda": {
-                    "name": "Вологодская область",
-                    "contact_person": "Наталия Недайводина",
-                    "email": "vologda-fum@mfr.ru",
-                    "position": "Главный секретарь",
-                    "photo_url": "https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg"
-                },
-                "smolensk": {
-                    "name": "Смоленская область",
-                    "contact_person": "Глеб Симдянкин",
-                    "email": "smolensk-fum@mfr.ru",
-                    "position": "Член Комиссии",
-                    "photo_url": "https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg"
-                }
-            };
-            
-            // Инициализация карты
-            function initMap() {
-                const regionPaths = document.querySelectorAll('.region-path');
-                const tooltip = document.getElementById('region-tooltip');
-                const regionName = document.getElementById('tooltip-region-name');
-                const regionContact = document.getElementById('tooltip-region-contact');
-                const photoPlaceholder = document.getElementById('tooltip-photo');
-                const resetButton = document.getElementById('reset-map');
-                const zoomInButton = document.getElementById('zoom-in');
-                const zoomOutButton = document.getElementById('zoom-out');
-                
-                let scale = 1;
-                let translateX = 0;
-                let translateY = 0;
-                
-                // Обработчики событий для регионов
-                regionPaths.forEach(path => {
-                    const regionId = path.dataset.region;
-                    
-                    path.addEventListener('mouseenter', function(e) {
-                        showRegionTooltip(e, regionId);
-                    });
-                    
-                    path.addEventListener('mouseleave', function() {
-                        tooltip.style.display = 'none';
-                    });
-                    
-                    path.addEventListener('click', function() {
-                        // Убираем активный класс у всех регионов
-                        document.querySelectorAll('.region-path').forEach(p => {
-                            p.classList.remove('active');
-                        });
-                        
-                        // Добавляем активный класс к выбранному региону
-                        this.classList.add('active');
-                    });
-                });
-                
-                // Обработчик выбора региона из меню
-                document.getElementById('region-selector').addEventListener('change', function() {
-                    const regionId = this.value;
-                    if (regionId) {
-                        // Убираем активный класс у всех регионов
-                        document.querySelectorAll('.region-path').forEach(p => {
-                            p.classList.remove('active');
-                        });
-                        
-                        // Находим и активируем соответствующий регион
-                        const regionPath = document.querySelector(`.region-path[data-region="${regionId}"]`);
-                        if (regionPath) {
-                            regionPath.classList.add('active');
-                            highlightRegionOnMap(regionId);
-                            
-                            // Закрываем выпадающее меню
-                            this.blur();
-                        }
-                    } else {
-                        // Сбрасываем выделение
-                        document.querySelectorAll('.region-path').forEach(p => {
-                            p.classList.remove('active');
-                        });
-                        tooltip.style.display = 'none';
-                    }
-                });
-                
-                // Обработчик сброса карты
-                resetButton.addEventListener('click', function() {
-                    document.querySelectorAll('.region-path').forEach(p => {
-                        p.classList.remove('active');
-                    });
-                    tooltip.style.display = 'none';
-                    document.getElementById('region-selector').value = '';
-                    resetMapTransform();
-                });
-                
-                // Обработчики зума
-                zoomInButton.addEventListener('click', function() {
-                    if (scale < 3) {
-                        scale += 0.5;
-                        updateMapTransform();
-                    }
-                });
-                
-                zoomOutButton.addEventListener('click', function() {
-                    if (scale > 0.5) {
-                        scale -= 0.5;
-                        updateMapTransform();
-                    }
-                });
-                
-                // Функция сброса трансформации карты
-                function resetMapTransform() {
-                    scale = 1;
-                    translateX = 0;
-                    translateY = 0;
-                    updateMapTransform();
-                }
-                
-                // Функция обновления трансформации карты
-                function updateMapTransform() {
-                    const svg = document.querySelector('.russia-map-svg');
-                    svg.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
-                    svg.style.transformOrigin = 'center';
-                }
-                
-                // Функция показа подсказки
-                function showRegionTooltip(event, regionId) {
-                    const regionInfo = regionData[regionId];
-                    if (!regionInfo) return;
-                    
-                    // Заполняем информацию
-                    regionName.textContent = regionInfo.name;
-                    regionContact.innerHTML = `
-                        <strong>${regionInfo.contact_person}</strong><br>
-                        Должность: ${regionInfo.position}<br>
-                        Телефон: ${regionInfo.phone || 'не указан'}<br>
-                        Email: ${regionInfo.email || 'не указан'}
-                    `;
-                    
-                    // Устанавливаем фото
-                    if (regionInfo.photo_url) {
-                        photoPlaceholder.innerHTML = `<img src="${regionInfo.photo_url}" alt="${regionInfo.name}">`;
-                    } else {
-                        const initials = regionInfo.contact_person ? 
-                            regionInfo.contact_person.split(' ').map(word => word[0]).join('') : '?';
-                        photoPlaceholder.innerHTML = initials;
-                    }
-                    
-                    // Позиционируем подсказку
-                    const mapContainer = document.querySelector('.russia-map-container');
-                    const mapRect = mapContainer.getBoundingClientRect();
-                    const tooltipWidth = tooltip.offsetWidth;
-                    const tooltipHeight = tooltip.offsetHeight;
-                    
-                    let x = event.clientX + 15;
-                    let y = event.clientY + 15;
-                    
-                    // Проверяем, не выходит ли подсказка за границы экрана
-                    if (x + tooltipWidth > window.innerWidth) {
-                        x = event.clientX - tooltipWidth - 15;
-                    }
-                    if (y + tooltipHeight > window.innerHeight) {
-                        y = event.clientY - tooltipHeight - 15;
-                    }
-                    
-                    tooltip.style.left = `${x}px`;
-                    tooltip.style.top = `${y}px`;
-                    tooltip.style.display = 'block';
-                }
-                
-                // Функция подсветки региона на карте
-                function highlightRegionOnMap(regionId) {
-                    const regionPath = document.querySelector(`.region-path[data-region="${regionId}"]`);
-                    if (regionPath) {
-                        // Показываем подсказку для региона
-                        const rect = regionPath.getBoundingClientRect();
-                        const event = {
-                            clientX: rect.left + rect.width / 2,
-                            clientY: rect.top + rect.height / 2
-                        };
-                        showRegionTooltip(event, regionId);
-                    }
-                }
-                
-                // Инициализация с подсветкой Тверской области
-                setTimeout(() => {
-                    const tverRegion = document.querySelector('.region-path[data-region="tver"]');
-                    if (tverRegion) {
-                        tverRegion.classList.add('active');
-                        highlightRegionOnMap('tver');
-                        document.getElementById('region-selector').value = 'tver';
-                    }
-                }, 300);
-            }
-            
-            // Страница полностью загружена, инициализируем карту
-            initMap();
+            // Обработчик кнопки перехода в панель администратора
+            document.getElementById('admin-panel-button').addEventListener('click', function() {
+                // В реальном проекте здесь будет проверка прав доступа
+                window.location.href = 'admin-panel.html';
+            });
             
             // Back to top button
             const backToTopButton = document.createElement('button');
