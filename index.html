@@ -26,7 +26,6 @@
                     <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                    <li><a href="results.html" class="nav-link">Результаты соревнований</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
                     <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
@@ -96,13 +95,6 @@
                     <a href="documents.html" class="tile-link">Подробнее</a>
                 </div>
                 
-                <div class="tile tile-orange">
-                    <i class="fas fa-trophy tile-icon"></i>
-                    <h2 class="tile-title">Результаты соревнований</h2>
-                    <p class="tile-text">Архив результатов и рейтинги спортсменов по сезонам</p>
-                    <a href="results.html" class="tile-link">Подробнее</a>
-                </div>
-                
                 <div class="tile tile-purple">
                     <i class="fas fa-address-book tile-icon"></i>
                     <h2 class="tile-title">Контакты</h2>
@@ -157,10 +149,10 @@
         </footer>
     </div>
 
-    <!-- Modal for Admin Login -->
-    <div class="modal" id="admin-modal">
+    <!-- Admin login modal -->
+    <div class="modal" id="admin-login-modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" id="close-login-modal">&times;</span>
             <h2>Вход в админ-панель</h2>
             <div class="form-group">
                 <label for="admin-password">Пароль</label>
@@ -168,6 +160,60 @@
                 <p class="password-hint">Пароль предоставлен Председателем комиссии</p>
             </div>
             <button id="login-btn" class="btn btn-primary">Войти</button>
+        </div>
+    </div>
+
+    <!-- Admin panel modal -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-admin-modal">&times;</span>
+            <h2>Панель администратора</h2>
+            
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
+                <button class="tab-btn" data-tab="documents">Документы</button>
+                <button class="tab-btn" data-tab="structure">Структура комиссии</button>
+            </div>
+            
+            <div class="tab-content active" id="calendar-tab">
+                <h3>Управление соревнованиями</h3>
+                <div class="form-group">
+                    <label for="competition-name">Название соревнования</label>
+                    <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
+                </div>
+                <div class="form-group">
+                    <label for="competition-date">Дата проведения</label>
+                    <input type="date" id="competition-date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="competition-location">Место проведения</label>
+                    <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
+                </div>
+                <div class="form-group">
+                    <label for="competition-contact">Контактное лицо</label>
+                    <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
+                </div>
+                <div class="form-group">
+                    <label for="protocol-file">Протокол соревнований (URL)</label>
+                    <input type="url" id="protocol-file" class="form-control" placeholder="Ссылка на протокол в Яндекс.Диске">
+                    <p class="help-text">Протоколы должны быть загружены в Яндекс.Диск: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                </div>
+                <button id="add-competition-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить соревнование
+                </button>
+                <div id="competitions-list" class="admin-list"></div>
+            </div>
+            
+            <div class="tab-content" id="documents-tab">
+                <h3>Управление документами</h3>
+                <p>Все документы хранятся на Яндекс.Диске: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                <p>Для добавления новых документов используйте интерфейс Яндекс.Диска</p>
+            </div>
+            
+            <div class="tab-content" id="structure-tab">
+                <h3>Управление структурой комиссии</h3>
+                <p>Для редактирования структуры комиссии обратитесь к Председателю комиссии</p>
+            </div>
         </div>
     </div>
 
