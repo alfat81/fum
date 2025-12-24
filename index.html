@@ -21,10 +21,12 @@
             </div>
             <nav class="main-nav">
                 <ul>
+                    <li><a href="index.html" class="nav-link active">Главная</a></li>
                     <li><a href="about.html" class="nav-link">О комиссии</a></li>
-                    <li><a href="structure.html" class="nav-link active">Структура комиссии</a></li>
+                    <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                    <li><a href="results.html" class="nav-link">Результаты соревнований</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
                     <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
@@ -38,6 +40,30 @@
                 <div class="hero-buttons">
                     <a href="structure.html" class="btn btn-primary">Структура комиссии</a>
                     <a href="calendar.html" class="btn btn-secondary">Календарь соревнований</a>
+                </div>
+            </section>
+
+            <section class="announcements">
+                <h2 class="section-title"><i class="fas fa-bullhorn"></i> Анонсы и новости</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-date">15.12.2025</div>
+                        <h3>Утвержден календарь соревнований на 2026 год</h3>
+                        <p>31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии фигурного управления мотоциклом и календарь соревнований на 2026 год.</p>
+                        <a href="#" class="read-more">Читать подробнее</a>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-date">08.11.2025</div>
+                        <h3>Составлен новый состав комиссии</h3>
+                        <p>Председателем комиссии переизбран Дмитрий Серов. В новом составе появились новые региональные представители из Тульской области и Москвы.</p>
+                        <a href="structure.html" class="read-more">Читать подробнее</a>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-date">25.10.2025</div>
+                        <h3>Обновлены правила соревнований</h3>
+                        <p>Утверждена новая редакция правил соревнований по фигурному управлению мотоциклом с изменениями в системе оценки и требованиям к экипировке.</p>
+                        <a href="documents.html" class="read-more">Читать подробнее</a>
+                    </div>
                 </div>
             </section>
 
@@ -68,6 +94,45 @@
                     <h2 class="tile-title">Полезные документы</h2>
                     <p class="tile-text">Правила, регламенты и другие нормативные документы</p>
                     <a href="documents.html" class="tile-link">Подробнее</a>
+                </div>
+                
+                <div class="tile tile-orange">
+                    <i class="fas fa-trophy tile-icon"></i>
+                    <h2 class="tile-title">Результаты соревнований</h2>
+                    <p class="tile-text">Архив результатов и рейтинги спортсменов по сезонам</p>
+                    <a href="results.html" class="tile-link">Подробнее</a>
+                </div>
+                
+                <div class="tile tile-purple">
+                    <i class="fas fa-address-book tile-icon"></i>
+                    <h2 class="tile-title">Контакты</h2>
+                    <p class="tile-text">Как связаться с комиссией и региональными представителями</p>
+                    <a href="contacts.html" class="tile-link">Подробнее</a>
+                </div>
+            </section>
+
+            <section class="gallery-section">
+                <h2 class="section-title"><i class="fas fa-images"></i> Наши соревнования</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/competition1.jpg" alt="Соревнования в Твери">
+                        <div class="gallery-caption">Чемпионат России 2024, Тверская область</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/competition2.jpg" alt="Соревнования в Нижнем Новгороде">
+                        <div class="gallery-caption">Кубок России, Нижний Новгород</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/competition3.jpg" alt="Тренировки в Москву">
+                        <div class="gallery-caption">Сборная тренировка, Москва</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/competition4.jpg" alt="Детские соревнования">
+                        <div class="gallery-caption">Первенство среди юниоров, Смоленск</div>
+                    </div>
+                </div>
+                <div class="gallery-cta">
+                    <a href="#" class="btn btn-primary">Смотреть все фотографии</a>
                 </div>
             </section>
         </main>
@@ -107,5 +172,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://vk.com/js/api/openapi.js?169" async></script>
 </body>
 </html>
