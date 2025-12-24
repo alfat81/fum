@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
+    <header class="header">
+        <div class="container">
             <div class="logo">
-                <img src="images/logo.png" alt="Логотип комиссии">
+                <img src="images/logo.png" alt="Логотип комиссии по мотоджимхане">
             </div>
-            <nav class="nav">
+            <nav class="main-nav">
                 <ul>
                     <li><a href="about.html">О комиссии</a></li>
                     <li><a href="structure.html">Структура комиссии</a></li>
@@ -21,65 +22,81 @@
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
-        </header>
+        </div>
+    </header>
 
-        <main class="content">
-            <h1 class="page-title">Комиссия по фигурному управлению мотоциклом<br>(мотоджимхана)</h1>
-            <p class="intro-text">Добро пожаловать на официальный сайт комиссии по фигурному управлению мотоциклом при Мотоциклетной Федерации России.</p>
-            
-            <div class="sections">
-                <div class="section-card">
-                    <h2>О комиссии</h2>
-                    <p>История создания комиссии, цели и задачи, направления деятельности.</p>
-                    <a href="about.html" class="read-more">Подробнее</a>
-                </div>
-                
-                <div class="section-card">
-                    <h2>Структура комиссии</h2>
-                    <p>Руководство комиссии и региональные представители по всей России.</p>
-                    <a href="structure.html" class="read-more">Подробнее</a>
-                </div>
-                
-                <div class="section-card">
-                    <h2>Календарь соревнований</h2>
-                    <p>Официальные соревнования по фигурному управлению мотоциклом на 2025 год.</p>
-                    <a href="calendar.html" class="read-more">Подробнее</a>
-                </div>
-                
-                <div class="section-card">
-                    <h2>Полезные документы</h2>
-                    <p>Правила, регламенты, положения и другие нормативные документы.</p>
-                    <a href="documents.html" class="read-more">Подробнее</a>
-                </div>
-                
-                <div class="section-card">
-                    <h2>Контакты</h2>
-                    <p>Как связаться с комиссией и региональными представителями.</p>
-                    <a href="contacts.html" class="read-more">Подробнее</a>
-                </div>
-            </div>
-        </main>
+    <main class="main-content">
+        <div class="container">
+            <section class="hero">
+                <h1>Комиссия по фигурному управлению мотоциклом<br>(мотоджимхана)</h1>
+                <p>Официальный сайт комиссии при Федерации мотоциклетного спорта России</p>
+            </section>
 
-        <footer class="footer">
+            <section class="tiles-section">
+                <div class="tiles-container">
+                    <a href="about.html" class="tile tile-blue">
+                        <div class="tile-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h2 class="tile-title">О комиссии</h2>
+                        <p class="tile-description">История создания, цели и задачи комиссии по фигурному управлению мотоциклом</p>
+                    </a>
+                    
+                    <a href="structure.html" class="tile tile-red">
+                        <div class="tile-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h2 class="tile-title">Структура комиссии</h2>
+                        <p class="tile-description">Руководство и региональные представители по всей России</p>
+                    </a>
+                    
+                    <a href="calendar.html" class="tile tile-yellow">
+                        <div class="tile-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h2 class="tile-title">Календарь соревнований</h2>
+                        <p class="tile-description">Официальные соревнования по фигурному управлению мотоциклом</p>
+                    </a>
+                    
+                    <a href="documents.html" class="tile tile-green">
+                        <div class="tile-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h2 class="tile-title">Полезные документы</h2>
+                        <p class="tile-description">Правила, регламенты и другие нормативные документы</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
+                <a href="https://www.mfr.ru/" target="_blank" class="logo-link">
                     <img src="images/mfr-logo.png" alt="Логотип МФР">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
+                <a href="https://www.minsport.gov.ru/" target="_blank" class="logo-link">
                     <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">
+                    <i class="fas fa-cloud"></i> Документы комиссии
+                </a>
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <i class="fas fa-globe"></i> Официальный сайт МФР
+                </a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
+                    <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
+                </a>
             </div>
             <div class="copyright">
                 © 2025 Федерация мотоциклетного спорта России
             </div>
-        </footer>
-    </div>
-    
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
