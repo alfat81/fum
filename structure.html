@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Структура комиссии | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
+    <header class="header">
+        <div class="container">
             <div class="logo">
-                <img src="images/logo.png" alt="Логотип комиссии">
+                <a href="index.html"><img src="images/logo.png" alt="Логотип комиссии по мотоджимхане"></a>
             </div>
-            <nav class="nav">
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Главная</a></li>
                     <li><a href="about.html">О комиссии</a></li>
                     <li><a href="structure.html" class="active">Структура комиссии</a></li>
                     <li><a href="calendar.html">Календарь соревнований</a></li>
@@ -22,369 +22,524 @@
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
-        </header>
+        </div>
+    </header>
 
-        <main class="content">
+    <main class="main-content">
+        <div class="container">
             <h1 class="page-title">Структура комиссии</h1>
             
-            <div class="leadership">
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg" alt="Дмитрий Серов">
+            <section class="leadership-section">
+                <h2 class="section-title">Руководство комиссии</h2>
+                
+                <div class="leadership-grid">
+                    <div class="leader-card leader-blue">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/d59/vikt2s29rmx9a40mhz64l1i71tfpayy5/Дмитрий%20Серов.jpg" alt="Дмитрий Серов">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Дмитрий Серов</h3>
+                            <div class="leader-position">Председатель Комиссии</div>
+                            <div class="leader-region">Тверская область</div>
+                            <div class="leader-contact">
+                                <i class="fas fa-phone"></i> +7 (977) 823-63-90<br>
+                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-info">
-                        <h2>Дмитрий Серов</h2>
-                        <div class="position">Председатель Комиссии</div>
-                        <div class="region">Тверская область</div>
-                        <div class="contact">
-                            <span>+7 (977) 823-63-90</span>
-                            <span>serovdima@list.ru</span>
+                    
+                    <div class="leader-card leader-yellow">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg" alt="Алексей Фатьянов">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Алексей Фатьянов</h3>
+                            <div class="leader-position">Заместитель Председателя</div>
+                            <div class="leader-region">Нижний Новгород</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-blue">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg" alt="Наталия Недайводина">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Наталия Недайводина</h3>
+                            <div class="leader-position">Главный секретарь</div>
+                            <div class="leader-region">Вологодская область</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-red">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg" alt="Глеб Симдянкин">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Глеб Симдянкин</h3>
+                            <div class="leader-position">Член Комиссии</div>
+                            <div class="leader-region">Смоленская область</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-yellow">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg" alt="Андрей Сальников">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Андрей Сальников</h3>
+                            <div class="leader-position">Член Комиссии</div>
+                            <div class="leader-region">Ульяновская область</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-blue">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg" alt="Ильшат Сафаров">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Ильшат Сафаров</h3>
+                            <div class="leader-position">Член Комиссии</div>
+                            <div class="leader-region">Республика Татарстан</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-red">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg" alt="Максим Гаранин">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Максим Гаранин</h3>
+                            <div class="leader-position">Член Комиссии</div>
+                            <div class="leader-region">Калужская область</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-yellow">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg" alt="Александр Акимов">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Александр Акимов</h3>
+                            <div class="leader-position">Член Комиссии</div>
+                            <div class="leader-region">Тульская область</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leader-card leader-blue">
+                        <div class="leader-photo">
+                            <img src="https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg" alt="Александр Ципилев">
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Александр Ципилев</h3>
+                            <div class="leader-position">Член Комиссии</div>
+                            <div class="leader-region">Москва, МОО "Федерация Мотоджимханы"</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/6da/yfchzqsfi7av4bnnge9r5jug1z357601/Алексей%20Фатьянов.jpg" alt="Алексей Фатьянов">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Алексей Фатьянов</h2>
-                        <div class="position">Заместитель Председателя</div>
-                        <div class="region">Нижний Новгород</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/8d7/0rdvpnrfz1wmxswvgbiiy972fk2czmsv/Наталия%20Недайводина.jpg" alt="Наталия Недайводина">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Наталия Недайводина</h2>
-                        <div class="position">Главный секретарь</div>
-                        <div class="region">Вологодская область</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/0f6/kcmcx7epsjpld77hth8mgvvo8dyxnz3c/Глеб%20Симдянкин.jpg" alt="Глеб Симдянкин">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Глеб Симдянкин</h2>
-                        <div class="position">Член Комиссии</div>
-                        <div class="region">Смоленская область</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/6d9/708xnufz29dsshu5v28zgc9gg4ovxslk/Андрей%20сальников.jpg" alt="Андрей Сальников">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Андрей Сальников</h2>
-                        <div class="position">Член Комиссии</div>
-                        <div class="region">Ульяновская область</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/19c/b6ypbb11ifgi8m28811rm4gcnt1en62u/Ильшат%20Сафаров.jpg" alt="Ильшат Сафаров">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Ильшат Сафаров</h2>
-                        <div class="position">Член Комиссии</div>
-                        <div class="region">Республика Татарстан</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/026/exok2huzhglr5cqq0sxw8ihh0g1astay/Максим%20Гаранин.jpg" alt="Максим Гаранин">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Максим Гаранин</h2>
-                        <div class="position">Член Комиссии</div>
-                        <div class="region">Калужская область</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/fb8/06x31ifws29zsbvd2zqrfk5a62jmzm3m/Александр%20Акимов.jpg" alt="Александр Акимов">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Александр Акимов</h2>
-                        <div class="position">Член Комиссии</div>
-                        <div class="region">Тульская область</div>
-                    </div>
-                </div>
-                
-                <div class="leader-card">
-                    <div class="leader-photo">
-                        <img src="https://www.mfr.ru/upload/medialibrary/634/sbtc12d30f4y68i0ndmc2pxz415mx9dd/Александр%20Ципилев.jpg" alt="Александр Ципилев">
-                    </div>
-                    <div class="leader-info">
-                        <h2>Александр Ципилев</h2>
-                        <div class="position">Член Комиссии</div>
-                        <div class="region">Москва, МОО "Федерация Мотоджимханы"</div>
-                    </div>
-                </div>
-            </div>
+            </section>
             
-            <h2 class="section-title">Региональные представители</h2>
-            
-            <div class="regions-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Регион</th>
-                            <th>Представитель</th>
-                            <th>Телефон</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody id="regions-tbody">
-                        <tr>
-                            <td>Тверская область</td>
-                            <td>Дмитрий Серов</td>
-                            <td>+7 (977) 823-63-90</td>
-                            <td>serovdima@list.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Нижний Новгород</td>
-                            <td>Алексей Фатьянов</td>
-                            <td>+7 (905) 234-56-78</td>
-                            <td>fatyanov@mfr-nnov.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Вологодская область</td>
-                            <td>Наталия Недайводина</td>
-                            <td>+7 (911) 456-78-90</td>
-                            <td>vologda-fum@mfr.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Смоленская область</td>
-                            <td>Глеб Симдянкин</td>
-                            <td>+7 (910) 345-67-89</td>
-                            <td>smolensk-fum@mfr.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Ульяновская область</td>
-                            <td>Андрей Сальников</td>
-                            <td>+7 (923) 567-89-01</td>
-                            <td>ul-fum@mfr.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Республика Татарстан</td>
-                            <td>Ильшат Сафаров</td>
-                            <td>+7 (934) 678-90-12</td>
-                            <td>tatarstan-fum@mfr.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Калужская область</td>
-                            <td>Максим Гаранин</td>
-                            <td>+7 (945) 789-01-23</td>
-                            <td>kaluga-fum@mfr.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Тульская область</td>
-                            <td>Александр Акимов</td>
-                            <td>+7 (956) 890-12-34</td>
-                            <td>tula-fum@mfr.ru</td>
-                        </tr>
-                        <tr>
-                            <td>Москва</td>
-                            <td>Александр Ципилев</td>
-                            <td>+7 (903) 123-45-67</td>
-                            <td>moscow-fum@mfr.ru</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="admin-panel">
-                <button id="edit-regions-btn" class="admin-btn">Редактировать список регионов</button>
-            </div>
-        </main>
-
-        <footer class="footer">
-            <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
-                    <img src="images/mfr-logo.png" alt="Логотип МФР">
-                </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
-                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
-                </a>
-            </div>
-            <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
-            </div>
-            <div class="copyright">
-                © 2025 Федерация мотоциклетного спорта России
-            </div>
-        </footer>
-    </div>
-    
-    <div id="admin-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Редактирование списка регионов</h2>
-            <div id="regions-editor"></div>
-            <button id="save-regions-btn" class="admin-btn">Сохранить изменения</button>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Редактирование региональных представителей
-            document.getElementById('edit-regions-btn').addEventListener('click', function() {
-                const tbody = document.getElementById('regions-tbody');
-                const rows = tbody.querySelectorAll('tr');
+            <section class="regions-section">
+                <h2 class="section-title">Региональные представители</h2>
                 
-                let editorHTML = `
-                    <table>
+                <div class="admin-controls">
+                    <button class="admin-btn" id="admin-panel-btn">
+                        <i class="fas fa-user-shield"></i> Панель администратора
+                    </button>
+                </div>
+                
+                <div class="regions-table-container">
+                    <table class="regions-table">
                         <thead>
                             <tr>
                                 <th>Регион</th>
-                                <th>Представитель</th>
+                                <th>И.О. Фамилия</th>
+                                <th>Должность</th>
                                 <th>Телефон</th>
                                 <th>Email</th>
                                 <th>Действия</th>
                             </tr>
                         </thead>
-                        <tbody id="editor-tbody">
-                `;
-                
-                rows.forEach((row, index) => {
-                    const cells = row.querySelectorAll('td');
-                    editorHTML += `
-                        <tr data-index="${index}">
-                            <td><input type="text" class="region-input" value="${cells[0].textContent}"></td>
-                            <td><input type="text" class="representative-input" value="${cells[1].textContent}"></td>
-                            <td><input type="text" class="phone-input" value="${cells[2].textContent}"></td>
-                            <td><input type="text" class="email-input" value="${cells[3].textContent}"></td>
-                            <td>
-                                <button class="delete-row-btn" data-index="${index}">Удалить</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                editorHTML += `
+                        <tbody id="regions-table-body">
+                            <tr>
+                                <td>Тверская область</td>
+                                <td>Дмитрий Серов</td>
+                                <td>Председатель Комиссии</td>
+                                <td>+7 (977) 823-63-90</td>
+                                <td>serovdima@list.ru</td>
+                                <td>
+                                    <button class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Нижний Новгород</td>
+                                <td>Алексей Фатьянов</td>
+                                <td>Заместитель Председателя</td>
+                                <td>+7 (905) 234-56-78</td>
+                                <td>fatyanov@mfr-nnov.ru</td>
+                                <td>
+                                    <button class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Вологодская область</td>
+                                <td>Наталия Недайводина</td>
+                                <td>Главный секретарь</td>
+                                <td>+7 (911) 456-78-90</td>
+                                <td>vologda-fum@mfr.ru</td>
+                                <td>
+                                    <button class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Смоленская область</td>
+                                <td>Глеб Симдянкин</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (910) 345-67-89</td>
+                                <td>smolensk-fum@mfr.ru</td>
+                                <td>
+                                    <button class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ульяновская область</td>
+                                <td>Андрей Сальников</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (923) 567-89-01</td>
+                                <td>ul-fum@mfr.ru</td>
+                                <td>
+                                    <button class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    <button id="add-row-btn" class="admin-btn">Добавить регион</button>
-                `;
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logos">
+                <a href="https://www.mfr.ru/" target="_blank" class="logo-link">
+                    <img src="images/mfr-logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank" class="logo-link">
+                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">
+                    <i class="fas fa-cloud"></i> Документы комиссии
+                </a>
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <i class="fas fa-globe"></i> Официальный сайт МФР
+                </a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
+                    <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
+                </a>
+            </div>
+            <div class="copyright">
+                © 2025 Федерация мотоциклетного спорта России
+            </div>
+        </div>
+    </footer>
+
+    <!-- Админ панель (модальное окно) -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Панель администратора</h2>
+            
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="regions">Региональные комиссии</button>
+                <button class="tab-btn" data-tab="calendar">Календарь соревнований</button>
+                <button class="tab-btn" data-tab="documents">Документы</button>
+            </div>
+            
+            <div class="tab-content active" id="regions-tab">
+                <h3>Управление региональными комиссиями</h3>
+                <div class="form-group">
+                    <label for="region-select">Регион</label>
+                    <select id="region-select" class="form-control">
+                        <option value="">Выберите регион</option>
+                        <option value="moscow">Москва</option>
+                        <option value="spb">Санкт-Петербург</option>
+                        <option value="tver">Тверская область</option>
+                        <option value="nnovgorod">Нижегородская область</option>
+                        <option value="smolensk">Смоленская область</option>
+                        <option value="vologda">Вологодская область</option>
+                        <option value="ulyanovsk">Ульяновская область</option>
+                        <option value="tatarstan">Республика Татарстан</option>
+                        <option value="kaluga">Калужская область</option>
+                        <option value="tula">Тульская область</option>
+                    </select>
+                </div>
                 
-                document.getElementById('regions-editor').innerHTML = editorHTML;
-                document.getElementById('admin-modal').style.display = 'block';
+                <div class="form-group">
+                    <label for="commission-leader">ФИО руководителя</label>
+                    <input type="text" id="commission-leader" class="form-control" placeholder="Введите ФИО">
+                </div>
                 
-                // Добавление новой строки
-                document.getElementById('add-row-btn').addEventListener('click', function() {
-                    const tbody = document.getElementById('editor-tbody');
-                    const newIndex = tbody.children.length;
-                    
-                    const newRow = document.createElement('tr');
-                    newRow.setAttribute('data-index', newIndex);
-                    newRow.innerHTML = `
-                        <td><input type="text" class="region-input" value=""></td>
-                        <td><input type="text" class="representative-input" value=""></td>
-                        <td><input type="text" class="phone-input" value=""></td>
-                        <td><input type="text" class="email-input" value=""></td>
-                        <td>
-                            <button class="delete-row-btn" data-index="${newIndex}">Удалить</button>
-                        </td>
-                    `;
-                    tbody.appendChild(newRow);
-                });
+                <div class="form-group">
+                    <label for="leader-phone">Телефон</label>
+                    <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
                 
-                // Удаление строки
-                document.querySelectorAll('.delete-row-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const index = this.getAttribute('data-index');
-                        const row = document.querySelector(`tr[data-index="${index}"]`);
-                        if (row) row.remove();
-                    });
-                });
+                <div class="form-group">
+                    <label for="leader-email">Email</label>
+                    <input type="email" id="leader-email" class="form-control" placeholder="email@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="commission-status">Статус комиссии</label>
+                    <select id="commission-status" class="form-control">
+                        <option value="active">Действующая</option>
+                        <option value="developing">Развивается</option>
+                        <option value="planned">Планируется</option>
+                    </select>
+                </div>
+                
+                <button class="admin-btn" id="add-commission-btn">
+                    <i class="fas fa-plus"></i> Добавить/Обновить комиссию
+                </button>
+            </div>
+            
+            <div class="tab-content" id="calendar-tab">
+                <h3>Управление календарем соревнований</h3>
+                <p>Функционал для управления календарем соревнований будет доступен в следующей версии</p>
+            </div>
+            
+            <div class="tab-content" id="documents-tab">
+                <h3>Управление документами</h3>
+                <p>Все документы хранятся на Яндекс.Диске: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                <p>Для добавления новых документов используйте интерфейс Яндекс.Диска</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Функционал админ панели
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminBtn = document.getElementById('admin-panel-btn');
+            const adminModal = document.getElementById('admin-modal');
+            const closeBtn = document.querySelector('.close-modal');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const addCommissionBtn = document.getElementById('add-commission-btn');
+            const regionsTableBody = document.getElementById('regions-table-body');
+            
+            // Открытие модального окна
+            adminBtn.addEventListener('click', function() {
+                adminModal.style.display = 'block';
             });
             
             // Закрытие модального окна
-            document.querySelector('.close').addEventListener('click', function() {
-                document.getElementById('admin-modal').style.display = 'none';
+            closeBtn.addEventListener('click', function() {
+                adminModal.style.display = 'none';
             });
             
-            // Сохранение изменений
-            document.getElementById('save-regions-btn').addEventListener('click', function() {
-                const editorTbody = document.getElementById('editor-tbody');
-                const rows = editorTbody.querySelectorAll('tr');
-                
-                const newRows = [];
-                rows.forEach(row => {
-                    const cells = row.querySelectorAll('input');
-                    if (cells.length >= 4) {
-                        const region = cells[0].value.trim();
-                        const representative = cells[1].value.trim();
-                        const phone = cells[2].value.trim();
-                        const email = cells[3].value.trim();
-                        
-                        if (region && representative) {
-                            newRows.push({
-                                region,
-                                representative,
-                                phone,
-                                email
-                            });
-                        }
-                    }
-                });
-                
-                // Сохранение в localStorage
-                localStorage.setItem('regionsList', JSON.stringify(newRows));
-                
-                // Обновление таблицы на странице
-                const tbody = document.getElementById('regions-tbody');
-                tbody.innerHTML = '';
-                
-                newRows.forEach(row => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${row.region}</td>
-                        <td>${row.representative}</td>
-                        <td>${row.phone}</td>
-                        <td>${row.email}</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-                
-                document.getElementById('admin-modal').style.display = 'none';
+            // Закрытие при клике вне окна
+            window.addEventListener('click', function(e) {
+                if (e.target === adminModal) {
+                    adminModal.style.display = 'none';
+                }
             });
             
-            // Загрузка данных из localStorage при загрузке страницы
-            const savedRegions = localStorage.getItem('regionsList');
-            if (savedRegions) {
-                try {
-                    const regions = JSON.parse(savedRegions);
-                    const tbody = document.getElementById('regions-tbody');
-                    tbody.innerHTML = '';
+            // Переключение вкладок
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Убираем активный класс у всех кнопок
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // Добавляем активный класс к текущей кнопке
+                    this.classList.add('active');
                     
-                    regions.forEach(region => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${region.region}</td>
-                            <td>${region.representative}</td>
-                            <td>${region.phone}</td>
-                            <td>${region.email}</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                } catch (e) {
-                    console.error('Ошибка при загрузке данных из localStorage:', e);
+                    // Скрываем все вкладки
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Показываем выбранную вкладку
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Добавление/обновление комиссии
+            addCommissionBtn.addEventListener('click', function() {
+                const region = document.getElementById('region-select').value;
+                const leader = document.getElementById('commission-leader').value;
+                const phone = document.getElementById('leader-phone').value;
+                const email = document.getElementById('leader-email').value;
+                const status = document.getElementById('commission-status').value;
+                
+                if (!region || !leader) {
+                    alert('Пожалуйста, заполните обязательные поля: Регион и ФИО руководителя');
+                    return;
+                }
+                
+                // Создаем новую строку в таблице
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${getRegionName(region)}</td>
+                    <td>${leader}</td>
+                    <td>${getStatusName(status)}</td>
+                    <td>${phone || '-'}</td>
+                    <td>${email || '-'}</td>
+                    <td>
+                        <button class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                // Добавляем обработчики для новых кнопок
+                const editBtn = newRow.querySelector('.edit-btn');
+                const deleteBtn = newRow.querySelector('.delete-btn');
+                
+                editBtn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    editRow(row);
+                });
+                
+                deleteBtn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    deleteRow(row);
+                });
+                
+                // Добавляем новую строку в таблицу
+                regionsTableBody.appendChild(newRow);
+                
+                // Очищаем форму
+                document.getElementById('region-select').value = '';
+                document.getElementById('commission-leader').value = '';
+                document.getElementById('leader-phone').value = '';
+                document.getElementById('leader-email').value = '';
+                document.getElementById('commission-status').value = 'active';
+                
+                alert('Региональная комиссия успешно добавлена!');
+            });
+            
+            // Редактирование строки
+            function editRow(row) {
+                const cells = row.querySelectorAll('td');
+                const region = getRegionId(cells[0].textContent);
+                const leader = cells[1].textContent;
+                const status = getStatusId(cells[2].textContent);
+                const phone = cells[3].textContent !== '-' ? cells[3].textContent : '';
+                const email = cells[4].textContent !== '-' ? cells[4].textContent : '';
+                
+                document.getElementById('region-select').value = region;
+                document.getElementById('commission-leader').value = leader;
+                document.getElementById('leader-phone').value = phone;
+                document.getElementById('leader-email').value = email;
+                document.getElementById('commission-status').value = status;
+                
+                // Удаляем старую строку
+                row.remove();
+                
+                alert('Данные для редактирования загружены в форму. Нажмите "Добавить/Обновить комиссию" для сохранения.');
+            }
+            
+            // Удаление строки
+            function deleteRow(row) {
+                if (confirm('Вы уверены, что хотите удалить эту региональную комиссию?')) {
+                    row.remove();
+                    alert('Региональная комиссия успешно удалена!');
                 }
             }
+            
+            // Вспомогательные функции
+            function getRegionName(regionId) {
+                const regions = {
+                    'moscow': 'Москва',
+                    'spb': 'Санкт-Петербург',
+                    'tver': 'Тверская область',
+                    'nnovgorod': 'Нижегородская область',
+                    'smolensk': 'Смоленская область',
+                    'vologda': 'Вологодская область',
+                    'ulyanovsk': 'Ульяновская область',
+                    'tatarstan': 'Республика Татарстан',
+                    'kaluga': 'Калужская область',
+                    'tula': 'Тульская область'
+                };
+                return regions[regionId] || regionId;
+            }
+            
+            function getRegionId(regionName) {
+                const regions = {
+                    'Москва': 'moscow',
+                    'Санкт-Петербург': 'spb',
+                    'Тверская область': 'tver',
+                    'Нижегородская область': 'nnovgorod',
+                    'Смоленская область': 'smolensk',
+                    'Вологодская область': 'vologda',
+                    'Ульяновская область': 'ulyanovsk',
+                    'Республика Татарстан': 'tatarstan',
+                    'Калужская область': 'kaluga',
+                    'Тульская область': 'tula'
+                };
+                return regions[regionName] || '';
+            }
+            
+            function getStatusName(statusId) {
+                const statuses = {
+                    'active': 'Действующая',
+                    'developing': 'Развивается',
+                    'planned': 'Планируется'
+                };
+                return statuses[statusId] || statusId;
+            }
+            
+            function getStatusId(statusName) {
+                const statuses = {
+                    'Действующая': 'active',
+                    'Развивается': 'developing',
+                    'Планируется': 'planned'
+                };
+                return statuses[statusName] || 'active';
+            }
+            
+            // Инициализация обработчиков для существующих кнопок
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    editRow(row);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    deleteRow(row);
+                });
+            });
         });
     </script>
 </body>
