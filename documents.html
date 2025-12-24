@@ -4,919 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Полезные документы | Комиссия по фигурному управлению мотоциклом | МФР</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #0078D7;
-            --primary-red: #E74C3C;
-            --primary-yellow: #F39C12;
-            --dark-blue: #1A2C56;
-            --light-gray: #F8F9FA;
-            --dark-gray: #2C3E50;
-            --white: #FFFFFF;
-            --text-dark: #333333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #e8f4ff, #f5f7fa);
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            flex: 1;
-        }
-        
-        /* Header styles - уменьшена высота до 25% экрана */
-        header {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            color: var(--white);
-            padding: 10px 0;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            max-height: 25vh;
-        }
-        
-        .back-button {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--white);
-            font-size: 1.3rem;
-            text-decoration: none;
-            padding: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .back-button:hover {
-            color: var(--primary-yellow);
-            transform: translateY(-50%) translateX(-3px);
-        }
-        
-        .logo-container {
-            max-width: 120px;
-            margin: 0 auto;
-        }
-        
-        .logo-img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-        
-        .page-title {
-            font-size: 1.8rem;
-            margin: 10px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* Content styles */
-        .page-content {
-            margin: 30px 0;
-        }
-        
-        .section {
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .section:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-        }
-        
-        .section-title {
-            color: var(--dark-blue);
-            font-size: 1.6rem;
-            margin-bottom: 18px;
-            padding-bottom: 8px;
-            border-bottom: 3px solid var(--primary-yellow);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .section-title i {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-        }
-        
-        /* Documents styles */
-        .documents-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        
-        .filter-button {
-            padding: 8px 18px;
-            border: 2px solid var(--primary-blue);
-            border-radius: 20px;
-            background: var(--white);
-            color: var(--primary-blue);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-        
-        .filter-button:hover, .filter-button.active {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-        
-        .filter-button.rules {
-            border-color: var(--primary-red);
-            color: var(--primary-red);
-        }
-        
-        .filter-button.rules:hover, .filter-button.rules.active {
-            background: var(--primary-red);
-            color: var(--white);
-        }
-        
-        .filter-button.licenses {
-            border-color: var(--primary-yellow);
-            color: var(--primary-yellow);
-        }
-        
-        .filter-button.licenses:hover, .filter-button.licenses.active {
-            background: var(--primary-yellow);
-            color: var(--dark-blue);
-        }
-        
-        .documents-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .document-card {
-            background: rgba(0,0,0,0.02);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-        
-        .document-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border-color: var(--primary-blue);
-        }
-        
-        .document-card.rules {
-            border-left: 4px solid var(--primary-red);
-        }
-        
-        .document-card.rules:hover {
-            border-color: var(--primary-red);
-        }
-        
-        .document-card.licenses {
-            border-left: 4px solid var(--primary-yellow);
-        }
-        
-        .document-card.licenses:hover {
-            border-color: var(--primary-yellow);
-        }
-        
-        .document-icon {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .document-icon.rules {
-            color: var(--primary-red);
-        }
-        
-        .document-icon.licenses {
-            color: var(--primary-yellow);
-        }
-        
-        .document-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .document-description {
-            color: var(--dark-gray);
-            margin-bottom: 15px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-        
-        .document-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--dark-gray);
-            padding-top: 10px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .document-date {
-            color: var(--primary-blue);
-        }
-        
-        .document-size {
-            color: var(--primary-red);
-        }
-        
-        .view-button {
-            display: block;
-            width: 100%;
-            padding: 10px 15px;
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            text-align: center;
-        }
-        
-        .view-button:hover {
-            background: var(--dark-blue);
-            transform: translateY(-1px);
-        }
-        
-        .view-button.rules {
-            background: var(--primary-red);
-        }
-        
-        .view-button.rules:hover {
-            background: #c0392b;
-        }
-        
-        .view-button.licenses {
-            background: var(--primary-yellow);
-            color: var(--dark-blue);
-        }
-        
-        .view-button.licenses:hover {
-            background: #e6b800;
-        }
-        
-        .document-viewer {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            max-width: 900px;
-            height: 85%;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .viewer-header {
-            padding: 15px 25px;
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 20px 20px 0 0;
-        }
-        
-        .viewer-header h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .close-viewer {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .close-viewer:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        
-        .viewer-content {
-            flex: 1;
-            padding: 20px;
-            overflow: auto;
-        }
-        
-        .viewer-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .viewer-content .document-text {
-            line-height: 1.8;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-        }
-        
-        .viewer-content .document-text h1, .viewer-content .document-text h2 {
-            color: var(--dark-blue);
-            margin-bottom: 15px;
-        }
-        
-        .viewer-content .document-text p {
-            margin-bottom: 15px;
-        }
-        
-        .viewer-content .document-text ul {
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-        
-        .viewer-content .document-text li {
-            margin-bottom: 8px;
-        }
-        
-        .document-preview {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        /* Footer styles */
-        footer {
-            background: linear-gradient(135deg, var(--dark-blue), #0d2142);
-            color: var(--white);
-            padding: 25px 0;
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--primary-yellow);
-            text-decoration: none;
-            font-size: 1.0rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        .copyright {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 992px) {
-            .documents-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            
-            .document-card {
-                padding: 18px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .page-title {
-                font-size: 1.6rem;
-            }
-            
-            .section-title {
-                font-size: 1.4rem;
-            }
-            
-            .documents-filters {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .filter-button {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
-            }
-            
-            .document-viewer {
-                width: 95%;
-                height: 90%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .page-title {
-                font-size: 1.4rem;
-            }
-            
-            .section {
-                padding: 18px;
-            }
-            
-            .section-title {
-                font-size: 1.2rem;
-            }
-            
-            .document-card {
-                padding: 15px;
-            }
-            
-            .document-icon {
-                font-size: 2.0rem;
-            }
-            
-            .document-title {
-                font-size: 1.1rem;
-            }
-            
-            .document-description {
-                font-size: 0.9rem;
-            }
-            
-            .view-button {
-                padding: 8px 12px;
-                font-size: 0.9rem;
-            }
-            
-            .viewer-header h3 {
-                font-size: 1.3rem;
-            }
-            
-            .viewer-header {
-                padding: 10px 15px;
-            }
-            
-            .close-viewer {
-                width: 35px;
-                height: 35px;
-                font-size: 1.0rem;
-            }
-            
-            .back-button {
-                font-size: 1.1rem;
-            }
-            
-            .logo-container {
-                max-width: 100px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <a href="index.html" class="back-button">
-            <i class="fas fa-arrow-left"></i>
-        </a>
-        <div class="container">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="Логотип комиссии по мотоджимхане" class="logo-img">
-            </div>
-            <h1 class="page-title">Полезные документы</h1>
-        </div>
-    </header>
-
     <div class="container">
-        <main class="page-content">
-            <section class="section">
-                <h2 class="section-title"><i class="fas fa-file-alt"></i> Нормативные документы комиссии</h2>
-                <div class="documents-filters">
-                    <button class="filter-button active">Все документы</button>
-                    <button class="filter-button rules">Правила</button>
-                    <button class="filter-button">Регламенты</button>
-                    <button class="filter-button licenses">Для спортсменов</button>
-                    <button class="filter-button">Для судей</button>
-                </div>
-                
-                <div class="documents-grid">
-                    <div class="document-card rules" data-category="rules">
-                        <div class="document-icon rules">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Правила соревнований по фигурному управлению мотоциклом
-                        </h3>
-                        <p class="document-description">
-                            Утвержденные правила проведения официальных соревнований по фигурному управлению мотоциклом в Российской Федерации.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">15.01.2025</span>
-                            <span class="document-size">1.2 МБ</span>
-                        </div>
-                        <button class="view-button rules">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card" data-category="regulations">
-                        <div class="document-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Регламент Кубка России 2025
-                        </h3>
-                        <p class="document-description">
-                            Официальный регламент проведения соревнований по фигурному управлению мотоциклом в 2025 году.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">20.11.2024</span>
-                            <span class="document-size">2.4 МБ</span>
-                        </div>
-                        <button class="view-button">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card licenses" data-category="licenses">
-                        <div class="document-icon licenses">
-                            <i class="fas fa-id-card"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Порядок оформления спортивных лицензий
-                        </h3>
-                        <p class="document-description">
-                            Инструкция по оформлению спортивных лицензий для участия в официальных соревнованиях по фигурному управлению мотоциклом.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">10.01.2025</span>
-                            <span class="document-size">0.8 МБ</span>
-                        </div>
-                        <button class="view-button licenses">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card rules" data-category="rules">
-                        <div class="document-icon rules">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Требования к экипировке
-                        </h3>
-                        <p class="document-description">
-                            Требования безопасности и обязательная экипировка для участников соревнований по фигурному управлению мотоциклом.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">30.11.2024</span>
-                            <span class="document-size">0.9 МБ</span>
-                        </div>
-                        <button class="view-button rules">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card" data-category="regulations">
-                        <div class="document-icon">
-                            <i class="fas fa-file-contract"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Положение о проведении соревнований
-                        </h3>
-                        <p class="document-description">
-                            Общее положение о проведении официальных соревнований по фигурному управлению мотоциклом в Российской Федерации.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">05.12.2024</span>
-                            <span class="document-size">1.5 МБ</span>
-                        </div>
-                        <button class="view-button">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card licenses" data-category="licenses">
-                        <div class="document-icon licenses">
-                            <i class="fas fa-file-medical"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Медицинские требования
-                        </h3>
-                        <p class="document-description">
-                            Требования к медицинскому освидетельствованию спортсменов для участия в соревнованиях по фигурному управлению мотоциклом.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">15.01.2025</span>
-                            <span class="document-size">0.7 МБ</span>
-                        </div>
-                        <button class="view-button licenses">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card rules" data-category="rules">
-                        <div class="document-icon rules">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Правила судейства
-                        </h3>
-                        <p class="document-description">
-                            Правила и процедуры судейства соревнований по фигурному управлению мотоциклом для спортивных судей.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">25.11.2024</span>
-                            <span class="document-size">1.8 МБ</span>
-                        </div>
-                        <button class="view-button rules">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card" data-category="regulations">
-                        <div class="document-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-pdf"></i> Положение о присвоении спортивных разрядов
-                        </h3>
-                        <p class="document-description">
-                            Положение о порядке присвоения спортивных разрядов по фигурному управлению мотоциклом в Российской Федерации.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">10.12.2024</span>
-                            <span class="document-size">1.1 МБ</span>
-                        </div>
-                        <button class="view-button">Просмотреть</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 class="section-title"><i class="fas fa-newspaper"></i> Новости и объявления</h2>
-                <div class="documents-grid">
-                    <div class="document-card" data-category="news">
-                        <div class="document-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-word"></i> Об утверждении нового состава комиссии
-                        </h3>
-                        <p class="document-description">
-                            31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии по фигурному управлению мотоциклом.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">31.10.2024</span>
-                            <span class="document-size">0.5 МБ</span>
-                        </div>
-                        <button class="view-button">Просмотреть</button>
-                    </div>
-                    
-                    <div class="document-card" data-category="news">
-                        <div class="document-icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <h3 class="document-title">
-                            <i class="fas fa-file-excel"></i> Предварительный календарь на 2025 год
-                        </h3>
-                        <p class="document-description">
-                            Утвержден предварительный календарь проведения официальных соревнований по фигурному управлению мотоциклом на 2025 год.
-                        </p>
-                        <div class="document-meta">
-                            <span class="document-date">15.11.2024</span>
-                            <span class="document-size">0.6 МБ</span>
-                        </div>
-                        <button class="view-button">Просмотреть</button>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <div class="document-viewer" id="document-viewer">
-        <div class="viewer-header">
-            <h3 id="viewer-title">Просмотр документа</h3>
-            <button class="close-viewer" id="close-viewer">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="viewer-content" id="viewer-content">
-            <!-- Контент документа будет загружен сюда -->
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="https://www.mfr.ru/" target="_blank">
-                        <i class="fas fa-globe"></i> Официальный сайт МФР
-                    </a>
-                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
-                        <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
-                    </a>
-                </div>
-                
-                <p class="copyright">
-                    © 2025 Федерация мотоциклетного спорта России<br>
-                    Официальный сайт комиссии по фигурному управлению мотоциклом (мотоджимхане)
-                </p>
+        <header class="header">
+            <div class="logo">
+                <img src="images/logo.png" alt="Логотип комиссии">
             </div>
-        </div>
-    </footer>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О комиссии</a></li>
+                    <li><a href="structure.html">Структура комиссии</a></li>
+                    <li><a href="calendar.html">Календарь соревнований</a></li>
+                    <li><a href="documents.html" class="active">Полезные документы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
 
+        <main class="content">
+            <h1 class="page-title">Полезные документы</h1>
+            
+            <div class="documents-list">
+                <div class="document-card">
+                    <h3>Правила соревнований по фигурному управлению мотоциклом</h3>
+                    <div class="document-date">15.01.2025</div>
+                    <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/Правила%20соревнований%20по%20ФУМ.pdf" target="_blank" class="document-link">Скачать документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Регламент Кубка России 2025</h3>
+                    <div class="document-date">20.11.2024</div>
+                    <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/Регламент%20Кубка%20России%202025.pdf" target="_blank" class="document-link">Скачать документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Положение о присвоении спортивных разрядов</h3>
+                    <div class="document-date">10.12.2024</div>
+                    <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/Положение%20о%20присвоении%20разрядов.pdf" target="_blank" class="document-link">Скачать документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Требования к экипировке спортсменов</h3>
+                    <div class="document-date">30.11.2024</div>
+                    <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/Требования%20к%20экипировке.pdf" target="_blank" class="document-link">Скачать документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Медицинские требования для участия в соревнованиях</h3>
+                    <div class="document-date">15.01.2025</div>
+                    <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/Медицинские%20требования.pdf" target="_blank" class="document-link">Скачать документ</a>
+                </div>
+                
+                <div class="document-card">
+                    <h3>Список допущенных к участию в соревнованиях моделей мотоциклов</h3>
+                    <div class="document-date">05.12.2024</div>
+                    <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/Список%20мотоциклов.pdf" target="_blank" class="document-link">Скачать документ</a>
+                </div>
+            </div>
+            
+            <div class="admin-panel">
+                <button id="edit-documents-btn" class="admin-btn">Редактировать список документов</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-logos">
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <img src="images/mfr-logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank">
+                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+            </div>
+            <div class="copyright">
+                © 2025 Федерация мотоциклетного спорта России
+            </div>
+        </footer>
+    </div>
+    
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Редактирование списка документов</h2>
+            <div id="documents-editor"></div>
+            <button id="save-documents-btn" class="admin-btn">Сохранить изменения</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Функция просмотра документа
-            function viewDocument(title, content, type = 'text') {
-                const viewer = document.getElementById('document-viewer');
-                const viewerTitle = document.getElementById('viewer-title');
-                const viewerContent = document.getElementById('viewer-content');
+            // Редактирование документов
+            document.getElementById('edit-documents-btn').addEventListener('click', function() {
+                const documentCards = document.querySelectorAll('.document-card');
                 
-                viewerTitle.textContent = title;
-                viewerContent.innerHTML = '';
+                let editorHTML = `
+                    <div id="editor-documents">
+                `;
                 
-                if (type === 'text') {
-                    viewerContent.innerHTML = `<div class="document-text">${content}</div>`;
-                } else if (type === 'iframe') {
-                    viewerContent.innerHTML = `<iframe src="${content}" frameborder="0"></iframe>`;
-                } else if (type === 'image') {
-                    viewerContent.innerHTML = `<img src="${content}" class="document-preview" alt="${title}">`;
-                }
-                
-                viewer.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-            
-            // Обработчики кнопок просмотра
-            document.querySelectorAll('.view-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const card = this.closest('.document-card');
-                    const title = card.querySelector('.document-title').textContent.replace('<i class="fas fa-file-pdf"></i>', '').trim();
+                documentCards.forEach((card, index) => {
+                    const title = card.querySelector('h3').textContent;
+                    const date = card.querySelector('.document-date').textContent;
+                    const link = card.querySelector('.document-link').getAttribute('href');
                     
-                    // Пример контента для демонстрации
-                    const sampleContent = `
-                        <h1>${title}</h1>
-                        <p>Это официальный документ комиссии по фигурному управлению мотоциклом (мотоджимхане) Мотоциклетной Федерации России.</p>
-                        <p>Документ утвержден Председателем комиссии Дмитрием Серовым и вступил в силу с 01 января 2025 года.</p>
-                        
-                        <h2>Основные положения</h2>
-                        <p>Документ регламентирует порядок проведения официальных соревнований по фигурному управлению мотоциклом на территории Российской Федерации.</p>
-                        
-                        <h2>Требования к участникам</h2>
-                        <ul>
-                            <li>Наличие действующей спортивной лицензии МФР</li>
-                            <li>Прохождение медицинского освидетельствования</li>
-                            <li>Использование сертифицированной экипировки</li>
-                            <li>Наличие действующего водительского удостоверения категории "А"</li>
-                        </ul>
-                        
-                        <h2>Порядок проведения соревнований</h2>
-                        <p>Соревнования проводятся по правилам, утвержденным Мотоциклетной Федерацией России, и включают в себя:</p>
-                        <ul>
-                            <li>Квалификационные заезды</li>
-                            <li>Полуфинальные заезды</li>
-                            <li>Финальные заезды</li>
-                        </ul>
-                        
-                        <div style="text-align: right; margin-top: 30px;">
-                            <p><strong>Председатель комиссии:</strong> Дмитрий Серов</p>
-                            <p><strong>Дата утверждения:</strong> 15 января 2025 года</p>
+                    editorHTML += `
+                        <div class="editor-document" data-index="${index}">
+                            <div class="form-group">
+                                <label>Название документа:</label>
+                                <input type="text" class="title-input" value="${title}">
+                            </div>
+                            <div class="form-group">
+                                <label>Дата публикации:</label>
+                                <input type="text" class="date-input" value="${date}">
+                            </div>
+                            <div class="form-group">
+                                <label>Ссылка на документ:</label>
+                                <input type="text" class="link-input" value="${link}">
+                            </div>
+                            <button class="delete-document-btn" data-index="${index}">Удалить документ</button>
                         </div>
                     `;
-                    
-                    viewDocument(title, sampleContent, 'text');
                 });
-            });
-            
-            // Закрытие просмотрщика
-            document.getElementById('close-viewer').addEventListener('click', function() {
-                document.getElementById('document-viewer').style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Закрытие по клику вне просмотрщика
-            document.getElementById('document-viewer').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // Фильтрация документов
-            document.querySelectorAll('.filter-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    // Убираем активный класс у всех кнопок
-                    document.querySelectorAll('.filter-button').forEach(btn => {
-                        btn.classList.remove('active');
+                
+                editorHTML += `
+                    </div>
+                    <button id="add-document-btn" class="admin-btn">Добавить документ</button>
+                `;
+                
+                document.getElementById('documents-editor').innerHTML = editorHTML;
+                document.getElementById('admin-modal').style.display = 'block';
+                
+                // Добавление нового документа
+                document.getElementById('add-document-btn').addEventListener('click', function() {
+                    const editorDocuments = document.getElementById('editor-documents');
+                    const newIndex = editorDocuments.children.length;
+                    
+                    const newDocument = document.createElement('div');
+                    newDocument.className = 'editor-document';
+                    newDocument.setAttribute('data-index', newIndex);
+                    newDocument.innerHTML = `
+                        <div class="form-group">
+                            <label>Название документа:</label>
+                            <input type="text" class="title-input" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Дата публикации:</label>
+                            <input type="text" class="date-input" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Ссылка на документ:</label>
+                            <input type="text" class="link-input" value="https://disk.yandex.ru/d/ubxzU_0RzkFsJw/">
+                        </div>
+                        <button class="delete-document-btn" data-index="${newIndex}">Удалить документ</button>
+                    `;
+                    editorDocuments.appendChild(newDocument);
+                });
+                
+                // Удаление документа
+                document.querySelectorAll('.delete-document-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        const document = document.querySelector(`.editor-document[data-index="${index}"]`);
+                        if (document) document.remove();
                     });
+                });
+            });
+            
+            // Закрытие модального окна
+            document.querySelector('.close').addEventListener('click', function() {
+                document.getElementById('admin-modal').style.display = 'none';
+            });
+            
+            // Сохранение изменений в документах
+            document.getElementById('save-documents-btn').addEventListener('click', function() {
+                const editorDocuments = document.querySelectorAll('.editor-document');
+                const documents = [];
+                
+                editorDocuments.forEach(doc => {
+                    const title = doc.querySelector('.title-input').value.trim();
+                    const date = doc.querySelector('.date-input').value.trim();
+                    const link = doc.querySelector('.link-input').value.trim();
                     
-                    // Добавляем активный класс к текущей кнопке
-                    this.classList.add('active');
+                    if (title && date && link) {
+                        documents.push({
+                            title,
+                            date,
+                            link
+                        });
+                    }
+                });
+                
+                // Сохранение в localStorage
+                localStorage.setItem('documentsList', JSON.stringify(documents));
+                
+                // Обновление списка документов на странице
+                const documentsList = document.querySelector('.documents-list');
+                documentsList.innerHTML = '';
+                
+                documents.forEach(doc => {
+                    const card = document.createElement('div');
+                    card.className = 'document-card';
+                    card.innerHTML = `
+                        <h3>${doc.title}</h3>
+                        <div class="document-date">${doc.date}</div>
+                        <a href="${doc.link}" target="_blank" class="document-link">Скачать документ</a>
+                    `;
+                    documentsList.appendChild(card);
+                });
+                
+                document.getElementById('admin-modal').style.display = 'none';
+            });
+            
+            // Загрузка данных из localStorage при загрузке страницы
+            const savedDocuments = localStorage.getItem('documentsList');
+            if (savedDocuments) {
+                try {
+                    const documents = JSON.parse(savedDocuments);
+                    const documentsList = document.querySelector('.documents-list');
+                    documentsList.innerHTML = '';
                     
-                    const filterCategory = this.dataset.category || 'all';
-                    
-                    // Фильтруем документы
-                    document.querySelectorAll('.document-card').forEach(card => {
-                        if (filterCategory === 'all' || card.dataset.category === filterCategory) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                    documents.forEach(doc => {
+                        const card = document.createElement('div');
+                        card.className = 'document-card';
+                        card.innerHTML = `
+                            <h3>${doc.title}</h3>
+                            <div class="document-date">${doc.date}</div>
+                            <a href="${doc.link}" target="_blank" class="document-link">Скачать документ</a>
+                        `;
+                        documentsList.appendChild(card);
                     });
-                });
-            });
-            
-            // Back to top button
-            const backToTopButton = document.createElement('button');
-            backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-            backToTopButton.className = 'back-to-top';
-            document.body.appendChild(backToTopButton);
-            
-            backToTopButton.style.cssText = `
-                position: fixed;
-                bottom: 25px;
-                right: 25px;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                background: var(--primary-blue);
-                color: white;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.3rem;
-                opacity: 0;
-                transform: scale(0.8);
-                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                box-shadow: 0 3px 10px rgba(0,120,215,0.4);
-                z-index: 1000;
-            `;
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 250) {
-                    backToTopButton.style.opacity = '1';
-                    backToTopButton.style.transform = 'scale(1)';
-                } else {
-                    backToTopButton.style.opacity = '0';
-                    backToTopButton.style.transform = 'scale(0.8)';
+                } catch (e) {
+                    console.error('Ошибка при загрузке данных из localStorage:', e);
                 }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            console.log('Страница "Полезные документы" успешно загружена');
+            }
         });
     </script>
 </body>
