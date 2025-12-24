@@ -4,459 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Комиссия по фигурному управлению мотоциклом | МФР</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #0078D7;
-            --primary-red: #E74C3C;
-            --primary-yellow: #F39C12;
-            --dark-blue: #1A2C56;
-            --light-gray: #F8F9FA;
-            --dark-gray: #2C3E50;
-            --white: #FFFFFF;
-            --text-dark: #333333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #e8f4ff, #f5f7fa);
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            flex: 1;
-        }
-        
-        /* Header styles - уменьшена высота до 25% экрана */
-        header {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            color: var(--white);
-            padding: 10px 0;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            max-height: 25vh;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-        }
-        
-        .logo-container {
-            max-width: 150px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo-img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-        
-        .hero-title {
-            font-size: 1.8rem;
-            margin: 10px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.0rem;
-            opacity: 0.9;
-            margin-bottom: 5px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Tiles container */
-        .tiles-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .tile {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none;
-            color: var(--white);
-            position: relative;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            transform: translateY(0);
-        }
-        
-        .tile:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-        }
-        
-        .tile::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.25));
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .tile:hover::before {
-            opacity: 1;
-        }
-        
-        .blue { background: linear-gradient(135deg, #1a3a6c, #0078D7); }
-        .red { background: linear-gradient(135deg, #9a2b2b, #E74C3C); }
-        .yellow { background: linear-gradient(135deg, #b07c0f, #F39C12); }
-        .purple { background: linear-gradient(135deg, #5d338f, #8e44ad); }
-        .green { background: linear-gradient(135deg, #1d6a4d, #27ae60); }
-        
-        .tile-content {
-            position: relative;
-            z-index: 2;
-            transition: transform 0.3s ease;
-        }
-        
-        .tile:hover .tile-content {
-            transform: scale(1.03);
-        }
-        
-        .tile-icon {
-            font-size: 3.5rem;
-            margin-bottom: 12px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-        
-        .tile-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .tile-description {
-            font-size: 1.0rem;
-            opacity: 0.9;
-            max-width: 90%;
-            margin: 0 auto;
-        }
-        
-        /* Footer styles */
-        footer {
-            background: linear-gradient(135deg, var(--dark-blue), #0d2142);
-            color: var(--white);
-            padding: 25px 0;
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--primary-yellow);
-            text-decoration: none;
-            font-size: 1.0rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        .footer-contact {
-            margin: 12px 0;
-            font-size: 1.0rem;
-        }
-        
-        .footer-contact a {
-            color: var(--primary-yellow);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-contact a:hover {
-            color: var(--white);
-        }
-        
-        .copyright {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 1.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .tiles-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .tile {
-                height: 230px;
-            }
-            
-            .tile-icon {
-                font-size: 3.0rem;
-            }
-            
-            .tile-title {
-                font-size: 1.4rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 0.8rem;
-            }
-            
-            .tile {
-                height: 200px;
-                padding: 15px;
-            }
-            
-            .tile-icon {
-                font-size: 2.5rem;
-            }
-            
-            .tile-title {
-                font-size: 1.2rem;
-            }
-            
-            .tile-description {
-                font-size: 0.9rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .footer-links a {
-                font-size: 0.95rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="Логотип комиссии по мотоджимхане" class="logo-img">
-            </div>
-            <h1 class="hero-title">Комиссия по фигурному управлению мотоциклом</h1>
-            <p class="hero-subtitle">Федерация мотоциклетного спорта России</p>
-        </div>
-    </header>
-
     <div class="container">
-        <div class="tiles-container">
-            <a href="about.html" class="tile blue">
-                <div class="tile-content">
-                    <i class="fas fa-info-circle tile-icon"></i>
-                    <h2 class="tile-title">О комиссии</h2>
-                    <p class="tile-description">История, цели и задачи комиссии по фигурному управлению мотоциклом</p>
-                </div>
-            </a>
-
-            <a href="structure.html" class="tile red">
-                <div class="tile-content">
-                    <i class="fas fa-sitemap tile-icon"></i>
-                    <h2 class="tile-title">Структура комиссии</h2>
-                    <p class="tile-description">Руководство и региональные представители по всей России</p>
-                </div>
-            </a>
-
-            <a href="calendar.html" class="tile yellow">
-                <div class="tile-content">
-                    <i class="fas fa-calendar-alt tile-icon"></i>
-                    <h2 class="tile-title">Календарь соревнований</h2>
-                    <p class="tile-description">Официальные соревнования и мероприятия 2025 года</p>
-                </div>
-            </a>
-
-            <a href="documents.html" class="tile purple">
-                <div class="tile-content">
-                    <i class="fas fa-file-alt tile-icon"></i>
-                    <h2 class="tile-title">Документы</h2>
-                    <p class="tile-description">Правила, регламенты и нормативные документы</p>
-                </div>
-            </a>
-
-            <a href="contacts.html" class="tile green">
-                <div class="tile-content">
-                    <i class="fas fa-address-book tile-icon"></i>
-                    <h2 class="tile-title">Контакты</h2>
-                    <p class="tile-description">Как связаться с комиссией и региональными представителями</p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="https://www.mfr.ru/" target="_blank">
-                        <i class="fas fa-globe"></i> Официальный сайт МФР
-                    </a>
-                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">
-                        <i class="fas fa-motorcycle"></i> Страница мотоджимханы на сайте МФР
-                    </a>
-                </div>
-                
-                <div class="footer-contact">
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:serovdima@list.ru">serovdima@list.ru</a></p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+79778236390">+7 (977) 823-63-90</a></p>
-                </div>
-                
-                <p class="copyright">
-                    © 2025 Федерация мотоциклетного спорта России<br>
-                    Официальный сайт комиссии по фигурному управлению мотоциклом (мотоджимхане)
-                </p>
+        <header class="header">
+            <div class="logo">
+                <img src="images/logo.png" alt="Логотип комиссии">
             </div>
-        </div>
-    </footer>
+            <nav class="nav">
+                <ul>
+                    <li><a href="about.html">О комиссии</a></li>
+                    <li><a href="structure.html">Структура комиссии</a></li>
+                    <li><a href="calendar.html">Календарь соревнований</a></li>
+                    <li><a href="documents.html">Полезные документы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animation for tiles on load
-            const tiles = document.querySelectorAll('.tile');
-            tiles.forEach((tile, index) => {
-                tile.style.opacity = '0';
-                tile.style.transform = 'translateY(15px)';
-                setTimeout(() => {
-                    tile.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                    tile.style.opacity = '1';
-                    tile.style.transform = 'translateY(0)';
-                }, 200 + index * 80);
-            });
+        <main class="content">
+            <h1 class="page-title">Комиссия по фигурному управлению мотоциклом<br>(мотоджимхана)</h1>
+            <p class="intro-text">Добро пожаловать на официальный сайт комиссии по фигурному управлению мотоциклом при Мотоциклетной Федерации России.</p>
             
-            // Back to top button
-            const backToTopButton = document.createElement('button');
-            backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-            backToTopButton.className = 'back-to-top';
-            document.body.appendChild(backToTopButton);
-            
-            backToTopButton.style.cssText = `
-                position: fixed;
-                bottom: 25px;
-                right: 25px;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                background: var(--primary-blue);
-                color: white;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.3rem;
-                opacity: 0;
-                transform: scale(0.8);
-                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                box-shadow: 0 3px 10px rgba(0,120,215,0.4);
-                z-index: 1000;
-            `;
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 250) {
-                    backToTopButton.style.opacity = '1';
-                    backToTopButton.style.transform = 'scale(1)';
-                } else {
-                    backToTopButton.style.opacity = '0';
-                    backToTopButton.style.transform = 'scale(0.8)';
-                }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Hover effect enhancement
-            document.querySelectorAll('.tile').forEach(tile => {
-                tile.addEventListener('mouseenter', function() {
-                    this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.25)';
-                });
+            <div class="sections">
+                <div class="section-card">
+                    <h2>О комиссии</h2>
+                    <p>История создания комиссии, цели и задачи, направления деятельности.</p>
+                    <a href="about.html" class="read-more">Подробнее</a>
+                </div>
                 
-                tile.addEventListener('mouseleave', function() {
-                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.12)';
-                });
-            });
-            
-            console.log('Сайт комиссии по мотоджимхане МФР успешно загружен');
-        });
-    </script>
+                <div class="section-card">
+                    <h2>Структура комиссии</h2>
+                    <p>Руководство комиссии и региональные представители по всей России.</p>
+                    <a href="structure.html" class="read-more">Подробнее</a>
+                </div>
+                
+                <div class="section-card">
+                    <h2>Календарь соревнований</h2>
+                    <p>Официальные соревнования по фигурному управлению мотоциклом на 2025 год.</p>
+                    <a href="calendar.html" class="read-more">Подробнее</a>
+                </div>
+                
+                <div class="section-card">
+                    <h2>Полезные документы</h2>
+                    <p>Правила, регламенты, положения и другие нормативные документы.</p>
+                    <a href="documents.html" class="read-more">Подробнее</a>
+                </div>
+                
+                <div class="section-card">
+                    <h2>Контакты</h2>
+                    <p>Как связаться с комиссией и региональными представителями.</p>
+                    <a href="contacts.html" class="read-more">Подробнее</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-logos">
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <img src="images/mfr-logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank">
+                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+            </div>
+            <div class="copyright">
+                © 2025 Федерация мотоциклетного спорта России
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
