@@ -6,34 +6,49 @@
     <title>Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="logo-container">
                 <div class="logo-left">
-                    <div class="logo-img">LOGO</div>
+                    <img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
                 </div>
                 <div class="logo-right">
                     <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
                     <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
                 </div>
             </div>
-            
             <button class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
-            
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="nav-link active">Главная</a></li>
-                    <li><a href="#about" class="nav-link">О комиссии</a></li>
+                    <li><a href="about.html" class="nav-link">О комиссии</a></li>
                     <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
-                    <li><a href="#calendar" class="nav-link">Календарь соревнований</a></li>
-                    <li><a href="#documents" class="nav-link">Полезные документы</a></li>
-                    <li><a href="#partners" class="nav-link">Партнеры</a></li>
+                    <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
+                    <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    <li><a href="partners.html" class="nav-link">Партнеры</a></li>
+                    <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
+            </nav>
+            
+            <!-- Mobile menu -->
+            <nav class="mobile-menu">
+                <div class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link active">Главная</a></li>
+                        <li><a href="about.html" class="nav-link">О комиссии</a></li>
+                        <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+                        <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
+                        <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                        <li><a href="partners.html" class="nav-link">Партнеры</a></li>
+                        <li><a href="#" class="nav-link admin-link">Админка</a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
 
@@ -57,7 +72,7 @@
                         <div class="news-date">25.10.2025</div>
                         <h3>Обновлены правила соревнований</h3>
                         <p>Утверждена новая редакция правил соревнований по фигурному управлению мотоциклом с изменениями в системе оценки и требованиям к экипировке.</p>
-                        <a href="#" class="read-more">Читать подробнее</a>
+                        <a href="documents.html" class="read-more">Читать подробнее</a>
                     </div>
                 </div>
             </section>
@@ -110,19 +125,19 @@
                 <h2 class="section-title"><i class="fas fa-images"></i> Наши соревнования</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">Соревнования в Твери</div>
+                        <img src="images/competition1.jpg" alt="Соревнования в Твери">
                         <div class="gallery-caption">Чемпионат России 2024, Тверская область</div>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">Соревнования в Нижнем Новгороде</div>
+                        <img src="images/competition2.jpg" alt="Соревнования в Нижнем Новгороде">
                         <div class="gallery-caption">Кубок России, Нижний Новгород</div>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">Тренировки в Москву</div>
+                        <img src="images/competition3.jpg" alt="Тренировки в Москву">
                         <div class="gallery-caption">Сборная тренировка, Москва</div>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">Детские соревнования</div>
+                        <img src="images/competition4.jpg" alt="Детские соревнования">
                         <div class="gallery-caption">Первенство среди юниоров, Смоленск</div>
                     </div>
                 </div>
@@ -134,8 +149,12 @@
 
         <footer class="footer">
             <div class="footer-logos">
-                <div class="logo-placeholder">МФР</div>
-                <div class="logo-placeholder">Минспорт</div>
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <img src="images/mfr_logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank">
+                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
+                </a>
             </div>
             <div class="footer-links">
                 <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
@@ -148,109 +167,75 @@
         </footer>
     </div>
 
-    <!-- Admin panel tab -->
-    <div class="admin-tab" id="admin-tab">
-        <i class="fas fa-cog"></i>
-    </div>
-
-    <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
-        <div class="admin-header">
-            <h2>Панель администратора</h2>
-            <button class="close-admin-panel" id="close-admin-panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="content">Контент</button>
-            <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура</button>
-        </div>
-        
-        <div class="tab-content active" id="content-tab">
-            <h3>Управление контентом</h3>
-            <div class="form-group">
-                <label for="news-title">Заголовок новости</label>
-                <input type="text" id="news-title" class="form-control" placeholder="Введите заголовок">
-            </div>
-            <div class="form-group">
-                <label for="news-date">Дата</label>
-                <input type="date" id="news-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="news-content">Текст новости</label>
-                <textarea id="news-content" class="form-control" rows="4" placeholder="Введите текст новости"></textarea>
-            </div>
-            <button class="btn btn-primary" id="save-news-btn">
-                <i class="fas fa-save"></i> Сохранить новость
-            </button>
-        </div>
-        
-        <div class="tab-content" id="documents-tab">
-            <h3>Управление документами</h3>
-            <div class="form-group">
-                <label for="document-name">Название документа</label>
-                <input type="text" id="document-name" class="form-control" placeholder="Введите название">
-            </div>
-            <div class="form-group">
-                <label for="document-url">Ссылка на документ</label>
-                <input type="url" id="document-url" class="form-control" placeholder="Введите URL документа">
-            </div>
-            <div class="form-group">
-                <label for="document-category">Категория</label>
-                <select id="document-category" class="form-control">
-                    <option value="rules">Правила</option>
-                    <option value="regulations">Регламенты</option>
-                    <option value="licenses">Лицензии</option>
-                    <option value="other">Прочее</option>
-                </select>
-            </div>
-            <button class="btn btn-primary" id="save-document-btn">
-                <i class="fas fa-plus"></i> Добавить документ
-            </button>
-        </div>
-        
-        <div class="tab-content" id="structure-tab">
-            <h3>Управление структурой</h3>
-            <div class="form-group">
-                <label for="member-name">ФИО члена комиссии</label>
-                <input type="text" id="member-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="member-position">Должность</label>
-                <input type="text" id="member-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="member-region">Регион</label>
-                <input type="text" id="member-region" class="form-control" placeholder="Введите регион">
-            </div>
-            <button class="btn btn-primary" id="save-member-btn">
-                <i class="fas fa-plus"></i> Добавить члена комиссии
-            </button>
-        </div>
-
-        <div class="admin-login">
-            <div class="form-group">
-                <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
-            </div>
-            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-        </div>
-    </div>
-
     <!-- Admin login modal -->
     <div class="modal" id="admin-login-modal">
         <div class="modal-content">
             <span class="close-modal" id="close-login-modal">&times;</span>
             <h2>Вход в админ-панель</h2>
             <div class="form-group">
-                <label for="login-password">Пароль</label>
-                <input type="password" id="login-password" class="form-control">
+                <label for="admin-password">Пароль</label>
+                <input type="password" id="admin-password" class="form-control">
                 <p class="password-hint">Пароль предоставлен Председателем комиссии</p>
             </div>
             <button id="login-btn" class="btn btn-primary">Войти</button>
         </div>
     </div>
+
+    <!-- Admin panel modal -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-admin-modal">&times;</span>
+            <h2>Панель администратора</h2>
+            
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
+                <button class="tab-btn" data-tab="documents">Документы</button>
+                <button class="tab-btn" data-tab="structure">Структура комиссии</button>
+            </div>
+            
+            <div class="tab-content active" id="calendar-tab">
+                <h3>Управление соревнованиями</h3>
+                <div class="form-group">
+                    <label for="competition-name">Название соревнования</label>
+                    <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
+                </div>
+                <div class="form-group">
+                    <label for="competition-date">Дата проведения</label>
+                    <input type="date" id="competition-date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="competition-location">Место проведения</label>
+                    <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
+                </div>
+                <div class="form-group">
+                    <label for="competition-contact">Контактное лицо</label>
+                    <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
+                </div>
+                <div class="form-group">
+                    <label for="protocol-file">Протокол соревнований (URL)</label>
+                    <input type="url" id="protocol-file" class="form-control" placeholder="Ссылка на протокол в Яндекс.Диске">
+                    <p class="help-text">Протоколы должны быть загружены в Яндекс.Диск: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                </div>
+                <button id="add-competition-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить соревнование
+                </button>
+                <div id="competitions-list" class="admin-list"></div>
+            </div>
+            
+            <div class="tab-content" id="documents-tab">
+                <h3>Управление документами</h3>
+                <p>Все документы хранятся на Яндекс.Диске: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                <p>Для добавления новых документов используйте интерфейс Яндекс.Диска</p>
+            </div>
+            
+            <div class="tab-content" id="structure-tab">
+                <h3>Управление структурой комиссии</h3>
+                <p>Для редактирования структуры комиссии обратитесь к Председателю комиссии</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://vk.com/js/api/openapi.js?169" async></script>
 </body>
 </html>
