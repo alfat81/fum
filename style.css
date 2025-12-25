@@ -92,6 +92,57 @@ body {
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
+/* Mobile menu button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 101;
+}
+
+/* Mobile menu */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav ul li {
+    margin: 8px 0;
+}
+
+.mobile-nav ul li a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.mobile-nav ul li a:hover,
+.mobile-nav ul li a.active {
+    background: rgba(255,255,255,0.2);
+    color: var(--accent-yellow);
+}
+
 /* Navigation styles */
 .main-nav ul {
     display: flex;
@@ -1273,69 +1324,27 @@ body {
 }
 
 /* Responsive design */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
     .logo-container {
         flex-direction: column;
         text-align: center;
+        gap: 10px;
     }
     
     .logo-right {
         text-align: center;
-    }
-    
-    .official-name {
-        font-size: 1.1rem;
-    }
-    
-    .commission-name {
-        font-size: 1.3rem;
-    }
-    
-    .hero-title {
-        font-size: 2.4rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .main-nav ul {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .nav-link {
-        padding: 12px 20px;
-        font-size: 1.1rem;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .btn {
-        width: 100%;
-        max-width: 250px;
-    }
-    
-    .news-grid,
-    .leadership-grid,
-    .competitions-list,
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo-left {
-        max-width: 100px;
     }
     
     .official-name {
@@ -1346,12 +1355,111 @@ body {
         font-size: 1.2rem;
     }
     
+    .hero-section {
+        padding: 25px 15px;
+    }
+    
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
     .hero-subtitle {
         font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 220px;
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .calendar-section {
+        padding: 0 10px;
+    }
+    
+    .calendar-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .calendar-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .current-month {
+        font-size: 1.5rem;
+    }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: 5px;
+    }
+    
+    .day-number {
+        font-size: 0.9rem;
+    }
+    
+    .competition-card,
+    .document-card,
+    .contact-card,
+    .news-card {
+        padding: 20px 15px;
+    }
+    
+    .competition-title,
+    .document-title,
+    .contact-card h2,
+    .news-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .footer-logos {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .footer-logos img {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-left {
+        max-width: 90px;
+    }
+    
+    .logo-img {
+        height: 60px;
+    }
+    
+    .official-name {
+        font-size: 0.9rem;
+    }
+    
+    .commission-name {
+        font-size: 1.1rem;
+    }
+    
+    .hero-title {
+        font-size: 1.7rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
     }
     
     .tile {
@@ -1363,16 +1471,20 @@ body {
     }
     
     .tile-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
-    .calendar-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+    .news-date {
+        font-size: 0.9rem;
     }
     
     .modal-content {
         padding: 20px 15px;
+        width: 95%;
+    }
+    
+    .form-control {
+        padding: 10px 12px;
+        font-size: 0.95rem;
     }
 }
