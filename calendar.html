@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Календарь соревнований | Комиссия по фигурному управлению мотоциклом</title>
+    <title>Календарь соревнований | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="logo-container">
                 <div class="logo-left">
-                    <div class="logo-img">LOGO</div>
+                    <img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
                 </div>
                 <div class="logo-right">
                     <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
                     <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
                 </div>
             </div>
-            
             <button class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
-            
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="nav-link">Главная</a></li>
@@ -32,9 +29,26 @@
                     <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                    <li><a href="partners.html" class="nav-link">Партнеры</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    <li><a href="partners.html" class="nav-link">Партнеры</a></li>
+                    <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
+            </nav>
+            
+            <!-- Mobile menu -->
+            <nav class="mobile-menu">
+                <div class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Главная</a></li>
+                        <li><a href="about.html" class="nav-link">О комиссии</a></li>
+                        <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+                        <li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
+                        <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                        <li><a href="partners.html" class="nav-link">Партнеры</a></li>
+                        <li><a href="#" class="nav-link admin-link">Админка</a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
 
@@ -60,7 +74,7 @@
             <section class="competitions-section">
                 <h2 class="section-title">Предстоящие соревнования</h2>
                 
-                <div class="competitions-list" id="competitions-container">
+                <div class="competitions-list">
                     <div class="competition-card">
                         <div class="competition-date">12-14 мая 2025</div>
                         <h3 class="competition-title">2 этап Кубка России по фигурному управлению мотоциклом</h3>
@@ -90,14 +104,38 @@
                             <i class="fas fa-phone"></i> +7 (977) 823-63-90
                         </div>
                     </div>
+                    
+                    <div class="competition-card">
+                        <div class="competition-date">5-6 августа 2025</div>
+                        <h3 class="competition-title">Женский Кубок МФР</h3>
+                        <div class="competition-location">Нижний Новгород</div>
+                        <div class="competition-contact">
+                            <i class="fas fa-user"></i> Алексей Фатьянов<br>
+                            <i class="fas fa-phone"></i> +7 (905) 234-56-78
+                        </div>
+                    </div>
+                    
+                    <div class="competition-card">
+                        <div class="competition-date">12-13 сентября 2025</div>
+                        <h3 class="competition-title">Кубок юниоров</h3>
+                        <div class="competition-location">Вологда</div>
+                        <div class="competition-contact">
+                            <i class="fas fa-user"></i> Наталия Недайводина<br>
+                            <i class="fas fa-phone"></i> +7 (911) 456-78-90
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
             <div class="footer-logos">
-                <div class="logo-placeholder">МФР</div>
-                <div class="logo-placeholder">Минспорт</div>
+                <a href="https://www.mfr.ru/" target="_blank">
+                    <img src="images/mfr_logo.png" alt="Логотип МФР">
+                </a>
+                <a href="https://www.minsport.gov.ru/" target="_blank">
+                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
+                </a>
             </div>
             <div class="footer-links">
                 <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
@@ -110,60 +148,24 @@
         </footer>
     </div>
 
-    <!-- Admin panel tab -->
-    <div class="admin-tab" id="admin-tab">
-        <i class="fas fa-cog"></i>
-    </div>
-
-    <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
-        <div class="admin-header">
-            <h2>Панель администратора</h2>
-            <button class="close-admin-panel" id="close-admin-panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="calendar">Календарь</button>
-        </div>
-        
-        <div class="tab-content active" id="calendar-tab">
-            <h3>Управление соревнованиями</h3>
-            <div class="form-group">
-                <label for="competition-name">Название соревнования</label>
-                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
-            </div>
-            <div class="form-group">
-                <label for="competition-date">Дата проведения</label>
-                <input type="date" id="competition-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="competition-location">Место проведения</label>
-                <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
-            </div>
-            <div class="form-group">
-                <label for="competition-contact">Контактное лицо</label>
-                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
-            </div>
-            <button class="btn btn-primary" id="add-competition-btn">
-                <i class="fas fa-plus"></i> Добавить соревнование
-            </button>
-        </div>
-
-        <div class="admin-login">
+    <!-- Admin login modal -->
+    <div class="modal" id="admin-login-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-login-modal">&times;</span>
+            <h2>Вход в админ-панель</h2>
             <div class="form-group">
                 <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
+                <input type="password" id="admin-password" class="form-control">
+                <p class="password-hint">Пароль предоставлен Председателем комиссии</p>
             </div>
-            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
+            <button id="login-btn" class="btn btn-primary">Войти</button>
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script>
         // JavaScript для календаря
         document.addEventListener('DOMContentLoaded', function() {
-            // Простой календарь для демонстрации
             const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
                               "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
             const dayNames = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
@@ -171,6 +173,15 @@
             let currentDate = new Date();
             let currentMonth = 4; // Май (0-индексированный)
             let currentYear = 2025;
+            
+            // Данные о соревнованиях
+            const competitions = [
+                { date: '2025-05-12', title: '2 этап Кубка России', location: 'Смоленск', contact: 'Глеб Симдянкин' },
+                { date: '2025-05-20', title: 'Кубок Москвы', location: 'Москва', contact: 'Александр Ципилев' },
+                { date: '2025-06-15', title: 'Чемпионат России', location: 'Тверская область', contact: 'Дмитрий Серов' },
+                { date: '2025-08-05', title: 'Женский Кубок МФР', location: 'Нижний Новгород', contact: 'Алексей Фатьянов' },
+                { date: '2025-09-12', title: 'Кубок юниоров', location: 'Вологда', contact: 'Наталия Недайводина' }
+            ];
             
             // Функция отображения календаря
             function renderCalendar(month, year) {
@@ -207,10 +218,25 @@
                     dayElement.className = 'calendar-day';
                     dayElement.innerHTML = `<div class="day-number">${day}</div>`;
                     
-                    // Выделяем сегодняшний день
-                    const today = new Date();
-                    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                        dayElement.classList.add('today');
+                    // Проверяем, есть ли в этот день соревнования
+                    const competitionDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                    const dayCompetitions = competitions.filter(comp => comp.date === competitionDate);
+                    
+                    if (dayCompetitions.length > 0) {
+                        dayElement.classList.add('has-competition');
+                        
+                        // Создаем контейнер для соревнований
+                        const competitionsContainer = document.createElement('div');
+                        competitionsContainer.className = 'day-competitions';
+                        
+                        dayCompetitions.forEach(comp => {
+                            const compElement = document.createElement('div');
+                            compElement.className = 'competition-item';
+                            compElement.textContent = comp.title;
+                            competitionsContainer.appendChild(compElement);
+                        });
+                        
+                        dayElement.appendChild(competitionsContainer);
                     }
                     
                     calendarGrid.appendChild(dayElement);
@@ -236,7 +262,7 @@
                 renderCalendar(currentMonth, currentYear);
             });
             
-            // Начальное отображение календаря
+            // Начальное отображение
             renderCalendar(currentMonth, currentYear);
         });
     </script>
