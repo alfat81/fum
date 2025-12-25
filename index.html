@@ -157,7 +157,7 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="documents.html" class="document-link">Документы комиссии</a>
                 <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
                 <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
             </div>
@@ -191,6 +191,7 @@
                 <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
                 <button class="tab-btn" data-tab="documents">Документы</button>
                 <button class="tab-btn" data-tab="structure">Структура комиссии</button>
+                <button class="tab-btn" data-tab="regions">Региональные комиссии</button>
             </div>
             
             <div class="tab-content active" id="calendar-tab">
@@ -212,9 +213,9 @@
                     <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
                 </div>
                 <div class="form-group">
-                    <label for="protocol-file">Протокол соревнований (URL)</label>
-                    <input type="url" id="protocol-file" class="form-control" placeholder="Ссылка на протокол в Яндекс.Диске">
-                    <p class="help-text">Протоколы должны быть загружены в Яндекс.Диск: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
+                    <label for="protocol-file">Протокол соревнований (URL файла)</label>
+                    <input type="url" id="protocol-file" class="form-control" placeholder="Прямая ссылка на файл протокола">
+                    <p class="help-text">Файлы должны быть загружены в публичную папку Яндекс.Диска с доступом по прямой ссылке</p>
                 </div>
                 <button id="add-competition-btn" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Добавить соревнование
@@ -224,13 +225,87 @@
             
             <div class="tab-content" id="documents-tab">
                 <h3>Управление документами</h3>
-                <p>Все документы хранятся на Яндекс.Диске: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
-                <p>Для добавления новых документов используйте интерфейс Яндекс.Диска</p>
+                <div class="form-group">
+                    <label for="document-name">Название документа</label>
+                    <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
+                </div>
+                <div class="form-group">
+                    <label for="document-url">Прямая ссылка на документ</label>
+                    <input type="url" id="document-url" class="form-control" placeholder="Прямая ссылка на файл документа">
+                </div>
+                <div class="form-group">
+                    <label for="document-category">Категория документа</label>
+                    <select id="document-category" class="form-control">
+                        <option value="rules">Правила</option>
+                        <option value="regulations">Регламенты</option>
+                        <option value="licenses">Лицензии</option>
+                        <option value="other">Прочее</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="document-date">Дата публикации</label>
+                    <input type="date" id="document-date" class="form-control">
+                </div>
+                <button id="add-document-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить документ
+                </button>
+                <div id="documents-list" class="admin-list"></div>
             </div>
             
             <div class="tab-content" id="structure-tab">
                 <h3>Управление структурой комиссии</h3>
-                <p>Для редактирования структуры комиссии обратитесь к Председателю комиссии</p>
+                <div class="form-group">
+                    <label for="leader-name">ФИО руководителя</label>
+                    <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
+                </div>
+                <div class="form-group">
+                    <label for="leader-position">Должность</label>
+                    <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
+                </div>
+                <div class="form-group">
+                    <label for="leader-region">Регион</label>
+                    <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
+                </div>
+                <div class="form-group">
+                    <label for="leader-phone">Телефон</label>
+                    <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+                <div class="form-group">
+                    <label for="leader-email">Email</label>
+                    <input type="email" id="leader-email" class="form-control" placeholder="Введите email">
+                </div>
+                <button id="add-leader-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить руководителя
+                </button>
+                <div id="leaders-list" class="admin-list"></div>
+            </div>
+            
+            <div class="tab-content" id="regions-tab">
+                <h3>Управление региональными комиссиями</h3>
+                <div class="form-group">
+                    <label for="region-name">Регион</label>
+                    <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
+                </div>
+                <div class="form-group">
+                    <label for="representative-name">ФИО представителя</label>
+                    <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
+                </div>
+                <div class="form-group">
+                    <label for="representative-position">Должность</label>
+                    <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
+                </div>
+                <div class="form-group">
+                    <label for="representative-phone">Телефон</label>
+                    <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+                <div class="form-group">
+                    <label for="representative-email">Email</label>
+                    <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
+                </div>
+                <button id="add-region-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить регионального представителя
+                </button>
+                <div id="regions-list" class="admin-list"></div>
             </div>
         </div>
     </div>
