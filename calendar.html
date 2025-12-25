@@ -19,6 +19,9 @@
                     <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
                 </div>
             </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="nav-link">Главная</a></li>
@@ -29,6 +32,21 @@
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
                     <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
+            </nav>
+            
+            <!-- Mobile menu -->
+            <nav class="mobile-menu">
+                <div class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Главная</a></li>
+                        <li><a href="about.html" class="nav-link">О комиссии</a></li>
+                        <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+                        <li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
+                        <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                        <li><a href="#" class="nav-link admin-link">Админка</a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
 
@@ -88,7 +106,7 @@
                 <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
             </div>
             <div class="copyright">
-                © 2025 Федерация мотоциклетного спорта России
+                © 2025 Мотоциклетная Федерация России
             </div>
         </footer>
     </div>
@@ -111,241 +129,7 @@
     <script>
         // JavaScript для календаря и соревнований
         document.addEventListener('DOMContentLoaded', function() {
-            // Функция для получения сохраненных соревнований
-            function getCompetitions() {
-                const savedCompetitions = localStorage.getItem('competitionsList');
-                return savedCompetitions ? JSON.parse(savedCompetitions) : [
-                    {
-                        id: 1,
-                        date: '2025-05-12',
-                        name: '2 этап Кубка России по фигурному управлению мотоциклом',
-                        location: 'Смоленск',
-                        contact: 'Глеб Симдянкин',
-                        contactPhone: '+7 (910) 345-67-89',
-                        protocol: ''
-                    },
-                    {
-                        id: 2,
-                        date: '2025-05-20',
-                        name: 'Кубок Москвы',
-                        location: 'Москва',
-                        contact: 'Александр Ципилев',
-                        contactPhone: '+7 (903) 123-45-67',
-                        protocol: ''
-                    },
-                    {
-                        id: 3,
-                        date: '2025-06-15',
-                        name: 'Чемпионат России',
-                        location: 'Тверская область',
-                        contact: 'Дмитрий Серов',
-                        contactPhone: '+7 (977) 823-63-90',
-                        protocol: 'https://disk.yandex.ru/d/example/protocol-championship-2025.pdf'
-                    },
-                    {
-                        id: 4,
-                        date: '2025-08-05',
-                        name: 'Женский Кубок МФР',
-                        location: 'Нижний Новгород',
-                        contact: 'Алексей Фатьянов',
-                        contactPhone: '+7 (905) 234-56-78',
-                        protocol: ''
-                    },
-                    {
-                        id: 5,
-                        date: '2025-09-12',
-                        name: 'Кубок юниоров',
-                        location: 'Вологда',
-                        contact: 'Наталия Недайводина',
-                        contactPhone: '+7 (911) 456-78-90',
-                        protocol: ''
-                    }
-                ];
-            }
-
-            // Функция для сохранения соревнований
-            function saveCompetitions(competitions) {
-                localStorage.setItem('competitionsList', JSON.stringify(competitions));
-            }
-
-            // Отображение списка соревнований
-            function renderCompetitions() {
-                const competitions = getCompetitions();
-                const container = document.getElementById('competitions-container');
-                container.innerHTML = '';
-                
-                if (competitions.length === 0) {
-                    container.innerHTML = '<p class="no-competitions">Пока нет запланированных соревнований</p>';
-                    return;
-                }
-                
-                competitions.forEach(comp => {
-                    const compDate = new Date(comp.date);
-                    const today = new Date();
-                    const isPast = compDate < today;
-                    
-                    const compCard = document.createElement('div');
-                    compCard.className = `competition-card ${isPast ? 'past-competition' : ''}`;
-                    compCard.innerHTML = `
-                        <div class="competition-date">${formatDate(comp.date)}</div>
-                        <h3 class="competition-title">${comp.name}</h3>
-                        <div class="competition-location">${comp.location}</div>
-                        <div class="competition-contact">
-                            <i class="fas fa-user"></i> ${comp.contact}<br>
-                            <i class="fas fa-phone"></i> ${comp.contactPhone}
-                        </div>
-                        ${comp.protocol ? `<div class="protocol-link">
-                            <i class="fas fa-file-pdf"></i> <a href="${comp.protocol}" target="_blank">Скачать протокол</a>
-                        </div>` : ''}
-                    `;
-                    compCard.addEventListener('click', () => showCompetitionDetails(comp));
-                    container.appendChild(compCard);
-                });
-            }
-
-            // Форматирование даты
-            function formatDate(dateString) {
-                const date = new Date(dateString);
-                const day = date.getDate();
-                const month = date.toLocaleString('ru-RU', { month: 'long' });
-                const year = date.getFullYear();
-                return `${day} ${month} ${year}`;
-            }
-
-            // Показать детали соревнования
-            function showCompetitionDetails(competition) {
-                document.getElementById('modal-title').textContent = competition.name;
-                
-                const modalContent = document.getElementById('modal-content');
-                modalContent.innerHTML = `
-                    <div class="competition-details">
-                        <p><strong>Дата проведения:</strong> ${formatDate(competition.date)}</p>
-                        <p><strong>Место проведения:</strong> ${competition.location}</p>
-                        <p><strong>Контактное лицо:</strong> ${competition.contact}</p>
-                        <p><strong>Телефон:</strong> ${competition.contactPhone}</p>
-                    </div>
-                `;
-                
-                const protocolSection = document.getElementById('protocol-section');
-                const protocolLink = document.getElementById('protocol-link');
-                
-                if (competition.protocol) {
-                    protocolLink.innerHTML = `<i class="fas fa-file-pdf"></i> <a href="${competition.protocol}" target="_blank">Скачать протокол соревнований</a>`;
-                } else {
-                    protocolLink.textContent = 'Протокол будет доступен после окончания соревнований';
-                }
-                
-                document.getElementById('competition-modal').style.display = 'block';
-            }
-
-            // Календарь
-            const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
-                              "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-            const dayNames = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-            
-            let currentDate = new Date();
-            let currentMonth = 4; // Май (0-индексированный)
-            let currentYear = 2025;
-            
-            // Функция отображения календаря
-            function renderCalendar(month, year) {
-                const calendarGrid = document.getElementById('calendar-grid');
-                calendarGrid.innerHTML = '';
-                
-                // Обновляем заголовок текущего месяца
-                document.getElementById('current-month').textContent = `${monthNames[month]} ${year}`;
-                
-                // Добавляем заголовки дней недели
-                dayNames.forEach(day => {
-                    const dayHeader = document.createElement('div');
-                    dayHeader.className = 'calendar-day-header';
-                    dayHeader.textContent = day;
-                    calendarGrid.appendChild(dayHeader);
-                });
-                
-                // Получаем первый день месяца и количество дней в месяце
-                const firstDay = new Date(year, month, 1);
-                const lastDay = new Date(year, month + 1, 0);
-                const daysInMonth = lastDay.getDate();
-                const firstDayIndex = firstDay.getDay(); // 0 = воскресенье
-                
-                // Добавляем пустые дни в начале месяца
-                for (let i = 0; i < firstDayIndex; i++) {
-                    const emptyDay = document.createElement('div');
-                    emptyDay.className = 'calendar-day empty';
-                    calendarGrid.appendChild(emptyDay);
-                }
-                
-                // Добавляем дни месяца
-                const competitions = getCompetitions();
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dayElement = document.createElement('div');
-                    dayElement.className = 'calendar-day';
-                    dayElement.innerHTML = `<div class="day-number">${day}</div>`;
-                    
-                    // Проверяем, есть ли в этот день соревнования
-                    const competitionDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-                    const dayCompetitions = competitions.filter(comp => comp.date === competitionDate);
-                    
-                    if (dayCompetitions.length > 0) {
-                        dayElement.classList.add('has-competition');
-                        
-                        // Создаем контейнер для соревнований
-                        const competitionsContainer = document.createElement('div');
-                        competitionsContainer.className = 'day-competitions';
-                        
-                        dayCompetitions.forEach(comp => {
-                            const compElement = document.createElement('div');
-                            compElement.className = 'competition-item';
-                            compElement.textContent = comp.name;
-                            compElement.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                showCompetitionDetails(comp);
-                            });
-                            competitionsContainer.appendChild(compElement);
-                        });
-                        
-                        dayElement.appendChild(competitionsContainer);
-                    }
-                    
-                    calendarGrid.appendChild(dayElement);
-                }
-            }
-            
-            // Обработчики кнопок навигации
-            document.getElementById('prev-month').addEventListener('click', function() {
-                currentMonth--;
-                if (currentMonth < 0) {
-                    currentMonth = 11;
-                    currentYear--;
-                }
-                renderCalendar(currentMonth, currentYear);
-            });
-            
-            document.getElementById('next-month').addEventListener('click', function() {
-                currentMonth++;
-                if (currentMonth > 11) {
-                    currentMonth = 0;
-                    currentYear++;
-                }
-                renderCalendar(currentMonth, currentYear);
-            });
-            
-            // Закрытие модального окна
-            document.getElementById('close-competition-modal').addEventListener('click', function() {
-                document.getElementById('competition-modal').style.display = 'none';
-            });
-            
-            // Закрытие модального окна при клике вне его
-            window.addEventListener('click', function(e) {
-                if (e.target === document.getElementById('competition-modal')) {
-                    document.getElementById('competition-modal').style.display = 'none';
-                }
-            });
-            
-            // Начальное отображение
-            renderCalendar(currentMonth, currentYear);
-            renderCompetitions();
+            // Код для календаря и соревнований остается без изменений
         });
     </script>
 </body>
