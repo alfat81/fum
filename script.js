@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Мобильное меню
+    // Инициализация мобильного меню
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const body = document.body;
@@ -96,97 +96,48 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', animateOnScroll);
     window.addEventListener('scroll', animateOnScroll);
     
-    // Админ-панель по паролю
-    const adminLink = document.getElementById('admin-link');
-    const loginModal = document.getElementById('admin-login-modal');
-    const adminModal = document.getElementById('admin-modal');
-    const closeLoginModal = document.getElementById('close-login-modal');
-    const closeAdminModal = document.getElementById('close-admin-modal');
-    const loginBtn = document.getElementById('login-btn');
-    const passwordInput = document.getElementById('admin-password');
+    // Админ-панель
+    const adminTab = document.getElementById('admin-tab');
+    const adminPanel = document.getElementById('admin-panel');
+    const closeAdminPanel = document.getElementById('close-admin-panel');
+    const loginAdminBtn = document.getElementById('login-admin-btn');
+    const adminPassword = document.getElementById('admin-password');
     
-    // Показать модальное окно входа при клике на админку
-    if (adminLink) {
-        adminLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+    // Показать админ-панель при клике на язычок
+    if (adminTab) {
+        adminTab.addEventListener('click', function() {
+            adminPanel.style.right = '0';
         });
     }
     
-    // Закрыть модальное окно входа
-    if (closeLoginModal) {
-        closeLoginModal.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            passwordInput.value = '';
+    // Закрыть админ-панель
+    if (closeAdminPanel) {
+        closeAdminPanel.addEventListener('click', function() {
+            adminPanel.style.right = '-400px';
         });
     }
     
-    // Закрыть модальное окно админки
-    if (closeAdminModal) {
-        closeAdminModal.addEventListener('click', function() {
-            adminModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-    }
-    
-    // Закрыть модальные окна при клике вне их
-    window.addEventListener('click', function(e) {
-        if (e.target === loginModal) {
-            loginModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            passwordInput.value = '';
-        }
-        if (e.target === adminModal) {
-            adminModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+    // Закрытие админ-панели при клике вне ее
+    document.addEventListener('click', function(e) {
+        if (adminPanel.style.right === '0px' && 
+            !adminPanel.contains(e.target) && 
+            !adminTab.contains(e.target)) {
+            adminPanel.style.right = '-400px';
         }
     });
     
-    // Обработка входа по паролю
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function() {
-            const password = passwordInput.value.trim();
-            // Пароль должен быть изменен Председателем комиссии
-            const correctPassword = 'fum2025admin'; 
-            
-            if (password === correctPassword) {
-                // Успешный вход
-                loginModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                
-                // Показать админ-панель
-                adminModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
+    // Обработка входа в админ-панель
+    if (loginAdminBtn) {
+        loginAdminBtn.addEventListener('click', function() {
+            if (adminPassword.value === 'fum2025admin') {
+                document.querySelector('.admin-login').style.display = 'none';
+                document.querySelector('.tab-content.active').style.display = 'block';
+                alert('Вход выполнен успешно!');
             } else {
-                // Неправильный пароль
                 alert('Неверный пароль! Обратитесь к Председателю комиссии для получения доступа.');
-                passwordInput.value = '';
-                passwordInput.focus();
             }
         });
     }
-    
-    // Обработка нажатия Enter в поле пароля
-    if (passwordInput) {
-        passwordInput.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                loginBtn.click();
-            }
-        });
-    }
-    
-    // Эффекты для кнопок
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px)';
-        });
-        
-        btn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
     
     // Переключение вкладок в админ-панели
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -199,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Добавление соревнования в календарь
+    // Добавление соревнования
     const addCompetitionBtn = document.getElementById('add-competition-btn');
     if (addCompetitionBtn) {
         addCompetitionBtn.addEventListener('click', function() {
@@ -207,22 +158,215 @@ document.addEventListener('DOMContentLoaded', function() {
             const date = document.getElementById('competition-date').value;
             const location = document.getElementById('competition-location').value.trim();
             const contact = document.getElementById('competition-contact').value.trim();
-            const protocol = document.getElementById('protocol-file').value.trim();
+            const protocolFile = document.getElementById('protocol-upload').files[0];
             
             if (!name || !date || !location || !contact) {
                 alert('Пожалуйста, заполните все обязательные поля');
                 return;
             }
             
-            alert('Соревнование успешно добавлено!');
+            const competitions = getCompetitions();
+            const newId = competitions.length > 0 ? 
+                Math.max(...competitions.map(c => c.id)) + 1 : 1;
+            
+            const newCompetition = {
+                id: newId,
+                name,
+                date,
+                location,
+                contact,
+                contactPhone: '',
+                protocol: protocolFile ? URL.createObjectURL(protocolFile) : ''
+            };
+            
+            competitions.push(newCompetition);
+            saveCompetitions(competitions);
             
             // Очистка формы
             document.getElementById('competition-name').value = '';
             document.getElementById('competition-date').value = '';
             document.getElementById('competition-location').value = '';
             document.getElementById('competition-contact').value = '';
-            document.getElementById('protocol-file').value = '';
+            document.getElementById('protocol-upload').value = '';
+            
+            alert('Соревнование успешно добавлено!');
+            
+            // Обновление списка
+            if (document.getElementById('competitions-list')) {
+                renderCompetitionsList();
+            }
         });
+    }
+    
+    // Добавление документа
+    const addDocumentBtn = document.getElementById('add-document-btn');
+    if (addDocumentBtn) {
+        addDocumentBtn.addEventListener('click', function() {
+            const name = document.getElementById('document-name').value.trim();
+            const docFile = document.getElementById('document-upload').files[0];
+            const category = document.getElementById('document-category').value;
+            
+            if (!name || !docFile || !category) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+            
+            const documents = getDocuments();
+            const newId = documents.length > 0 ? 
+                Math.max(...documents.map(d => d.id)) + 1 : 1;
+            
+            const newDocument = {
+                id: newId,
+                name,
+                url: URL.createObjectURL(docFile),
+                category,
+                date: new Date().toLocaleDateString('ru-RU'),
+                size: `${(docFile.size / 1024 / 1024).toFixed(1)} МБ`
+            };
+            
+            documents.push(newDocument);
+            saveDocuments(documents);
+            
+            // Очистка формы
+            document.getElementById('document-name').value = '';
+            document.getElementById('document-upload').value = '';
+            document.getElementById('document-category').value = 'rules';
+            
+            alert('Документ успешно добавлен!');
+            
+            // Обновление списка
+            if (document.getElementById('documents-list')) {
+                renderDocumentsList();
+            }
+        });
+    }
+    
+    // Добавление руководителя
+    const addLeaderBtn = document.getElementById('add-leader-btn');
+    if (addLeaderBtn) {
+        addLeaderBtn.addEventListener('click', function() {
+            const name = document.getElementById('leader-name').value.trim();
+            const position = document.getElementById('leader-position').value.trim();
+            const region = document.getElementById('leader-region').value.trim();
+            const icon = document.getElementById('leader-icon').value;
+            
+            if (!name || !position || !region) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+            
+            const leaders = getLeaders();
+            const newId = leaders.length > 0 ? 
+                Math.max(...leaders.map(l => l.id)) + 1 : 1;
+            
+            const newLeader = {
+                id: newId,
+                name,
+                position,
+                region,
+                icon
+            };
+            
+            leaders.push(newLeader);
+            saveLeaders(leaders);
+            
+            // Очистка формы
+            document.getElementById('leader-name').value = '';
+            document.getElementById('leader-position').value = '';
+            document.getElementById('leader-region').value = '';
+            document.getElementById('leader-icon').value = 'crown';
+            
+            alert('Руководитель успешно добавлен!');
+            
+            // Обновление списка
+            if (document.getElementById('leaders-list')) {
+                renderLeadersList();
+            }
+        });
+    }
+    
+    // Добавление регионального представителя
+    const addRegionBtn = document.getElementById('add-region-btn');
+    if (addRegionBtn) {
+        addRegionBtn.addEventListener('click', function() {
+            const region = document.getElementById('region-name').value.trim();
+            const name = document.getElementById('representative-name').value.trim();
+            const position = document.getElementById('representative-position').value.trim();
+            const phone = document.getElementById('representative-phone').value.trim();
+            const email = document.getElementById('representative-email').value.trim();
+            
+            if (!region || !name || !position || !phone || !email) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+            
+            const regions = getRegions();
+            const newId = regions.length > 0 ? 
+                Math.max(...regions.map(r => r.id)) + 1 : 1;
+            
+            const newRegion = {
+                id: newId,
+                region,
+                name,
+                position,
+                phone,
+                email
+            };
+            
+            regions.push(newRegion);
+            saveRegions(regions);
+            
+            // Очистка формы
+            document.getElementById('region-name').value = '';
+            document.getElementById('representative-name').value = '';
+            document.getElementById('representative-position').value = '';
+            document.getElementById('representative-phone').value = '';
+            document.getElementById('representative-email').value = '';
+            
+            alert('Региональный представитель успешно добавлен!');
+            
+            // Обновление списка
+            if (document.getElementById('regions-list')) {
+                renderRegionsList();
+            }
+        });
+    }
+    
+    // Функции для работы с localStorage
+    function getCompetitions() {
+        const savedCompetitions = localStorage.getItem('competitionsList');
+        return savedCompetitions ? JSON.parse(savedCompetitions) : [];
+    }
+    
+    function saveCompetitions(competitions) {
+        localStorage.setItem('competitionsList', JSON.stringify(competitions));
+    }
+    
+    function getDocuments() {
+        const savedDocuments = localStorage.getItem('documentsList');
+        return savedDocuments ? JSON.parse(savedDocuments) : [];
+    }
+    
+    function saveDocuments(documents) {
+        localStorage.setItem('documentsList', JSON.stringify(documents));
+    }
+    
+    function getLeaders() {
+        const savedLeaders = localStorage.getItem('leadersList');
+        return savedLeaders ? JSON.parse(savedLeaders) : [];
+    }
+    
+    function saveLeaders(leaders) {
+        localStorage.setItem('leadersList', JSON.stringify(leaders));
+    }
+    
+    function getRegions() {
+        const savedRegions = localStorage.getItem('regionsList');
+        return savedRegions ? JSON.parse(savedRegions) : [];
+    }
+    
+    function saveRegions(regions) {
+        localStorage.setItem('regionsList', JSON.stringify(regions));
     }
     
     // Навигация по стрелкам
@@ -234,6 +378,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const nextLink = document.querySelector('.nav-link.active').nextElementSibling?.querySelector('a');
             if (nextLink) nextLink.click();
         }
+    });
+    
+    // Эффекты для кнопок
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
     });
 });
 
