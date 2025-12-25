@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О комиссии | Комиссия по фигурному управлению мотоциклом | МФР</title>
+    <title>О комиссии | Комиссия по фигурному управлению мотоциклом</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="logo-container">
                 <div class="logo-left">
-                    <img src="images/logo.png" alt="Логотип комиссии" class="logo-img">
+                    <div class="logo-img">LOGO</div>
                 </div>
                 <div class="logo-right">
                     <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
                     <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
                 </div>
             </div>
+            
             <button class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
+            
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="nav-link">Главная</a></li>
@@ -29,146 +32,55 @@
                     <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+                    <li><a href="partners.html" class="nav-link">Партнеры</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-                    <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
-            </nav>
-            
-            <!-- Mobile menu -->
-            <nav class="mobile-menu">
-                <div class="mobile-nav">
-                    <ul>
-                        <li><a href="index.html" class="nav-link">Главная</a></li>
-                        <li><a href="about.html" class="nav-link active">О комиссии</a></li>
-                        <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
-                        <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
-                        <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-                        <li><a href="#" class="nav-link admin-link">Админка</a></li>
-                    </ul>
-                </div>
             </nav>
         </header>
 
         <main class="content">
             <h1 class="page-title">О комиссии</h1>
             
-            <section class="description-section">
-                <div class="commission-intro">
-                    <h2>Комиссия по фигурному управлению мотоциклом (мотоджимхане)</h2>
-                    <p>31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии фигурного управления мотоциклом. Представляем вам новый состав.</p>
-                </div>
-            </section>
-            
             <section class="history-section">
                 <h2 class="section-title">История создания комиссии</h2>
                 
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-year">2010-2015</div>
-                        <div class="timeline-content">
-                            <p>Первые неофициальные соревнования по фигурному управлению мотоциклом в России. Энтузиасты собирались на автостоянках и других подходящих площадках для отработки навыков и проведения дружеских заездов в Москве, Санкт-Петербурге, Нижнем Новгороде и других крупных городах.</p>
-                        </div>
-                    </div>
+                <div class="history-content">
+                    <h3>История фигурного управления мотоциклом в мире</h3>
+                    <p>Фигурное управление мотоциклом (также известное как мотоджимхана) имеет богатую историю. Впервые эта дисциплина появилась в Японии в 1980-х годах, где получила название "Gymkhana" - от староиндийского слова, означающего "соревнование по навыкам". Японские мотоциклисты разработали специальные техники управления для выполнения сложных маневров на ограниченном пространстве.</p>
+                    <p>В 1990-х годах дисциплина получила распространение в Европе и США, где были разработаны первые официальные правила соревнований. В 2000-х годах появились международные соревнования и чемпионаты мира по мотоджимхане. Сегодня это признанная во всем мире дисциплина, которая развивается и совершенствуется.</p>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-year">2016-2018</div>
-                        <div class="timeline-content">
-                            <p>Формирование региональных сообществ мотоджимханы. Появление первых организованных соревнований с регламентами и судейством. Начало взаимодействия с Мотоциклетной Федерацией России для признания дисциплины.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-year">2018</div>
-                        <div class="timeline-content">
-                            <p>Официальное признание фигурного управления мотоциклом как спортивной дисциплины Мотоциклетной Федерацией России. Это позволило начать проведение официальных соревнований с присвоением спортивных разрядов.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-year">2020</div>
-                        <div class="timeline-content">
-                            <p>Создание первой комиссии по фигурному управлению мотоциклом при МФР. Начало работы по разработке правил, регламентов и организации официальных соревнований по всей стране.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-year">2023-2024</div>
-                        <div class="timeline-content">
-                            <p>Активное развитие дисциплины. Проведение этапов Кубка России, Чемпионатов регионов, создание женского и юношеского зачетов. Утверждение нового состава комиссии во главе с Дмитрием Серовым.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-year">2025</div>
-                        <div class="timeline-content">
-                            <p>Планы на будущее: расширение географии соревнований, включение женского и юношеского зачетов в Единую Всероссийскую спортивную классификацию, подготовка российских спортсменов к международным соревнованиям.</p>
-                        </div>
-                    </div>
+                    <h3>История фигурного управления мотоциклом в России</h3>
+                    <p>В России фигурное управление мотоциклом начало развиваться в начале 2010-х годов. Первоначально это были неофициальные соревнования и тренировки в различных регионах страны. Энтузиасты собирались на автостоянках и других подходящих площадках для отработки навыков и проведения дружеских заездов.</p>
+                    <p>В 2018 году произошел важный поворот - Мотоциклетная Федерация России официально признала фигурное управление мотоциклом как спортивную дисциплину. Это позволило начать проведение официальных соревнований с присвоением спортивных разрядов. В 2020 году была создана первая комиссия по фигурному управлению мотоциклом при МФР.</p>
+                    <p>Сегодня дисциплина активно развивается по всей стране. Проводятся официальные соревнования различного уровня, включая этапы Кубка России и Чемпионаты регионов. Благодаря работе комиссии и энтузиастов в регионах, география соревнований постоянно расширяется, а уровень мастерства спортсменов растет с каждым годом.</p>
                 </div>
             </section>
             
             <section class="mission-section">
                 <h2 class="section-title">Миссия и цели</h2>
-                <p>Основная миссия комиссии — развитие и популяризация фигурного управления мотоциклом (мотоджимханы) в России. Мы стремимся сделать эту дисциплину доступной, безопасной и интересной для всех любителей мотоспорта.</p>
+                <p>Основная миссия комиссии — развитие и популяризация фигурного управления мотоциклом (мотоджимханы) в России. Мы стремимся:</p>
                 
                 <div class="mission-list">
                     <ul>
-                        <li>Создание единой системы официальных соревнований по всей стране с возможностью получения спортивных разрядов</li>
-                        <li>Развитие детского и юношеского мотоджимхана как важного направления подготовки юных спортсменов</li>
-                        <li>Подготовка российских спортсменов к участию в международных соревнованиях по фигурному управлению мотоциклом</li>
-                        <li>Внедрение женского и юношеских зачетов в систему официальных соревнований</li>
-                        <li>Совершенствование правил и регламентов с учетом международного опыта</li>
-                        <li>Поддержка и развитие региональных комиссий по мотоджимхане</li>
+                        <li>Создать единую систему официальных соревнований по всей стране</li>
+                        <li>Обеспечить спортсменам возможность получения спортивных разрядов</li>
+                        <li>Развивать детский и юношеский спорт в данной дисциплине</li>
+                        <li>Подготовить российских спортсменов к участию в международных соревнованиях</li>
+                        <li>Поддерживать связь с международными федерациями и обмениваться опытом</li>
                     </ul>
                 </div>
                 
                 <div class="quote-box">
-                    <p>"Уверен, с такой командой мы сможем выполнить поставленные перед комиссией задачи: международные соревнования, внесение изменений в ЕВСК (включение женского и юношеских зачётов) и развитие официальной мотоджимханы в регионах."</p>
+                    <p>"Комиссия прилагает все усилия для того, чтобы фигурное управление мотоциклом стало доступным и популярным видом спорта в России, способствуя развитию навыков безопасного управления мотоциклом и воспитанию спортивного духа у молодежи."</p>
                     <p class="quote-author">— Дмитрий Серов, Председатель Комиссии</p>
-                </div>
-            </section>
-            
-            <section class="practical-section">
-                <h2 class="section-title">Прикладное значение деятельности</h2>
-                <p>Деятельность комиссии имеет важное практическое значение для развития мотоспорта в России:</p>
-                
-                <div class="practical-grid">
-                    <div class="practical-card">
-                        <i class="fas fa-trophy card-icon"></i>
-                        <h3>Для спортсменов</h3>
-                        <p>Участникам официальных соревнований присваиваются спортивные разряды и звания в соответствии с Единой Всероссийской спортивной классификацией. Это открывает возможности для дальнейшего развития в мотоспорте и получения спортивных званий.</p>
-                    </div>
-                    
-                    <div class="practical-card">
-                        <i class="fas fa-balance-scale card-icon"></i>
-                        <h3>Для судей</h3>
-                        <p>Спортивные судьи получают практику судейства на официальных соревнованиях, что способствует их профессиональному росту и повышению квалификации.</p>
-                    </div>
-                    
-                    <div class="practical-card">
-                        <i class="fas fa-map-marked-alt card-icon"></i>
-                        <h3>Для регионов</h3>
-                        <p>В региональных федерациях появляются специализированные комиссии по мотоджимхане, что способствует развитию дисциплины на местах и привлечению новых спортсменов.</p>
-                    </div>
-                    
-                    <div class="practical-card">
-                        <i class="fas fa-shield-alt card-icon"></i>
-                        <h3>Для безопасности</h3>
-                        <p>Фигурное управление мотоциклом развивает навыки безопасного вождения, что особенно важно для начинающих мотоциклистов. Многие элементы тренировок по мотоджимхане используются в программах по подготовке водителей.</p>
-                    </div>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
-                    <img src="images/mfr-logo.png" alt="Логотип МФР">
-                </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
-                    <img src="images/minsport-logo.png" alt="Логотип Министерства спорта РФ">
-                </a>
+                <div class="logo-placeholder">МФР</div>
+                <div class="logo-placeholder">Минспорт</div>
             </div>
             <div class="footer-links">
                 <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
@@ -181,20 +93,48 @@
         </footer>
     </div>
 
-    <!-- Admin login modal -->
-    <div class="modal" id="admin-login-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-login-modal">&times;</span>
-            <h2>Вход в админ-панель</h2>
-            <div class="form-group">
-                <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control">
-                <p class="password-hint">Пароль предоставлен Председателем комиссии</p>
-            </div>
-            <button id="login-btn" class="btn btn-primary">Войти</button>
-        </div>
+    <!-- Admin panel tab -->
+    <div class="admin-tab" id="admin-tab">
+        <i class="fas fa-cog"></i>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Admin panel -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="admin-header">
+            <h2>Панель администратора</h2>
+            <button class="close-admin-panel" id="close-admin-panel">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="content">Контент</button>
+            <button class="tab-btn" data-tab="documents">Документы</button>
+            <button class="tab-btn" data-tab="structure">Структура</button>
+        </div>
+        
+        <div class="tab-content active" id="content-tab">
+            <h3>Управление контентом</h3>
+            <div class="form-group">
+                <label for="history-title">Заголовок раздела</label>
+                <input type="text" id="history-title" class="form-control" placeholder="Введите заголовок">
+            </div>
+            <div class="form-group">
+                <label for="history-content">Текст раздела</label>
+                <textarea id="history-content" class="form-control" rows="8" placeholder="Введите текст"></textarea>
+            </div>
+            <button class="btn btn-primary" id="save-history-btn">
+                <i class="fas fa-save"></i> Сохранить историю
+            </button>
+        </div>
+        
+        <div class="admin-login">
+            <div class="form-group">
+                <label for="admin-password">Пароль</label>
+                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
+            </div>
+            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
+        </div>
+    </div>
 </body>
 </html>
