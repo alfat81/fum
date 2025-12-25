@@ -207,7 +207,21 @@
             
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Код для фильтрации документов
+                    // Убираем активный класс со всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс к текущей кнопке
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Фильтруем документы
+                    documentCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
                 });
             });
         });
