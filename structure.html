@@ -219,7 +219,7 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="documents.html" class="document-link">Документы комиссии</a>
                 <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
                 <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
             </div>
@@ -229,249 +229,87 @@
         </footer>
     </div>
 
-    <!-- Modal for Admin Panel -->
+    <!-- Admin panel modal -->
     <div class="modal" id="admin-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Панель администратора</h2>
             
             <div class="admin-tabs">
-                <button class="tab-btn active" data-tab="structure">Структура комиссии</button>
+                <button class="tab-btn active" data-tab="regions">Региональные комиссии</button>
+                <button class="tab-btn" data-tab="structure">Структура комиссии</button>
                 <button class="tab-btn" data-tab="calendar">Календарь соревнований</button>
                 <button class="tab-btn" data-tab="documents">Документы</button>
             </div>
             
-            <div class="tab-content active" id="structure-tab">
-                <h3>Управление структурой комиссии</h3>
-                
+            <div class="tab-content active" id="regions-tab">
+                <h3>Управление региональными комиссиями</h3>
                 <div class="form-group">
-                    <label for="leader-select">Выберите руководителя</label>
-                    <select id="leader-select" class="form-control">
-                        <option value="">Выберите руководителя</option>
-                        <option value="chairman">Председатель Комиссии (Дмитрий Серов)</option>
-                        <option value="deputy">Заместитель Председателя (Алексей Фатьянов)</option>
-                        <option value="secretary">Главный секретарь (Наталия Недайводина)</option>
-                        <option value="glad">Член Комиссии (Глеб Симдянкин)</option>
-                    </select>
+                    <label for="region-name">Регион</label>
+                    <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
                 </div>
-                
                 <div class="form-group">
-                    <label for="icon-select">Выберите иконку</label>
-                    <div class="icon-selector">
-                        <div class="icon-option active" data-icon="fa-crown">
-                            <i class="fas fa-crown"></i> Председатель
-                        </div>
-                        <div class="icon-option" data-icon="fa-user-tie">
-                            <i class="fas fa-user-tie"></i> Заместитель
-                        </div>
-                        <div class="icon-option" data-icon="fa-file-signature">
-                            <i class="fas fa-file-signature"></i> Секретарь
-                        </div>
-                        <div class="icon-option" data-icon="fa-medal">
-                            <i class="fas fa-medal"></i> Спортивное достижение
-                        </div>
-                    </div>
-                    
-                    <div class="form-note">
-                        <p><i class="fas fa-info-circle"></i> Вы можете использовать иконку по умолчанию или загрузить свою фотографию.</p>
-                        <input type="file" id="leader-photo" accept="image/*" class="form-control" style="margin-top: 10px;">
-                        <p class="help-text">Поддерживаются форматы: JPG, PNG, GIF. Максимальный размер: 2 МБ</p>
-                    </div>
+                    <label for="representative-name">ФИО представителя</label>
+                    <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
                 </div>
-                
-                <button class="btn btn-primary" id="update-leader-btn">
-                    <i class="fas fa-save"></i> Сохранить изменения
+                <div class="form-group">
+                    <label for="representative-position">Должность</label>
+                    <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
+                </div>
+                <div class="form-group">
+                    <label for="representative-phone">Телефон</label>
+                    <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+                <div class="form-group">
+                    <label for="representative-email">Email</label>
+                    <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
+                </div>
+                <button id="add-region-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить представителя
                 </button>
-                
-                <div class="icon-preview">
-                    <h4>Предпросмотр:</h4>
-                    <div class="preview-container">
-                        <div class="leader-icon preview-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div class="preview-info">
-                            <h3 class="preview-name">Дмитрий Серов</h3>
-                            <div class="preview-position">Председатель Комиссии</div>
-                            <div class="preview-region">Тверская область</div>
-                        </div>
-                    </div>
+                <div id="regions-list" class="admin-list"></div>
+            </div>
+            
+            <div class="tab-content" id="structure-tab">
+                <h3>Управление структурой комиссии</h3>
+                <div class="form-group">
+                    <label for="leader-name">ФИО руководителя</label>
+                    <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
                 </div>
+                <div class="form-group">
+                    <label for="leader-position">Должность</label>
+                    <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
+                </div>
+                <div class="form-group">
+                    <label for="leader-region">Регион</label>
+                    <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
+                </div>
+                <div class="form-group">
+                    <label for="leader-phone">Телефон</label>
+                    <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+                <div class="form-group">
+                    <label for="leader-email">Email</label>
+                    <input type="email" id="leader-email" class="form-control" placeholder="Введите email">
+                </div>
+                <button id="add-leader-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Добавить руководителя
+                </button>
+                <div id="leaders-list" class="admin-list"></div>
             </div>
             
             <div class="tab-content" id="calendar-tab">
                 <h3>Управление календарем соревнований</h3>
-                <p>Функционал для управления календарем соревнований будет доступен в следующей версии</p>
+                <p>Функционал для управления календарем соревнований</p>
             </div>
             
             <div class="tab-content" id="documents-tab">
                 <h3>Управление документами</h3>
-                <p>Все документы хранятся на Яндекс.Диске: <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">https://disk.yandex.ru/d/ubxzU_0RzkFsJw</a></p>
-                <p>Для добавления новых документов используйте интерфейс Яндекс.Диска</p>
+                <p>Для загрузки новых документов используйте публичную папку Яндекс.Диска</p>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Функционал админ панели
-        document.addEventListener('DOMContentLoaded', function() {
-            // Инициализация админ-панели
-            function initAdminPanel() {
-                const adminPanelBtn = document.getElementById('admin-panel-btn');
-                const adminModal = document.getElementById('admin-modal');
-                const closeBtn = document.querySelector('.close-modal');
-                const tabBtns = document.querySelectorAll('.tab-btn');
-                const tabContents = document.querySelectorAll('.tab-content');
-                
-                // Открытие модального окна
-                if (adminPanelBtn) {
-                    adminPanelBtn.addEventListener('click', function() {
-                        adminModal.style.display = 'block';
-                        document.body.style.overflow = 'hidden';
-                    });
-                }
-                
-                // Закрытие модального окна
-                if (closeBtn) {
-                    closeBtn.addEventListener('click', function() {
-                        adminModal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                        resetAdminForm();
-                    });
-                }
-                
-                // Закрытие при клике вне окна
-                window.addEventListener('click', function(e) {
-                    if (e.target === adminModal) {
-                        adminModal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                        resetAdminForm();
-                    }
-                });
-                
-                // Переключение вкладок
-                tabBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        // Убираем активный класс со всех кнопок
-                        tabBtns.forEach(b => b.classList.remove('active'));
-                        // Добавляем активный класс к текущей кнопке
-                        this.classList.add('active');
-                        
-                        // Скрываем все вкладки
-                        tabContents.forEach(content => content.classList.remove('active'));
-                        
-                        // Показываем выбранную вкладку
-                        const tabId = this.getAttribute('data-tab');
-                        document.getElementById(`${tabId}-tab`).classList.add('active');
-                    });
-                });
-            }
-            
-            // Инициализация иконок
-            function initIcons() {
-                // Данные о руководителях и их иконках
-                const leaders = {
-                    chairman: { name: "Дмитрий Серов", position: "Председатель Комиссии", icon: "fa-crown" },
-                    deputy: { name: "Алексей Фатьянов", position: "Заместитель Председателя", icon: "fa-user-tie" },
-                    secretary: { name: "Наталия Недайводина", position: "Главный секретарь", icon: "fa-file-signature" },
-                    glad: { name: "Глеб Симдянкин", position: "Член Комиссии", icon: "fa-medal" }
-                };
-                
-                // Загружаем иконки из localStorage или используем значения по умолчанию
-                Object.keys(leaders).forEach(key => {
-                    const leaderElement = document.querySelector(`#region-${key}`);
-                    if (leaderElement) {
-                        const savedIcon = localStorage.getItem(`leader-icon-${key}`);
-                        if (savedIcon) {
-                            leaderElement.querySelector('.leader-icon i').className = `fas ${savedIcon}`;
-                        }
-                    }
-                });
-                
-                // Предпросмотр иконок в админ-панели
-                const iconOptions = document.querySelectorAll('.icon-option');
-                const previewIcon = document.querySelector('.preview-icon i');
-                
-                iconOptions.forEach(option => {
-                    option.addEventListener('click', function() {
-                        // Убираем активный класс со всех опций
-                        iconOptions.forEach(opt => opt.classList.remove('active'));
-                        // Добавляем активный класс к текущей опции
-                        this.classList.add('active');
-                        
-                        // Обновляем предпросмотр
-                        const iconClass = this.getAttribute('data-icon');
-                        previewIcon.className = `fas ${iconClass}`;
-                    });
-                });
-            }
-            
-            // Обработчик сохранения изменений
-            const updateBtn = document.getElementById('update-leader-btn');
-            if (updateBtn) {
-                updateBtn.addEventListener('click', function() {
-                    const leaderSelect = document.getElementById('leader-select');
-                    const selectedLeader = leaderSelect.value;
-                    const selectedIcon = document.querySelector('.icon-option.active').getAttribute('data-icon');
-                    const photoInput = document.getElementById('leader-photo');
-                    
-                    if (!selectedLeader) {
-                        alert('Пожалуйста, выберите руководителя для редактирования');
-                        return;
-                    }
-                    
-                    // Сохраняем иконку в localStorage
-                    localStorage.setItem(`leader-icon-${selectedLeader}`, selectedIcon);
-                    
-                    // Если выбрана фотография, сохраняем путь к ней
-                    if (photoInput.files.length > 0) {
-                        const file = photoInput.files[0];
-                        if (file.size <= 2 * 1024 * 1024) { // Проверка размера (не более 2 МБ)
-                            const reader = new FileReader();
-                            reader.onload = function(e) {
-                                localStorage.setItem(`leader-photo-${selectedLeader}`, e.target.result);
-                                alert('Изменения успешно сохранены!');
-                                document.getElementById('admin-modal').style.display = 'none';
-                                document.body.style.overflow = 'auto';
-                                resetAdminForm();
-                            };
-                            reader.readAsDataURL(file);
-                        } else {
-                            alert('Размер файла превышает 2 МБ. Пожалуйста, выберите файл меньшего размера.');
-                        }
-                    } else {
-                        // Удаляем фотографию, если она была загружена ранее
-                        localStorage.removeItem(`leader-photo-${selectedLeader}`);
-                        alert('Изменения успешно сохранены!');
-                        document.getElementById('admin-modal').style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                        resetAdminForm();
-                    }
-                });
-            }
-            
-            // Функция сброса формы админки
-            function resetAdminForm() {
-                const leaderSelect = document.getElementById('leader-select');
-                const photoInput = document.getElementById('leader-photo');
-                
-                if (leaderSelect) leaderSelect.value = '';
-                if (photoInput) photoInput.value = '';
-                
-                const iconOptions = document.querySelectorAll('.icon-option');
-                const previewIcon = document.querySelector('.preview-icon i');
-                
-                if (iconOptions.length > 0) {
-                    iconOptions.forEach(opt => opt.classList.remove('active'));
-                    document.querySelector('.icon-option[data-icon="fa-crown"]').classList.add('active');
-                    previewIcon.className = 'fas fa-crown';
-                }
-            }
-            
-            // Инициализация функций
-            initAdminPanel();
-            initIcons();
-        });
-    </script>
 </body>
 </html>
