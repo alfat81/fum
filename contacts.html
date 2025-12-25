@@ -31,7 +31,6 @@
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
                     <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
                     <li><a href="partners.html" class="nav-link">Партнеры</a></li>
-                    <li><a href="#" class="nav-link admin-link" id="admin-link">Админка</a></li>
                 </ul>
             </nav>
             
@@ -46,7 +45,6 @@
                         <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
                         <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
                         <li><a href="partners.html" class="nav-link">Партнеры</a></li>
-                        <li><a href="#" class="nav-link admin-link">Админка</a></li>
                     </ul>
                 </div>
             </nav>
@@ -125,7 +123,7 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="https://disk.yandex.ru/d/ubxzU_0RzkFsJw" target="_blank">Документы комиссии</a>
+                <a href="documents.html" class="document-link">Документы комиссии</a>
                 <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
                 <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
             </div>
@@ -135,18 +133,14 @@
         </footer>
     </div>
 
-    <!-- Admin login modal -->
-    <div class="modal" id="admin-login-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-login-modal">&times;</span>
-            <h2>Вход в админ-панель</h2>
-            <div class="form-group">
-                <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control">
-                <p class="password-hint">Пароль предоставлен Председателем комиссии</p>
-            </div>
-            <button id="login-btn" class="btn btn-primary">Войти</button>
-        </div>
+    <!-- Admin tab -->
+    <div class="admin-tab" id="admin-tab">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <!-- Admin panel -->
+    <div class="admin-panel" id="admin-panel">
+        <!-- Содержимое панели идентично index.html -->
     </div>
 
     <script src="script.js"></script>
