@@ -1,4 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Мобильное меню
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+    
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+            menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            });
+        });
+        
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', function(e) {
+            if (mobileMenu.style.display === 'block' && 
+                !mobileMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                mobileMenu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            }
+        });
+        
+        // Закрытие меню при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && mobileMenu.style.display === 'block') {
+                mobileMenu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            }
+        });
+    }
+    
     console.log('Сайт комиссии по мотоджимхане успешно загружен');
     
     // Анимация появления элементов при загрузке
