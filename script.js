@@ -1,80 +1,87 @@
+/**
+ * Основной модуль инициализации сайта Комиссии по мотоджимхане
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация мобильного меню
+    console.log('Сайт комиссии по мотоджимхане успешно загружен');
+
+    // Инициализация основных модулей
+    initMobileMenu();
+    initScrollAnimations();
+    initAdminPanel();
+    initButtonEffects();
+    
+    // Плавное появление страницы (альтернативный вариант)
+    requestAnimationFrame(() => {
+        document.body.style.opacity = '1';
+    });
+});
+
+/**
+ * Инициализация мобильного меню
+ */
+function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const body = document.body;
     
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-            menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
-        });
-        
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.style.display = 'none';
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            });
-        });
-        
-        // Закрытие меню при клике вне его
-        document.addEventListener('click', function(e) {
-            if (mobileMenu.style.display === 'block' && 
-                !mobileMenu.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                mobileMenu.style.display = 'none';
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            }
-        });
-        
-        // Закрытие меню при изменении размера окна
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && mobileMenu.style.display === 'block') {
-                mobileMenu.style.display = 'none';
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            }
-        });
-    }
+    if (!menuToggle || !mobileMenu) return;
     
-    console.log('Сайт комиссии по мотоджимхане успешно загружен');
+    // Устанавливаем начальное состояние для доступности
+    menuToggle.setAttribute('aria-expanded', 'false');
     
-    // Анимация появления элементов при загрузке
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-        document.body.style.transition = 'opacity 0.5s ease';
-    }, 100);
+    // Функции для управления меню
+    const openMobileMenu = () => {
+        mobileMenu.classList.add('active');
+        menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+        body.style.overflow = 'hidden';
+        menuToggle.setAttribute('aria-expanded', 'true');
+    };
     
-    // Плавные переходы при навигации
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Получаем путь к следующей странице
-            const href = this.getAttribute('href');
-            
-            // Добавляем эффект исчезания
-            document.body.style.opacity = '0';
-            
-            // Переходим на следующую страницу с задержкой
-            setTimeout(() => {
-                window.location.href = href;
-            }, 300);
-        });
+    const closeMobileMenu = () => {
+        mobileMenu.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        body.style.overflow = 'auto';
+        menuToggle.setAttribute('aria-expanded', 'false');
+    };
+    
+    // Обработчик кнопки меню
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.contains('active') ? closeMobileMenu() : openMobileMenu();
     });
     
-    // Эффекты при прокрутке
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Закрытие меню при изменении размера окна
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+}
+
+/**
+ * Анимация элементов при прокрутке
+ */
+function initScrollAnimations() {
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.tile, .timeline-item, .practical-card, .leader-card, .news-card');
+        const elements = document.querySelectorAll('.tile, .news-card, .gallery-item');
+        const screenPosition = window.innerHeight / 1.3;
         
         elements.forEach((element, index) => {
             const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
             
             if (elementPosition < screenPosition) {
                 element.style.opacity = '1';
@@ -85,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Установка начальных стилей для анимации
-    const elements = document.querySelectorAll('.tile, .timeline-item, .practical-card, .leader-card, .news-card');
-    elements.forEach(element => {
+    const animatedElements = document.querySelectorAll('.tile, .news-card, .gallery-item');
+    animatedElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -95,8 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Вызов анимации при загрузке и прокрутке
     window.addEventListener('load', animateOnScroll);
     window.addEventListener('scroll', animateOnScroll);
-    
-    // Админ-панель
+}
+
+/**
+ * Инициализация админ-панели
+ */
+function initAdminPanel() {
     const adminTab = document.getElementById('admin-tab');
     const adminPanel = document.getElementById('admin-panel');
     const closeAdminPanel = document.getElementById('close-admin-panel');
@@ -104,9 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const adminPassword = document.getElementById('admin-password');
     
     // Показать админ-панель при клике на язычок
-    if (adminTab) {
+    if (adminTab && adminPanel) {
         adminTab.addEventListener('click', function() {
             adminPanel.style.right = '0';
+            adminPanel.removeAttribute('hidden');
+            adminPanel.setAttribute('aria-hidden', 'false');
         });
     }
     
@@ -114,27 +127,39 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeAdminPanel) {
         closeAdminPanel.addEventListener('click', function() {
             adminPanel.style.right = '-400px';
+            adminPanel.setAttribute('hidden', '');
+            adminPanel.setAttribute('aria-hidden', 'true');
         });
     }
     
     // Закрытие админ-панели при клике вне ее
     document.addEventListener('click', function(e) {
-        if (adminPanel.style.right === '0px' && 
+        if (adminPanel && !adminPanel.hasAttribute('hidden') && 
             !adminPanel.contains(e.target) && 
-            !adminTab.contains(e.target)) {
+            adminTab && !adminTab.contains(e.target)) {
             adminPanel.style.right = '-400px';
+            adminPanel.setAttribute('hidden', '');
+            adminPanel.setAttribute('aria-hidden', 'true');
         }
     });
     
     // Обработка входа в админ-панель
-    if (loginAdminBtn) {
+    if (loginAdminBtn && adminPassword) {
         loginAdminBtn.addEventListener('click', function() {
+            // В реальном приложении пароль должен проверяться на сервере!
             if (adminPassword.value === 'fum2025admin') {
                 document.querySelector('.admin-login').style.display = 'none';
                 document.querySelector('.tab-content.active').style.display = 'block';
                 alert('Вход выполнен успешно!');
             } else {
                 alert('Неверный пароль! Обратитесь к Председателю комиссии для получения доступа.');
+            }
+        });
+        
+        // Возможность входа по нажатию Enter
+        adminPassword.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginAdminBtn.click();
             }
         });
     }
@@ -150,238 +175,207 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Инициализация функций управления данными
+    initDataManagement();
+}
+
+/**
+ * Управление данными в админ-панели (LocalStorage)
+ */
+function initDataManagement() {
     // Добавление соревнования
     const addCompetitionBtn = document.getElementById('add-competition-btn');
     if (addCompetitionBtn) {
-        addCompetitionBtn.addEventListener('click', function() {
-            const name = document.getElementById('competition-name').value.trim();
-            const date = document.getElementById('competition-date').value;
-            const location = document.getElementById('competition-location').value.trim();
-            const contact = document.getElementById('competition-contact').value.trim();
-            const protocolFile = document.getElementById('protocol-upload').files[0];
-            
-            if (!name || !date || !location || !contact) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const competitions = getCompetitions();
-            const newId = competitions.length > 0 ? 
-                Math.max(...competitions.map(c => c.id)) + 1 : 1;
-            
-            const newCompetition = {
-                id: newId,
-                name,
-                date,
-                location,
-                contact,
-                contactPhone: '',
-                protocol: protocolFile ? URL.createObjectURL(protocolFile) : ''
-            };
-            
-            competitions.push(newCompetition);
-            saveCompetitions(competitions);
-            
-            // Очистка формы
-            document.getElementById('competition-name').value = '';
-            document.getElementById('competition-date').value = '';
-            document.getElementById('competition-location').value = '';
-            document.getElementById('competition-contact').value = '';
-            document.getElementById('protocol-upload').value = '';
-            
-            alert('Соревнование успешно добавлено!');
-            
-            // Обновление списка
-            if (document.getElementById('competitions-list')) {
-                renderCompetitionsList();
-            }
-        });
+        addCompetitionBtn.addEventListener('click', handleAddCompetition);
     }
     
     // Добавление документа
     const addDocumentBtn = document.getElementById('add-document-btn');
     if (addDocumentBtn) {
-        addDocumentBtn.addEventListener('click', function() {
-            const name = document.getElementById('document-name').value.trim();
-            const docFile = document.getElementById('document-upload').files[0];
-            const category = document.getElementById('document-category').value;
-            
-            if (!name || !docFile || !category) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const documents = getDocuments();
-            const newId = documents.length > 0 ? 
-                Math.max(...documents.map(d => d.id)) + 1 : 1;
-            
-            const newDocument = {
-                id: newId,
-                name,
-                url: URL.createObjectURL(docFile),
-                category,
-                date: new Date().toLocaleDateString('ru-RU'),
-                size: `${(docFile.size / 1024 / 1024).toFixed(1)} МБ`
-            };
-            
-            documents.push(newDocument);
-            saveDocuments(documents);
-            
-            // Очистка формы
-            document.getElementById('document-name').value = '';
-            document.getElementById('document-upload').value = '';
-            document.getElementById('document-category').value = 'rules';
-            
-            alert('Документ успешно добавлен!');
-            
-            // Обновление списка
-            if (document.getElementById('documents-list')) {
-                renderDocumentsList();
-            }
-        });
+        addDocumentBtn.addEventListener('click', handleAddDocument);
     }
     
     // Добавление руководителя
     const addLeaderBtn = document.getElementById('add-leader-btn');
     if (addLeaderBtn) {
-        addLeaderBtn.addEventListener('click', function() {
-            const name = document.getElementById('leader-name').value.trim();
-            const position = document.getElementById('leader-position').value.trim();
-            const region = document.getElementById('leader-region').value.trim();
-            const icon = document.getElementById('leader-icon').value;
-            
-            if (!name || !position || !region) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const leaders = getLeaders();
-            const newId = leaders.length > 0 ? 
-                Math.max(...leaders.map(l => l.id)) + 1 : 1;
-            
-            const newLeader = {
-                id: newId,
-                name,
-                position,
-                region,
-                icon
-            };
-            
-            leaders.push(newLeader);
-            saveLeaders(leaders);
-            
-            // Очистка формы
-            document.getElementById('leader-name').value = '';
-            document.getElementById('leader-position').value = '';
-            document.getElementById('leader-region').value = '';
-            document.getElementById('leader-icon').value = 'crown';
-            
-            alert('Руководитель успешно добавлен!');
-            
-            // Обновление списка
-            if (document.getElementById('leaders-list')) {
-                renderLeadersList();
-            }
-        });
+        addLeaderBtn.addEventListener('click', handleAddLeader);
     }
     
     // Добавление регионального представителя
     const addRegionBtn = document.getElementById('add-region-btn');
     if (addRegionBtn) {
-        addRegionBtn.addEventListener('click', function() {
-            const region = document.getElementById('region-name').value.trim();
-            const name = document.getElementById('representative-name').value.trim();
-            const position = document.getElementById('representative-position').value.trim();
-            const phone = document.getElementById('representative-phone').value.trim();
-            const email = document.getElementById('representative-email').value.trim();
-            
-            if (!region || !name || !position || !phone || !email) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const regions = getRegions();
-            const newId = regions.length > 0 ? 
-                Math.max(...regions.map(r => r.id)) + 1 : 1;
-            
-            const newRegion = {
-                id: newId,
-                region,
-                name,
-                position,
-                phone,
-                email
-            };
-            
-            regions.push(newRegion);
-            saveRegions(regions);
-            
-            // Очистка формы
-            document.getElementById('region-name').value = '';
-            document.getElementById('representative-name').value = '';
-            document.getElementById('representative-position').value = '';
-            document.getElementById('representative-phone').value = '';
-            document.getElementById('representative-email').value = '';
-            
-            alert('Региональный представитель успешно добавлен!');
-            
-            // Обновление списка
-            if (document.getElementById('regions-list')) {
-                renderRegionsList();
-            }
-        });
+        addRegionBtn.addEventListener('click', handleAddRegion);
     }
     
-    // Функции для работы с localStorage
-    function getCompetitions() {
-        const savedCompetitions = localStorage.getItem('competitionsList');
-        return savedCompetitions ? JSON.parse(savedCompetitions) : [];
+    // Инициализация списков при загрузке
+    if (document.getElementById('competitions-list')) renderCompetitionsList();
+    if (document.getElementById('documents-list')) renderDocumentsList();
+    if (document.getElementById('leaders-list')) renderLeadersList();
+    if (document.getElementById('regions-list')) renderRegionsList();
+}
+
+/**
+ * Обработчик добавления соревнования
+ */
+function handleAddCompetition() {
+    const name = document.getElementById('competition-name').value.trim();
+    const date = document.getElementById('competition-date').value;
+    const location = document.getElementById('competition-location').value.trim();
+    const contact = document.getElementById('competition-contact').value.trim();
+    
+    if (!name || !date || !location || !contact) {
+        alert('Пожалуйста, заполните все обязательные поля');
+        return;
     }
     
-    function saveCompetitions(competitions) {
-        localStorage.setItem('competitionsList', JSON.stringify(competitions));
+    const competitions = getCompetitions();
+    const newId = competitions.length > 0 ? Math.max(...competitions.map(c => c.id)) + 1 : 1;
+    
+    const newCompetition = {
+        id: newId,
+        name,
+        date,
+        location,
+        contact,
+        contactPhone: '',
+        protocol: ''
+    };
+    
+    competitions.push(newCompetition);
+    saveCompetitions(competitions);
+    
+    // Очистка формы
+    document.getElementById('competition-name').value = '';
+    document.getElementById('competition-date').value = '';
+    document.getElementById('competition-location').value = '';
+    document.getElementById('competition-contact').value = '';
+    document.getElementById('protocol-upload').value = '';
+    
+    alert('Соревнование успешно добавлено!');
+    renderCompetitionsList();
+}
+
+/**
+ * Обработчик добавления документа
+ */
+function handleAddDocument() {
+    const name = document.getElementById('document-name').value.trim();
+    const docFile = document.getElementById('document-upload').files[0];
+    const category = document.getElementById('document-category').value;
+    
+    if (!name || !category) {
+        alert('Пожалуйста, заполните все обязательные поля');
+        return;
     }
     
-    function getDocuments() {
-        const savedDocuments = localStorage.getItem('documentsList');
-        return savedDocuments ? JSON.parse(savedDocuments) : [];
+    const documents = getDocuments();
+    const newId = documents.length > 0 ? Math.max(...documents.map(d => d.id)) + 1 : 1;
+    
+    const newDocument = {
+        id: newId,
+        name,
+        url: docFile ? URL.createObjectURL(docFile) : '#',
+        category,
+        date: new Date().toLocaleDateString('ru-RU'),
+        size: docFile ? `${(docFile.size / 1024).toFixed(1)} КБ` : '0 КБ'
+    };
+    
+    documents.push(newDocument);
+    saveDocuments(documents);
+    
+    // Очистка формы
+    document.getElementById('document-name').value = '';
+    document.getElementById('document-upload').value = '';
+    document.getElementById('document-category').value = 'rules';
+    
+    alert('Документ успешно добавлен!');
+    renderDocumentsList();
+}
+
+/**
+ * Обработчик добавления руководителя
+ */
+function handleAddLeader() {
+    const name = document.getElementById('leader-name').value.trim();
+    const position = document.getElementById('leader-position').value.trim();
+    const region = document.getElementById('leader-region').value.trim();
+    const icon = document.getElementById('leader-icon').value;
+    
+    if (!name || !position || !region) {
+        alert('Пожалуйста, заполните все обязательные поля');
+        return;
     }
     
-    function saveDocuments(documents) {
-        localStorage.setItem('documentsList', JSON.stringify(documents));
+    const leaders = getLeaders();
+    const newId = leaders.length > 0 ? Math.max(...leaders.map(l => l.id)) + 1 : 1;
+    
+    const newLeader = {
+        id: newId,
+        name,
+        position,
+        region,
+        icon
+    };
+    
+    leaders.push(newLeader);
+    saveLeaders(leaders);
+    
+    // Очистка формы
+    document.getElementById('leader-name').value = '';
+    document.getElementById('leader-position').value = '';
+    document.getElementById('leader-region').value = '';
+    document.getElementById('leader-icon').value = 'crown';
+    
+    alert('Руководитель успешно добавлен!');
+    renderLeadersList();
+}
+
+/**
+ * Обработчик добавления регионального представителя
+ */
+function handleAddRegion() {
+    const region = document.getElementById('region-name').value.trim();
+    const name = document.getElementById('representative-name').value.trim();
+    const position = document.getElementById('representative-position').value.trim();
+    const phone = document.getElementById('representative-phone').value.trim();
+    const email = document.getElementById('representative-email').value.trim();
+    
+    if (!region || !name || !position) {
+        alert('Пожалуйста, заполните обязательные поля: регион, ФИО и должность');
+        return;
     }
     
-    function getLeaders() {
-        const savedLeaders = localStorage.getItem('leadersList');
-        return savedLeaders ? JSON.parse(savedLeaders) : [];
-    }
+    const regions = getRegions();
+    const newId = regions.length > 0 ? Math.max(...regions.map(r => r.id)) + 1 : 1;
     
-    function saveLeaders(leaders) {
-        localStorage.setItem('leadersList', JSON.stringify(leaders));
-    }
+    const newRegion = {
+        id: newId,
+        region,
+        name,
+        position,
+        phone: phone || 'не указан',
+        email: email || 'не указан'
+    };
     
-    function getRegions() {
-        const savedRegions = localStorage.getItem('regionsList');
-        return savedRegions ? JSON.parse(savedRegions) : [];
-    }
+    regions.push(newRegion);
+    saveRegions(regions);
     
-    function saveRegions(regions) {
-        localStorage.setItem('regionsList', JSON.stringify(regions));
-    }
+    // Очистка формы
+    document.getElementById('region-name').value = '';
+    document.getElementById('representative-name').value = '';
+    document.getElementById('representative-position').value = '';
+    document.getElementById('representative-phone').value = '';
+    document.getElementById('representative-email').value = '';
     
-    // Навигация по стрелкам
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            const prevLink = document.querySelector('.nav-link.active').previousElementSibling?.querySelector('a');
-            if (prevLink) prevLink.click();
-        } else if (e.key === 'ArrowRight') {
-            const nextLink = document.querySelector('.nav-link.active').nextElementSibling?.querySelector('a');
-            if (nextLink) nextLink.click();
-        }
-    });
-    
-    // Эффекты для кнопок
-    document.querySelectorAll('.btn').forEach(btn => {
+    alert('Региональный представитель успешно добавлен!');
+    renderRegionsList();
+}
+
+/**
+ * Визуальные эффекты для кнопок
+ */
+function initButtonEffects() {
+    document.querySelectorAll('.btn, .tile-link').forEach(btn => {
         btn.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px)';
         });
@@ -390,9 +384,46 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'translateY(0)';
         });
     });
-});
+}
 
-// Функция для получения данных из localStorage
+/**
+ * Функции для работы с LocalStorage
+ */
+function getCompetitions() {
+    return getLocalStorageData('competitionsList') || [];
+}
+
+function saveCompetitions(competitions) {
+    saveToLocalStorage('competitionsList', competitions);
+}
+
+function getDocuments() {
+    return getLocalStorageData('documentsList') || [];
+}
+
+function saveDocuments(documents) {
+    saveToLocalStorage('documentsList', documents);
+}
+
+function getLeaders() {
+    return getLocalStorageData('leadersList') || [];
+}
+
+function saveLeaders(leaders) {
+    saveToLocalStorage('leadersList', leaders);
+}
+
+function getRegions() {
+    return getLocalStorageData('regionsList') || [];
+}
+
+function saveRegions(regions) {
+    saveToLocalStorage('regionsList', regions);
+}
+
+/**
+ * Универсальные функции для работы с LocalStorage
+ */
 function getLocalStorageData(key) {
     try {
         const data = localStorage.getItem(key);
@@ -403,7 +434,6 @@ function getLocalStorageData(key) {
     }
 }
 
-// Функция для сохранения данных в localStorage
 function saveToLocalStorage(key, data) {
     try {
         localStorage.setItem(key, JSON.stringify(data));
@@ -412,4 +442,99 @@ function saveToLocalStorage(key, data) {
         console.error(`Ошибка при сохранении данных в localStorage: ${error}`);
         return false;
     }
+}
+
+/**
+ * Функции отрисовки списков (заглушки - нужно реализовать под конкретные потребности)
+ */
+function renderCompetitionsList() {
+    const container = document.getElementById('competitions-list');
+    if (!container) return;
+    
+    const competitions = getCompetitions();
+    container.innerHTML = competitions.map(comp => `
+        <div class="list-item">
+            <div>
+                <strong>${comp.name}</strong><br>
+                <small>${comp.date} • ${comp.location}</small>
+            </div>
+            <div class="list-actions">
+                <button class="action-btn edit-btn" data-id="${comp.id}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${comp.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderDocumentsList() {
+    const container = document.getElementById('documents-list');
+    if (!container) return;
+    
+    const documents = getDocuments();
+    container.innerHTML = documents.map(doc => `
+        <div class="list-item">
+            <div>
+                <strong>${doc.name}</strong><br>
+                <small>${doc.category} • ${doc.date} • ${doc.size}</small>
+            </div>
+            <div class="list-actions">
+                <a href="${doc.url}" class="action-btn edit-btn" download>
+                    <i class="fas fa-download"></i>
+                </a>
+                <button class="action-btn delete-btn" data-id="${doc.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderLeadersList() {
+    const container = document.getElementById('leaders-list');
+    if (!container) return;
+    
+    const leaders = getLeaders();
+    container.innerHTML = leaders.map(leader => `
+        <div class="list-item">
+            <div>
+                <strong>${leader.name}</strong><br>
+                <small>${leader.position} • ${leader.region}</small>
+            </div>
+            <div class="list-actions">
+                <button class="action-btn edit-btn" data-id="${leader.id}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${leader.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderRegionsList() {
+    const container = document.getElementById('regions-list');
+    if (!container) return;
+    
+    const regions = getRegions();
+    container.innerHTML = regions.map(region => `
+        <div class="list-item">
+            <div>
+                <strong>${region.region}</strong><br>
+                <small>${region.name} • ${region.position}</small>
+            </div>
+            <div class="list-actions">
+                <button class="action-btn edit-btn" data-id="${region.id}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${region.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
 }
