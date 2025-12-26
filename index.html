@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Комиссия по фигурному управлению мотоциклом | МФР</title>
+    <title>Главная | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -24,7 +25,7 @@
             </button>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html" class="nav-link active" aria-current="page">Главная</a></li>
+                    <li><a href="index.html" class="nav-link active">Главная</a></li>
                     <li><a href="about.html" class="nav-link">О комиссии</a></li>
                     <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
@@ -51,116 +52,119 @@
         </header>
 
         <main class="content">
-            <section class="announcements">
-                <h2 class="section-title"><i class="fas fa-bullhorn"></i> Анонсы и новости</h2>
-                <div class="news-grid">
-                    <div class="news-card">
-                        <div class="news-date">15.12.2025</div>
-                        <h3>Утвержден календарь соревнований на 2026 год</h3>
-                        <p>31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии фигурного управления мотоциклом и календарь соревнований на 2026 год.</p>
-                        <a href="#" class="read-more">Читать подробнее</a>
+            <!-- Hero section с параллакс-эффектом -->
+            <section class="hero-section parallax">
+                <div class="hero-overlay">
+                    <h1 class="hero-title">Мотоджимхана России</h1>
+                    <p class="hero-subtitle">Фигурное управление мотоциклом - спорт для всех</p>
+                    <a href="about.html" class="hero-btn">Узнать больше</a>
+                </div>
+            </section>
+            
+            <!-- Quick links cards -->
+            <section class="quick-links">
+                <h2 class="section-title">Быстрые ссылки</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="card-title">Календарь соревнований</h3>
+                        <p class="card-description">Расписание предстоящих мероприятий и результаты прошедших</p>
+                        <a href="calendar.html" class="card-link">Перейти →</a>
                     </div>
-                    <div class="news-card">
-                        <div class="news-date">08.11.2025</div>
-                        <h3>Составлен новый состав комиссии</h3>
-                        <p>Председателем комиссии переизбран Дмитрий Серов. В новом составе появились новые региональные представители из Тульской области и Москвы.</p>
-                        <a href="structure.html" class="read-more">Читать подробнее</a>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="card-title">Документы</h3>
+                        <p class="card-description">Правила, регламенты и нормативные документы</p>
+                        <a href="documents.html" class="card-link">Перейти →</a>
                     </div>
-                    <div class="news-card">
-                        <div class="news-date">25.10.2025</div>
-                        <h3>Обновлены правила соревнований</h3>
-                        <p>Утверждена новая редакция правил соревнований по фигурному управлению мотоциклом с изменениями в системе оценки и требованиям к экипировке.</p>
-                        <a href="documents.html" class="read-more">Читать подробнее</a>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="card-title">Структура комиссии</h3>
+                        <p class="card-description">Руководство и региональные представители</p>
+                        <a href="structure.html" class="card-link">Перейти →</a>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="card-title">Партнеры</h3>
+                        <p class="card-description">Наши партнеры и спонсоры</p>
+                        <a href="partners.html" class="card-link">Перейти →</a>
                     </div>
                 </div>
             </section>
-
-            <section class="tiles-section">
-                <div class="tile tile-blue">
-                    <i class="fas fa-info-circle tile-icon"></i>
-                    <h2 class="tile-title">О комиссии</h2>
-                    <p class="tile-text">История создания, цели и задачи комиссии по фигурному управлению мотоциклом</p>
-                    <a href="about.html" class="tile-link">Подробнее</a>
-                </div>
-                
-                <div class="tile tile-red">
-                    <i class="fas fa-sitemap tile-icon"></i>
-                    <h2 class="tile-title">Структура комиссии</h2>
-                    <p class="tile-text">Руководство и региональные представители по всей России</p>
-                    <a href="structure.html" class="tile-link">Подробнее</a>
-                </div>
-                
-                <div class="tile tile-yellow">
-                    <i class="fas fa-calendar-alt tile-icon"></i>
-                    <h2 class="tile-title">Календарь соревнований</h2>
-                    <p class="tile-text">Официальные соревнования по фигурному управлению мотоциклом</p>
-                    <a href="calendar.html" class="tile-link">Подробнее</a>
-                </div>
-                
-                <div class="tile tile-green">
-                    <i class="fas fa-file-alt tile-icon"></i>
-                    <h2 class="tile-title">Полезные документы</h2>
-                    <p class="tile-text">Правила, регламенты и другие нормативные документы</p>
-                    <a href="documents.html" class="tile-link">Подробнее</a>
-                </div>
-                
-                <div class="tile tile-orange">
-                    <i class="fas fa-handshake tile-icon"></i>
-                    <h2 class="tile-title">Партнеры</h2>
-                    <p class="tile-text">Привлечение партнеров для проведения Кубка России и создания долгосрочных отношений с рекламодателями</p>
-                    <a href="partners.html" class="tile-link">Подробнее</a>
-                </div>
-                
-                <div class="tile tile-purple">
-                    <i class="fas fa-address-book tile-icon"></i>
-                    <h2 class="tile-title">Контакты</h2>
-                    <p class="tile-text">Как связаться с комиссией и региональными представителями</p>
-                    <a href="contacts.html" class="tile-link">Подробнее</a>
+            
+            <!-- News section -->
+            <section class="news-section">
+                <h2 class="section-title">Последние новости</h2>
+                <div class="news-container">
+                    <div class="news-card">
+                        <div class="news-date">15.04.2025</div>
+                        <h3 class="news-title">Чемпионат России 2025</h3>
+                        <p class="news-excerpt">Стартовала подготовка к Чемпионату России по мотоджимхане 2025 года. Регистрация участников откроется 1 мая.</p>
+                        <a href="#" class="news-link">Подробнее</a>
+                    </div>
+                    
+                    <div class="news-card">
+                        <div class="news-date">10.04.2025</div>
+                        <h3 class="news-title">Новые правила сезона 2025</h3>
+                        <p class="news-excerpt">Опубликованы обновленные правила проведения соревнований по мотоджимхане на сезон 2025 года.</p>
+                        <a href="#" class="news-link">Подробнее</a>
+                    </div>
+                    
+                    <div class="news-card">
+                        <div class="news-date">05.04.2025</div>
+                        <h3 class="news-title">Семинар для судей</h3>
+                        <p class="news-excerpt">18 апреля состоится всероссийский семинар для судей по мотоджимхане. Приглашаются все желающие.</p>
+                        <a href="#" class="news-link">Подробнее</a>
+                    </div>
                 </div>
             </section>
-
-            <section class="gallery-section">
-                <h2 class="section-title"><i class="fas fa-images"></i> Наши соревнования</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/competition1.jpg" alt="Соревнования в Твери">
-                        <div class="gallery-caption">Чемпионат России 2024, Тверская область</div>
+            
+            <!-- About section -->
+            <section class="about-section parallax">
+                <div class="about-overlay">
+                    <h2 class="section-title">Что такое мотоджимхана?</h2>
+                    <div class="about-content">
+                        <p>Мотоджимхана (фигурное управление мотоциклом) - это дисциплина мотоциклетного спорта, в которой участники на время проходят трассу с набором фигурных элементов.</p>
+                        <p>Этот вид спорта развивает навыки управления мотоциклом на низких скоростях, баланс и точность. Соревнования проводятся на асфальтовых площадках с использованием пластиковых конусов.</p>
+                        <a href="about.html" class="about-btn">Подробнее о комиссии</a>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/competition2.jpg" alt="Соревнования в Нижнем Новгороде">
-                        <div class="gallery-caption">Кубок России, Нижний Новгород</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/competition3.jpg" alt="Тренировки в Москву">
-                        <div class="gallery-caption">Сборная тренировка, Москва</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/competition4.jpg" alt="Детские соревнования">
-                        <div class="gallery-caption">Первенство среди юниоров, Смоленск</div>
-                    </div>
-                </div>
-                <div class="gallery-cta">
-                    <a href="#" class="btn btn-primary">Смотреть все фотографии</a>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">
-                    <img src="images/mfr_logo.png" alt="Логотип МФР">
-                </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank" rel="noopener noreferrer">
-                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
-                </a>
-            </div>
-            <div class="footer-links">
-                <a href="documents.html" class="document-link">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank" rel="noopener noreferrer">Страница мотоджимханы на сайте МФР</a>
-            </div>
-            <div class="copyright">
-                © 2025 Мотоциклетная Федерация России
+            <div class="footer-content">
+                <div class="footer-logos">
+                    <a href="https://www.mfr.ru/" target="_blank">
+                        <img src="images/mfr_logo.png" alt="Логотип МФР">
+                    </a>
+                    <a href="https://www.minsport.gov.ru/" target="_blank">
+                        <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="documents.html" class="document-link">Документы комиссии</a>
+                    <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                </div>
+                <div class="footer-contacts">
+                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
+                    <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
+                </div>
+                <div class="copyright">
+                    © 2025 Мотоциклетная Федерация России
+                </div>
             </div>
         </footer>
     </div>
@@ -171,7 +175,7 @@
     </div>
 
     <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel" hidden aria-hidden="true">
+    <div class="admin-panel" id="admin-panel">
         <div class="admin-header">
             <h2>Админ-панель</h2>
             <button class="close-admin-panel" id="close-admin-panel">
@@ -180,13 +184,35 @@
         </div>
         
         <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
+            <button class="tab-btn active" data-tab="news">Новости</button>
+            <button class="tab-btn" data-tab="calendar">Календарь</button>
             <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура комиссии</button>
-            <button class="tab-btn" data-tab="regions">Регионы</button>
+            <button class="tab-btn" data-tab="structure">Структура</button>
+            <button class="tab-btn" data-tab="contacts">Контакты</button>
+            <button class="tab-btn" data-tab="partners">Партнеры</button>
         </div>
         
-        <div class="tab-content active" id="calendar-tab">
+        <div class="tab-content active" id="news-tab">
+            <h3>Управление новостями</h3>
+            <div class="form-group">
+                <label for="news-title">Заголовок новости</label>
+                <input type="text" id="news-title" class="form-control" placeholder="Введите заголовок">
+            </div>
+            <div class="form-group">
+                <label for="news-date">Дата</label>
+                <input type="date" id="news-date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="news-content">Содержание</label>
+                <textarea id="news-content" class="form-control" rows="4" placeholder="Введите содержание новости"></textarea>
+            </div>
+            <button id="add-news-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить новость
+            </button>
+            <div id="news-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content" id="calendar-tab">
             <h3>Управление соревнованиями</h3>
             <div class="form-group">
                 <label for="competition-name">Название соревнования</label>
@@ -201,13 +227,8 @@
                 <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
             </div>
             <div class="form-group">
-                <label for="competition-contact">Контактное лицо</label>
-                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
-            </div>
-            <div class="form-group">
-                <label for="protocol-upload">Протокол соревнований</label>
-                <input type="file" id="protocol-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все протоколы автоматически загружаются в Яндекс.Диск</p>
+                <label for="competition-description">Описание</label>
+                <textarea id="competition-description" class="form-control" rows="3" placeholder="Введите описание"></textarea>
             </div>
             <button id="add-competition-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить соревнование
@@ -215,16 +236,11 @@
             <div id="competitions-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="documents-tab" style="display: none;">
+        <div class="tab-content" id="documents-tab">
             <h3>Управление документами</h3>
             <div class="form-group">
                 <label for="document-name">Название документа</label>
                 <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
-            </div>
-            <div class="form-group">
-                <label for="document-upload">Файл документа</label>
-                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
             </div>
             <div class="form-group">
                 <label for="document-category">Категория документа</label>
@@ -235,13 +251,17 @@
                     <option value="other">Прочее</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="document-description">Описание</label>
+                <textarea id="document-description" class="form-control" rows="3" placeholder="Введите описание документа"></textarea>
+            </div>
             <button id="add-document-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить документ
             </button>
             <div id="documents-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="structure-tab" style="display: none;">
+        <div class="tab-content" id="structure-tab">
             <h3>Управление структурой комиссии</h3>
             <div class="form-group">
                 <label for="leader-name">Ф.И.О. руководителя</label>
@@ -256,17 +276,12 @@
                 <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
             </div>
             <div class="form-group">
-                <label for="leader-icon">Иконка</label>
-                <select id="leader-icon" class="form-control">
-                    <option value="crown">Председатель</option>
-                    <option value="user-tie">Заместитель</option>
-                    <option value="file-signature">Секретарь</option>
-                    <option value="medal">Спортивное достижение</option>
-                    <option value="history">История</option>
-                    <option value="child">Детский</option>
-                    <option value="motorcycle">Мотоцикл</option>
-                    <option value="building">Организация</option>
-                </select>
+                <label for="leader-phone">Телефон</label>
+                <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <label for="leader-email">Email</label>
+                <input type="email" id="leader-email" class="form-control" placeholder="Введите email">
             </div>
             <button id="add-leader-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить руководителя
@@ -274,32 +289,40 @@
             <div id="leaders-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="regions-tab" style="display: none;">
-            <h3>Управление региональными представителями</h3>
+        <div class="tab-content" id="contacts-tab">
+            <h3>Управление контактами</h3>
             <div class="form-group">
-                <label for="region-name">Регион</label>
-                <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
+                <label for="contact-title">Заголовок контакта</label>
+                <input type="text" id="contact-title" class="form-control" placeholder="Введите заголовок">
             </div>
             <div class="form-group">
-                <label for="representative-name">Ф.И.О. представителя</label>
-                <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
+                <label for="contact-content">Содержимое</label>
+                <textarea id="contact-content" class="form-control" rows="4" placeholder="Введите содержимое (каждая строка - новый абзац)"></textarea>
             </div>
-            <div class="form-group">
-                <label for="representative-position">Должность</label>
-                <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="representative-phone">Телефон</label>
-                <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="representative-email">Email</label>
-                <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
-            </div>
-            <button id="add-region-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить представителя
+            <button id="add-contact-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить контакт
             </button>
-            <div id="regions-list" class="admin-list"></div>
+            <div id="contacts-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content" id="partners-tab">
+            <h3>Управление партнерами</h3>
+            <div class="form-group">
+                <label for="partner-name">Название партнера</label>
+                <input type="text" id="partner-name" class="form-control" placeholder="Введите название">
+            </div>
+            <div class="form-group">
+                <label for="partner-description">Описание</label>
+                <textarea id="partner-description" class="form-control" rows="3" placeholder="Введите описание"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="partner-url">Ссылка на сайт</label>
+                <input type="text" id="partner-url" class="form-control" placeholder="Введите URL">
+            </div>
+            <button id="add-partner-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить партнера
+            </button>
+            <div id="partners-list" class="admin-list"></div>
         </div>
 
         <div class="admin-login">
@@ -308,6 +331,19 @@
                 <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
             </div>
             <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
+            <div id="login-message" class="login-message"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно подтверждения -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <h3>Подтверждение действия</h3>
+            <p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="modal-cancel">Отмена</button>
+                <button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
+            </div>
         </div>
     </div>
 
