@@ -1,6 +1,9 @@
 /**
- * Оптимизация: Загрузка данных с кэшированием
+ * Основной модуль инициализации сайта Комиссии по мотоджимхане
+ * Полная версия со всеми функциями
  */
+
+// Оптимизация: Загрузка данных с кэшированием
 const DataManager = {
     cache: new Map(),
     cacheDuration: 5 * 60 * 1000, // 5 минут кэширования
@@ -45,6 +48,656 @@ const DataManager = {
         console.log('Кэш очищен');
     }
 };
+
+/**
+ * Инициализация при загрузке страницы
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Сайт комиссии по мотоджимхане успешно загружен');
+    
+    // Проверяем, находимся ли на странице партнеров
+    const isPartnersPage = window.location.pathname.includes('partners.html') || 
+                         document.querySelector('.partnership-contact');
+    
+    // Инициализация модулей
+    initMobileMenu();
+    initScrollAnimations();
+    initAdminPanel();
+    initButtonEffects();
+    initCalendar();
+    initCompetitionsFilter();
+    initLazyLoadingGallery();
+    initGalleryModal();
+    initBackToTopButton();
+    initContactForm();
+    initExternalLinks();
+    initScrollSpy();
+    initPerformanceOptimizations();
+    
+    // Специфичная инициализация для страницы партнеров
+    if (isPartnersPage) {
+        initPartnersPage();
+    }
+    
+    // Плавное появление страницы
+    requestAnimationFrame(() => {
+        document.body.style.opacity = '1';
+        document.body.style.transition = 'opacity 0.3s ease';
+    });
+    
+    // Проверка браузерной поддержки
+    if (!('IntersectionObserver' in window)) {
+        console.warn('IntersectionObserver не поддерживается');
+    }
+    
+    if (!('localStorage' in window)) {
+        console.error('localStorage не поддерживается');
+        showMessage('Ваш браузер не поддерживает локальное хранилище данных', 'error');
+    }
+    
+    // Загрузка демо данных при первом посещении
+    if (!localStorage.getItem('firstVisit')) {
+        loadDemoData();
+        localStorage.setItem('firstVisit', 'true');
+    }
+});
+
+/**
+ * Инициализация мобильного меню
+ */
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+    
+    if (!menuToggle || !mobileMenu) return;
+    
+    // Устанавливаем начальное состояние для доступности
+    menuToggle.setAttribute('aria-expanded', 'false');
+    
+    // Функции для управления меню
+    const openMobileMenu = () => {
+        mobileMenu.classList.add('active');
+        menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+        body.style.overflow = 'hidden';
+        menuToggle.setAttribute('aria-expanded', 'true');
+    };
+    
+    const closeMobileMenu = () => {
+        mobileMenu.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        body.style.overflow = 'auto';
+        menuToggle.setAttribute('aria-expanded', 'false');
+    };
+    
+    // Обработчик кнопки меню
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.contains('active') ? closeMobileMenu() : openMobileMenu();
+    });
+    
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Закрытие меню при изменении размера окна
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+}
+
+/**
+ * Анимация элементов при прокрутке
+ */
+function initScrollAnimations() {
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.tile, .news-card, .gallery-item, .benefit-card, .program-card, .partner-logo');
+        const screenPosition = window.innerHeight / 1.3;
+        
+        elements.forEach((element, index) => {
+            const elementPosition = element.getBoundingClientRect().top;
+            
+            if (elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+                element.style.transitionDelay = `${index * 0.1}s`;
+            }
+        });
+    };
+    
+    // Установка начальных стилей для анимации
+    const animatedElements = document.querySelectorAll('.tile, .news-card, .gallery-item, .benefit-card, .program-card, .partner-logo');
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    // Вызов анимации при загрузке и прокрутке
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+}
+
+/**
+ * Инициализация админ-панели
+ */
+function initAdminPanel() {
+    const adminTab = document.getElementById('admin-tab');
+    const adminPanel = document.getElementById('admin-panel');
+    const closeAdminPanel = document.getElementById('close-admin-panel');
+    const loginAdminBtn = document.getElementById('login-admin-btn');
+    const adminPassword = document.getElementById('admin-password');
+    
+    // Показать админ-панель при клике на язычок
+    if (adminTab && adminPanel) {
+        adminTab.style.display = 'block';
+        adminTab.addEventListener('click', function() {
+            adminPanel.style.right = '0';
+            adminPanel.removeAttribute('hidden');
+            adminPanel.setAttribute('aria-hidden', 'false');
+        });
+    }
+    
+    // Закрыть админ-панель
+    if (closeAdminPanel) {
+        closeAdminPanel.addEventListener('click', function() {
+            adminPanel.style.right = '-400px';
+            adminPanel.setAttribute('hidden', '');
+            adminPanel.setAttribute('aria-hidden', 'true');
+        });
+    }
+    
+    // Закрытие админ-панели при клике вне ее
+    document.addEventListener('click', function(e) {
+        if (adminPanel && !adminPanel.hasAttribute('hidden') && 
+            !adminPanel.contains(e.target) && 
+            adminTab && !adminTab.contains(e.target)) {
+            adminPanel.style.right = '-400px';
+            adminPanel.setAttribute('hidden', '');
+            adminPanel.setAttribute('aria-hidden', 'true');
+        }
+    });
+    
+    // Обработка входа в админ-панель
+    if (loginAdminBtn && adminPassword) {
+        loginAdminBtn.addEventListener('click', function() {
+            // В реальном приложении пароль должен проверяться на сервере!
+            if (adminPassword.value === 'fum2025admin') {
+                document.querySelector('.admin-login').style.display = 'none';
+                document.querySelector('.tab-content.active').style.display = 'block';
+                showMessage('Вход выполнен успешно!', 'success');
+            } else {
+                showMessage('Неверный пароль! Обратитесь к Председателю комиссии для получения доступа.', 'error');
+            }
+        });
+        
+        // Возможность входа по нажатию Enter
+        adminPassword.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginAdminBtn.click();
+            }
+        });
+    }
+    
+    // Переключение вкладок в админ-панели
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => {
+                c.classList.remove('active');
+                c.style.display = 'none';
+            });
+            
+            this.classList.add('active');
+            const tabContent = document.getElementById(`${this.dataset.tab}-tab`);
+            tabContent.classList.add('active');
+            tabContent.style.display = 'block';
+        });
+    });
+    
+    // Инициализация функций управления данными
+    initDataManagement();
+}
+
+/**
+ * Управление данными в админ-панели (LocalStorage)
+ */
+function initDataManagement() {
+    // Добавление соревнования
+    const addCompetitionBtn = document.getElementById('add-competition-btn');
+    if (addCompetitionBtn) {
+        addCompetitionBtn.addEventListener('click', handleAddCompetition);
+    }
+    
+    // Добавление документа
+    const addDocumentBtn = document.getElementById('add-document-btn');
+    if (addDocumentBtn) {
+        addDocumentBtn.addEventListener('click', handleAddDocument);
+    }
+    
+    // Добавление руководителя
+    const addLeaderBtn = document.getElementById('add-leader-btn');
+    if (addLeaderBtn) {
+        addLeaderBtn.addEventListener('click', handleAddLeader);
+    }
+    
+    // Добавление регионального представителя
+    const addRegionBtn = document.getElementById('add-region-btn');
+    if (addRegionBtn) {
+        addRegionBtn.addEventListener('click', handleAddRegion);
+    }
+    
+    // Инициализация списков при загрузке
+    if (document.getElementById('competitions-list')) renderCompetitionsList();
+    if (document.getElementById('documents-list')) renderDocumentsList();
+    if (document.getElementById('leaders-list')) renderLeadersList();
+    if (document.getElementById('regions-list')) renderRegionsList();
+}
+
+/**
+ * Обработчик добавления соревнования
+ */
+function handleAddCompetition() {
+    const name = document.getElementById('competition-name').value.trim();
+    const date = document.getElementById('competition-date').value;
+    const location = document.getElementById('competition-location').value.trim();
+    const contact = document.getElementById('competition-contact').value.trim();
+    
+    if (!name || !date || !location || !contact) {
+        showMessage('Пожалуйста, заполните все обязательные поля', 'error');
+        return;
+    }
+    
+    const competitions = getCompetitions();
+    const newId = competitions.length > 0 ? Math.max(...competitions.map(c => c.id)) + 1 : 1;
+    
+    const newCompetition = {
+        id: newId,
+        name,
+        date,
+        location,
+        contact,
+        contactPhone: '',
+        protocol: '',
+        region: ''
+    };
+    
+    competitions.push(newCompetition);
+    saveCompetitions(competitions);
+    
+    // Очистка формы
+    document.getElementById('competition-name').value = '';
+    document.getElementById('competition-date').value = '';
+    document.getElementById('competition-location').value = '';
+    document.getElementById('competition-contact').value = '';
+    document.getElementById('protocol-upload').value = '';
+    
+    showMessage('Соревнование успешно добавлено!', 'success');
+    renderCompetitionsList();
+}
+
+/**
+ * Обработчик добавления документа
+ */
+function handleAddDocument() {
+    const name = document.getElementById('document-name').value.trim();
+    const docFile = document.getElementById('document-upload').files[0];
+    const category = document.getElementById('document-category').value;
+    
+    if (!name || !category) {
+        showMessage('Пожалуйста, заполните все обязательные поля', 'error');
+        return;
+    }
+    
+    const documents = getDocuments();
+    const newId = documents.length > 0 ? Math.max(...documents.map(d => d.id)) + 1 : 1;
+    
+    const newDocument = {
+        id: newId,
+        name,
+        url: docFile ? URL.createObjectURL(docFile) : '#',
+        category,
+        date: new Date().toLocaleDateString('ru-RU'),
+        size: docFile ? `${(docFile.size / 1024).toFixed(1)} КБ` : '0 КБ'
+    };
+    
+    documents.push(newDocument);
+    saveDocuments(documents);
+    
+    // Очистка формы
+    document.getElementById('document-name').value = '';
+    document.getElementById('document-upload').value = '';
+    document.getElementById('document-category').value = 'rules';
+    
+    showMessage('Документ успешно добавлен!', 'success');
+    renderDocumentsList();
+}
+
+/**
+ * Обработчик добавления руководителя
+ */
+function handleAddLeader() {
+    const name = document.getElementById('leader-name').value.trim();
+    const position = document.getElementById('leader-position').value.trim();
+    const region = document.getElementById('leader-region').value.trim();
+    const icon = document.getElementById('leader-icon').value;
+    
+    if (!name || !position || !region) {
+        showMessage('Пожалуйста, заполните все обязательные поля', 'error');
+        return;
+    }
+    
+    const leaders = getLeaders();
+    const newId = leaders.length > 0 ? Math.max(...leaders.map(l => l.id)) + 1 : 1;
+    
+    const newLeader = {
+        id: newId,
+        name,
+        position,
+        region,
+        icon
+    };
+    
+    leaders.push(newLeader);
+    saveLeaders(leaders);
+    
+    // Очистка формы
+    document.getElementById('leader-name').value = '';
+    document.getElementById('leader-position').value = '';
+    document.getElementById('leader-region').value = '';
+    document.getElementById('leader-icon').value = 'crown';
+    
+    showMessage('Руководитель успешно добавлен!', 'success');
+    renderLeadersList();
+}
+
+/**
+ * Обработчик добавления регионального представителя
+ */
+function handleAddRegion() {
+    const region = document.getElementById('region-name').value.trim();
+    const name = document.getElementById('representative-name').value.trim();
+    const position = document.getElementById('representative-position').value.trim();
+    const phone = document.getElementById('representative-phone').value.trim();
+    const email = document.getElementById('representative-email').value.trim();
+    
+    if (!region || !name || !position) {
+        showMessage('Пожалуйста, заполните обязательные поля: регион, ФИО и должность', 'error');
+        return;
+    }
+    
+    const regions = getRegions();
+    const newId = regions.length > 0 ? Math.max(...regions.map(r => r.id)) + 1 : 1;
+    
+    const newRegion = {
+        id: newId,
+        region,
+        name,
+        position,
+        phone: phone || 'не указан',
+        email: email || 'не указан'
+    };
+    
+    regions.push(newRegion);
+    saveRegions(regions);
+    
+    // Очистка формы
+    document.getElementById('region-name').value = '';
+    document.getElementById('representative-name').value = '';
+    document.getElementById('representative-position').value = '';
+    document.getElementById('representative-phone').value = '';
+    document.getElementById('representative-email').value = '';
+    
+    showMessage('Региональный представитель успешно добавлен!', 'success');
+    renderRegionsList();
+}
+
+/**
+ * Визуальные эффекты для кнопок
+ */
+function initButtonEffects() {
+    document.querySelectorAll('.btn, .tile-link').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+/**
+ * Функции для работы с LocalStorage
+ */
+function getCompetitions() {
+    return getLocalStorageData('competitionsList') || [];
+}
+
+function saveCompetitions(competitions) {
+    saveToLocalStorage('competitionsList', competitions);
+}
+
+function getDocuments() {
+    return getLocalStorageData('documentsList') || [];
+}
+
+function saveDocuments(documents) {
+    saveToLocalStorage('documentsList', documents);
+}
+
+function getLeaders() {
+    return getLocalStorageData('leadersList') || [];
+}
+
+function saveLeaders(leaders) {
+    saveToLocalStorage('leadersList', leaders);
+}
+
+function getRegions() {
+    return getLocalStorageData('regionsList') || [];
+}
+
+function saveRegions(regions) {
+    saveToLocalStorage('regionsList', regions);
+}
+
+/**
+ * Универсальные функции для работы с LocalStorage
+ */
+function getLocalStorageData(key) {
+    try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : null;
+    } catch (error) {
+        console.error(`Ошибка при получении данных из localStorage: ${error}`);
+        return null;
+    }
+}
+
+function saveToLocalStorage(key, data) {
+    try {
+        localStorage.setItem(key, JSON.stringify(data));
+        return true;
+    } catch (error) {
+        console.error(`Ошибка при сохранении данных в localStorage: ${error}`);
+        return false;
+    }
+}
+
+/**
+ * Функции отрисовки списков
+ */
+function renderCompetitionsList() {
+    const container = document.getElementById('competitions-list');
+    if (!container) return;
+    
+    const competitions = getCompetitions();
+    
+    if (competitions.length === 0) {
+        container.innerHTML = '<p class="no-data">Нет добавленных соревнований</p>';
+        return;
+    }
+    
+    container.innerHTML = competitions.map(comp => `
+        <div class="list-item" data-id="${comp.id}">
+            <div>
+                <strong>${comp.name}</strong><br>
+                <small>${comp.date} • ${comp.location}</small>
+            </div>
+            <div class="list-actions">
+                <button class="action-btn edit-btn" data-id="${comp.id}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${comp.id}" onclick="deleteCompetition(${comp.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderDocumentsList() {
+    const container = document.getElementById('documents-list');
+    if (!container) return;
+    
+    const documents = getDocuments();
+    
+    if (documents.length === 0) {
+        container.innerHTML = '<p class="no-data">Нет добавленных документов</p>';
+        return;
+    }
+    
+    container.innerHTML = documents.map(doc => `
+        <div class="list-item" data-id="${doc.id}">
+            <div>
+                <strong>${doc.name}</strong><br>
+                <small>${doc.category} • ${doc.date} • ${doc.size}</small>
+            </div>
+            <div class="list-actions">
+                <a href="${doc.url}" class="action-btn edit-btn" download>
+                    <i class="fas fa-download"></i>
+                </a>
+                <button class="action-btn delete-btn" data-id="${doc.id}" onclick="deleteDocument(${doc.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderLeadersList() {
+    const container = document.getElementById('leaders-list');
+    if (!container) return;
+    
+    const leaders = getLeaders();
+    
+    if (leaders.length === 0) {
+        container.innerHTML = '<p class="no-data">Нет добавленных руководителей</p>';
+        return;
+    }
+    
+    container.innerHTML = leaders.map(leader => `
+        <div class="list-item" data-id="${leader.id}">
+            <div>
+                <strong>${leader.name}</strong><br>
+                <small>${leader.position} • ${leader.region}</small>
+            </div>
+            <div class="list-actions">
+                <button class="action-btn edit-btn" data-id="${leader.id}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${leader.id}" onclick="deleteLeader(${leader.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderRegionsList() {
+    const container = document.getElementById('regions-list');
+    if (!container) return;
+    
+    const regions = getRegions();
+    
+    if (regions.length === 0) {
+        container.innerHTML = '<p class="no-data">Нет добавленных регионов</p>';
+        return;
+    }
+    
+    container.innerHTML = regions.map(region => `
+        <div class="list-item" data-id="${region.id}">
+            <div>
+                <strong>${region.region}</strong><br>
+                <small>${region.name} • ${region.position}</small>
+            </div>
+            <div class="list-actions">
+                <button class="action-btn edit-btn" data-id="${region.id}">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${region.id}" onclick="deleteRegion(${region.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+/**
+ * Функции удаления данных
+ */
+function deleteCompetition(id) {
+    if (!confirm('Вы уверены, что хотите удалить это соревнование?')) return;
+    
+    const competitions = getCompetitions();
+    const filtered = competitions.filter(comp => comp.id !== id);
+    saveCompetitions(filtered);
+    renderCompetitionsList();
+    showMessage('Соревнование удалено', 'success');
+}
+
+function deleteDocument(id) {
+    if (!confirm('Вы уверены, что хотите удалить этот документ?')) return;
+    
+    const documents = getDocuments();
+    const filtered = documents.filter(doc => doc.id !== id);
+    saveDocuments(filtered);
+    renderDocumentsList();
+    showMessage('Документ удален', 'success');
+}
+
+function deleteLeader(id) {
+    if (!confirm('Вы уверены, что хотите удалить этого руководителя?')) return;
+    
+    const leaders = getLeaders();
+    const filtered = leaders.filter(leader => leader.id !== id);
+    saveLeaders(filtered);
+    renderLeadersList();
+    showMessage('Руководитель удален', 'success');
+}
+
+function deleteRegion(id) {
+    if (!confirm('Вы уверены, что хотите удалить этот регион?')) return;
+    
+    const regions = getRegions();
+    const filtered = regions.filter(region => region.id !== id);
+    saveRegions(filtered);
+    renderRegionsList();
+    showMessage('Регион удален', 'success');
+}
 
 /**
  * Инициализация календаря соревнований
@@ -144,6 +797,9 @@ function initCalendar() {
                     compItem.className = 'competition-item';
                     compItem.textContent = comp.name;
                     compItem.title = `Место: ${comp.location}\nКонтакт: ${comp.contact}`;
+                    compItem.addEventListener('click', () => {
+                        showMessage(`Соревнование: ${comp.name}\nМесто: ${comp.location}\nКонтакт: ${comp.contact}`, 'info', 5000);
+                    });
                     competitionsList.appendChild(compItem);
                 });
                 
@@ -207,7 +863,7 @@ function initCompetitionsFilter() {
     };
     
     // Слушатели событий
-    filterInput.addEventListener('input', filterCompetitions);
+    if (filterInput) filterInput.addEventListener('input', filterCompetitions);
     if (filterDate) filterDate.addEventListener('change', filterCompetitions);
     if (filterRegion) filterRegion.addEventListener('change', filterCompetitions);
 }
@@ -281,11 +937,16 @@ function initLazyLoadingGallery() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
                     img.classList.add('loaded');
                     lazyImageObserver.unobserve(img);
                 }
             });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.1
         });
         
         galleryItems.forEach(img => {
@@ -308,6 +969,11 @@ function initLazyLoadingGallery() {
  */
 function initGalleryModal() {
     const galleryItems = document.querySelectorAll('.gallery-item');
+    if (galleryItems.length === 0) return;
+    
+    // Проверяем, не создано ли уже модальное окно
+    if (document.querySelector('.gallery-modal')) return;
+    
     const modal = document.createElement('div');
     modal.className = 'gallery-modal';
     modal.innerHTML = `
@@ -331,7 +997,7 @@ function initGalleryModal() {
         currentIndex = index;
         const item = images[index];
         const img = item.querySelector('img');
-        const caption = item.querySelector('figcaption')?.textContent || '';
+        const caption = item.querySelector('figcaption')?.textContent || item.querySelector('.gallery-caption')?.textContent || '';
         
         modal.querySelector('.modal-image').src = img.src || img.dataset.src;
         modal.querySelector('.modal-caption').textContent = caption;
@@ -388,6 +1054,9 @@ function initGalleryModal() {
  * Кнопка "Наверх"
  */
 function initBackToTopButton() {
+    // Проверяем, не создана ли уже кнопка
+    if (document.querySelector('.back-to-top')) return;
+    
     const backToTopBtn = document.createElement('button');
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
@@ -493,7 +1162,7 @@ function initContactForm() {
         });
         
         if (!isValid) {
-            alert('Пожалуйста, исправьте ошибки в форме');
+            showMessage('Пожалуйста, исправьте ошибки в форме', 'error');
             return;
         }
         
@@ -519,9 +1188,248 @@ function initContactForm() {
             `;
             
         } catch (error) {
-            alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
+            showMessage('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.', 'error');
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
+        }
+    });
+}
+
+/**
+ * Инициализация страницы партнеров
+ */
+function initPartnersPage() {
+    const partnerForm = document.querySelector('.submit-partner-form');
+    
+    if (partnerForm) {
+        partnerForm.addEventListener('click', handlePartnerFormSubmit);
+    }
+    
+    // Инициализация карточек программ
+    initProgramCards();
+    
+    // Инициализация партнерских логотипов
+    initPartnerLogos();
+}
+
+/**
+ * Обработка отправки формы партнерства
+ */
+function handlePartnerFormSubmit() {
+    const form = document.querySelector('.partnership-contact .contact-form');
+    if (!form) return;
+    
+    const inputs = form.querySelectorAll('input, select, textarea');
+    let isValid = true;
+    
+    // Валидация
+    inputs.forEach(input => {
+        if (input.hasAttribute('required') && !input.value.trim()) {
+            isValid = false;
+            input.classList.add('error');
+            
+            // Создаем сообщение об ошибке
+            let errorMsg = input.parentElement.querySelector('.error-message');
+            if (!errorMsg) {
+                errorMsg = document.createElement('div');
+                errorMsg.className = 'error-message';
+                errorMsg.textContent = 'Это поле обязательно для заполнения';
+                input.parentElement.appendChild(errorMsg);
+            }
+        } else {
+            input.classList.remove('error');
+            const errorMsg = input.parentElement.querySelector('.error-message');
+            if (errorMsg) errorMsg.remove();
+        }
+        
+        // Специфическая валидация для email
+        if (input.type === 'email' && input.value.trim()) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value)) {
+                isValid = false;
+                input.classList.add('error');
+                
+                let errorMsg = input.parentElement.querySelector('.error-message');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    errorMsg.textContent = 'Введите корректный email';
+                    input.parentElement.appendChild(errorMsg);
+                }
+            }
+        }
+        
+        // Специфическая валидация для телефона
+        if (input.type === 'tel' && input.value.trim()) {
+            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+            if (!phoneRegex.test(input.value)) {
+                isValid = false;
+                input.classList.add('error');
+                
+                let errorMsg = input.parentElement.querySelector('.error-message');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    errorMsg.textContent = 'Введите корректный номер телефона';
+                    input.parentElement.appendChild(errorMsg);
+                }
+            }
+        }
+    });
+    
+    if (!isValid) {
+        showMessage('Пожалуйста, исправьте ошибки в форме', 'error');
+        return;
+    }
+    
+    // Сбор данных формы
+    const formData = {
+        companyName: document.getElementById('company-name').value,
+        contactPerson: document.getElementById('contact-person').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        partnerType: document.getElementById('partner-type').value,
+        message: document.getElementById('message').value,
+        timestamp: new Date().toISOString()
+    };
+    
+    // Показать индикатор загрузки
+    const partnerBtn = document.querySelector('.submit-partner-form');
+    const originalText = partnerBtn.innerHTML;
+    partnerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+    partnerBtn.disabled = true;
+    
+    // В реальном приложении здесь будет fetch запрос к серверу
+    setTimeout(() => {
+        // Сохраняем заявку в localStorage (для демонстрации)
+        const partnerRequests = JSON.parse(localStorage.getItem('partnerRequests') || '[]');
+        partnerRequests.push(formData);
+        localStorage.setItem('partnerRequests', JSON.stringify(partnerRequests));
+        
+        // Показываем сообщение об успехе
+        showMessage('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.', 'success');
+        
+        // Очищаем форму
+        inputs.forEach(input => {
+            input.value = '';
+            input.classList.remove('error');
+            const errorMsg = input.parentElement.querySelector('.error-message');
+            if (errorMsg) errorMsg.remove();
+        });
+        
+        // Восстанавливаем кнопку
+        partnerBtn.innerHTML = originalText;
+        partnerBtn.disabled = false;
+        
+        // Прокрутка к верху формы
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1500);
+}
+
+/**
+ * Инициализация интерактивных карточек программ
+ */
+function initProgramCards() {
+    const programCards = document.querySelectorAll('.program-card');
+    
+    programCards.forEach((card, index) => {
+        const btn = card.querySelector('.btn');
+        
+        // Добавляем атрибуты для отслеживания
+        card.setAttribute('data-program-index', index);
+        
+        // Обработчик клика по карточке
+        card.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') return; // Не срабатывает при клике на кнопку
+            
+            // Прокрутка к форме
+            const formSection = document.getElementById('contact-form');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Автозаполнение типа партнерства
+                const partnerTypeSelect = document.getElementById('partner-type');
+                if (partnerTypeSelect) {
+                    const types = ['general', 'stage', 'prizes'];
+                    if (types[index]) {
+                        partnerTypeSelect.value = types[index];
+                    }
+                }
+            }
+        });
+        
+        // Обработчик клика на кнопку в карточке
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Предотвращаем срабатывание клика по карточке
+                
+                // Прокрутка к форме
+                const formSection = document.getElementById('contact-form');
+                if (formSection) {
+                    formSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Автозаполнение типа партнерства
+                    const partnerTypeSelect = document.getElementById('partner-type');
+                    if (partnerTypeSelect) {
+                        const types = ['general', 'stage', 'prizes'];
+                        if (types[index]) {
+                            partnerTypeSelect.value = types[index];
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Эффект при наведении
+        card.addEventListener('mouseenter', () => {
+            if (card.style.transform !== 'translateY(-15px)') {
+                card.style.transform = 'translateY(-15px)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (card.style.transform === 'translateY(-15px)') {
+                card.style.transform = 'translateY(-10px)';
+            }
+        });
+    });
+}
+
+/**
+ * Инициализация партнерских логотипов
+ */
+function initPartnerLogos() {
+    const partnerLogos = document.querySelectorAll('.partner-logo');
+    
+    partnerLogos.forEach(logo => {
+        // Добавляем эффект клика
+        logo.style.cursor = 'pointer';
+        
+        logo.addEventListener('click', () => {
+            // Прокрутка к форме партнерства
+            const formSection = document.getElementById('contact-form');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Автозаполнение поля компании
+                const companyNameInput = document.getElementById('company-name');
+                if (companyNameInput) {
+                    const partnerName = logo.querySelector('.partner-name').textContent;
+                    companyNameInput.value = `Компания (${partnerName})`;
+                }
+            }
+        });
+        
+        // Анимация при наведении
+        const placeholder = logo.querySelector('.partner-placeholder');
+        if (placeholder) {
+            logo.addEventListener('mouseenter', () => {
+                placeholder.style.transform = 'scale(1.1)';
+            });
+            
+            logo.addEventListener('mouseleave', () => {
+                placeholder.style.transform = 'scale(1)';
+            });
         }
     });
 }
@@ -579,53 +1487,6 @@ function initScrollSpy() {
 }
 
 /**
- * Инициализация оффлайн-режима
- */
-function initOfflineSupport() {
-    // Кэширование критических ресурсов
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(error => {
-                console.log('ServiceWorker registration failed:', error);
-            });
-        });
-    }
-    
-    // Обработка онлайн/офлайн статуса
-    window.addEventListener('online', () => {
-        showMessage('Соединение восстановлено', 'success');
-    });
-    
-    window.addEventListener('offline', () => {
-        showMessage('Отсутствует подключение к интернету. Работаем в оффлайн-режиме', 'info');
-    });
-}
-
-/**
- * Универсальная функция показа сообщений
- */
-function showMessage(text, type = 'info', duration = 5000) {
-    const message = document.createElement('div');
-    message.className = `message ${type}`;
-    message.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 
-                         type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-        <span>${text}</span>
-    `;
-    
-    document.body.appendChild(message);
-    
-    // Удаляем сообщение через указанное время
-    if (duration > 0) {
-        setTimeout(() => {
-            message.style.opacity = '0';
-            message.style.transform = 'translateY(-10px)';
-            setTimeout(() => message.remove(), 300);
-        }, duration);
-    }
-}
-
-/**
  * Оптимизация производительности
  */
 function initPerformanceOptimizations() {
@@ -650,50 +1511,6 @@ function initPerformanceOptimizations() {
         }
     }, { passive: true });
 }
-
-/**
- * Основная инициализация
- */
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Сайт комиссии по мотоджимхане успешно загружен');
-    
-    // Инициализация модулей
-    initMobileMenu();
-    initScrollAnimations();
-    initAdminPanel();
-    initButtonEffects();
-    initCalendar();
-    initCompetitionsFilter();
-    initLazyLoadingGallery();
-    initGalleryModal();
-    initBackToTopButton();
-    initContactForm();
-    initExternalLinks();
-    initScrollSpy();
-    initPerformanceOptimizations();
-    
-    // Плавное появление страницы
-    requestAnimationFrame(() => {
-        document.body.style.opacity = '1';
-        document.body.style.transition = 'opacity 0.3s ease';
-    });
-    
-    // Проверка браузерной поддержки
-    if (!('IntersectionObserver' in window)) {
-        console.warn('IntersectionObserver не поддерживается');
-    }
-    
-    if (!('localStorage' in window)) {
-        console.error('localStorage не поддерживается');
-        showMessage('Ваш браузер не поддерживает локальное хранилище данных', 'error');
-    }
-    
-    // Загрузка демо данных при первом посещении
-    if (!localStorage.getItem('firstVisit')) {
-        loadDemoData();
-        localStorage.setItem('firstVisit', 'true');
-    }
-});
 
 /**
  * Загрузка демо-данных
@@ -765,218 +1582,50 @@ function loadDemoData() {
 }
 
 /**
- * CSS для дополнительных стилей
+ * Универсальная функция показа сообщений
  */
-const additionalStyles = `
-/* Стили для модального окна галереи */
-.gallery-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-}
-
-.gallery-modal .modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(5px);
-}
-
-.gallery-modal .modal-content {
-    position: relative;
-    z-index: 1001;
-    width: 90%;
-    max-width: 1200px;
-    height: 90vh;
-    margin: 5vh auto;
-    background: var(--light-text);
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.gallery-modal .modal-image-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: #000;
-}
-
-.gallery-modal .modal-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.gallery-modal .modal-caption {
-    padding: 15px 20px;
-    background: var(--primary-dark-blue);
-    color: var(--light-text);
-    text-align: center;
-    font-weight: 500;
-}
-
-.gallery-modal .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--light-text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 1002;
-    transition: var(--transition);
-}
-
-.gallery-modal .modal-close:hover {
-    background: var(--accent-red);
-    transform: rotate(90deg);
-}
-
-.gallery-modal .modal-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--light-text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 1002;
-    transition: var(--transition);
-}
-
-.gallery-modal .modal-nav:hover {
-    background: var(--accent-yellow);
-}
-
-.gallery-modal .modal-nav.prev {
-    left: 15px;
-}
-
-.gallery-modal .modal-nav.next {
-    right: 15px;
-}
-
-/* Стили для сообщений об ошибках формы */
-.error-message {
-    color: var(--accent-red);
-    font-size: 0.9rem;
-    margin-top: 5px;
-    font-weight: 500;
-}
-
-.form-control.error {
-    border-color: var(--accent-red);
-    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
-}
-
-/* Стили для списков в админ-панели */
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 15px;
-    background: var(--light-text);
-    border-radius: 8px;
-    margin-bottom: 10px;
-    border-left: 4px solid var(--primary-dark-blue);
-    transition: var(--transition);
-}
-
-.list-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.list-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.action-btn {
-    width: 35px;
-    height: 35px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition);
-    color: var(--light-text);
-}
-
-.edit-btn {
-    background: var(--accent-yellow);
-}
-
-.edit-btn:hover {
-    background: #e67e22;
-    transform: rotate(15deg);
-}
-
-.delete-btn {
-    background: var(--accent-red);
-}
-
-.delete-btn:hover {
-    background: #c0392b;
-    transform: rotate(15deg);
-}
-
-/* Адаптивность модального окна */
-@media (max-width: 768px) {
-    .gallery-modal .modal-content {
-        width: 95%;
-        height: 95vh;
-        margin: 2.5vh auto;
+function showMessage(text, type = 'info', duration = 5000) {
+    // Удаляем существующие глобальные сообщения
+    document.querySelectorAll('.global-message').forEach(msg => msg.remove());
+    
+    const message = document.createElement('div');
+    message.className = `global-message message ${type}`;
+    message.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                         type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${text}</span>
+    `;
+    
+    // Стили для глобального сообщения
+    message.style.position = 'fixed';
+    message.style.top = '20px';
+    message.style.right = '20px';
+    message.style.zIndex = '10000';
+    message.style.maxWidth = '400px';
+    message.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+    
+    document.body.appendChild(message);
+    
+    // Автоматическое скрытие
+    if (duration > 0) {
+        setTimeout(() => {
+            message.style.opacity = '0';
+            message.style.transform = 'translateY(-10px)';
+            setTimeout(() => message.remove(), 300);
+        }, duration);
     }
     
-    .gallery-modal .modal-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-    
-    .gallery-modal .modal-close {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-    }
+    // Возможность закрыть сообщение вручную
+    message.addEventListener('click', () => {
+        message.style.opacity = '0';
+        message.style.transform = 'translateY(-10px)';
+        setTimeout(() => message.remove(), 300);
+    });
 }
 
-/* Эффект загрузки изображений */
-img[data-src] {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-img.loaded {
-    opacity: 1;
-}
-`;
-
-// Добавляем дополнительные стили в документ
-const styleSheet = document.createElement('style');
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet);
-
-console.log('Все модули JavaScript успешно загружены и инициализированы');
+// Глобальные функции для вызова из HTML
+window.deleteCompetition = deleteCompetition;
+window.deleteDocument = deleteDocument;
+window.deleteLeader = deleteLeader;
+window.deleteRegion = deleteRegion;
+window.showMessage = showMessage;
