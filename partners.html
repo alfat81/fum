@@ -6,6 +6,7 @@
     <title>Партнеры | Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -30,7 +31,7 @@
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-                    <li><a href="partners.html" class="nav-link active" aria-current="page">Партнеры</a></li>
+                    <li><a href="partners.html" class="nav-link active">Партнеры</a></li>
                 </ul>
             </nav>
             
@@ -51,235 +52,355 @@
         </header>
 
         <main class="content">
-            <h1 class="page-title">Партнеры</h1>
-            
-            <section class="partner-intro">
-                <div class="partner-banner">
-                    <h2>Станьте нашим партнером в развитии мотоджимханы в России!</h2>
-                    <p>Мы приглашаем компании и организации к сотрудничеству в проведении официальных соревнований по фигурному управлению мотоциклом</p>
-                    <a href="#contact-form" class="btn btn-primary">Связаться с нами</a>
+            <!-- Hero section -->
+            <section class="hero-section parallax" style="background-image: url('images/partners-hero.jpg');">
+                <div class="hero-overlay">
+                    <h1 class="hero-title">Наши партнеры</h1>
+                    <p class="hero-subtitle">Организации, поддерживающие развитие мотоджимханы в России</p>
                 </div>
             </section>
             
-            <section class="partnership-benefits">
-                <h2 class="section-title"><i class="fas fa-gift"></i> Преимущества партнерства</h2>
-                
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-trophy"></i>
+            <!-- Partners intro -->
+            <section class="partners-intro">
+                <h2 class="section-title">Сотрудничество для развития спорта</h2>
+                <div class="intro-content">
+                    <p>Развитие мотоджимханы в России стало возможным благодаря поддержке наших партнеров - компаний и организаций, которые разделяют наши ценности и верят в будущее этого вида спорта.</p>
+                    <p>Мы открыты для сотрудничества с компаниями, заинтересованными в популяризации мотоспорта, развитии детско-юношеского спорта и организации масштабных соревнований.</p>
+                </div>
+            </section>
+            
+            <!-- Partners categories -->
+            <section class="partners-categories">
+                <h2 class="section-title">Категории партнеров</h2>
+                <div class="cards-container">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-motorcycle"></i>
                         </div>
-                        <h3>Медийное присутствие</h3>
-                        <p>Размещение логотипа партнера на всех информационных материалах соревнований: на сайте, в социальных сетях, на печатной продукции, на площадке проведения</p>
+                        <h3 class="category-title">Мотоциклетные бренды</h3>
+                        <p class="category-count">5 партнеров</p>
+                        <div class="category-description">
+                            <p>Производители и дилеры мотоциклов, обеспечивающие техническую поддержку</p>
+                        </div>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-users"></i>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
                         </div>
-                        <h3>Целевая аудитория</h3>
-                        <p>Доступ к активной и платежеспособной аудитории любителей мотоспорта: 18-45 лет, преимущественно мужчины с высоким уровнем дохода и интересом к активному образу жизни</p>
+                        <h3 class="category-title">Экипировка</h3>
+                        <p class="category-count">8 партнеров</p>
+                        <div class="category-description">
+                            <p>Производители защитной экипировки и мотоаксессуаров</p>
+                        </div>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-bullhorn"></i>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-oil-can"></i>
                         </div>
-                        <h3>PR-возможности</h3>
-                        <p>Участие в церемониях награждения, проведение промо-акций на площадках соревнований, интервью с представителями компании для спортивных СМИ и блогеров</p>
+                        <h3 class="category-title">Технические партнеры</h3>
+                        <p class="category-count">6 партнеров</p>
+                        <div class="category-description">
+                            <p>Производители масел, шин и мотоциклетных компонентов</p>
+                        </div>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
+                    <div class="category-card">
+                        <div class="category-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
-                        <h3>Долгосрочные отношения</h3>
-                        <p>Возможность стать генеральным партнером Кубка России или официальным партнером в определенной категории на длительный срок с эксклюзивными правами</p>
-                    </div>
-                    
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Статистика и отчетность</h3>
-                        <p>Предоставление подробной отчетности по результатам соревнований, охвату аудитории в социальных сетях и СМИ, эффективности рекламных активаций</p>
-                    </div>
-                    
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3>Социальная ответственность</h3>
-                        <p>Участие в развитии спорта и популяризации безопасного вождения мотоциклов, поддержка молодых спортсменов и детских программ по мотоджимхане</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="partnership-programs">
-                <h2 class="section-title"><i class="fas fa-cubes"></i> Программы партнерства</h2>
-                
-                <div class="programs-container">
-                    <div class="program-card">
-                        <div class="program-header">
-                            <h3><i class="fas fa-crown"></i> Генеральный партнер Кубка России</h3>
-                            <span class="program-price">от 500 000 ₽</span>
-                        </div>
-                        <div class="program-features">
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Эксклюзивное право на категорию</li>
-                                <li><i class="fas fa-check-circle"></i> Логотип на всех официальных материалах с пометкой "Генеральный партнер"</li>
-                                <li><i class="fas fa-check-circle"></i> Розыгрыш призов от партнера на всех этапах Кубка</li>
-                                <li><i class="fas fa-check-circle"></i> Индивидуальная программа на площадке соревнований</li>
-                                <li><i class="fas fa-check-circle"></i> PR-поддержка на федеральном уровне</li>
-                            </ul>
-                        </div>
-                        <div class="program-cta">
-                            <button class="btn btn-primary">Стать генеральным партнером</button>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-header">
-                            <h3><i class="fas fa-medal"></i> Официальный партнер этапа</h3>
-                            <span class="program-price">от 200 000 ₽</span>
-                        </div>
-                        <div class="program-features">
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Право на категорию в рамках одного этапа</li>
-                                <li><i class="fas fa-check-circle"></i> Логотип на материалах этапа соревнований</li>
-                                <li><i class="fas fa-check-circle"></i> Возможность размещения стенда на площадке</li>
-                                <li><i class="fas fa-check-circle"></i> Участие в церемонии награждения</li>
-                                <li><i class="fas fa-check-circle"></i> Публикации в социальных сетях</li>
-                            </ul>
-                        </div>
-                        <div class="program-cta">
-                            <button class="btn btn-secondary">Стать партнером этапа</button>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card">
-                        <div class="program-header">
-                            <h3><i class="fas fa-gift"></i> Спонсор призов</h3>
-                            <span class="program-price">от 50 000 ₽</span>
-                        </div>
-                        <div class="program-features">
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Предоставление призов для победителей</li>
-                                <li><i class="fas fa-check-circle"></i> Логотип при раздаче призов</li>
-                                <li><i class="fas fa-check-circle"></i> Упоминание в социальных сетях</li>
-                                <li><i class="fas fa-check-circle"></i> Публикация в протоколах соревнований</li>
-                                <li><i class="fas fa-check-circle"></i> Возможность размещения баннера на площадке</li>
-                            </ul>
-                        </div>
-                        <div class="program-cta">
-                            <button class="btn btn-tertiary">Стать спонсором призов</button>
+                        <h3 class="category-title">Генеральные партнеры</h3>
+                        <p class="category-count">3 партнера</p>
+                        <div class="category-description">
+                            <p>Ключевые партнеры, оказывающие всестороннюю поддержку</p>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <section class="current-partners">
-                <h2 class="section-title"><i class="fas fa-star"></i> Наши текущие партнеры</h2>
-                
-                <div class="partners-grid">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder"></div>
-                        <div class="partner-name">Генеральный партнер</div>
+            <!-- Main partners -->
+            <section class="main-partners">
+                <h2 class="section-title">Генеральные партнеры</h2>
+                <div class="partners-container">
+                    <div class="partner-card main">
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                        </div>
+                        <div class="partner-info">
+                            <h3 class="partner-name">Мотоциклетная Федерация России</h3>
+                            <div class="partner-type">Генеральный партнер</div>
+                            <div class="partner-description">
+                                <p>Официальная федерация, курирующая все виды мотоциклетного спорта в России. Оказывает организационную и методическую поддержку.</p>
+                            </div>
+                            <div class="partner-link">
+                                <a href="https://www.mfr.ru/" target="_blank" class="btn btn-primary">Посетить сайт</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="partner-logo">
-                        <div class="partner-placeholder"></div>
-                        <div class="partner-name">Официальный партнер</div>
-                    </div>
-                    
-                    <div class="partner-logo">
-                        <div class="partner-placeholder"></div>
-                        <div class="partner-name">Партнер по экипировке</div>
-                    </div>
-                    
-                    <div class="partner-logo">
-                        <div class="partner-placeholder"></div>
-                        <div class="partner-name">Технический партнер</div>
+                    <div class="partner-card main">
+                        <div class="partner-logo">
+                            <div class="logo-placeholder">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div class="partner-info">
+                            <h3 class="partner-name">Спортивный фонд "Будущее спорта"</h3>
+                            <div class="partner-type">Генеральный партнер</div>
+                            <div class="partner-description">
+                                <p>Фонд, поддерживающий развитие детско-юношеского спорта в России. Финансирует проведение соревнований и подготовку спортсменов.</p>
+                            </div>
+                            <div class="partner-link">
+                                <a href="#" target="_blank" class="btn btn-primary">Посетить сайт</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
             
-            <section id="contact-form" class="partnership-contact">
-                <h2 class="section-title"><i class="fas fa-envelope"></i> Стать нашим партнером</h2>
-                
-                <div class="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="company-name">Название компании <span style="color: var(--accent-red)">*</span></label>
-                            <input type="text" id="company-name" class="form-control" placeholder="Введите название компании" required>
+            <!-- Motorcycle brands -->
+            <section class="brands-section parallax" style="background-image: url('images/brands-bg.jpg');">
+                <div class="brands-overlay">
+                    <h2 class="section-title">Мотоциклетные бренды</h2>
+                    <div class="brands-container">
+                        <div class="brand-card">
+                            <div class="brand-logo">
+                                <div class="logo-placeholder">
+                                    <i class="fas fa-motorcycle"></i>
+                                    <span class="brand-initial">Y</span>
+                                </div>
+                            </div>
+                            <div class="brand-info">
+                                <h3 class="brand-name">Yamaha Motor Russia</h3>
+                                <div class="brand-type">Официальный партнер</div>
+                                <div class="brand-description">
+                                    <p>Официальный дистрибьютор мотоциклов Yamaha в России. Предоставляет мотоциклы для соревнований и тест-райдов.</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="contact-person">Контактное лицо <span style="color: var(--accent-red)">*</span></label>
-                            <input type="text" id="contact-person" class="form-control" placeholder="Ваше ФИО" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Телефон <span style="color: var(--accent-red)">*</span></label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX" required>
+                        <div class="brand-card">
+                            <div class="brand-logo">
+                                <div class="logo-placeholder">
+                                    <i class="fas fa-motorcycle"></i>
+                                    <span class="brand-initial">H</span>
+                                </div>
+                            </div>
+                            <div class="brand-info">
+                                <h3 class="brand-name">Honda Motor Russia</h3>
+                                <div class="brand-type">Технический партнер</div>
+                                <div class="brand-description">
+                                    <p>Поддержка соревнований, предоставление техники для спортивных мероприятий и обучение спортсменов.</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="email">Email <span style="color: var(--accent-red)">*</span></label>
-                            <input type="email" id="email" class="form-control" placeholder="Ваш email" required>
+                        <div class="brand-card">
+                            <div class="brand-logo">
+                                <div class="logo-placeholder">
+                                    <i class="fas fa-motorcycle"></i>
+                                    <span class="brand-initial">K</span>
+                                </div>
+                            </div>
+                            <div class="brand-info">
+                                <h3 class="brand-name">Kawasaki Motors Russia</h3>
+                                <div class="brand-type">Партнер по развитию</div>
+                                <div class="brand-description">
+                                    <p>Совместные проекты по развитию мотоспорта, поддержка региональных соревнований.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Equipment partners -->
+            <section class="equipment-partners">
+                <h2 class="section-title">Партнеры по экипировке</h2>
+                <div class="cards-container">
+                    <div class="partner-card">
+                        <div class="partner-header">
+                            <div class="partner-icon">
+                                <i class="fas fa-helmet-safety"></i>
+                            </div>
+                            <h3 class="partner-name">HelmetPro</h3>
+                        </div>
+                        <div class="partner-body">
+                            <div class="partner-type">Официальный поставщик шлемов</div>
+                            <div class="partner-description">
+                                <p>Производитель защитных шлемов для мотоспорта. Предоставляет скидки для участников соревнований.</p>
+                            </div>
+                            <div class="partner-benefits">
+                                <h4>Преимущества для участников:</h4>
+                                <ul>
+                                    <li>Скидка 15% на всю продукцию</li>
+                                    <li>Бесплатная подгонка шлемов на соревнованиях</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="partner-type">Интересующая категория партнерства <span style="color: var(--accent-red)">*</span></label>
-                        <select id="partner-type" class="form-control" required>
-                            <option value="">Выберите категорию</option>
-                            <option value="general">Генеральный партнер Кубка России</option>
-                            <option value="stage">Официальный партнер этапа</option>
-                            <option value="prizes">Спонсор призов</option>
-                            <option value="equipment">Партнер по экипировке</option>
-                            <option value="technical">Технический партнер</option>
-                            <option value="other">Другое</option>
-                        </select>
+                    <div class="partner-card">
+                        <div class="partner-header">
+                            <div class="partner-icon">
+                                <i class="fas fa-vest"></i>
+                            </div>
+                            <h3 class="partner-name">SafeRide Gear</h3>
+                        </div>
+                        <div class="partner-body">
+                            <div class="partner-type">Производитель защитной экипировки</div>
+                            <div class="partner-description">
+                                <p>Компания специализируется на производстве защитной экипировки для мотоспорта.</p>
+                            </div>
+                            <div class="partner-benefits">
+                                <h4>Преимущества для участников:</h4>
+                                <ul>
+                                    <li>Специальные цены на защиту</li>
+                                    <li>Консультации по подбору экипировки</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="message">Дополнительная информация</label>
-                        <textarea id="message" class="form-control" rows="4" placeholder="Расскажите подробнее о вашем предложении"></textarea>
+                    <div class="partner-card">
+                        <div class="partner-header">
+                            <div class="partner-icon">
+                                <i class="fas fa-shoe-prints"></i>
+                            </div>
+                            <h3 class="partner-name">MotoBoots Co.</h3>
+                        </div>
+                        <div class="partner-body">
+                            <div class="partner-type">Производитель мотообуви</div>
+                            <div class="partner-description">
+                                <p>Специализированный производитель обуви для мотоспорта с акцентом на безопасность и комфорт.</p>
+                            </div>
+                            <div class="partner-benefits">
+                                <h4>Преимущества для участников:</h4>
+                                <ul>
+                                    <li>Тестирование новых моделей</li>
+                                    <li>Скидки на ботинки для соревнований</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <button class="btn btn-primary submit-partner-form">
-                        <i class="fas fa-paper-plane"></i> Отправить заявку
-                    </button>
                 </div>
-                
-                <div class="contact-info">
-                    <h3>Или свяжитесь с нами напрямую:</h3>
-                    <p><i class="fas fa-user-tie"></i> <strong>Дмитрий Серов</strong> - Председатель Комиссии</p>
-                    <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
-                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
+            </section>
+            
+            <!-- Technical partners -->
+            <section class="technical-partners">
+                <h2 class="section-title">Технические партнеры</h2>
+                <div class="cards-container">
+                    <div class="partner-card">
+                        <div class="partner-header">
+                            <div class="partner-icon">
+                                <i class="fas fa-oil-can"></i>
+                            </div>
+                            <h3 class="partner-name">MotorOil Expert</h3>
+                        </div>
+                        <div class="partner-body">
+                            <div class="partner-type">Поставщик технических жидкостей</div>
+                            <div class="partner-description">
+                                <p>Производитель масел и технических жидкостей для мотоциклов. Официальный поставщик соревнований.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <div class="partner-header">
+                            <div class="partner-icon">
+                                <i class="fas fa-tire"></i>
+                            </div>
+                            <h3 class="partner-name">TireMaster</h3>
+                        </div>
+                        <div class="partner-body">
+                            <div class="partner-type">Поставщик мотошин</div>
+                            <div class="partner-description">
+                                <p>Специализированный поставщик шин для спортивных мотоциклов. Предоставляет шины для тестирования.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <div class="partner-header">
+                            <div class="partner-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3 class="partner-name">MotoService Pro</h3>
+                        </div>
+                        <div class="partner-body">
+                            <div class="partner-type">Сеть сервисных центров</div>
+                            <div class="partner-description">
+                                <p>Сеть специализированных сервисных центров по всей России. Скидки на обслуживание для участников.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Become partner -->
+            <section class="become-partner parallax" style="background-image: url('images/become-partner-bg.jpg');">
+                <div class="become-partner-overlay">
+                    <div class="become-partner-content">
+                        <h2 class="section-title">Стать партнером</h2>
+                        <div class="partner-benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3 class="benefit-title">Продвижение бренда</h3>
+                                <p class="benefit-description">Участие в спортивных событиях и доступ к целевой аудитории</p>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="benefit-title">Корпоративные мероприятия</h3>
+                                <p class="benefit-description">Организация специальных мероприятий для сотрудников партнеров</p>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <h3 class="benefit-title">Социальная ответственность</h3>
+                                <p class="benefit-description">Участие в развитии детско-юношеского спорта в России</p>
+                            </div>
+                        </div>
+                        <div class="partner-cta">
+                            <p>Если вы заинтересованы в сотрудничестве с комиссией по мотоджимхане, свяжитесь с нами для обсуждения условий партнерства</p>
+                            <a href="contacts.html" class="btn btn-primary btn-large">Обсудить сотрудничество</a>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">
-                    <img src="images/mfr_logo.png" alt="Логотип МФР">
-                </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank" rel="noopener noreferrer">
-                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
-                </a>
-            </div>
-            <div class="footer-links">
-                <a href="documents.html" class="document-link">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank" rel="noopener noreferrer">Страница мотоджимханы на сайте МФР</a>
-            </div>
-            <div class="copyright">
-                © 2025 Мотоциклетная Федерация России
+            <div class="footer-content">
+                <div class="footer-logos">
+                    <a href="https://www.mfr.ru/" target="_blank">
+                        <img src="images/mfr_logo.png" alt="Логотип МФР">
+                    </a>
+                    <a href="https://www.minsport.gov.ru/" target="_blank">
+                        <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="documents.html" class="document-link">Документы комиссии</a>
+                    <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                </div>
+                <div class="footer-contacts">
+                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
+                    <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
+                </div>
+                <div class="copyright">
+                    © 2025 Мотоциклетная Федерация России
+                </div>
             </div>
         </footer>
     </div>
@@ -290,7 +411,7 @@
     </div>
 
     <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel" hidden aria-hidden="true">
+    <div class="admin-panel" id="admin-panel">
         <div class="admin-header">
             <h2>Админ-панель</h2>
             <button class="close-admin-panel" id="close-admin-panel">
@@ -299,13 +420,35 @@
         </div>
         
         <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
+            <button class="tab-btn" data-tab="news">Новости</button>
+            <button class="tab-btn" data-tab="calendar">Календарь</button>
             <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура комиссии</button>
-            <button class="tab-btn" data-tab="regions">Регионы</button>
+            <button class="tab-btn" data-tab="structure">Структура</button>
+            <button class="tab-btn" data-tab="contacts">Контакты</button>
+            <button class="tab-btn active" data-tab="partners">Партнеры</button>
         </div>
         
-        <div class="tab-content active" id="calendar-tab">
+        <div class="tab-content" id="news-tab">
+            <h3>Управление новостями</h3>
+            <div class="form-group">
+                <label for="news-title">Заголовок новости</label>
+                <input type="text" id="news-title" class="form-control" placeholder="Введите заголовок">
+            </div>
+            <div class="form-group">
+                <label for="news-date">Дата</label>
+                <input type="date" id="news-date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="news-content">Содержание</label>
+                <textarea id="news-content" class="form-control" rows="4" placeholder="Введите содержание новости"></textarea>
+            </div>
+            <button id="add-news-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить новость
+            </button>
+            <div id="news-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content" id="calendar-tab">
             <h3>Управление соревнованиями</h3>
             <div class="form-group">
                 <label for="competition-name">Название соревнования</label>
@@ -320,13 +463,8 @@
                 <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
             </div>
             <div class="form-group">
-                <label for="competition-contact">Контактное лицо</label>
-                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
-            </div>
-            <div class="form-group">
-                <label for="protocol-upload">Протокол соревнований</label>
-                <input type="file" id="protocol-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все протоколы автоматически загружаются в Яндекс.Диск</p>
+                <label for="competition-description">Описание</label>
+                <textarea id="competition-description" class="form-control" rows="3" placeholder="Введите описание"></textarea>
             </div>
             <button id="add-competition-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить соревнование
@@ -334,16 +472,11 @@
             <div id="competitions-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="documents-tab" style="display: none;">
+        <div class="tab-content" id="documents-tab">
             <h3>Управление документами</h3>
             <div class="form-group">
                 <label for="document-name">Название документа</label>
                 <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
-            </div>
-            <div class="form-group">
-                <label for="document-upload">Файл документа</label>
-                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
             </div>
             <div class="form-group">
                 <label for="document-category">Категория документа</label>
@@ -354,13 +487,17 @@
                     <option value="other">Прочее</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="document-description">Описание</label>
+                <textarea id="document-description" class="form-control" rows="3" placeholder="Введите описание документа"></textarea>
+            </div>
             <button id="add-document-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить документ
             </button>
             <div id="documents-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="structure-tab" style="display: none;">
+        <div class="tab-content" id="structure-tab">
             <h3>Управление структурой комиссии</h3>
             <div class="form-group">
                 <label for="leader-name">Ф.И.О. руководителя</label>
@@ -375,17 +512,12 @@
                 <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
             </div>
             <div class="form-group">
-                <label for="leader-icon">Иконка</label>
-                <select id="leader-icon" class="form-control">
-                    <option value="crown">Председатель</option>
-                    <option value="user-tie">Заместитель</option>
-                    <option value="file-signature">Секретарь</option>
-                    <option value="medal">Спортивное достижение</option>
-                    <option value="history">История</option>
-                    <option value="child">Детский</option>
-                    <option value="motorcycle">Мотоцикл</option>
-                    <option value="building">Организация</option>
-                </select>
+                <label for="leader-phone">Телефон</label>
+                <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <label for="leader-email">Email</label>
+                <input type="email" id="leader-email" class="form-control" placeholder="Введите email">
             </div>
             <button id="add-leader-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить руководителя
@@ -393,32 +525,54 @@
             <div id="leaders-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="regions-tab" style="display: none;">
-            <h3>Управление региональными представителями</h3>
+        <div class="tab-content" id="contacts-tab">
+            <h3>Управление контактами</h3>
             <div class="form-group">
-                <label for="region-name">Регион</label>
-                <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
+                <label for="contact-title">Заголовок контакта</label>
+                <input type="text" id="contact-title" class="form-control" placeholder="Введите заголовок">
             </div>
             <div class="form-group">
-                <label for="representative-name">Ф.И.О. представителя</label>
-                <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
+                <label for="contact-content">Содержимое</label>
+                <textarea id="contact-content" class="form-control" rows="4" placeholder="Введите содержимое (каждая строка - новый абзац)"></textarea>
             </div>
-            <div class="form-group">
-                <label for="representative-position">Должность</label>
-                <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="representative-phone">Телефон</label>
-                <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="representative-email">Email</label>
-                <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
-            </div>
-            <button id="add-region-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить представителя
+            <button id="add-contact-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить контакт
             </button>
-            <div id="regions-list" class="admin-list"></div>
+            <div id="contacts-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content active" id="partners-tab">
+            <h3>Управление партнерами</h3>
+            <div class="form-group">
+                <label for="partner-name">Название партнера</label>
+                <input type="text" id="partner-name" class="form-control" placeholder="Введите название партнера">
+            </div>
+            <div class="form-group">
+                <label for="partner-type">Тип партнера</label>
+                <select id="partner-type" class="form-control">
+                    <option value="general">Генеральный партнер</option>
+                    <option value="motorcycle">Мотоциклетный бренд</option>
+                    <option value="equipment">Экипировка</option>
+                    <option value="technical">Технический партнер</option>
+                    <option value="other">Другой</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="partner-description">Описание</label>
+                <textarea id="partner-description" class="form-control" rows="3" placeholder="Введите описание партнера"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="partner-url">Ссылка на сайт</label>
+                <input type="text" id="partner-url" class="form-control" placeholder="Введите URL сайта партнера">
+            </div>
+            <div class="form-group">
+                <label for="partner-benefits">Преимущества для участников</label>
+                <textarea id="partner-benefits" class="form-control" rows="3" placeholder="Введите преимущества, которые партнер предоставляет участникам"></textarea>
+            </div>
+            <button id="add-partner-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить партнера
+            </button>
+            <div id="partners-list" class="admin-list"></div>
         </div>
 
         <div class="admin-login">
@@ -427,6 +581,19 @@
                 <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
             </div>
             <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
+            <div id="login-message" class="login-message"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно подтверждения -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <h3>Подтверждение действия</h3>
+            <p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="modal-cancel">Отмена</button>
+                <button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
+            </div>
         </div>
     </div>
 
