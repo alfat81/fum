@@ -26,7 +26,7 @@
                 <ul>
                     <li><a href="index.html" class="nav-link">Главная</a></li>
                     <li><a href="about.html" class="nav-link">О комиссии</a></li>
-                    <li><a href="structure.html" class="nav-link active">Структура комиссии</a></li>
+                    <li><a href="structure.html" class="nav-link active" aria-current="page">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
@@ -56,8 +56,7 @@
             <section class="leadership-section">
                 <h2 class="section-title">Руководство комиссии</h2>
                 
-                <div class="leadership-grid" id="leadership-container">
-                    <!-- Динамически заполняется через JavaScript -->
+                <div class="leadership-grid">
                     <div class="leader-card leader-blue">
                         <div class="leader-icon">
                             <i class="fas fa-crown"></i>
@@ -98,7 +97,7 @@
                             <div class="leader-region">Вологодская область</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (911) 456-78-90<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> vologda-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -113,7 +112,7 @@
                             <div class="leader-region">Смоленская область</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (910) 345-67-89<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> smolensk-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -128,7 +127,7 @@
                             <div class="leader-region">Ульяновская область</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (923) 567-89-01<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> ul-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -143,7 +142,7 @@
                             <div class="leader-region">Республика Татарстан</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (934) 678-90-12<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> tatarstan-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -158,7 +157,7 @@
                             <div class="leader-region">Калужская область</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (945) 789-01-23<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> kaluga-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -173,7 +172,7 @@
                             <div class="leader-region">Тульская область</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (956) 890-12-34<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> tula-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -188,7 +187,7 @@
                             <div class="leader-region">Москва, МОО "Федерация Мотоджимханы"</div>
                             <div class="leader-contact">
                                 <i class="fas fa-phone"></i> +7 (903) 123-45-67<br>
-                                <i class="fas fa-envelope"></i> serovdima@list.ru
+                                <i class="fas fa-envelope"></i> moscow-fum@mfr.ru
                             </div>
                         </div>
                     </div>
@@ -206,11 +205,73 @@
                                 <th>И.О. Фамилия</th>
                                 <th>Должность</th>
                                 <th>Телефон</th>
-                                <th>Email</th>
+                                <th>Почта</th>
                             </tr>
                         </thead>
                         <tbody id="regions-table-body">
-                            <!-- Динамически заполняется через JavaScript -->
+                            <tr>
+                                <td>Тверская область</td>
+                                <td>Дмитрий Серов</td>
+                                <td>Председатель Комиссии</td>
+                                <td>+7 (977) 823-63-90</td>
+                                <td>serovdima@list.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Нижний Новгород</td>
+                                <td>Алексей Фатьянов</td>
+                                <td>Заместитель Председателя</td>
+                                <td>+7 (920) 111-91-77</td>
+                                <td>motogymkhana-nn@yandex.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Вологодская область</td>
+                                <td>Наталия Недайводина</td>
+                                <td>Главный секретарь</td>
+                                <td>+7 (911) 456-78-90</td>
+                                <td>vologda-fum@mfr.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Смоленская область</td>
+                                <td>Глеб Симдянкин</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (910) 345-67-89</td>
+                                <td>smolensk-fum@mfr.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Ульяновская область</td>
+                                <td>Андрей Сальников</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (923) 567-89-01</td>
+                                <td>ul-fum@mfr.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Республика Татарстан</td>
+                                <td>Ильшат Сафаров</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (934) 678-90-12</td>
+                                <td>tatarstan-fum@mfr.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Калужская область</td>
+                                <td>Максим Гаранин</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (945) 789-01-23</td>
+                                <td>kaluga-fum@mfr.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Тульская область</td>
+                                <td>Александр Акимов</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (956) 890-12-34</td>
+                                <td>tula-fum@mfr.ru</td>
+                            </tr>
+                            <tr>
+                                <td>Москва</td>
+                                <td>Александр Ципилев</td>
+                                <td>Член Комиссии</td>
+                                <td>+7 (903) 123-45-67</td>
+                                <td>moscow-fum@mfr.ru</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -219,17 +280,17 @@
 
         <footer class="footer">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
+                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">
                     <img src="images/mfr_logo.png" alt="Логотип МФР">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
+                <a href="https://www.minsport.gov.ru/" target="_blank" rel="noopener noreferrer">
                     <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
                 </a>
             </div>
             <div class="footer-links">
                 <a href="documents.html" class="document-link">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank" rel="noopener noreferrer">Страница мотоджимханы на сайте МФР</a>
             </div>
             <div class="copyright">
                 © 2025 Мотоциклетная Федерация России
@@ -243,7 +304,7 @@
     </div>
 
     <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
+    <div class="admin-panel" id="admin-panel" hidden aria-hidden="true">
         <div class="admin-header">
             <h2>Админ-панель</h2>
             <button class="close-admin-panel" id="close-admin-panel">
@@ -287,7 +348,7 @@
             <div id="competitions-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="documents-tab">
+        <div class="tab-content" id="documents-tab" style="display: none;">
             <h3>Управление документами</h3>
             <div class="form-group">
                 <label for="document-name">Название документа</label>
@@ -313,7 +374,7 @@
             <div id="documents-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="structure-tab">
+        <div class="tab-content" id="structure-tab" style="display: none;">
             <h3>Управление структурой комиссии</h3>
             <div class="form-group">
                 <label for="leader-name">Ф.И.О. руководителя</label>
@@ -328,14 +389,6 @@
                 <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
             </div>
             <div class="form-group">
-                <label for="leader-phone">Телефон</label>
-                <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="leader-email">Email</label>
-                <input type="email" id="leader-email" class="form-control" placeholder="Введите email">
-            </div>
-            <div class="form-group">
                 <label for="leader-icon">Иконка</label>
                 <select id="leader-icon" class="form-control">
                     <option value="crown">Председатель</option>
@@ -348,21 +401,13 @@
                     <option value="building">Организация</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="leader-color">Цвет карточки</label>
-                <select id="leader-color" class="form-control">
-                    <option value="blue">Синий</option>
-                    <option value="yellow">Желтый</option>
-                    <option value="red">Красный</option>
-                </select>
-            </div>
             <button id="add-leader-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить руководителя
             </button>
             <div id="leaders-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="regions-tab">
+        <div class="tab-content" id="regions-tab" style="display: none;">
             <h3>Управление региональными представителями</h3>
             <div class="form-group">
                 <label for="region-name">Регион</label>
@@ -396,620 +441,9 @@
                 <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
             </div>
             <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-            <p id="login-message" class="login-message"></p>
-        </div>
-    </div>
-
-    <!-- Модальное окно подтверждения -->
-    <div class="modal" id="confirmation-modal">
-        <div class="modal-content">
-            <h3>Подтверждение действия</h3>
-            <p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
-            <div class="modal-buttons">
-                <button class="btn btn-secondary" id="modal-cancel">Отмена</button>
-                <button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
-            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Элементы управления админ-панелью
-            const adminTab = document.getElementById('admin-tab');
-            const adminPanel = document.getElementById('admin-panel');
-            const closeAdminPanel = document.getElementById('close-admin-panel');
-            
-            // Элементы модального окна
-            const confirmationModal = document.getElementById('confirmation-modal');
-            const modalMessage = document.getElementById('modal-message');
-            const modalCancel = document.getElementById('modal-cancel');
-            const modalConfirm = document.getElementById('modal-confirm');
-            
-            // Элементы для управления структурой
-            const leadershipContainer = document.getElementById('leadership-container');
-            const regionsTableBody = document.getElementById('regions-table-body');
-            
-            // Переменные для управления состоянием
-            let isAdminLoggedIn = false;
-            let currentAction = null;
-            let currentData = null;
-            
-            // Иконки для карточек руководителей
-            const iconMap = {
-                'crown': 'fas fa-crown',
-                'user-tie': 'fas fa-user-tie',
-                'file-signature': 'fas fa-file-signature',
-                'medal': 'fas fa-medal',
-                'history': 'fas fa-history',
-                'child': 'fas fa-child',
-                'motorcycle': 'fas fa-motorcycle',
-                'building': 'fas fa-building'
-            };
-            
-            // Цвета для карточек руководителей
-            const colorClasses = {
-                'blue': 'leader-blue',
-                'yellow': 'leader-yellow',
-                'red': 'leader-red'
-            };
-            
-            // Загружаем данные из localStorage или используем начальные данные
-            let leadersData = JSON.parse(localStorage.getItem('leadersData')) || [
-                {
-                    name: "Дмитрий Серов",
-                    position: "Председатель Комиссии",
-                    region: "Тверская область",
-                    phone: "+7 (977) 823-63-90",
-                    email: "serovdima@list.ru",
-                    icon: "crown",
-                    color: "blue"
-                },
-                {
-                    name: "Алексей Фатьянов",
-                    position: "Заместитель Председателя",
-                    region: "Нижний Новгород",
-                    phone: "+7 (920) 111-91-77",
-                    email: "motogymkhana-nn@yandex.ru",
-                    icon: "user-tie",
-                    color: "yellow"
-                },
-                {
-                    name: "Наталия Недайводина",
-                    position: "Главный секретарь",
-                    region: "Вологодская область",
-                    phone: "+7 (911) 456-78-90",
-                    email: "serovdima@list.ru",
-                    icon: "file-signature",
-                    color: "blue"
-                },
-                {
-                    name: "Глеб Симдянкин",
-                    position: "Член Комиссии",
-                    region: "Смоленская область",
-                    phone: "+7 (910) 345-67-89",
-                    email: "serovdima@list.ru",
-                    icon: "medal",
-                    color: "red"
-                },
-                {
-                    name: "Андрей Сальников",
-                    position: "Член Комиссии",
-                    region: "Ульяновская область",
-                    phone: "+7 (923) 567-89-01",
-                    email: "serovdima@list.ru",
-                    icon: "history",
-                    color: "yellow"
-                },
-                {
-                    name: "Ильшат Сафаров",
-                    position: "Член Комиссии",
-                    region: "Республика Татарстан",
-                    phone: "+7 (934) 678-90-12",
-                    email: "serovdima@list.ru",
-                    icon: "child",
-                    color: "blue"
-                },
-                {
-                    name: "Максим Гаранин",
-                    position: "Член Комиссии",
-                    region: "Калужская область",
-                    phone: "+7 (945) 789-01-23",
-                    email: "serovdima@list.ru",
-                    icon: "child",
-                    color: "red"
-                },
-                {
-                    name: "Александр Акимов",
-                    position: "Член Комиссии",
-                    region: "Тульская область",
-                    phone: "+7 (956) 890-12-34",
-                    email: "serovdima@list.ru",
-                    icon: "motorcycle",
-                    color: "yellow"
-                },
-                {
-                    name: "Александр Ципилев",
-                    position: "Член Комиссии",
-                    region: "Москва, МОО 'Федерация Мотоджимханы'",
-                    phone: "+7 (903) 123-45-67",
-                    email: "serovdima@list.ru",
-                    icon: "building",
-                    color: "blue"
-                }
-            ];
-            
-            let regionsData = JSON.parse(localStorage.getItem('regionsData')) || [
-                {
-                    region: "Тверская область",
-                    name: "Дмитрий Серов",
-                    position: "Председатель Комиссии",
-                    phone: "+7 (977) 823-63-90",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Нижний Новгород",
-                    name: "Алексей Фатьянов",
-                    position: "Заместитель Председателя",
-                    phone: "+7 (920) 111-91-77",
-                    email: "motogymkhana-nn@yandex.ru"
-                },
-                {
-                    region: "Вологодская область",
-                    name: "Наталия Недайводина",
-                    position: "Главный секретарь",
-                    phone: "+7 (911) 456-78-90",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Смоленская область",
-                    name: "Глеб Симдянкин",
-                    position: "Член Комиссии",
-                    phone: "+7 (910) 345-67-89",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Ульяновская область",
-                    name: "Андрей Сальников",
-                    position: "Член Комиссии",
-                    phone: "+7 (923) 567-89-01",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Республика Татарстан",
-                    name: "Ильшат Сафаров",
-                    position: "Член Комиссии",
-                    phone: "+7 (934) 678-90-12",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Калужская область",
-                    name: "Максим Гаранин",
-                    position: "Член Комиссии",
-                    phone: "+7 (945) 789-01-23",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Тульская область",
-                    name: "Александр Акимов",
-                    position: "Член Комиссии",
-                    phone: "+7 (956) 890-12-34",
-                    email: "serovdima@list.ru"
-                },
-                {
-                    region: "Москва",
-                    name: "Александр Ципилев",
-                    position: "Член Комиссии",
-                    phone: "+7 (903) 123-45-67",
-                    email: "serovdima@list.ru"
-                }
-            ];
-            
-            // Инициализация страницы
-            function initializePage() {
-                renderLeaders();
-                renderRegions();
-                setupEventListeners();
-                setupAdminPanel();
-                loadAdminLists();
-            }
-            
-            // Рендер карточек руководителей
-            function renderLeaders() {
-                leadershipContainer.innerHTML = '';
-                
-                leadersData.forEach((leader, index) => {
-                    const leaderCard = document.createElement('div');
-                    leaderCard.className = `leader-card ${colorClasses[leader.color] || 'leader-blue'}`;
-                    leaderCard.dataset.index = index;
-                    
-                    leaderCard.innerHTML = `
-                        <div class="leader-icon">
-                            <i class="${iconMap[leader.icon] || 'fas fa-user'}"></i>
-                        </div>
-                        <div class="leader-info">
-                            <h3 class="leader-name">${leader.name}</h3>
-                            <div class="leader-position">${leader.position}</div>
-                            <div class="leader-region">${leader.region}</div>
-                            <div class="leader-contact">
-                                <i class="fas fa-phone"></i> ${leader.phone}<br>
-                                <i class="fas fa-envelope"></i> ${leader.email}
-                            </div>
-                        </div>
-                    `;
-                    
-                    leadershipContainer.appendChild(leaderCard);
-                });
-                
-                // Сохраняем данные в localStorage
-                localStorage.setItem('leadersData', JSON.stringify(leadersData));
-            }
-            
-            // Рендер таблицы регионов
-            function renderRegions() {
-                regionsTableBody.innerHTML = '';
-                
-                regionsData.forEach((region, index) => {
-                    const row = document.createElement('tr');
-                    row.dataset.index = index;
-                    
-                    row.innerHTML = `
-                        <td>${region.region}</td>
-                        <td>${region.name}</td>
-                        <td>${region.position}</td>
-                        <td>${region.phone}</td>
-                        <td>${region.email}</td>
-                    `;
-                    
-                    regionsTableBody.appendChild(row);
-                });
-                
-                // Сохраняем данные в localStorage
-                localStorage.setItem('regionsData', JSON.stringify(regionsData));
-            }
-            
-            // Настройка обработчиков событий
-            function setupEventListeners() {
-                // Админ-панель
-                if (adminTab) {
-                    adminTab.addEventListener('click', function() {
-                        adminPanel.style.right = '0';
-                    });
-                }
-                
-                if (closeAdminPanel) {
-                    closeAdminPanel.addEventListener('click', function() {
-                        adminPanel.style.right = '-400px';
-                    });
-                }
-                
-                // Мобильное меню
-                const menuToggle = document.querySelector('.menu-toggle');
-                const mobileMenu = document.querySelector('.mobile-menu');
-                
-                if (menuToggle && mobileMenu) {
-                    menuToggle.addEventListener('click', function() {
-                        mobileMenu.classList.toggle('active');
-                        menuToggle.querySelector('i').classList.toggle('fa-bars');
-                        menuToggle.querySelector('i').classList.toggle('fa-times');
-                    });
-                }
-                
-                // Модальное окно
-                if (modalCancel) {
-                    modalCancel.addEventListener('click', function() {
-                        confirmationModal.style.display = 'none';
-                        currentAction = null;
-                        currentData = null;
-                    });
-                }
-                
-                // Закрытие модального окна при клике вне его
-                window.addEventListener('click', function(event) {
-                    if (event.target === confirmationModal) {
-                        confirmationModal.style.display = 'none';
-                        currentAction = null;
-                        currentData = null;
-                    }
-                });
-            }
-            
-            // Настройка админ-панели
-            function setupAdminPanel() {
-                // Переключение вкладок админ-панели
-                const tabBtns = document.querySelectorAll('.tab-btn');
-                tabBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const tabId = this.dataset.tab;
-                        
-                        // Убираем активный класс у всех кнопок и контента
-                        tabBtns.forEach(b => b.classList.remove('active'));
-                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                        
-                        // Добавляем активный класс текущей кнопке и контенту
-                        this.classList.add('active');
-                        document.getElementById(`${tabId}-tab`).classList.add('active');
-                    });
-                });
-                
-                // Кнопка входа в админ-панель
-                const loginBtn = document.getElementById('login-admin-btn');
-                if (loginBtn) {
-                    loginBtn.addEventListener('click', function() {
-                        const password = document.getElementById('admin-password').value;
-                        const loginMessage = document.getElementById('login-message');
-                        
-                        // Простая проверка пароля (для демо)
-                        if (password === 'admin123' || password === 'password') {
-                            isAdminLoggedIn = true;
-                            loginMessage.textContent = 'Вы успешно вошли!';
-                            loginMessage.style.color = 'green';
-                            
-                            // Показываем формы админ-панели
-                            document.querySelectorAll('.tab-content').forEach(tab => {
-                                tab.style.display = 'block';
-                            });
-                            
-                            // Скрываем форму входа
-                            document.querySelector('.admin-login').style.display = 'none';
-                            
-                            // Показываем кнопки добавления
-                            document.querySelectorAll('.btn-primary').forEach(btn => {
-                                btn.style.display = 'block';
-                            });
-                        } else {
-                            loginMessage.textContent = 'Неверный пароль! Попробуйте снова.';
-                            loginMessage.style.color = 'red';
-                        }
-                    });
-                }
-                
-                // Кнопка добавления руководителя
-                const addLeaderBtn = document.getElementById('add-leader-btn');
-                if (addLeaderBtn) {
-                    addLeaderBtn.addEventListener('click', function() {
-                        if (!isAdminLoggedIn) {
-                            showLoginMessage();
-                            return;
-                        }
-                        
-                        const name = document.getElementById('leader-name').value;
-                        const position = document.getElementById('leader-position').value;
-                        const region = document.getElementById('leader-region').value;
-                        const phone = document.getElementById('leader-phone').value;
-                        const email = document.getElementById('leader-email').value;
-                        const icon = document.getElementById('leader-icon').value;
-                        const color = document.getElementById('leader-color').value;
-                        
-                        // Валидация
-                        if (!name || !position || !region || !phone || !email) {
-                            showConfirmationModal('Пожалуйста, заполните все обязательные поля.', false);
-                            return;
-                        }
-                        
-                        // Добавляем нового руководителя
-                        leadersData.push({
-                            name,
-                            position,
-                            region,
-                            phone,
-                            email,
-                            icon,
-                            color
-                        });
-                        
-                        // Обновляем отображение
-                        renderLeaders();
-                        loadAdminLists();
-                        
-                        // Очищаем форму
-                        document.getElementById('leader-name').value = '';
-                        document.getElementById('leader-position').value = '';
-                        document.getElementById('leader-region').value = '';
-                        document.getElementById('leader-phone').value = '';
-                        document.getElementById('leader-email').value = '';
-                        
-                        // Показываем сообщение об успехе
-                        showConfirmationModal('Руководитель успешно добавлен!', true);
-                    });
-                }
-                
-                // Кнопка добавления регионального представителя
-                const addRegionBtn = document.getElementById('add-region-btn');
-                if (addRegionBtn) {
-                    addRegionBtn.addEventListener('click', function() {
-                        if (!isAdminLoggedIn) {
-                            showLoginMessage();
-                            return;
-                        }
-                        
-                        const regionName = document.getElementById('region-name').value;
-                        const representativeName = document.getElementById('representative-name').value;
-                        const position = document.getElementById('representative-position').value;
-                        const phone = document.getElementById('representative-phone').value;
-                        const email = document.getElementById('representative-email').value;
-                        
-                        // Валидация
-                        if (!regionName || !representativeName || !position || !phone || !email) {
-                            showConfirmationModal('Пожалуйста, заполните все обязательные поля.', false);
-                            return;
-                        }
-                        
-                        // Добавляем нового представителя
-                        regionsData.push({
-                            region: regionName,
-                            name: representativeName,
-                            position: position,
-                            phone: phone,
-                            email: email
-                        });
-                        
-                        // Обновляем отображение
-                        renderRegions();
-                        loadAdminLists();
-                        
-                        // Очищаем форму
-                        document.getElementById('region-name').value = '';
-                        document.getElementById('representative-name').value = '';
-                        document.getElementById('representative-position').value = '';
-                        document.getElementById('representative-phone').value = '';
-                        document.getElementById('representative-email').value = '';
-                        
-                        // Показываем сообщение об успехе
-                        showConfirmationModal('Региональный представитель успешно добавлен!', true);
-                    });
-                }
-            }
-            
-            // Загрузка списков в админ-панели
-            function loadAdminLists() {
-                // Список руководителей
-                const leadersList = document.getElementById('leaders-list');
-                if (leadersList) {
-                    leadersList.innerHTML = '';
-                    
-                    leadersData.forEach((leader, index) => {
-                        const leaderItem = document.createElement('div');
-                        leaderItem.className = 'admin-list-item';
-                        leaderItem.innerHTML = `
-                            <div class="item-info">
-                                <strong>${leader.name}</strong> - ${leader.position}
-                                <div class="item-details">${leader.region}</div>
-                            </div>
-                            <button class="btn btn-small btn-danger delete-leader" data-index="${index}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        `;
-                        
-                        leadersList.appendChild(leaderItem);
-                    });
-                    
-                    // Добавляем обработчики удаления
-                    document.querySelectorAll('.delete-leader').forEach(btn => {
-                        btn.addEventListener('click', function() {
-                            if (!isAdminLoggedIn) {
-                                showLoginMessage();
-                                return;
-                            }
-                            
-                            const index = parseInt(this.dataset.index);
-                            currentAction = 'deleteLeader';
-                            currentData = index;
-                            
-                            showConfirmationModal(
-                                `Вы уверены, что хотите удалить руководителя "${leadersData[index].name}"?`, 
-                                false
-                            );
-                        });
-                    });
-                }
-                
-                // Список регионов
-                const regionsList = document.getElementById('regions-list');
-                if (regionsList) {
-                    regionsList.innerHTML = '';
-                    
-                    regionsData.forEach((region, index) => {
-                        const regionItem = document.createElement('div');
-                        regionItem.className = 'admin-list-item';
-                        regionItem.innerHTML = `
-                            <div class="item-info">
-                                <strong>${region.region}</strong> - ${region.name}
-                                <div class="item-details">${region.position}</div>
-                            </div>
-                            <button class="btn btn-small btn-danger delete-region" data-index="${index}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        `;
-                        
-                        regionsList.appendChild(regionItem);
-                    });
-                    
-                    // Добавляем обработчики удаления
-                    document.querySelectorAll('.delete-region').forEach(btn => {
-                        btn.addEventListener('click', function() {
-                            if (!isAdminLoggedIn) {
-                                showLoginMessage();
-                                return;
-                            }
-                            
-                            const index = parseInt(this.dataset.index);
-                            currentAction = 'deleteRegion';
-                            currentData = index;
-                            
-                            showConfirmationModal(
-                                `Вы уверены, что хотите удалить представителя "${regionsData[index].name}" из региона "${regionsData[index].region}"?`, 
-                                false
-                            );
-                        });
-                    });
-                }
-            }
-            
-            // Показать сообщение о необходимости входа
-            function showLoginMessage() {
-                const loginMessage = document.getElementById('login-message');
-                loginMessage.textContent = 'Пожалуйста, войдите в систему для выполнения этого действия.';
-                loginMessage.style.color = 'orange';
-                
-                // Показываем форму входа
-                document.querySelector('.admin-login').style.display = 'block';
-                document.getElementById('admin-password').focus();
-            }
-            
-            // Показать модальное окно подтверждения
-            function showConfirmationModal(message, isSuccess) {
-                modalMessage.textContent = message;
-                confirmationModal.style.display = 'block';
-                
-                if (isSuccess) {
-                    // Если это сообщение об успехе, настраиваем кнопки по-другому
-                    modalConfirm.textContent = 'OK';
-                    modalConfirm.onclick = function() {
-                        confirmationModal.style.display = 'none';
-                    };
-                    modalCancel.style.display = 'none';
-                } else {
-                    // Если это запрос подтверждения
-                    modalConfirm.textContent = 'Подтвердить';
-                    modalCancel.style.display = 'block';
-                    
-                    modalConfirm.onclick = function() {
-                        confirmationModal.style.display = 'none';
-                        executeCurrentAction();
-                    };
-                }
-            }
-            
-            // Выполнить текущее действие
-            function executeCurrentAction() {
-                switch(currentAction) {
-                    case 'deleteLeader':
-                        if (currentData !== null) {
-                            leadersData.splice(currentData, 1);
-                            renderLeaders();
-                            loadAdminLists();
-                            showConfirmationModal('Руководитель успешно удален!', true);
-                        }
-                        break;
-                        
-                    case 'deleteRegion':
-                        if (currentData !== null) {
-                            regionsData.splice(currentData, 1);
-                            renderRegions();
-                            loadAdminLists();
-                            showConfirmationModal('Региональный представитель успешно удален!', true);
-                        }
-                        break;
-                }
-                
-                currentAction = null;
-                currentData = null;
-            }
-            
-            // Инициализация страницы
-            initializePage();
-        });
-    </script>
 </body>
 </html>
