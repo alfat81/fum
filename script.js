@@ -15,7 +15,19 @@ const CommissionApp = {
         isAdminLoggedIn: false,
         currentMonth: new Date().getMonth(),
         currentYear: new Date().getFullYear(),
-        calendarEvents: []
+        calendarEvents: [],
+        currentTab: 'news',
+        editingItem: null
+    },
+
+    // Данные приложения
+    data: {
+        news: [],
+        competitions: [],
+        documents: [],
+        leaders: [],
+        contacts: [],
+        partners: []
     },
 
     /**
@@ -25,7 +37,7 @@ const CommissionApp = {
         console.log('Инициализация CommissionApp...');
         
         // Загружаем данные из localStorage
-        this.loadFromStorage();
+        this.loadAllData();
         
         // Инициализируем модули
         this.initMobileMenu();
@@ -35,11 +47,116 @@ const CommissionApp = {
         this.initFAQ();
         this.initAdminPanel();
         this.initForms();
+        this.initEventListeners();
         
         // Применяем анимации к существующим элементам
         this.animateElementsOnLoad();
         
+        // Восстанавливаем состояние админ-панели
+        this.restoreAdminState();
+        
         console.log('CommissionApp успешно инициализирован');
+    },
+
+    /**
+     * Загрузка всех данных из localStorage
+     */
+    loadAllData() {
+        const dataKeys = ['news', 'competitions', 'documents', 'leaders', 'contacts', 'partners', 'calendarEvents'];
+        
+        dataKeys.forEach(key => {
+            const savedData = localStorage.getItem(`commission_${key}`);
+            if (savedData) {
+                try {
+                    if (key === 'calendarEvents') {
+                        this.state[key] = JSON.parse(savedData);
+                    } else {
+                        this.data[key] = JSON.parse(savedData);
+                    }
+                } catch (e) {
+                    console.error(`Ошибка загрузки ${key}:`, e);
+                    if (key === 'calendarEvents') {
+                        this.state[key] = [];
+                    } else {
+                        this.data[key] = [];
+                    }
+                }
+            } else {
+                if (key === 'calendarEvents') {
+                    this.state[key] = [];
+                } else {
+                    this.data[key] = [];
+                }
+            }
+        });
+        
+        // Загружаем начальные данные, если нет сохраненных
+        this.initializeDefaultData();
+    },
+
+    /**
+     * Инициализация начальных данных
+     */
+    initializeDefaultData() {
+        // Начальные новости
+        if (this.data.news.length === 0) {
+            this.data.news = [
+                {
+                    id: 1,
+                    title: 'Чемпионат России 2025',
+                    date: '2025-04-15',
+                    content: 'Стартовала подготовка к Чемпионату России по мотоджимхане 2025 года. Регистрация участников откроется 1 мая.'
+                },
+                {
+                    id: 2,
+                    title: 'Новые правила сезона 2025',
+                    date: '2025-04-10',
+                    content: 'Опубликованы обновленные правила проведения соревнований по мотоджимхане на сезон 2025 года.'
+                }
+            ];
+            this.saveData('news');
+        }
+
+        // Начальные соревнования
+        if (this.data.competitions.length === 0) {
+            this.data.competitions = [
+                {
+                    id: 1,
+                    name: 'Этап Кубка России по мотоджимхане',
+                    date: '2025-04-19',
+                    location: 'Москва, Мотодром "Крылатское"',
+                    type: 'national',
+                    description: 'Первый этап Кубка России 2025 года. Участвуют спортсмены всех возрастных категорий.'
+                }
+            ];
+            this.saveData('competitions');
+        }
+
+        // Начальные события календаря
+        if (this.state.calendarEvents.length === 0) {
+            this.state.calendarEvents = [
+                { title: 'Открытие сезона в Москве', date: '2025-04-05', type: 'regional' },
+                { title: 'Соревнования в Нижнем Новгороде', date: '2025-04-12', type: 'regional' },
+                { title: 'Этап Кубка России', date: '2025-04-19', type: 'national' },
+                { title: 'Семинар для судей', date: '2025-04-18', type: 'training' }
+            ];
+            this.saveData('calendarEvents', true);
+        }
+    },
+
+    /**
+     * Сохранение данных в localStorage
+     */
+    saveData(key, isState = false) {
+        try {
+            const data = isState ? this.state[key] : this.data[key];
+            localStorage.setItem(`commission_${key}`, JSON.stringify(data));
+            return true;
+        } catch (e) {
+            console.error(`Ошибка сохранения ${key}:`, e);
+            this.showNotification(`Ошибка сохранения ${key}`, 'error');
+            return false;
+        }
     },
 
     /**
@@ -106,11 +223,19 @@ const CommissionApp = {
             anchor.addEventListener('click', (e) => {
                 const href = anchor.getAttribute('href');
                 
-                if (href === '#') return;
+                if (href === '#' || href === '#!') return;
                 
                 const targetElement = document.querySelector(href);
                 if (targetElement) {
                     e.preventDefault();
+                    
+                    // Закрываем мобильное меню, если оно открыто
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        document.querySelector('.menu-toggle').innerHTML = '<i class="fas fa-bars"></i>';
+                        document.body.style.overflow = '';
+                    }
                     
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
@@ -118,53 +243,6 @@ const CommissionApp = {
                     });
                 }
             });
-        });
-        
-        // Для кнопок "наверх"
-        const scrollTopBtn = document.createElement('button');
-        scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-        scrollTopBtn.className = 'scroll-top-btn';
-        scrollTopBtn.style.cssText = `
-            position: fixed;
-            bottom: 90px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow-md);
-            z-index: 998;
-            transition: all var(--transition-normal);
-        `;
-        
-        document.body.appendChild(scrollTopBtn);
-        
-        scrollTopBtn.addEventListener('mouseenter', () => {
-            scrollTopBtn.style.transform = 'translateY(-3px)';
-            scrollTopBtn.style.boxShadow = 'var(--shadow-lg)';
-        });
-        
-        scrollTopBtn.addEventListener('mouseleave', () => {
-            scrollTopBtn.style.transform = 'translateY(0)';
-            scrollTopBtn.style.boxShadow = 'var(--shadow-md)';
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        window.addEventListener('scroll', () => {
-            scrollTopBtn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
         });
     },
 
@@ -174,18 +252,17 @@ const CommissionApp = {
     initAnimations() {
         const animateElements = () => {
             const elements = document.querySelectorAll(
-                '.card, .leader-card, .contact-card, .document-card, .partner-card, .tile'
+                '.card, .leader-card, .contact-card, .document-card, .partner-card, .timeline-item, .achievement-card'
             );
             
             elements.forEach((element, index) => {
                 const elementTop = element.getBoundingClientRect().top;
-                const elementBottom = element.getBoundingClientRect().bottom;
                 const windowHeight = window.innerHeight;
                 
-                if (elementTop < windowHeight - 100 && elementBottom > 0) {
+                if (elementTop < windowHeight - 100) {
                     setTimeout(() => {
                         element.classList.add('fade-in');
-                    }, index * 100);
+                    }, index * this.config.animationDelay);
                 }
             });
         };
@@ -195,13 +272,19 @@ const CommissionApp = {
         window.addEventListener('scroll', animateElements);
         
         // Эффекты при наведении на карточки
-        document.querySelectorAll('.card, .btn').forEach(element => {
+        document.querySelectorAll('.card, .btn, .leader-card, .partner-card').forEach(element => {
             element.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
+                if (!this.classList.contains('admin-list-item')) {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = 'var(--shadow-lg)';
+                }
             });
             
             element.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                if (!this.classList.contains('admin-list-item')) {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '';
+                }
             });
         });
     },
@@ -239,15 +322,12 @@ const CommissionApp = {
         const calendarContainer = document.querySelector('.calendar-container');
         if (!calendarContainer) return;
         
-        // Загружаем события из localStorage
-        this.state.calendarEvents = this.getFromStorage('calendarEvents') || [];
-        
         // Инициализируем календарь
         this.renderCalendar();
         
         // Обработчики навигации
-        const prevBtn = calendarContainer.querySelector('.nav-btn:first-of-type');
-        const nextBtn = calendarContainer.querySelector('.nav-btn:last-of-type');
+        const prevBtn = calendarContainer.querySelector('.prev-month');
+        const nextBtn = calendarContainer.querySelector('.next-month');
         
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
@@ -270,6 +350,18 @@ const CommissionApp = {
                 this.renderCalendar();
             });
         }
+        
+        // Обработчики фильтров
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                this.filterCompetitions(filter);
+            });
+        });
     },
 
     /**
@@ -305,9 +397,10 @@ const CommissionApp = {
         const firstDay = new Date(this.state.currentYear, this.state.currentMonth, 1);
         const lastDay = new Date(this.state.currentYear, this.state.currentMonth + 1, 0);
         const daysInMonth = lastDay.getDate();
+        const startDay = (firstDay.getDay() + 6) % 7; // Преобразуем к формату Пн=0, Вс=6
         
         // Пустые ячейки для первых дней
-        for (let i = 0; i < (firstDay.getDay() || 7) - 1; i++) {
+        for (let i = 0; i < startDay; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty';
             calendarGrid.appendChild(emptyDay);
@@ -321,24 +414,81 @@ const CommissionApp = {
             
             // Проверяем события на этот день
             const currentDate = new Date(this.state.currentYear, this.state.currentMonth, day);
+            const dateStr = currentDate.toISOString().split('T')[0];
             const eventsForDay = this.state.calendarEvents.filter(event => {
                 const eventDate = new Date(event.date);
-                return eventDate.getDate() === day && 
-                       eventDate.getMonth() === this.state.currentMonth &&
-                       eventDate.getFullYear() === this.state.currentYear;
+                const eventDateStr = eventDate.toISOString().split('T')[0];
+                return eventDateStr === dateStr;
             });
             
             // Добавляем события
             eventsForDay.forEach(event => {
                 const eventEl = document.createElement('div');
                 eventEl.className = 'calendar-event';
-                eventEl.textContent = event.title;
                 eventEl.setAttribute('data-event', event.type);
+                eventEl.innerHTML = `<span class="event-title">${event.title}</span>`;
+                
+                // Добавляем всплывающую подсказку
+                eventEl.title = event.title;
+                
                 dayEl.appendChild(eventEl);
             });
             
+            // Подсвечиваем сегодняшний день
+            const today = new Date();
+            if (today.getDate() === day && 
+                today.getMonth() === this.state.currentMonth && 
+                today.getFullYear() === this.state.currentYear) {
+                dayEl.classList.add('today');
+                dayEl.querySelector('.day-number').style.backgroundColor = 'var(--primary-color)';
+                dayEl.querySelector('.day-number').style.color = 'white';
+                dayEl.querySelector('.day-number').style.borderRadius = '50%';
+                dayEl.querySelector('.day-number').style.width = '30px';
+                dayEl.querySelector('.day-number').style.height = '30px';
+                dayEl.querySelector('.day-number').style.display = 'flex';
+                dayEl.querySelector('.day-number').style.alignItems = 'center';
+                dayEl.querySelector('.day-number').style.justifyContent = 'center';
+                dayEl.querySelector('.day-number').style.margin = '0 auto';
+            }
+            
             calendarGrid.appendChild(dayEl);
         }
+    },
+
+    /**
+     * Фильтрация соревнований
+     */
+    filterCompetitions(filter) {
+        const competitionCards = document.querySelectorAll('.competition-card');
+        
+        competitionCards.forEach(card => {
+            let show = false;
+            
+            if (filter === 'all') {
+                show = true;
+            } else if (filter === 'upcoming') {
+                const dateStr = card.querySelector('.competition-date .date-day')?.textContent;
+                const monthStr = card.querySelector('.competition-date .date-month')?.textContent;
+                const yearStr = card.querySelector('.competition-date .date-year')?.textContent;
+                
+                if (dateStr && monthStr && yearStr) {
+                    const monthNames = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 
+                                       'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+                    const monthIndex = monthNames.indexOf(monthStr);
+                    const competitionDate = new Date(yearStr, monthIndex, parseInt(dateStr));
+                    const today = new Date();
+                    
+                    show = competitionDate >= today && !card.classList.contains('past');
+                }
+            } else if (filter === 'past') {
+                show = card.classList.contains('past');
+            } else if (filter === 'regional' || filter === 'national') {
+                const type = card.querySelector('.competition-type')?.className.includes(filter);
+                show = type && !card.classList.contains('past');
+            }
+            
+            card.style.display = show ? 'grid' : 'none';
+        });
     },
 
     /**
@@ -395,47 +545,106 @@ const CommissionApp = {
                     adminPanel.classList.remove('active');
                 }
             });
-            
-            // Переключение вкладок
-            const tabBtns = adminPanel.querySelectorAll('.tab-btn');
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tabId = btn.getAttribute('data-tab');
-                    
-                    // Обновляем активные кнопки
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Показываем нужную вкладку
-                    const tabContents = adminPanel.querySelectorAll('.tab-content');
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                        if (content.id === `${tabId}-tab`) {
-                            content.classList.add('active');
-                        }
-                    });
-                });
+        }
+        
+        // Переключение вкладок
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                this.switchAdminTab(tabId);
+            });
+        });
+        
+        // Обработка входа
+        if (loginBtn && passwordInput) {
+            loginBtn.addEventListener('click', () => {
+                this.loginAdmin(passwordInput.value);
             });
             
-            // Обработка входа
-            if (loginBtn && passwordInput) {
-                loginBtn.addEventListener('click', () => {
-                    if (passwordInput.value === this.config.adminPassword) {
-                        this.state.isAdminLoggedIn = true;
-                        this.showAdminContent();
-                        this.showNotification('Вход выполнен успешно!', 'success');
-                    } else {
-                        this.showNotification('Неверный пароль!', 'error');
-                    }
-                });
-                
-                // Ввод по Enter
-                passwordInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        loginBtn.click();
-                    }
-                });
+            // Ввод по Enter
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.loginAdmin(passwordInput.value);
+                }
+            });
+        }
+    },
+
+    /**
+     * Вход в админ-панель
+     */
+    loginAdmin(password) {
+        const loginMessage = document.getElementById('login-message');
+        
+        if (password === this.config.adminPassword) {
+            this.state.isAdminLoggedIn = true;
+            this.showAdminContent();
+            this.showNotification('Вход выполнен успешно!', 'success');
+            
+            if (loginMessage) {
+                loginMessage.textContent = '';
+                loginMessage.className = 'login-message';
             }
+            
+            // Сохраняем состояние входа
+            localStorage.setItem('commission_adminLoggedIn', 'true');
+            localStorage.setItem('commission_adminTab', this.state.currentTab);
+        } else {
+            this.showNotification('Неверный пароль!', 'error');
+            
+            if (loginMessage) {
+                loginMessage.textContent = 'Неверный пароль!';
+                loginMessage.className = 'login-message error';
+            }
+        }
+    },
+
+    /**
+     * Переключение вкладок админ-панели
+     */
+    switchAdminTab(tabId) {
+        const adminPanel = document.getElementById('admin-panel');
+        if (!adminPanel) return;
+        
+        // Обновляем активные кнопки
+        const tabBtns = adminPanel.querySelectorAll('.tab-btn');
+        tabBtns.forEach(b => b.classList.remove('active'));
+        adminPanel.querySelector(`.tab-btn[data-tab="${tabId}"]`)?.classList.add('active');
+        
+        // Показываем нужную вкладку
+        const tabContents = adminPanel.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === `${tabId}-tab`) {
+                content.classList.add('active');
+            }
+        });
+        
+        // Сохраняем текущую вкладку
+        this.state.currentTab = tabId;
+        localStorage.setItem('commission_adminTab', tabId);
+        
+        // Загружаем данные для вкладки
+        this.loadAdminTabData(tabId);
+    },
+
+    /**
+     * Восстановление состояния админ-панели
+     */
+    restoreAdminState() {
+        const wasLoggedIn = localStorage.getItem('commission_adminLoggedIn') === 'true';
+        const savedTab = localStorage.getItem('commission_adminTab');
+        
+        if (wasLoggedIn) {
+            this.state.isAdminLoggedIn = true;
+            this.state.currentTab = savedTab || 'news';
+            
+            // Автоматически показываем админ-контент при загрузке
+            setTimeout(() => {
+                this.showAdminContent();
+                this.switchAdminTab(this.state.currentTab);
+            }, 100);
         }
     },
 
@@ -444,70 +653,843 @@ const CommissionApp = {
      */
     showAdminContent() {
         const loginSection = document.querySelector('.admin-login');
-        const tabContents = document.querySelectorAll('.tab-content');
+        const adminPanel = document.getElementById('admin-panel');
+        
+        if (!adminPanel) return;
         
         if (loginSection) {
             loginSection.style.display = 'none';
         }
         
+        // Показываем все вкладки
+        const tabContents = adminPanel.querySelectorAll('.tab-content');
         tabContents.forEach(content => {
-            if (content.classList.contains('active')) {
-                content.style.display = 'block';
-            }
+            content.style.display = 'block';
         });
-        
-        // Загружаем данные для списков
-        this.loadAdminLists();
     },
 
     /**
-     * Загрузка списков в админ-панель
+     * Загрузка данных для вкладки админ-панели
      */
-    loadAdminLists() {
-        // Загружаем данные из localStorage
-        const competitions = this.getFromStorage('competitions') || [];
-        const documents = this.getFromStorage('documents') || [];
-        const leaders = this.getFromStorage('leaders') || [];
-        const regions = this.getFromStorage('regions') || [];
+    loadAdminTabData(tabId) {
+        if (!this.state.isAdminLoggedIn) return;
         
-        // Обновляем списки
-        this.updateList('competitions-list', competitions, 'competition');
-        this.updateList('documents-list', documents, 'document');
-        this.updateList('leaders-list', leaders, 'leader');
-        this.updateList('regions-list', regions, 'region');
+        switch (tabId) {
+            case 'news':
+                this.renderNewsList();
+                break;
+            case 'calendar':
+                this.renderCompetitionsList();
+                break;
+            case 'documents':
+                this.renderDocumentsList();
+                break;
+            case 'structure':
+                this.renderLeadersList();
+                break;
+            case 'contacts':
+                this.renderContactsList();
+                break;
+            case 'partners':
+                this.renderPartnersList();
+                break;
+        }
     },
 
     /**
-     * Обновление списка в админ-панели
+     * Инициализация форм
      */
-    updateList(listId, items, type) {
-        const listContainer = document.getElementById(listId);
-        if (!listContainer) return;
+    initForms() {
+        // Форма контактов
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleContactForm();
+            });
+        }
         
-        if (items.length === 0) {
-            listContainer.innerHTML = `<div class="empty-list">Нет добавленных ${this.getTypeName(type)}</div>`;
+        // Поиск документов
+        const searchBtn = document.querySelector('.search-btn');
+        const searchInput = document.querySelector('.search-input');
+        
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', () => {
+                this.searchDocuments(searchInput.value);
+            });
+            
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.searchDocuments(searchInput.value);
+                }
+            });
+        }
+        
+        // Фильтры документов
+        const docFilterBtns = document.querySelectorAll('.documents-search .filter-btn');
+        docFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                docFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                this.filterDocuments(filter);
+            });
+        });
+    },
+
+    /**
+     * Инициализация обработчиков событий
+     */
+    initEventListeners() {
+        // Кнопка добавления новости
+        const addNewsBtn = document.getElementById('add-news-btn');
+        if (addNewsBtn) {
+            addNewsBtn.addEventListener('click', () => {
+                this.addNews();
+            });
+        }
+        
+        // Кнопка добавления соревнования
+        const addCompetitionBtn = document.getElementById('add-competition-btn');
+        if (addCompetitionBtn) {
+            addCompetitionBtn.addEventListener('click', () => {
+                this.addCompetition();
+            });
+        }
+        
+        // Кнопка добавления документа
+        const addDocumentBtn = document.getElementById('add-document-btn');
+        if (addDocumentBtn) {
+            addDocumentBtn.addEventListener('click', () => {
+                this.addDocument();
+            });
+        }
+        
+        // Кнопка добавления руководителя
+        const addLeaderBtn = document.getElementById('add-leader-btn');
+        if (addLeaderBtn) {
+            addLeaderBtn.addEventListener('click', () => {
+                this.addLeader();
+            });
+        }
+        
+        // Кнопка добавления контакта
+        const addContactBtn = document.getElementById('add-contact-btn');
+        if (addContactBtn) {
+            addContactBtn.addEventListener('click', () => {
+                this.addContact();
+            });
+        }
+        
+        // Кнопка добавления партнера
+        const addPartnerBtn = document.getElementById('add-partner-btn');
+        if (addPartnerBtn) {
+            addPartnerBtn.addEventListener('click', () => {
+                this.addPartner();
+            });
+        }
+        
+        // Кнопка добавления социальной сети
+        const addSocialBtn = document.getElementById('add-social-btn');
+        if (addSocialBtn) {
+            addSocialBtn.addEventListener('click', () => {
+                this.addSocial();
+            });
+        }
+    },
+
+    /**
+     * Обработка формы контактов
+     */
+    handleContactForm() {
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        const subject = document.getElementById('subject')?.value.trim();
+        const message = document.getElementById('message')?.value.trim();
+        const formMessage = document.getElementById('form-message');
+        
+        // Валидация
+        if (!name || !email || !subject || !message) {
+            this.showFormMessage('Заполните все обязательные поля', 'error', formMessage);
             return;
         }
         
-        listContainer.innerHTML = items.map((item, index) => `
-            <div class="admin-list-item" data-id="${item.id || index}">
+        if (!this.validateEmail(email)) {
+            this.showFormMessage('Введите корректный email', 'error', formMessage);
+            return;
+        }
+        
+        // Имитация отправки
+        this.showFormMessage('Сообщение отправляется...', 'info', formMessage);
+        
+        setTimeout(() => {
+            this.showFormMessage('Сообщение успешно отправлено! Мы ответим вам в ближайшее время.', 'success', formMessage);
+            
+            // Очистка формы
+            document.getElementById('contact-form')?.reset();
+            
+            // Логирование (в реальном приложении здесь была бы отправка на сервер)
+            console.log('Новое сообщение от:', { name, email, subject, message });
+            
+            // Можно сохранить в localStorage для админ-панели
+            const contactMessages = JSON.parse(localStorage.getItem('commission_contactMessages') || '[]');
+            contactMessages.push({
+                id: Date.now(),
+                name,
+                email,
+                subject,
+                message,
+                date: new Date().toISOString(),
+                read: false
+            });
+            localStorage.setItem('commission_contactMessages', JSON.stringify(contactMessages));
+        }, 1500);
+    },
+
+    /**
+     * Показать сообщение в форме
+     */
+    showFormMessage(message, type, container) {
+        if (!container) return;
+        
+        container.textContent = message;
+        container.className = `form-message ${type}`;
+        
+        // Автоматическое скрытие для успешных сообщений
+        if (type === 'success') {
+            setTimeout(() => {
+                container.textContent = '';
+                container.className = 'form-message';
+            }, 5000);
+        }
+    },
+
+    /**
+     * Валидация email
+     */
+    validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    },
+
+    /**
+     * Поиск документов
+     */
+    searchDocuments(query) {
+        const documents = document.querySelectorAll('.document-card');
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = 'Документы не найдены';
+        noResults.style.textAlign = 'center';
+        noResults.style.padding = '2rem';
+        noResults.style.color = 'var(--medium-gray)';
+        
+        let hasResults = false;
+        
+        documents.forEach(doc => {
+            const title = doc.querySelector('.document-title')?.textContent.toLowerCase();
+            const description = doc.querySelector('.document-description')?.textContent.toLowerCase();
+            const searchTerm = query.toLowerCase();
+            
+            if (title?.includes(searchTerm) || description?.includes(searchTerm)) {
+                doc.style.display = 'flex';
+                hasResults = true;
+            } else {
+                doc.style.display = 'none';
+            }
+        });
+        
+        // Показываем сообщение, если нет результатов
+        const container = document.querySelector('.documents-container');
+        const existingNoResults = container.querySelector('.no-results');
+        
+        if (!hasResults) {
+            if (!existingNoResults && container) {
+                container.appendChild(noResults);
+            }
+        } else {
+            if (existingNoResults) {
+                existingNoResults.remove();
+            }
+        }
+    },
+
+    /**
+     * Фильтрация документов
+     */
+    filterDocuments(filter) {
+        const documents = document.querySelectorAll('.document-card');
+        
+        documents.forEach(doc => {
+            if (filter === 'all') {
+                doc.style.display = 'flex';
+            } else {
+                // Здесь можно добавить логику фильтрации по категориям
+                // Например, если у документа есть data-category атрибут
+                const category = doc.getAttribute('data-category');
+                doc.style.display = category === filter ? 'flex' : 'none';
+            }
+        });
+    },
+
+    /**
+     * Добавление новости
+     */
+    addNews() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const title = document.getElementById('news-title')?.value.trim();
+        const date = document.getElementById('news-date')?.value;
+        const content = document.getElementById('news-content')?.value.trim();
+        
+        if (!title || !date || !content) {
+            this.showNotification('Заполните все поля', 'error');
+            return;
+        }
+        
+        const newNews = {
+            id: Date.now(),
+            title,
+            date,
+            content
+        };
+        
+        this.data.news.unshift(newNews); // Добавляем в начало
+        this.saveData('news');
+        this.renderNewsList();
+        
+        // Очистка формы
+        document.getElementById('news-title').value = '';
+        document.getElementById('news-date').value = '';
+        document.getElementById('news-content').value = '';
+        
+        this.showNotification('Новость успешно добавлена', 'success');
+    },
+
+    /**
+     * Рендеринг списка новостей
+     */
+    renderNewsList() {
+        const listContainer = document.getElementById('news-list');
+        if (!listContainer) return;
+        
+        if (this.data.news.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных новостей</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = this.data.news.map(news => `
+            <div class="admin-list-item" data-id="${news.id}">
                 <div class="item-info">
-                    <strong>${item.name || item.title || item.region || 'Без названия'}</strong>
+                    <strong>${news.title}</strong>
                     <div class="item-details">
-                        ${item.date || ''} ${item.location ? `• ${item.location}` : ''}
-                        ${item.position ? `• ${item.position}` : ''}
+                        ${news.date} • ${news.content.substring(0, 50)}...
                     </div>
                 </div>
-                <button class="btn-danger delete-item" data-type="${type}" data-id="${item.id || index}">
+                <button class="btn-danger delete-item" data-type="news" data-id="${news.id}">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
         `).join('');
         
         // Добавляем обработчики удаления
-        listContainer.querySelectorAll('.delete-item').forEach(btn => {
+        this.initDeleteHandlers('news');
+    },
+
+    /**
+     * Добавление соревнования
+     */
+    addCompetition() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const name = document.getElementById('competition-name')?.value.trim();
+        const date = document.getElementById('competition-date')?.value;
+        const location = document.getElementById('competition-location')?.value.trim();
+        const type = document.getElementById('competition-type')?.value;
+        const description = document.getElementById('competition-description')?.value.trim();
+        const registration = document.getElementById('competition-registration')?.value.trim();
+        const results = document.getElementById('competition-results')?.value.trim();
+        
+        if (!name || !date || !location) {
+            this.showNotification('Заполните обязательные поля', 'error');
+            return;
+        }
+        
+        const newCompetition = {
+            id: Date.now(),
+            name,
+            date,
+            location,
+            type: type || 'regional',
+            description: description || '',
+            registration: registration || '',
+            results: results || ''
+        };
+        
+        this.data.competitions.unshift(newCompetition);
+        this.saveData('competitions');
+        this.renderCompetitionsList();
+        
+        // Добавляем в календарь
+        this.state.calendarEvents.push({
+            title: name,
+            date: date,
+            type: type || 'regional'
+        });
+        this.saveData('calendarEvents', true);
+        
+        // Очистка формы
+        ['competition-name', 'competition-date', 'competition-location', 
+         'competition-description', 'competition-registration', 'competition-results']
+         .forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.value = '';
+         });
+        
+        this.showNotification('Соревнование успешно добавлено', 'success');
+    },
+
+    /**
+     * Рендеринг списка соревнований
+     */
+    renderCompetitionsList() {
+        const listContainer = document.getElementById('competitions-list');
+        if (!listContainer) return;
+        
+        if (this.data.competitions.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных соревнований</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = this.data.competitions.map(comp => `
+            <div class="admin-list-item" data-id="${comp.id}">
+                <div class="item-info">
+                    <strong>${comp.name}</strong>
+                    <div class="item-details">
+                        ${comp.date} • ${comp.location} • ${comp.type === 'national' ? 'Всероссийские' : 'Региональные'}
+                    </div>
+                </div>
+                <button class="btn-danger delete-item" data-type="competitions" data-id="${comp.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+        
+        // Добавляем обработчики удаления
+        this.initDeleteHandlers('competitions');
+    },
+
+    /**
+     * Добавление документа
+     */
+    addDocument() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const name = document.getElementById('document-name')?.value.trim();
+        const category = document.getElementById('document-category')?.value;
+        const description = document.getElementById('document-description')?.value.trim();
+        const fileInput = document.getElementById('document-file');
+        
+        if (!name || !category) {
+            this.showNotification('Заполните обязательные поля', 'error');
+            return;
+        }
+        
+        let fileName = 'document.pdf';
+        let fileSize = '0 KB';
+        
+        if (fileInput?.files[0]) {
+            fileName = fileInput.files[0].name;
+            fileSize = this.formatFileSize(fileInput.files[0].size);
+        }
+        
+        const newDocument = {
+            id: Date.now(),
+            name,
+            category,
+            description: description || '',
+            fileName,
+            fileSize,
+            date: new Date().toLocaleDateString('ru-RU'),
+            downloads: 0
+        };
+        
+        this.data.documents.unshift(newDocument);
+        this.saveData('documents');
+        this.renderDocumentsList();
+        
+        // Очистка формы
+        document.getElementById('document-name').value = '';
+        document.getElementById('document-description').value = '';
+        if (fileInput) fileInput.value = '';
+        
+        this.showNotification('Документ успешно добавлен', 'success');
+    },
+
+    /**
+     * Форматирование размера файла
+     */
+    formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    },
+
+    /**
+     * Рендеринг списка документов
+     */
+    renderDocumentsList() {
+        const listContainer = document.getElementById('documents-list');
+        if (!listContainer) return;
+        
+        if (this.data.documents.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных документов</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = this.data.documents.map(doc => `
+            <div class="admin-list-item" data-id="${doc.id}">
+                <div class="item-info">
+                    <strong>${doc.name}</strong>
+                    <div class="item-details">
+                        ${doc.date} • ${doc.category} • ${doc.fileSize}
+                    </div>
+                </div>
+                <button class="btn-danger delete-item" data-type="documents" data-id="${doc.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+        
+        // Добавляем обработчики удаления
+        this.initDeleteHandlers('documents');
+    },
+
+    /**
+     * Добавление руководителя
+     */
+    addLeader() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const name = document.getElementById('leader-name')?.value.trim();
+        const position = document.getElementById('leader-position')?.value.trim();
+        const region = document.getElementById('leader-region')?.value.trim();
+        const phone = document.getElementById('leader-phone')?.value.trim();
+        const email = document.getElementById('leader-email')?.value.trim();
+        const icon = document.getElementById('leader-icon')?.value;
+        
+        if (!name || !position || !region) {
+            this.showNotification('Заполните обязательные поля', 'error');
+            return;
+        }
+        
+        const newLeader = {
+            id: Date.now(),
+            name,
+            position,
+            region,
+            phone: phone || '',
+            email: email || '',
+            icon: icon || 'user-tie'
+        };
+        
+        this.data.leaders.unshift(newLeader);
+        this.saveData('leaders');
+        this.renderLeadersList();
+        
+        // Очистка формы
+        ['leader-name', 'leader-position', 'leader-region', 'leader-phone', 'leader-email']
+         .forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.value = '';
+         });
+        
+        this.showNotification('Руководитель успешно добавлен', 'success');
+    },
+
+    /**
+     * Рендеринг списка руководителей
+     */
+    renderLeadersList() {
+        const listContainer = document.getElementById('leaders-list');
+        if (!listContainer) return;
+        
+        if (this.data.leaders.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных руководителей</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = this.data.leaders.map(leader => `
+            <div class="admin-list-item" data-id="${leader.id}">
+                <div class="item-info">
+                    <strong>${leader.name}</strong>
+                    <div class="item-details">
+                        ${leader.position} • ${leader.region}
+                    </div>
+                </div>
+                <button class="btn-danger delete-item" data-type="leaders" data-id="${leader.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+        
+        // Добавляем обработчики удаления
+        this.initDeleteHandlers('leaders');
+    },
+
+    /**
+     * Добавление контакта
+     */
+    addContact() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const name = document.getElementById('contact-name')?.value.trim();
+        const person = document.getElementById('contact-person')?.value.trim();
+        const phone = document.getElementById('contact-phone')?.value.trim();
+        const email = document.getElementById('contact-email')?.value.trim();
+        const location = document.getElementById('contact-location')?.value.trim();
+        const description = document.getElementById('contact-description')?.value.trim();
+        
+        if (!name || !person) {
+            this.showNotification('Заполните обязательные поля', 'error');
+            return;
+        }
+        
+        const newContact = {
+            id: Date.now(),
+            name,
+            person,
+            phone: phone || '',
+            email: email || '',
+            location: location || '',
+            description: description || ''
+        };
+        
+        this.data.contacts.unshift(newContact);
+        this.saveData('contacts');
+        this.renderContactsList();
+        
+        // Очистка формы
+        ['contact-name', 'contact-person', 'contact-phone', 'contact-email', 'contact-location', 'contact-description']
+         .forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.value = '';
+         });
+        
+        this.showNotification('Контакт успешно добавлен', 'success');
+    },
+
+    /**
+     * Рендеринг списка контактов
+     */
+    renderContactsList() {
+        const listContainer = document.getElementById('contacts-list');
+        if (!listContainer) return;
+        
+        if (this.data.contacts.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных контактов</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = this.data.contacts.map(contact => `
+            <div class="admin-list-item" data-id="${contact.id}">
+                <div class="item-info">
+                    <strong>${contact.name}</strong>
+                    <div class="item-details">
+                        ${contact.person} • ${contact.location}
+                    </div>
+                </div>
+                <button class="btn-danger delete-item" data-type="contacts" data-id="${contact.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+        
+        // Добавляем обработчики удаления
+        this.initDeleteHandlers('contacts');
+    },
+
+    /**
+     * Добавление партнера
+     */
+    addPartner() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const name = document.getElementById('partner-name')?.value.trim();
+        const type = document.getElementById('partner-type')?.value;
+        const description = document.getElementById('partner-description')?.value.trim();
+        const url = document.getElementById('partner-url')?.value.trim();
+        const benefits = document.getElementById('partner-benefits')?.value.trim();
+        
+        if (!name || !type) {
+            this.showNotification('Заполните обязательные поля', 'error');
+            return;
+        }
+        
+        const newPartner = {
+            id: Date.now(),
+            name,
+            type,
+            description: description || '',
+            url: url || '',
+            benefits: benefits || ''
+        };
+        
+        this.data.partners.unshift(newPartner);
+        this.saveData('partners');
+        this.renderPartnersList();
+        
+        // Очистка формы
+        ['partner-name', 'partner-description', 'partner-url', 'partner-benefits']
+         .forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.value = '';
+         });
+        
+        this.showNotification('Партнер успешно добавлен', 'success');
+    },
+
+    /**
+     * Рендеринг списка партнеров
+     */
+    renderPartnersList() {
+        const listContainer = document.getElementById('partners-list');
+        if (!listContainer) return;
+        
+        if (this.data.partners.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных партнеров</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = this.data.partners.map(partner => `
+            <div class="admin-list-item" data-id="${partner.id}">
+                <div class="item-info">
+                    <strong>${partner.name}</strong>
+                    <div class="item-details">
+                        ${partner.type} • ${partner.url ? 'Есть сайт' : 'Нет сайта'}
+                    </div>
+                </div>
+                <button class="btn-danger delete-item" data-type="partners" data-id="${partner.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+        
+        // Добавляем обработчики удаления
+        this.initDeleteHandlers('partners');
+    },
+
+    /**
+     * Добавление социальной сети
+     */
+    addSocial() {
+        if (!this.state.isAdminLoggedIn) {
+            this.showNotification('Требуется авторизация', 'error');
+            return;
+        }
+        
+        const name = document.getElementById('social-name')?.value.trim();
+        const url = document.getElementById('social-url')?.value.trim();
+        const icon = document.getElementById('social-icon')?.value;
+        
+        if (!name || !url) {
+            this.showNotification('Заполните обязательные поля', 'error');
+            return;
+        }
+        
+        // Валидация URL
+        try {
+            new URL(url);
+        } catch {
+            this.showNotification('Введите корректный URL', 'error');
+            return;
+        }
+        
+        // Сохраняем в localStorage
+        const socials = JSON.parse(localStorage.getItem('commission_socials') || '[]');
+        socials.push({
+            id: Date.now(),
+            name,
+            url,
+            icon
+        });
+        localStorage.setItem('commission_socials', JSON.stringify(socials));
+        
+        // Очистка формы
+        document.getElementById('social-name').value = '';
+        document.getElementById('social-url').value = '';
+        
+        this.showNotification('Социальная сеть успешно добавлена', 'success');
+        this.renderSocialsList();
+    },
+
+    /**
+     * Рендеринг списка социальных сетей
+     */
+    renderSocialsList() {
+        const listContainer = document.getElementById('socials-list');
+        if (!listContainer) return;
+        
+        const socials = JSON.parse(localStorage.getItem('commission_socials') || '[]');
+        
+        if (socials.length === 0) {
+            listContainer.innerHTML = '<div class="empty-list">Нет добавленных социальных сетей</div>';
+            return;
+        }
+        
+        listContainer.innerHTML = socials.map(social => `
+            <div class="admin-list-item" data-id="${social.id}">
+                <div class="item-info">
+                    <strong>${social.name}</strong>
+                    <div class="item-details">
+                        ${social.url}
+                    </div>
+                </div>
+                <button class="btn-danger delete-item" data-type="socials" data-id="${social.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+        
+        // Добавляем обработчики удаления для социальных сетей
+        listContainer.querySelectorAll('.delete-item[data-type="socials"]').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const type = e.target.closest('.delete-item').getAttribute('data-type');
+                const id = parseInt(e.target.closest('.delete-item').getAttribute('data-id'));
+                this.deleteItem('socials', id);
+            });
+        });
+    },
+
+    /**
+     * Инициализация обработчиков удаления
+     */
+    initDeleteHandlers(type) {
+        const listContainer = document.getElementById(`${type}-list`);
+        if (!listContainer) return;
+        
+        listContainer.querySelectorAll(`.delete-item[data-type="${type}"]`).forEach(btn => {
+            btn.addEventListener('click', (e) => {
                 const id = parseInt(e.target.closest('.delete-item').getAttribute('data-id'));
                 this.deleteItem(type, id);
             });
@@ -518,281 +1500,47 @@ const CommissionApp = {
      * Удаление элемента
      */
     deleteItem(type, id) {
-        if (!confirm('Вы уверены, что хотите удалить этот элемент?')) return;
+        if (!confirm(`Вы уверены, что хотите удалить этот ${this.getTypeName(type)}?`)) return;
         
-        const key = `${type}s`;
-        let items = this.getFromStorage(key) || [];
+        if (type === 'socials') {
+            // Особый случай для социальных сетей
+            const socials = JSON.parse(localStorage.getItem('commission_socials') || '[]');
+            const updatedSocials = socials.filter(item => item.id !== id);
+            localStorage.setItem('commission_socials', JSON.stringify(updatedSocials));
+            this.renderSocialsList();
+        } else {
+            // Удаление из основного массива данных
+            this.data[type] = this.data[type].filter(item => item.id !== id);
+            this.saveData(type);
+            this.loadAdminTabData(this.state.currentTab);
+        }
         
-        items = items.filter(item => (item.id || item) !== id);
-        this.saveToStorage(key, items);
-        
-        this.loadAdminLists();
-        this.showNotification(`${this.getTypeName(type)} удален(а)`, 'success');
+        this.showNotification(`${this.getTypeName(type, true)} успешно удален(а)`, 'success');
     },
 
     /**
      * Получение названия типа
      */
-    getTypeName(type) {
+    getTypeName(type, capitalize = false) {
         const names = {
-            'competition': 'соревнований',
-            'document': 'документов',
-            'leader': 'руководителей',
-            'region': 'регионов'
-        };
-        return names[type] || 'элементов';
-    },
-
-    /**
-     * Инициализация форм
-     */
-    initForms() {
-        // Форма добавления соревнования
-        const addCompetitionBtn = document.getElementById('add-competition-btn');
-        if (addCompetitionBtn) {
-            addCompetitionBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.addCompetition();
-            });
-        }
-        
-        // Форма добавления документа
-        const addDocumentBtn = document.getElementById('add-document-btn');
-        if (addDocumentBtn) {
-            addDocumentBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.addDocument();
-            });
-        }
-        
-        // Форма добавления руководителя
-        const addLeaderBtn = document.getElementById('add-leader-btn');
-        if (addLeaderBtn) {
-            addLeaderBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.addLeader();
-            });
-        }
-        
-        // Форма добавления региона
-        const addRegionBtn = document.getElementById('add-region-btn');
-        if (addRegionBtn) {
-            addRegionBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.addRegion();
-            });
-        }
-    },
-
-    /**
-     * Добавление соревнования
-     */
-    addCompetition() {
-        const name = this.getValue('competition-name');
-        const date = this.getValue('competition-date');
-        const location = this.getValue('competition-location');
-        const description = this.getValue('competition-description');
-        
-        if (!name || !date || !location) {
-            this.showNotification('Заполните обязательные поля', 'error');
-            return;
-        }
-        
-        const competitions = this.getFromStorage('competitions') || [];
-        const newCompetition = {
-            id: Date.now(),
-            name,
-            date,
-            location,
-            description,
-            type: 'competition'
+            'news': 'новость',
+            'competitions': 'соревнование',
+            'documents': 'документ',
+            'leaders': 'руководитель',
+            'contacts': 'контакт',
+            'partners': 'партнер',
+            'socials': 'социальная сеть'
         };
         
-        competitions.push(newCompetition);
-        this.saveToStorage('competitions', competitions);
-        
-        this.clearForm('competition');
-        this.loadAdminLists();
-        this.showNotification('Соревнование добавлено', 'success');
+        let name = names[type] || 'элемент';
+        if (capitalize) {
+            name = name.charAt(0).toUpperCase() + name.slice(1);
+        }
+        return name;
     },
 
     /**
-     * Добавление документа
-     */
-    addDocument() {
-        const name = this.getValue('document-name');
-        const category = this.getValue('document-category');
-        const fileInput = document.getElementById('document-upload');
-        
-        if (!name || !category || !fileInput.files[0]) {
-            this.showNotification('Заполните все поля и выберите файл', 'error');
-            return;
-        }
-        
-        const documents = this.getFromStorage('documents') || [];
-        const newDocument = {
-            id: Date.now(),
-            name,
-            category,
-            filename: fileInput.files[0].name,
-            size: this.formatFileSize(fileInput.files[0].size),
-            date: new Date().toLocaleDateString('ru-RU'),
-            type: 'document'
-        };
-        
-        documents.push(newDocument);
-        this.saveToStorage('documents', documents);
-        
-        this.clearForm('document');
-        this.loadAdminLists();
-        this.showNotification('Документ добавлен', 'success');
-    },
-
-    /**
-     * Добавление руководителя
-     */
-    addLeader() {
-        const name = this.getValue('leader-name');
-        const position = this.getValue('leader-position');
-        const region = this.getValue('leader-region');
-        const phone = this.getValue('leader-phone');
-        const email = this.getValue('leader-email');
-        
-        if (!name || !position || !region) {
-            this.showNotification('Заполните обязательные поля', 'error');
-            return;
-        }
-        
-        const leaders = this.getFromStorage('leaders') || [];
-        const newLeader = {
-            id: Date.now(),
-            name,
-            position,
-            region,
-            phone,
-            email,
-            type: 'leader'
-        };
-        
-        leaders.push(newLeader);
-        this.saveToStorage('leaders', leaders);
-        
-        this.clearForm('leader');
-        this.loadAdminLists();
-        this.showNotification('Руководитель добавлен', 'success');
-    },
-
-    /**
-     * Добавление региона
-     */
-    addRegion() {
-        const region = this.getValue('region-name');
-        const representative = this.getValue('representative-name');
-        const position = this.getValue('representative-position');
-        const phone = this.getValue('representative-phone');
-        const email = this.getValue('representative-email');
-        
-        if (!region || !representative || !position) {
-            this.showNotification('Заполните обязательные поля', 'error');
-            return;
-        }
-        
-        const regions = this.getFromStorage('regions') || [];
-        const newRegion = {
-            id: Date.now(),
-            region,
-            representative,
-            position,
-            phone,
-            email,
-            type: 'region'
-        };
-        
-        regions.push(newRegion);
-        this.saveToStorage('regions', regions);
-        
-        this.clearForm('region');
-        this.loadAdminLists();
-        this.showNotification('Регион добавлен', 'success');
-    },
-
-    /**
-     * Вспомогательные методы
-     */
-    getValue(elementId) {
-        const element = document.getElementById(elementId);
-        return element ? element.value.trim() : '';
-    },
-
-    clearForm(type) {
-        const forms = {
-            'competition': ['competition-name', 'competition-date', 'competition-location', 'competition-description'],
-            'document': ['document-name', 'document-category', 'document-upload'],
-            'leader': ['leader-name', 'leader-position', 'leader-region', 'leader-phone', 'leader-email'],
-            'region': ['region-name', 'representative-name', 'representative-position', 'representative-phone', 'representative-email']
-        };
-        
-        if (forms[type]) {
-            forms[type].forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    if (element.type === 'file') {
-                        element.value = '';
-                    } else {
-                        element.value = '';
-                    }
-                }
-            });
-        }
-    },
-
-    formatFileSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    },
-
-    /**
-     * Работа с localStorage
-     */
-    loadFromStorage() {
-        // Загружаем все данные
-        ['competitions', 'documents', 'leaders', 'regions', 'calendarEvents'].forEach(key => {
-            const data = localStorage.getItem(key);
-            if (data) {
-                try {
-                    this[key] = JSON.parse(data);
-                } catch (e) {
-                    console.error(`Ошибка загрузки ${key}:`, e);
-                }
-            }
-        });
-    },
-
-    saveToStorage(key, data) {
-        try {
-            localStorage.setItem(key, JSON.stringify(data));
-            return true;
-        } catch (e) {
-            console.error(`Ошибка сохранения ${key}:`, e);
-            return false;
-        }
-    },
-
-    getFromStorage(key) {
-        try {
-            const data = localStorage.getItem(key);
-            return data ? JSON.parse(data) : null;
-        } catch (e) {
-            console.error(`Ошибка получения ${key}:`, e);
-            return null;
-        }
-    },
-
-    /**
-     * Уведомления
+     * Показать уведомление
      */
     showNotification(message, type = 'info') {
         // Создаем контейнер для уведомлений, если его нет
@@ -816,18 +1564,8 @@ const CommissionApp = {
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.textContent = message;
-        notification.style.cssText = `
-            padding: 15px 20px;
-            background: ${type === 'success' ? 'var(--success-color)' : 
-                        type === 'error' ? 'var(--accent-color)' : 
-                        'var(--primary-color)'};
-            color: white;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            animation: slideIn 0.3s ease;
-            max-width: 300px;
-        `;
         
+        // Добавляем в контейнер
         container.appendChild(notification);
         
         // Удаляем через 5 секунд
@@ -839,35 +1577,6 @@ const CommissionApp = {
                 }
             }, 300);
         }, 5000);
-        
-        // Добавляем стили для анимации
-        if (!document.getElementById('notification-styles')) {
-            const style = document.createElement('style');
-            style.id = 'notification-styles';
-            style.textContent = `
-                @keyframes slideIn {
-                    from {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-                @keyframes slideOut {
-                    from {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                    to {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
     }
 };
 
@@ -878,56 +1587,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализируем основное приложение
     CommissionApp.init();
     
-    // Добавляем служебные кнопки для разработки
-    if (window.location.hostname === 'localhost' || window.location.hostname.includes('github.io')) {
-        const devTools = document.createElement('div');
-        devTools.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 9997;
-        `;
-        
-        // Кнопка сброса данных
-        const resetBtn = document.createElement('button');
-        resetBtn.textContent = 'Сбросить данные';
-        resetBtn.className = 'btn btn-danger';
-        resetBtn.style.cssText = `
-            padding: 10px 15px;
-            font-size: 14px;
-        `;
-        resetBtn.addEventListener('click', () => {
-            if (confirm('Сбросить все данные в localStorage?')) {
-                localStorage.clear();
-                location.reload();
-            }
+    // Глобальные функции для отладки
+    window.CommissionApp = CommissionApp;
+    
+    // Создаем кнопку прокрутки наверх
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.className = 'scroll-top-btn';
+    scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    scrollTopBtn.style.display = 'none';
+    document.body.appendChild(scrollTopBtn);
+    
+    // Обработчик прокрутки
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.style.display = 'flex';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    });
+    
+    // Обработчик клика по кнопке
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-        
-        // Кнопка тестового уведомления
-        const testNotifBtn = document.createElement('button');
-        testNotifBtn.textContent = 'Тест уведомления';
-        testNotifBtn.className = 'btn btn-primary';
-        testNotifBtn.style.cssText = `
-            padding: 10px 15px;
-            font-size: 14px;
-        `;
-        testNotifBtn.addEventListener('click', () => {
-            CommissionApp.showNotification('Тестовое уведомление!', 'success');
-        });
-        
-        devTools.appendChild(resetBtn);
-        devTools.appendChild(testNotifBtn);
-        document.body.appendChild(devTools);
-    }
+    });
+    
+    console.log('CommissionApp загружен и готов к работе');
 });
 
 /**
- * Глобальные утилиты
+ * Глобальные утилиты для использования в консоли
  */
-// Открытие админ-панели из любого места
 window.openAdminPanel = () => {
     const adminPanel = document.getElementById('admin-panel');
     if (adminPanel) {
@@ -935,7 +1627,6 @@ window.openAdminPanel = () => {
     }
 };
 
-// Закрытие админ-панели
 window.closeAdminPanel = () => {
     const adminPanel = document.getElementById('admin-panel');
     if (adminPanel) {
@@ -943,40 +1634,30 @@ window.closeAdminPanel = () => {
     }
 };
 
-// Проверка авторизации
-window.isAdminLoggedIn = () => {
-    return CommissionApp.state.isAdminLoggedIn;
-};
-
-// Добавление события в календарь
-window.addCalendarEvent = (title, date, type = 'competition') => {
-    CommissionApp.state.calendarEvents.push({ title, date, type });
-    CommissionApp.saveToStorage('calendarEvents', CommissionApp.state.calendarEvents);
-    CommissionApp.renderCalendar();
-    return true;
-};
-
-// Экспорт данных
 window.exportData = () => {
     const data = {
-        competitions: CommissionApp.getFromStorage('competitions') || [],
-        documents: CommissionApp.getFromStorage('documents') || [],
-        leaders: CommissionApp.getFromStorage('leaders') || [],
-        regions: CommissionApp.getFromStorage('regions') || [],
-        calendarEvents: CommissionApp.state.calendarEvents
+        news: CommissionApp.data.news,
+        competitions: CommissionApp.data.competitions,
+        documents: CommissionApp.data.documents,
+        leaders: CommissionApp.data.leaders,
+        contacts: CommissionApp.data.contacts,
+        partners: CommissionApp.data.partners,
+        calendarEvents: CommissionApp.state.calendarEvents,
+        exportedAt: new Date().toISOString()
     };
     
     const dataStr = JSON.stringify(data, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
     
-    const exportFileDefaultName = 'commission_data.json';
+    const exportFileDefaultName = `commission_data_${new Date().toISOString().split('T')[0]}.json`;
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
+    
+    CommissionApp.showNotification('Данные успешно экспортированы', 'success');
 };
 
-// Импорт данных
 window.importData = (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -986,25 +1667,54 @@ window.importData = (event) => {
         try {
             const data = JSON.parse(e.target.result);
             
-            if (data.competitions) CommissionApp.saveToStorage('competitions', data.competitions);
-            if (data.documents) CommissionApp.saveToStorage('documents', data.documents);
-            if (data.leaders) CommissionApp.saveToStorage('leaders', data.leaders);
-            if (data.regions) CommissionApp.saveToStorage('regions', data.regions);
-            if (data.calendarEvents) {
-                CommissionApp.state.calendarEvents = data.calendarEvents;
-                CommissionApp.saveToStorage('calendarEvents', data.calendarEvents);
+            // Проверяем структуру данных
+            const requiredKeys = ['news', 'competitions', 'documents', 'leaders', 'contacts', 'partners', 'calendarEvents'];
+            const isValid = requiredKeys.every(key => key in data);
+            
+            if (!isValid) {
+                throw new Error('Неверный формат файла');
             }
             
-            CommissionApp.loadAdminLists();
+            // Импортируем данные
+            CommissionApp.data.news = data.news;
+            CommissionApp.data.competitions = data.competitions;
+            CommissionApp.data.documents = data.documents;
+            CommissionApp.data.leaders = data.leaders;
+            CommissionApp.data.contacts = data.contacts;
+            CommissionApp.data.partners = data.partners;
+            CommissionApp.state.calendarEvents = data.calendarEvents;
+            
+            // Сохраняем в localStorage
+            requiredKeys.forEach(key => {
+                if (key === 'calendarEvents') {
+                    localStorage.setItem(`commission_${key}`, JSON.stringify(data[key]));
+                } else {
+                    localStorage.setItem(`commission_${key}`, JSON.stringify(data[key]));
+                }
+            });
+            
+            // Обновляем интерфейс
+            CommissionApp.loadAdminTabData(CommissionApp.state.currentTab);
             CommissionApp.renderCalendar();
+            
             CommissionApp.showNotification('Данные успешно импортированы!', 'success');
         } catch (error) {
-            CommissionApp.showNotification('Ошибка импорта данных', 'error');
             console.error('Import error:', error);
+            CommissionApp.showNotification('Ошибка импорта данных: ' + error.message, 'error');
         }
     };
     
     reader.readAsText(file);
 };
 
-console.log('CommissionApp загружен и готов к работе');
+// Создаем скрытый input для импорта
+const importInput = document.createElement('input');
+importInput.type = 'file';
+importInput.accept = '.json';
+importInput.style.display = 'none';
+importInput.addEventListener('change', window.importData);
+document.body.appendChild(importInput);
+
+window.triggerImport = () => {
+    importInput.click();
+};
