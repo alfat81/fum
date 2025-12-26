@@ -100,7 +100,143 @@
 
     <!-- Admin panel -->
     <div class="admin-panel" id="admin-panel">
-        <!-- Содержимое панели идентично index.html -->
+        <div class="admin-header">
+            <h2>Админ-панель</h2>
+            <button class="close-admin-panel" id="close-admin-panel">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
+            <button class="tab-btn" data-tab="documents">Документы</button>
+            <button class="tab-btn" data-tab="structure">Структура комиссии</button>
+            <button class="tab-btn" data-tab="regions">Регионы</button>
+        </div>
+        
+        <div class="tab-content active" id="calendar-tab">
+            <h3>Управление соревнованиями</h3>
+            <div class="form-group">
+                <label for="competition-name">Название соревнования</label>
+                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
+            </div>
+            <div class="form-group">
+                <label for="competition-date">Дата проведения</label>
+                <input type="date" id="competition-date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="competition-location">Место проведения</label>
+                <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
+            </div>
+            <div class="form-group">
+                <label for="competition-contact">Контактное лицо</label>
+                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
+            </div>
+            <div class="form-group">
+                <label for="protocol-upload">Протокол соревнований</label>
+                <input type="file" id="protocol-upload" class="form-control" accept=".pdf,.doc,.docx">
+                <p class="help-text">Все протоколы автоматически загружаются в Яндекс.Диск</p>
+            </div>
+            <button id="add-competition-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить соревнование
+            </button>
+            <div id="competitions-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content" id="documents-tab">
+            <h3>Управление документами</h3>
+            <div class="form-group">
+                <label for="document-name">Название документа</label>
+                <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
+            </div>
+            <div class="form-group">
+                <label for="document-upload">Файл документа</label>
+                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
+                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
+            </div>
+            <div class="form-group">
+                <label for="document-category">Категория документа</label>
+                <select id="document-category" class="form-control">
+                    <option value="rules">Правила</option>
+                    <option value="regulations">Регламенты</option>
+                    <option value="licenses">Лицензии</option>
+                    <option value="other">Прочее</option>
+                </select>
+            </div>
+            <button id="add-document-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить документ
+            </button>
+            <div id="documents-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content" id="structure-tab">
+            <h3>Управление структурой комиссии</h3>
+            <div class="form-group">
+                <label for="leader-name">Ф.И.О. руководителя</label>
+                <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
+            </div>
+            <div class="form-group">
+                <label for="leader-position">Должность</label>
+                <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
+            </div>
+            <div class="form-group">
+                <label for="leader-region">Регион</label>
+                <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
+            </div>
+            <div class="form-group">
+                <label for="leader-icon">Иконка</label>
+                <select id="leader-icon" class="form-control">
+                    <option value="crown">Председатель</option>
+                    <option value="user-tie">Заместитель</option>
+                    <option value="file-signature">Секретарь</option>
+                    <option value="medal">Спортивное достижение</option>
+                    <option value="history">История</option>
+                    <option value="child">Детский</option>
+                    <option value="motorcycle">Мотоцикл</option>
+                    <option value="building">Организация</option>
+                </select>
+            </div>
+            <button id="add-leader-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить руководителя
+            </button>
+            <div id="leaders-list" class="admin-list"></div>
+        </div>
+        
+        <div class="tab-content" id="regions-tab">
+            <h3>Управление региональными представителями</h3>
+            <div class="form-group">
+                <label for="region-name">Регион</label>
+                <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
+            </div>
+            <div class="form-group">
+                <label for="representative-name">Ф.И.О. представителя</label>
+                <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
+            </div>
+            <div class="form-group">
+                <label for="representative-position">Должность</label>
+                <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
+            </div>
+            <div class="form-group">
+                <label for="representative-phone">Телефон</label>
+                <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <label for="representative-email">Email</label>
+                <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
+            </div>
+            <button id="add-region-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить представителя
+            </button>
+            <div id="regions-list" class="admin-list"></div>
+        </div>
+
+        <div class="admin-login">
+            <div class="form-group">
+                <label for="admin-password">Пароль</label>
+                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
+            </div>
+            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
