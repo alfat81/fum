@@ -30,7 +30,7 @@
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
                     <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
                     <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-                    <li><a href="partners.html" class="nav-link active">Партнеры</a></li>
+                    <li><a href="partners.html" class="nav-link active" aria-current="page">Партнеры</a></li>
                 </ul>
             </nav>
             
@@ -210,31 +210,31 @@
                 <div class="contact-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="company-name">Название компании</label>
-                            <input type="text" id="company-name" class="form-control" placeholder="Введите название компании">
+                            <label for="company-name">Название компании <span style="color: var(--accent-red)">*</span></label>
+                            <input type="text" id="company-name" class="form-control" placeholder="Введите название компании" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="contact-person">Контактное лицо</label>
-                            <input type="text" id="contact-person" class="form-control" placeholder="Ваше ФИО">
+                            <label for="contact-person">Контактное лицо <span style="color: var(--accent-red)">*</span></label>
+                            <input type="text" id="contact-person" class="form-control" placeholder="Ваше ФИО" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone">Телефон</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+                            <label for="phone">Телефон <span style="color: var(--accent-red)">*</span></label>
+                            <input type="tel" id="phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Ваш email">
+                            <label for="email">Email <span style="color: var(--accent-red)">*</span></label>
+                            <input type="email" id="email" class="form-control" placeholder="Ваш email" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="partner-type">Интересующая категория партнерства</label>
-                        <select id="partner-type" class="form-control">
+                        <label for="partner-type">Интересующая категория партнерства <span style="color: var(--accent-red)">*</span></label>
+                        <select id="partner-type" class="form-control" required>
                             <option value="">Выберите категорию</option>
                             <option value="general">Генеральный партнер Кубка России</option>
                             <option value="stage">Официальный партнер этапа</option>
@@ -266,17 +266,17 @@
 
         <footer class="footer">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
+                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">
                     <img src="images/mfr_logo.png" alt="Логотип МФР">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
+                <a href="https://www.minsport.gov.ru/" target="_blank" rel="noopener noreferrer">
                     <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
                 </a>
             </div>
             <div class="footer-links">
                 <a href="documents.html" class="document-link">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank" rel="noopener noreferrer">Страница мотоджимханы на сайте МФР</a>
             </div>
             <div class="copyright">
                 © 2025 Мотоциклетная Федерация России
@@ -290,7 +290,7 @@
     </div>
 
     <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
+    <div class="admin-panel" id="admin-panel" hidden aria-hidden="true">
         <div class="admin-header">
             <h2>Админ-панель</h2>
             <button class="close-admin-panel" id="close-admin-panel">
@@ -334,7 +334,7 @@
             <div id="competitions-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="documents-tab">
+        <div class="tab-content" id="documents-tab" style="display: none;">
             <h3>Управление документами</h3>
             <div class="form-group">
                 <label for="document-name">Название документа</label>
@@ -360,7 +360,7 @@
             <div id="documents-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="structure-tab">
+        <div class="tab-content" id="structure-tab" style="display: none;">
             <h3>Управление структурой комиссии</h3>
             <div class="form-group">
                 <label for="leader-name">Ф.И.О. руководителя</label>
@@ -393,7 +393,7 @@
             <div id="leaders-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="regions-tab">
+        <div class="tab-content" id="regions-tab" style="display: none;">
             <h3>Управление региональными представителями</h3>
             <div class="form-group">
                 <label for="region-name">Регион</label>
@@ -431,37 +431,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Обработчик отправки формы партнерства
-            const submitBtn = document.querySelector('.submit-partner-form');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', function() {
-                    const companyName = document.getElementById('company-name').value;
-                    const contactPerson = document.getElementById('contact-person').value;
-                    const phone = document.getElementById('phone').value;
-                    const email = document.getElementById('email').value;
-                    const partnerType = document.getElementById('partner-type').value;
-                    const message = document.getElementById('message').value;
-                    
-                    if (!companyName || !contactPerson || !phone || !email || !partnerType) {
-                        alert('Пожалуйста, заполните все обязательные поля');
-                        return;
-                    }
-                    
-                    // Здесь будет отправка данных на сервер
-                    alert('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.');
-                    
-                    // Очистка формы
-                    document.getElementById('company-name').value = '';
-                    document.getElementById('contact-person').value = '';
-                    document.getElementById('phone').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById('partner-type').value = '';
-                    document.getElementById('message').value = '';
-                });
-            }
-        });
-    </script>
 </body>
 </html>
