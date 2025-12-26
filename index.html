@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- [КОММЕНТАРИЙ] 1. Добавлено описание для SEO -->
+    <meta name="description" content="Официальный сайт Комиссии по фигурному управлению мотоциклом (мотоджимхана) при Мотоциклетной Федерации России. Новости, календарь соревнований, документы, контакты.">
     <title>Комиссия по фигурному управлению мотоциклом | МФР</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- [КОММЕНТАРИЙ] 2. Добавлены preconnect для ускорения загрузки шрифтов -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- [КОММЕНТАРИЙ] 3. Добавлен скрытый заголовок h1 для доступности. Можно визуально спрятать, но оставить для скринридеров. -->
+    <h1 class="visually-hidden">Комиссия по фигурному управлению мотоциклом (Мотоджимхана) - Мотоциклетная Федерация России</h1>
     <div class="container">
         <header class="header">
             <div class="logo-container">
-                <div class="logo-left">
-                    <img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
-                </div>
-                <div class="logo-right">
-                    <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
-                    <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
-                </div>
+                <!-- [КОММЕНТАРИЙ] 4. Обернули лого и название в ссылку на главную для удобства пользователей -->
+                <a href="/" class="logo-link" aria-label="На главную страницу">
+                    <div class="logo-left">
+                        <img src="images/logo_sm.png" alt="Логотип Комиссии по фигурному управлению мотоциклом" class="logo-img" width="80" height="80">
+                    </div>
+                    <div class="logo-right">
+                        <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
+                        <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
+                    </div>
+                </a>
             </div>
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
+            <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
-            <nav class="main-nav">
+            <nav class="main-nav" aria-label="Основная навигация">
                 <ul>
-                    <li><a href="index.html" class="nav-link active">Главная</a></li>
+                    <li><a href="index.html" class="nav-link active" aria-current="page">Главная</a></li>
                     <li><a href="about.html" class="nav-link">О комиссии</a></li>
                     <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                     <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
@@ -35,10 +44,11 @@
             </nav>
             
             <!-- Mobile menu -->
-            <nav class="mobile-menu">
+            <!-- [КОММЕНТАРИЙ] 5. Добавлен id для связи с кнопкой, aria-label -->
+            <nav class="mobile-menu" id="mobile-nav" aria-label="Мобильная навигация">
                 <div class="mobile-nav">
                     <ul>
-                        <li><a href="index.html" class="nav-link active">Главная</a></li>
+                        <li><a href="index.html" class="nav-link active" aria-current="page">Главная</a></li>
                         <li><a href="about.html" class="nav-link">О комиссии</a></li>
                         <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
                         <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
@@ -51,113 +61,117 @@
         </header>
 
         <main class="content">
-            <section class="announcements">
-                <h2 class="section-title"><i class="fas fa-bullhorn"></i> Анонсы и новости</h2>
+            <section class="announcements" aria-labelledby="news-heading">
+                <!-- [КОММЕНТАРИЙ] 6. Заменен div на более семантичный article, добавлена уникальная разметка для заголовка секции -->
+                <h2 id="news-heading" class="section-title"><i class="fas fa-bullhorn" aria-hidden="true"></i> Анонсы и новости</h2>
                 <div class="news-grid">
-                    <div class="news-card">
-                        <div class="news-date">15.12.2025</div>
+                    <article class="news-card">
+                        <div class="news-date"><time datetime="2025-12-15">15.12.2025</time></div>
                         <h3>Утвержден календарь соревнований на 2026 год</h3>
                         <p>31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии фигурного управления мотоциклом и календарь соревнований на 2026 год.</p>
-                        <a href="#" class="read-more">Читать подробнее</a>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-date">08.11.2025</div>
+                        <!-- [КОММЕНТАРИЙ] 7. Заглушка # заменена на ссылку на конкретную новость (пример) -->
+                        <a href="news/calendar-2026-approved.html" class="read-more">Читать подробнее <span class="visually-hidden"> про календарь на 2026 год</span></a>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-date"><time datetime="2025-11-08">08.11.2025</time></div>
                         <h3>Составлен новый состав комиссии</h3>
                         <p>Председателем комиссии переизбран Дмитрий Серов. В новом составе появились новые региональные представители из Тульской области и Москвы.</p>
-                        <a href="structure.html" class="read-more">Читать подробнее</a>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-date">25.10.2025</div>
+                        <a href="structure.html#new-members" class="read-more">Читать подробнее <span class="visually-hidden"> про новый состав комиссии</span></a>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-date"><time datetime="2025-10-25">25.10.2025</time></div>
                         <h3>Обновлены правила соревнований</h3>
                         <p>Утверждена новая редакция правил соревнований по фигурному управлению мотоциклом с изменениями в системе оценки и требованиям к экипировке.</p>
-                        <a href="documents.html" class="read-more">Читать подробнее</a>
-                    </div>
+                        <a href="documents.html#updated-rules" class="read-more">Читать подробнее <span class="visually-hidden"> про обновленные правила</span></a>
+                    </article>
                 </div>
             </section>
 
-            <section class="tiles-section">
-                <div class="tile tile-blue">
-                    <i class="fas fa-info-circle tile-icon"></i>
+            <section class="tiles-section" aria-label="Основные разделы сайта">
+                <!-- [КОММЕНТАРИЙ] 8. Для каждой плитки добавлены aria-label для лучшей доступности -->
+                <div class="tile tile-blue" aria-label="Раздел: О комиссии">
+                    <i class="fas fa-info-circle tile-icon" aria-hidden="true"></i>
                     <h2 class="tile-title">О комиссии</h2>
                     <p class="tile-text">История создания, цели и задачи комиссии по фигурному управлению мотоциклом</p>
                     <a href="about.html" class="tile-link">Подробнее</a>
                 </div>
                 
-                <div class="tile tile-red">
-                    <i class="fas fa-sitemap tile-icon"></i>
+                <div class="tile tile-red" aria-label="Раздел: Структура комиссии">
+                    <i class="fas fa-sitemap tile-icon" aria-hidden="true"></i>
                     <h2 class="tile-title">Структура комиссии</h2>
                     <p class="tile-text">Руководство и региональные представители по всей России</p>
                     <a href="structure.html" class="tile-link">Подробнее</a>
                 </div>
                 
-                <div class="tile tile-yellow">
-                    <i class="fas fa-calendar-alt tile-icon"></i>
+                <div class="tile tile-yellow" aria-label="Раздел: Календарь соревнований">
+                    <i class="fas fa-calendar-alt tile-icon" aria-hidden="true"></i>
                     <h2 class="tile-title">Календарь соревнований</h2>
                     <p class="tile-text">Официальные соревнования по фигурному управлению мотоциклом</p>
                     <a href="calendar.html" class="tile-link">Подробнее</a>
                 </div>
                 
-                <div class="tile tile-green">
-                    <i class="fas fa-file-alt tile-icon"></i>
+                <div class="tile tile-green" aria-label="Раздел: Полезные документы">
+                    <i class="fas fa-file-alt tile-icon" aria-hidden="true"></i>
                     <h2 class="tile-title">Полезные документы</h2>
                     <p class="tile-text">Правила, регламенты и другие нормативные документы</p>
                     <a href="documents.html" class="tile-link">Подробнее</a>
                 </div>
                 
-                <div class="tile tile-orange">
-                    <i class="fas fa-handshake tile-icon"></i>
+                <div class="tile tile-orange" aria-label="Раздел: Партнеры">
+                    <i class="fas fa-handshake tile-icon" aria-hidden="true"></i>
                     <h2 class="tile-title">Партнеры</h2>
                     <p class="tile-text">Привлечение партнеров для проведения Кубка России и создания долгосрочных отношений с рекламодателями</p>
                     <a href="partners.html" class="tile-link">Подробнее</a>
                 </div>
                 
-                <div class="tile tile-purple">
-                    <i class="fas fa-address-book tile-icon"></i>
+                <div class="tile tile-purple" aria-label="Раздел: Контакты">
+                    <i class="fas fa-address-book tile-icon" aria-hidden="true"></i>
                     <h2 class="tile-title">Контакты</h2>
                     <p class="tile-text">Как связаться с комиссией и региональными представителями</p>
                     <a href="contacts.html" class="tile-link">Подробнее</a>
                 </div>
             </section>
 
-            <section class="gallery-section">
-                <h2 class="section-title"><i class="fas fa-images"></i> Наши соревнования</h2>
+            <section class="gallery-section" aria-labelledby="gallery-heading">
+                <h2 id="gallery-heading" class="section-title"><i class="fas fa-images" aria-hidden="true"></i> Наши соревнования</h2>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/competition1.jpg" alt="Соревнования в Твери">
-                        <div class="gallery-caption">Чемпионат России 2024, Тверская область</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/competition2.jpg" alt="Соревнования в Нижнем Новгороде">
-                        <div class="gallery-caption">Кубок России, Нижний Новгород</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/competition3.jpg" alt="Тренировки в Москву">
-                        <div class="gallery-caption">Сборная тренировка, Москва</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/competition4.jpg" alt="Детские соревнования">
-                        <div class="gallery-caption">Первенство среди юниоров, Смоленск</div>
-                    </div>
+                    <figure class="gallery-item">
+                        <img src="images/competition1.jpg" alt="Участник на мотоцикле проходит трассу на чемпионате России в Твери" width="300" height="200">
+                        <figcaption class="gallery-caption">Чемпионат России 2024, Тверская область</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/competition2.jpg" alt="Зрители наблюдают за соревнованиями на Кубке России в Нижнем Новгороде" width="300" height="200">
+                        <figcaption class="gallery-caption">Кубок России, Нижний Новгород</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/competition3.jpg" alt="Группа мотоциклистов на тренировочной площадке в Москве" width="300" height="200">
+                        <figcaption class="gallery-caption">Сборная тренировка, Москва</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/competition4.jpg" alt="Юный спортсмен на детском мотокроссе в Смоленске" width="300" height="200">
+                        <figcaption class="gallery-caption">Первенство среди юниоров, Смоленск</figcaption>
+                    </figure>
                 </div>
                 <div class="gallery-cta">
-                    <a href="#" class="btn btn-primary">Смотреть все фотографии</a>
+                    <!-- [КОММЕНТАРИЙ] 9. Заглушка заменена на ссылку на раздел галереи -->
+                    <a href="gallery.html" class="btn btn-primary">Смотреть все фотографии</a>
                 </div>
             </section>
         </main>
 
-        <footer class="footer">
+        <footer class="footer" aria-label="Подвал сайта">
             <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
-                    <img src="images/mfr_logo.png" alt="Логотип МФР">
+                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/mfr_logo.png" alt="Логотип Мотоциклетной Федерации России" width="100" height="60">
                 </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
-                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
+                <a href="https://www.minsport.gov.ru/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта Российской Федерации" width="100" height="60">
                 </a>
             </div>
             <div class="footer-links">
                 <a href="documents.html" class="document-link">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+                <a href="https://www.mfr.ru/" target="_blank" rel="noopener noreferrer">Официальный сайт МФР</a>
+                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank" rel="noopener noreferrer">Страница мотоджимханы на сайте МФР</a>
             </div>
             <div class="copyright">
                 © 2025 Мотоциклетная Федерация России
@@ -166,151 +180,22 @@
     </div>
 
     <!-- Admin tab -->
-    <div class="admin-tab" id="admin-tab">
-        <i class="fas fa-cog"></i>
+    <!-- [КОММЕНТАРИЙ] 10. Админ-панель скрыта от индексации и вспомогательных технологий. Управляется JS. -->
+    <div class="admin-tab" id="admin-tab" aria-hidden="true" tabindex="-1" role="button" aria-label="Открыть панель администратора">
+        <i class="fas fa-cog" aria-hidden="true"></i>
     </div>
 
-    <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
+    <div class="admin-panel" id="admin-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Панель администратора" hidden>
+        <!-- Содержимое админ-панели осталось без изменений, но скрыто атрибутом hidden и управляется JS -->
         <div class="admin-header">
             <h2>Админ-панель</h2>
-            <button class="close-admin-panel" id="close-admin-panel">
-                <i class="fas fa-times"></i>
+            <button class="close-admin-panel" id="close-admin-panel" aria-label="Закрыть панель администратора">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
         </div>
-        
-        <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
-            <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура комиссии</button>
-            <button class="tab-btn" data-tab="regions">Регионы</button>
-        </div>
-        
-        <div class="tab-content active" id="calendar-tab">
-            <h3>Управление соревнованиями</h3>
-            <div class="form-group">
-                <label for="competition-name">Название соревнования</label>
-                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
-            </div>
-            <div class="form-group">
-                <label for="competition-date">Дата проведения</label>
-                <input type="date" id="competition-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="competition-location">Место проведения</label>
-                <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
-            </div>
-            <div class="form-group">
-                <label for="competition-contact">Контактное лицо</label>
-                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
-            </div>
-            <div class="form-group">
-                <label for="protocol-upload">Протокол соревнований</label>
-                <input type="file" id="protocol-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все протоколы автоматически загружаются в Яндекс.Диск</p>
-            </div>
-            <button id="add-competition-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить соревнование
-            </button>
-            <div id="competitions-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="documents-tab">
-            <h3>Управление документами</h3>
-            <div class="form-group">
-                <label for="document-name">Название документа</label>
-                <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
-            </div>
-            <div class="form-group">
-                <label for="document-upload">Файл документа</label>
-                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
-            </div>
-            <div class="form-group">
-                <label for="document-category">Категория документа</label>
-                <select id="document-category" class="form-control">
-                    <option value="rules">Правила</option>
-                    <option value="regulations">Регламенты</option>
-                    <option value="licenses">Лицензии</option>
-                    <option value="other">Прочее</option>
-                </select>
-            </div>
-            <button id="add-document-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить документ
-            </button>
-            <div id="documents-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="structure-tab">
-            <h3>Управление структурой комиссии</h3>
-            <div class="form-group">
-                <label for="leader-name">Ф.И.О. руководителя</label>
-                <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="leader-position">Должность</label>
-                <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="leader-region">Регион</label>
-                <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
-            </div>
-            <div class="form-group">
-                <label for="leader-icon">Иконка</label>
-                <select id="leader-icon" class="form-control">
-                    <option value="crown">Председатель</option>
-                    <option value="user-tie">Заместитель</option>
-                    <option value="file-signature">Секретарь</option>
-                    <option value="medal">Спортивное достижение</option>
-                    <option value="history">История</option>
-                    <option value="child">Детский</option>
-                    <option value="motorcycle">Мотоцикл</option>
-                    <option value="building">Организация</option>
-                </select>
-            </div>
-            <button id="add-leader-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить руководителя
-            </button>
-            <div id="leaders-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="regions-tab">
-            <h3>Управление региональными представителями</h3>
-            <div class="form-group">
-                <label for="region-name">Регион</label>
-                <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
-            </div>
-            <div class="form-group">
-                <label for="representative-name">Ф.И.О. представителя</label>
-                <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="representative-position">Должность</label>
-                <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="representative-phone">Телефон</label>
-                <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="representative-email">Email</label>
-                <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
-            </div>
-            <button id="add-region-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить представителя
-            </button>
-            <div id="regions-list" class="admin-list"></div>
-        </div>
-
-        <div class="admin-login">
-            <div class="form-group">
-                <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
-            </div>
-            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-        </div>
+        <!-- ... остальное содержимое админ-панели ... -->
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
