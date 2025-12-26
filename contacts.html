@@ -1,284 +1,87 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты | Комиссия по фигурному управлению мотоциклом | МФР</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo-left">
-                    <img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
-                </div>
-                <div class="logo-right">
-                    <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
-                    <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
-                </div>
-            </div>
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="nav-link">Главная</a></li>
-                    <li><a href="about.html" class="nav-link">О комиссии</a></li>
-                    <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
-                    <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
-                    <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                    <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
-                    <li><a href="partners.html" class="nav-link">Партнеры</a></li>
-                </ul>
-            </nav>
-            
-            <!-- Mobile menu -->
-            <nav class="mobile-menu">
-                <div class="mobile-nav">
-                    <ul>
-                        <li><a href="index.html" class="nav-link">Главная</a></li>
-                        <li><a href="about.html" class="nav-link">О комиссии</a></li>
-                        <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
-                        <li><a href="calendar.html" class="nav-link">Календарь соревнований</a></li>
-                        <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                        <li><a href="contacts.html" class="nav-link active">Контакты</a></li>
-                        <li><a href="partners.html" class="nav-link">Партнеры</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+/* Contact section - если еще нет в вашем CSS */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
 
-        <main class="content">
-            <h1 class="page-title">Контакты</h1>
-            
-            <section class="contact-info">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h2>Председатель комиссии</h2>
-                    <p><strong>Дмитрий Серов</strong></p>
-                    <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
-                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Тверская область</p>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h2>Региональные представители</h2>
-                    <p>Полный список региональных представителей можно найти в разделе <a href="structure.html">"Структура комиссии"</a></p>
-                    <p><i class="fas fa-globe"></i> <a href="structure.html">Перейти к списку</a></p>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h2>Юридический адрес</h2>
-                    <p>121357, г. Москва,</p>
-                    <p>ул. Давыдковская, д. 15</p>
-                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
-                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h2>График работы</h2>
-                    <p>Председатель комиссии доступен:</p>
-                    <p>Ежедневно с 10:00 до 20:00</p>
-                    <p>по Московскому времени</p>
-                    <p>Выходные дни: суббота, воскресенье</p>
-                </div>
-            </section>
-            
-            <section class="social-section">
-                <h2 class="section-title">Социальные сети</h2>
-                <div class="social-links">
-                    <a href="https://vk.com/motodzhimhana_russia" target="_blank" class="social-link vk">
-                        <i class="fab fa-vk"></i>
-                        <span>ВКонтакте</span>
-                    </a>
-                    <a href="https://t.me/motodzhimkhana" target="_blank" class="social-link telegram">
-                        <i class="fab fa-telegram-plane"></i>
-                        <span>Telegram</span>
-                    </a>
-                </div>
-                <p>Присоединяйтесь к нашим группам в социальных сетях, чтобы быть в курсе последних новостей и событий!</p>
-            </section>
-        </main>
+.contact-card {
+    background: var(--light-text);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
 
-        <footer class="footer">
-            <div class="footer-logos">
-                <a href="https://www.mfr.ru/" target="_blank">
-                    <img src="images/mfr_logo.png" alt="Логотип МФР">
-                </a>
-                <a href="https://www.minsport.gov.ru/" target="_blank">
-                    <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
-                </a>
-            </div>
-            <div class="footer-links">
-                <a href="documents.html" class="document-link">Документы комиссии</a>
-                <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
-            </div>
-            <div class="copyright">
-                © 2025 Мотоциклетная Федерация России
-            </div>
-        </footer>
-    </div>
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
 
-    <!-- Admin tab -->
-    <div class="admin-tab" id="admin-tab">
-        <i class="fas fa-cog"></i>
-    </div>
+.contact-icon {
+    font-size: 3rem;
+    color: var(--primary-dark-blue);
+    margin-bottom: 20px;
+}
 
-    <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
-        <div class="admin-header">
-            <h2>Админ-панель</h2>
-            <button class="close-admin-panel" id="close-admin-panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
-            <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура комиссии</button>
-            <button class="tab-btn" data-tab="regions">Регионы</button>
-        </div>
-        
-        <div class="tab-content active" id="calendar-tab">
-            <h3>Управление соревнованиями</h3>
-            <div class="form-group">
-                <label for="competition-name">Название соревнования</label>
-                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
-            </div>
-            <div class="form-group">
-                <label for="competition-date">Дата проведения</label>
-                <input type="date" id="competition-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="competition-location">Место проведения</label>
-                <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
-            </div>
-            <div class="form-group">
-                <label for="competition-contact">Контактное лицо</label>
-                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
-            </div>
-            <div class="form-group">
-                <label for="protocol-upload">Протокол соревнований</label>
-                <input type="file" id="protocol-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все протоколы автоматически загружаются в Яндекс.Диск</p>
-            </div>
-            <button id="add-competition-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить соревнование
-            </button>
-            <div id="competitions-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="documents-tab">
-            <h3>Управление документами</h3>
-            <div class="form-group">
-                <label for="document-name">Название документа</label>
-                <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
-            </div>
-            <div class="form-group">
-                <label for="document-upload">Файл документа</label>
-                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
-            </div>
-            <div class="form-group">
-                <label for="document-category">Категория документа</label>
-                <select id="document-category" class="form-control">
-                    <option value="rules">Правила</option>
-                    <option value="regulations">Регламенты</option>
-                    <option value="licenses">Лицензии</option>
-                    <option value="other">Прочее</option>
-                </select>
-            </div>
-            <button id="add-document-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить документ
-            </button>
-            <div id="documents-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="structure-tab">
-            <h3>Управление структурой комиссии</h3>
-            <div class="form-group">
-                <label for="leader-name">Ф.И.О. руководителя</label>
-                <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="leader-position">Должность</label>
-                <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="leader-region">Регион</label>
-                <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
-            </div>
-            <div class="form-group">
-                <label for="leader-icon">Иконка</label>
-                <select id="leader-icon" class="form-control">
-                    <option value="crown">Председатель</option>
-                    <option value="user-tie">Заместитель</option>
-                    <option value="file-signature">Секретарь</option>
-                    <option value="medal">Спортивное достижение</option>
-                    <option value="history">История</option>
-                    <option value="child">Детский</option>
-                    <option value="motorcycle">Мотоцикл</option>
-                    <option value="building">Организация</option>
-                </select>
-            </div>
-            <button id="add-leader-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить руководителя
-            </button>
-            <div id="leaders-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="regions-tab">
-            <h3>Управление региональными представителями</h3>
-            <div class="form-group">
-                <label for="region-name">Регион</label>
-                <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
-            </div>
-            <div class="form-group">
-                <label for="representative-name">Ф.И.О. представителя</label>
-                <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="representative-position">Должность</label>
-                <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="representative-phone">Телефон</label>
-                <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="representative-email">Email</label>
-                <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
-            </div>
-            <button id="add-region-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить представителя
-            </button>
-            <div id="regions-list" class="admin-list"></div>
-        </div>
+.contact-card h3 {
+    color: var(--primary-dark-blue);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
 
-        <div class="admin-login">
-            <div class="form-group">
-                <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
-            </div>
-            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-        </div>
-    </div>
+.contact-card p {
+    margin-bottom: 8px;
+    color: var(--dark-text);
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.contact-card a {
+    color: var(--primary-dark-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+.social-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.social-link.vk {
+    color: #4C75A3;
+}
+
+.social-link.telegram {
+    color: #26A6D1;
+}
+
+.social-link i {
+    font-size: 3rem;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+}
