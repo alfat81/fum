@@ -52,333 +52,197 @@
         </header>
 
         <main class="content">
-            <!-- Hero section -->
-            <section class="hero-section parallax" style="background-image: url('images/documents-hero.jpg');">
-                <div class="hero-overlay">
-                    <h1 class="hero-title">Полезные документы</h1>
-                    <p class="hero-subtitle">Правила, регламенты, формы и нормативные документы</p>
+            <h1 class="page-title">Полезные документы</h1>
+            
+            <section class="documents-header">
+                <div class="documents-info">
+                    <p><i class="fas fa-info-circle"></i> Все документы доступны для скачивания ниже. Для получения новых документов обратитесь к администрации комиссии.</p>
+                    <p>Для загрузки новых документов используйте панель администратора.</p>
+                </div>
+                
+                <div class="document-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-file-alt stat-icon"></i>
+                        <span class="stat-number">24</span>
+                        <span class="stat-label">Документов</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-download stat-icon"></i>
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Загрузок</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-sync-alt stat-icon"></i>
+                        <span class="stat-number">12.04.2025</span>
+                        <span class="stat-label">Обновлено</span>
+                    </div>
                 </div>
             </section>
             
-            <!-- Documents search -->
-            <section class="documents-search">
-                <h2 class="section-title">Поиск документов</h2>
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Введите название документа...">
-                    <button class="search-btn"><i class="fas fa-search"></i> Найти</button>
-                </div>
-                <div class="filter-options">
+            <section class="documents-filters">
+                <div class="filters-container">
                     <button class="filter-btn active" data-filter="all">Все документы</button>
                     <button class="filter-btn" data-filter="rules">Правила</button>
                     <button class="filter-btn" data-filter="regulations">Регламенты</button>
                     <button class="filter-btn" data-filter="licenses">Лицензии</button>
-                    <button class="filter-btn" data-filter="forms">Формы</button>
                     <button class="filter-btn" data-filter="other">Прочее</button>
                 </div>
+                <div class="search-container">
+                    <input type="text" id="document-search" class="search-input" placeholder="Поиск по документам...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </section>
             
-            <!-- Documents categories -->
-            <section class="documents-categories">
+            <section class="documents-grid">
+                <div class="document-card document-rules">
+                    <div class="document-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="document-title">Правила соревнований по фигурному управлению мотоциклом</h3>
+                    <p class="document-description">Утвержденные правила проведения официальных соревнований в Российской Федерации.</p>
+                    <div class="document-meta">
+                        <span class="document-date">15.01.2025</span>
+                        <span class="document-size">1.2 МБ</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="document-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                        <button class="document-preview">
+                            <i class="fas fa-eye"></i> Просмотреть
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card document-regulations">
+                    <div class="document-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="document-title">Регламент Кубка России 2025</h3>
+                    <p class="document-description">Официальный регламент проведения соревнований по фигурному управлению мотоциклом.</p>
+                    <div class="document-meta">
+                        <span class="document-date">20.11.2024</span>
+                        <span class="document-size">2.4 МБ</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="document-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                        <button class="document-preview">
+                            <i class="fas fa-eye"></i> Просмотреть
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card document-licenses">
+                    <div class="document-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3 class="document-title">Порядок оформления спортивных лицензий</h3>
+                    <p class="document-description">Инструкция по оформлению спортивных лицензий для участия в официальных соревнованиях.</p>
+                    <div class="document-meta">
+                        <span class="document-date">10.01.2025</span>
+                        <span class="document-size">0.8 МБ</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="document-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                        <button class="document-preview">
+                            <i class="fas fa-eye"></i> Просмотреть
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card document-rules">
+                    <div class="document-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="document-title">Требования к экипировке</h3>
+                    <p class="document-description">Требования безопасности и обязательная экипировка для участников соревнований.</p>
+                    <div class="document-meta">
+                        <span class="document-date">30.11.2024</span>
+                        <span class="document-size">0.9 МБ</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="document-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                        <button class="document-preview">
+                            <i class="fas fa-eye"></i> Просмотреть
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card document-regulations">
+                    <div class="document-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="document-title">Положение о проведении соревнований</h3>
+                    <p class="document-description">Общее положение о проведении официальных соревнований по фигурному управлению мотоциклом.</p>
+                    <div class="document-meta">
+                        <span class="document-date">05.12.2024</span>
+                        <span class="document-size">1.5 МБ</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="document-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                        <button class="document-preview">
+                            <i class="fas fa-eye"></i> Просмотреть
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card document-licenses">
+                    <div class="document-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3 class="document-title">Медицинские требования</h3>
+                    <p class="document-description">Требования к медицинскому освидетельствованию спортсменов.</p>
+                    <div class="document-meta">
+                        <span class="document-date">15.01.2025</span>
+                        <span class="document-size">0.7 МБ</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="document-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                        <button class="document-preview">
+                            <i class="fas fa-eye"></i> Просмотреть
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="document-categories">
                 <h2 class="section-title">Категории документов</h2>
-                <div class="cards-container">
+                <div class="categories-container">
                     <div class="category-card">
-                        <div class="category-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h3 class="category-title">Правила соревнований</h3>
-                        <p class="category-count">8 документов</p>
-                        <div class="category-description">
-                            <p>Официальные правила проведения соревнований по мотоджимхане</p>
-                        </div>
-                        <a href="#rules" class="category-link">Смотреть документы →</a>
+                        <i class="fas fa-balance-scale category-icon"></i>
+                        <h3>Правила</h3>
+                        <p>Основные правила проведения соревнований и требования к участникам</p>
+                        <span class="category-count">8 документов</span>
                     </div>
-                    
                     <div class="category-card">
-                        <div class="category-icon">
-                            <i class="fas fa-clipboard-list"></i>
-                        </div>
-                        <h3 class="category-title">Регламенты</h3>
-                        <p class="category-count">12 документов</p>
-                        <div class="category-description">
-                            <p>Регламенты проведения соревнований и организационные документы</p>
-                        </div>
-                        <a href="#regulations" class="category-link">Смотреть документы →</a>
+                        <i class="fas fa-calendar-alt category-icon"></i>
+                        <h3>Регламенты</h3>
+                        <p>Регламенты конкретных соревнований и чемпионатов</p>
+                        <span class="category-count">6 документов</span>
                     </div>
-                    
                     <div class="category-card">
-                        <div class="category-icon">
-                            <i class="fas fa-id-card"></i>
-                        </div>
-                        <h3 class="category-title">Лицензии и допуски</h3>
-                        <p class="category-count">5 документов</p>
-                        <div class="category-description">
-                            <p>Документы для получения лицензий спортсменов, судей и тренеров</p>
-                        </div>
-                        <a href="#licenses" class="category-link">Смотреть документы →</a>
+                        <i class="fas fa-id-card category-icon"></i>
+                        <h3>Лицензии</h3>
+                        <p>Порядок оформления спортивных лицензий и медицинских справок</p>
+                        <span class="category-count">5 документов</span>
                     </div>
-                    
                     <div class="category-card">
-                        <div class="category-icon">
-                            <i class="fas fa-file-signature"></i>
-                        </div>
-                        <h3 class="category-title">Формы и заявки</h3>
-                        <p class="category-count">10 документов</p>
-                        <div class="category-description">
-                            <p>Бланки заявок, протоколов и других форм для соревнований</p>
-                        </div>
-                        <a href="#forms" class="category-link">Смотреть документы →</a>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Rules documents -->
-            <section class="documents-section" id="rules">
-                <h2 class="section-title">Правила соревнований</h2>
-                <div class="documents-container">
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Правила соревнований по мотоджимхане 2025</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 15.01.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 2.4 MB</span>
-                            </div>
-                            <p class="document-description">Официальные правила проведения соревнований по фигурному управлению мотоциклом на 2025 год</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Правила для юниоров (до 18 лет)</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 10.02.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 1.8 MB</span>
-                            </div>
-                            <p class="document-description">Особые правила проведения соревнований для спортсменов юниорского возраста</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Правила для мотоциклов разных классов</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 20.01.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 1.5 MB</span>
-                            </div>
-                            <p class="document-description">Технические требования к мотоциклам различных классов и категорий</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Международные правила (FIM)</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 05.12.2024</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 3.2 MB</span>
-                            </div>
-                            <p class="document-description">Правила Международной федерации мотоциклетного спорта (перевод)</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Regulations documents -->
-            <section class="documents-section" id="regulations">
-                <h2 class="section-title">Регламенты</h2>
-                <div class="documents-container">
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-word"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Регламент Чемпионата России 2025</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 01.03.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 1.2 MB</span>
-                            </div>
-                            <p class="document-description">Полный регламент проведения Чемпионата России по мотоджимхане 2025 года</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-word"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Регламент Кубка России 2025</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 15.02.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 1.1 MB</span>
-                            </div>
-                            <p class="document-description">Регламент проведения этапов Кубка России по мотоджимхане</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-word"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Регламент региональных соревнований</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 10.01.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 0.9 MB</span>
-                            </div>
-                            <p class="document-description">Типовой регламент для проведения региональных и местных соревнований</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Licenses documents -->
-            <section class="documents-section" id="licenses">
-                <h2 class="section-title">Лицензии и допуски</h2>
-                <div class="documents-container">
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Порядок получения лицензии спортсмена</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 05.02.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 0.8 MB</span>
-                            </div>
-                            <p class="document-description">Инструкция по получению лицензии спортсмена для участия в соревнованиях</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Требования к судьям и тренерам</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 12.02.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 1.0 MB</span>
-                            </div>
-                            <p class="document-description">Квалификационные требования и порядок сертификации судей и тренеров</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Forms documents -->
-            <section class="documents-section" id="forms">
-                <h2 class="section-title">Формы и заявки</h2>
-                <div class="documents-container">
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-excel"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Заявка на участие в соревнованиях</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 20.02.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 0.3 MB</span>
-                            </div>
-                            <p class="document-description">Бланк заявки для участия в соревнованиях (форма для заполнения)</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-excel"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Протокол соревнований</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 15.02.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 0.4 MB</span>
-                            </div>
-                            <p class="document-description">Типовой бланк протокола соревнований для судейской коллегии</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="document-card">
-                        <div class="document-icon">
-                            <i class="fas fa-file-excel"></i>
-                        </div>
-                        <div class="document-info">
-                            <h3 class="document-title">Заявка на получение лицензии</h3>
-                            <div class="document-meta">
-                                <span class="document-date"><i class="far fa-calendar"></i> 10.01.2025</span>
-                                <span class="document-size"><i class="fas fa-file"></i> 0.3 MB</span>
-                            </div>
-                            <p class="document-description">Бланк заявки для получения лицензии спортсмена, судьи или тренера</p>
-                            <div class="document-actions">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Просмотреть</a>
-                                <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Скачать</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Important notice -->
-            <section class="notice-section parallax" style="background-image: url('images/notice-bg.jpg');">
-                <div class="notice-overlay">
-                    <div class="notice-content">
-                        <h2><i class="fas fa-exclamation-circle"></i> Важная информация</h2>
-                        <p>Все документы являются официальными и подлежат использованию в соответствии с установленными требованиями. При использовании документов убедитесь, что у вас актуальная версия.</p>
-                        <p>В случае возникновения вопросов обращайтесь в комиссию по указанным контактам.</p>
-                        <a href="contacts.html" class="notice-btn">Связаться с комиссией</a>
+                        <i class="fas fa-file-alt category-icon"></i>
+                        <h3>Прочее</h3>
+                        <p>Различные дополнительные документы и материалы</p>
+                        <span class="category-count">5 документов</span>
                     </div>
                 </div>
             </section>
@@ -425,63 +289,22 @@
         </div>
         
         <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="news">Новости</button>
-            <button class="tab-btn" data-tab="calendar">Календарь</button>
-            <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура</button>
-            <button class="tab-btn" data-tab="contacts">Контакты</button>
-            <button class="tab-btn" data-tab="partners">Партнеры</button>
+            <button class="tab-btn active" data-tab="documents">Документы</button>
+            <button class="tab-btn" data-tab="categories">Категории</button>
+            <button class="tab-btn" data-tab="stats">Статистика</button>
+            <button class="tab-btn" data-tab="settings">Настройки</button>
         </div>
         
-        <div class="tab-content active" id="news-tab">
-            <h3>Управление новостями</h3>
-            <div class="form-group">
-                <label for="news-title">Заголовок новости</label>
-                <input type="text" id="news-title" class="form-control" placeholder="Введите заголовок">
-            </div>
-            <div class="form-group">
-                <label for="news-date">Дата</label>
-                <input type="date" id="news-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="news-content">Содержание</label>
-                <textarea id="news-content" class="form-control" rows="4" placeholder="Введите содержание новости"></textarea>
-            </div>
-            <button id="add-news-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить новость
-            </button>
-            <div id="news-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="calendar-tab">
-            <h3>Управление соревнованиями</h3>
-            <div class="form-group">
-                <label for="competition-name">Название соревнования</label>
-                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
-            </div>
-            <div class="form-group">
-                <label for="competition-date">Дата проведения</label>
-                <input type="date" id="competition-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="competition-location">Место проведения</label>
-                <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
-            </div>
-            <div class="form-group">
-                <label for="competition-description">Описание</label>
-                <textarea id="competition-description" class="form-control" rows="3" placeholder="Введите описание"></textarea>
-            </div>
-            <button id="add-competition-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить соревнование
-            </button>
-            <div id="competitions-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="documents-tab">
+        <div class="tab-content active" id="documents-tab">
             <h3>Управление документами</h3>
             <div class="form-group">
                 <label for="document-name">Название документа</label>
                 <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
+            </div>
+            <div class="form-group">
+                <label for="document-upload">Файл документа</label>
+                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
+                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
             </div>
             <div class="form-group">
                 <label for="document-category">Категория документа</label>
@@ -489,18 +312,12 @@
                     <option value="rules">Правила</option>
                     <option value="regulations">Регламенты</option>
                     <option value="licenses">Лицензии</option>
-                    <option value="forms">Формы</option>
                     <option value="other">Прочее</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="document-description">Описание документа</label>
+                <label for="document-description">Описание</label>
                 <textarea id="document-description" class="form-control" rows="3" placeholder="Введите описание документа"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="document-file">Файл документа</label>
-                <input type="file" id="document-file" class="form-control">
-                <p class="help-text">Поддерживаемые форматы: PDF, DOC, DOCX, XLS, XLSX</p>
             </div>
             <button id="add-document-btn" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Добавить документ
@@ -508,68 +325,81 @@
             <div id="documents-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="structure-tab">
-            <h3>Управление структурой комиссии</h3>
+        <div class="tab-content" id="categories-tab">
+            <h3>Управление категориями</h3>
             <div class="form-group">
-                <label for="leader-name">Ф.И.О. руководителя</label>
-                <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
+                <label for="category-name">Название категории</label>
+                <input type="text" id="category-name" class="form-control" placeholder="Введите название категории">
             </div>
             <div class="form-group">
-                <label for="leader-position">Должность</label>
-                <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
+                <label for="category-icon">Иконка категории</label>
+                <select id="category-icon" class="form-control">
+                    <option value="balance-scale">Весы (Правила)</option>
+                    <option value="calendar-alt">Календарь (Регламенты)</option>
+                    <option value="id-card">ID карта (Лицензии)</option>
+                    <option value="file-alt">Файл (Прочее)</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="leader-region">Регион</label>
-                <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
+                <label for="category-color">Цвет категории</label>
+                <input type="color" id="category-color" class="form-control" value="#e74c3c">
             </div>
-            <div class="form-group">
-                <label for="leader-phone">Телефон</label>
-                <input type="tel" id="leader-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="leader-email">Email</label>
-                <input type="email" id="leader-email" class="form-control" placeholder="Введите email">
-            </div>
-            <button id="add-leader-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить руководителя
+            <button id="add-category-btn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить категорию
             </button>
-            <div id="leaders-list" class="admin-list"></div>
+            <div id="categories-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="contacts-tab">
-            <h3>Управление контактами</h3>
-            <div class="form-group">
-                <label for="contact-title">Заголовок контакта</label>
-                <input type="text" id="contact-title" class="form-control" placeholder="Введите заголовок">
+        <div class="tab-content" id="stats-tab">
+            <h3>Статистика документов</h3>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fas fa-file-alt stat-icon-large"></i>
+                    <h4>Всего документов</h4>
+                    <span class="stat-number-large">24</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-download stat-icon-large"></i>
+                    <h4>Всего загрузок</h4>
+                    <span class="stat-number-large">156</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-user stat-icon-large"></i>
+                    <h4>Активных пользователей</h4>
+                    <span class="stat-number-large">42</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line stat-icon-large"></i>
+                    <h4>Средний размер</h4>
+                    <span class="stat-number-large">1.5 МБ</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="contact-content">Содержимое</label>
-                <textarea id="contact-content" class="form-control" rows="4" placeholder="Введите содержимое (каждая строка - новый абзац)"></textarea>
+            <div class="chart-container">
+                <canvas id="documents-chart" width="400" height="200"></canvas>
             </div>
-            <button id="add-contact-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить контакт
-            </button>
-            <div id="contacts-list" class="admin-list"></div>
         </div>
         
-        <div class="tab-content" id="partners-tab">
-            <h3>Управление партнерами</h3>
+        <div class="tab-content" id="settings-tab">
+            <h3>Настройки страницы</h3>
             <div class="form-group">
-                <label for="partner-name">Название партнера</label>
-                <input type="text" id="partner-name" class="form-control" placeholder="Введите название">
+                <label for="page-title">Заголовок страницы</label>
+                <input type="text" id="page-title" class="form-control" value="Полезные документы | Комиссия по фигурному управлению мотоциклом | МФР">
             </div>
             <div class="form-group">
-                <label for="partner-description">Описание</label>
-                <textarea id="partner-description" class="form-control" rows="3" placeholder="Введите описание"></textarea>
+                <label for="meta-description">Мета-описание</label>
+                <textarea id="meta-description" class="form-control" rows="2">Документы комиссии по фигурному управлению мотоциклом (мотоджимхане) при Мотоциклетной Федерации России - правила, регламенты, лицензии</textarea>
             </div>
             <div class="form-group">
-                <label for="partner-url">Ссылка на сайт</label>
-                <input type="text" id="partner-url" class="form-control" placeholder="Введите URL">
+                <label for="storage-settings">Настройки хранения</label>
+                <select id="storage-settings" class="form-control">
+                    <option value="yandex">Яндекс.Диск</option>
+                    <option value="google">Google Drive</option>
+                    <option value="local">Локальное хранение</option>
+                </select>
             </div>
-            <button id="add-partner-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить партнера
+            <button id="save-settings-btn" class="btn btn-primary">
+                <i class="fas fa-save"></i> Сохранить настройки
             </button>
-            <div id="partners-list" class="admin-list"></div>
         </div>
 
         <div class="admin-login">
@@ -578,10 +408,9 @@
                 <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
             </div>
             <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-            <div id="login-message" class="login-message"></div>
         </div>
     </div>
-
+    
     <!-- Модальное окно подтверждения -->
     <div class="modal" id="confirmation-modal">
         <div class="modal-content">
@@ -595,5 +424,92 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Фильтрация документов
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const documentCards = document.querySelectorAll('.document-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Убираем активный класс со всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс к текущей кнопке
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    filterDocuments(filter);
+                });
+            });
+            
+            // Поиск документов
+            const searchInput = document.getElementById('document-search');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                searchDocuments(searchTerm);
+            });
+            
+            // Фильтрация документов по категории
+            function filterDocuments(filter) {
+                documentCards.forEach(card => {
+                    if (filter === 'all' || card.classList.contains(`document-${filter}`)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Поиск документов по названию и описанию
+            function searchDocuments(term) {
+                documentCards.forEach(card => {
+                    const title = card.querySelector('.document-title').textContent.toLowerCase();
+                    const description = card.querySelector('.document-description').textContent.toLowerCase();
+                    
+                    if (title.includes(term) || description.includes(term)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Статистика документов
+            const ctx = document.getElementById('documents-chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Правила', 'Регламенты', 'Лицензии', 'Прочее'],
+                    datasets: [{
+                        label: 'Количество документов',
+                        data: [8, 6, 5, 5],
+                        backgroundColor: [
+                            'rgba(231, 76, 60, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(155, 89, 182, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(155, 89, 182, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
