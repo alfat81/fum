@@ -836,406 +836,339 @@ body {
     font-style: italic;
 }
 
-/* Leadership section */
+/* =========================== */
+/* Стили для страницы структуры комиссии */
+/* =========================== */
+
+/* Руководство комиссии - обновленные стили */
 .leadership-section {
     margin: 40px 0;
 }
 
 .leadership-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .leader-card {
     background: var(--light-text);
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     padding: 25px;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    text-align: center;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    gap: 20px;
     border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    cursor: pointer;
 }
 
 .leader-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    border-color: var(--accent-yellow);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-.leader-photo {
-    width: 150px;
-    height: 150px;
+/* Цветные рамки для карточек */
+.leader-card.leader-blue {
+    border-left: 4px solid var(--primary-dark-blue);
+    border-top: 4px solid var(--primary-dark-blue);
+}
+
+.leader-card.leader-yellow {
+    border-left: 4px solid var(--accent-yellow);
+    border-top: 4px solid var(--accent-yellow);
+}
+
+.leader-card.leader-red {
+    border-left: 4px solid var(--accent-red);
+    border-top: 4px solid var(--accent-red);
+}
+
+/* Иконки руководителей */
+.leader-icon {
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--primary-dark-blue);
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--light-text);
+    flex-shrink: 0;
     transition: var(--transition);
 }
 
-.leader-card:hover .leader-photo {
-    transform: scale(1.05);
-    border-color: var(--accent-yellow);
+.leader-card:hover .leader-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Цвета иконок в зависимости от типа карточки */
+.leader-blue .leader-icon {
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
+}
+
+.leader-yellow .leader-icon {
+    background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+}
+
+.leader-red .leader-icon {
+    background: linear-gradient(135deg, var(--accent-red), #c0392b);
+}
+
+/* Информация о руководителе */
+.leader-info {
+    flex: 1;
 }
 
 .leader-name {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--primary-dark-blue);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
+    line-height: 1.3;
 }
 
 .leader-position {
     color: var(--accent-red);
     font-weight: 500;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
     border-bottom: 2px solid var(--accent-yellow);
-    width: 100%;
+    font-size: 1.1rem;
+}
+
+.leader-region {
+    color: var(--dark-text);
+    margin-bottom: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.leader-region i {
+    color: var(--primary-dark-blue);
 }
 
 .leader-contact {
-    margin-top: 15px;
-    width: 100%;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    color: var(--dark-text);
-    text-decoration: none;
-    transition: var(--transition);
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.contact-item:hover {
-    background: rgba(0, 42, 85, 0.05);
-    transform: translateX(5px);
-}
-
-.contact-item i {
-    color: var(--primary-dark-blue);
-    width: 20px;
-}
-
-/* Regions section */
-.regions-section {
-    margin: 40px 0;
-}
-
-.regions-map {
-    position: relative;
-    margin: 30px 0;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.map-container {
-    width: 100%;
-    height: 400px;
-    background: #e8f4ff;
-    position: relative;
-}
-
-.regions-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.region-card {
-    background: var(--light-text);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    border-left: 4px solid var(--primary-dark-blue);
-    cursor: pointer;
-}
-
-.region-card:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    border-left-color: var(--accent-yellow);
-}
-
-.region-name {
-    font-size: 1.3rem;
-    color: var(--primary-dark-blue);
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.region-info {
-    color: var(--dark-text);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.region-info i {
-    color: var(--accent-red);
-}
-
-.region-contacts {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-.region-contact {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
     font-size: 0.95rem;
     color: var(--dark-text);
-    text-decoration: none;
-    transition: var(--transition);
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.region-contact:hover {
-    background: rgba(0, 42, 85, 0.05);
-    color: var(--primary-dark-blue);
-}
-
-/* Contact section */
-.contact-section {
-    margin: 40px 0;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.contact-info {
-    background: var(--light-text);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.contact-method {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.contact-method:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--light-text);
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.contact-details h3 {
-    color: var(--primary-dark-blue);
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-}
-
-.contact-details p,
-.contact-details a {
-    color: var(--dark-text);
-    text-decoration: none;
     line-height: 1.5;
 }
 
-.contact-details a:hover {
+.leader-contact i {
     color: var(--primary-dark-blue);
-    text-decoration: underline;
+    width: 20px;
+    text-align: center;
+    margin-right: 5px;
 }
 
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-link {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary-dark-blue);
-    color: var(--light-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.social-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    background: var(--secondary-dark-blue);
-}
-
-.contact-form {
-    background: var(--light-text);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
+.leader-contact br {
     display: block;
-    margin-bottom: 8px;
-    color: var(--primary-dark-blue);
-    font-weight: 500;
+    margin: 5px 0;
 }
 
-.form-control {
+/* Таблица региональных представителей */
+.regions-section {
+    margin: 60px 0;
+}
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.table-search {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.table-search input {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
     transition: var(--transition);
-    background: #f8f9fa;
 }
 
-.form-control:focus {
+.table-search input:focus {
     outline: none;
     border-color: var(--primary-dark-blue);
-    background: var(--light-text);
     box-shadow: 0 0 0 3px rgba(0, 42, 85, 0.1);
 }
 
-textarea.form-control {
-    min-height: 150px;
-    resize: vertical;
+.table-filter {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.form-submit {
-    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
-    color: var(--light-text);
+.filter-btn {
+    padding: 8px 16px;
+    background: #f0f0f0;
     border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    border-radius: 6px;
     cursor: pointer;
     transition: var(--transition);
-    display: block;
-    width: 100%;
-    margin-top: 10px;
+    font-weight: 500;
+    color: var(--dark-text);
 }
 
-.form-submit:hover {
-    background: linear-gradient(135deg, #001a33, #00254d);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-
-/* Statistics section */
-.stats-section {
-    margin: 40px 0;
-    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
-    padding: 40px;
-    border-radius: 15px;
+.filter-btn.active {
+    background: var(--primary-dark-blue);
     color: var(--light-text);
 }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+.filter-btn:hover:not(.active) {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.regions-table-container {
+    overflow-x: auto;
     margin-top: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
-.stat-item {
-    text-align: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    transition: var(--transition);
+.regions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
 }
 
-.stat-item:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+.regions-table thead {
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
 }
 
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--accent-yellow);
-    margin-bottom: 10px;
-    line-height: 1;
-}
-
-.stat-label {
+.regions-table th {
+    color: var(--light-text);
+    font-weight: 600;
+    text-align: left;
+    padding: 16px 20px;
+    white-space: nowrap;
     font-size: 1.1rem;
-    opacity: 0.9;
+    position: sticky;
+    top: 0;
 }
 
-/* Loading animation */
-.loading {
+.regions-table th:first-child {
+    border-radius: var(--border-radius) 0 0 0;
+}
+
+.regions-table th:last-child {
+    border-radius: 0 var(--border-radius) 0 0;
+}
+
+.regions-table tbody tr {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition);
+    background: var(--light-text);
+}
+
+.regions-table tbody tr:hover {
+    background: rgba(0, 42, 85, 0.05);
+    transform: translateX(5px);
+}
+
+.regions-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.regions-table td {
+    padding: 14px 20px;
+    color: var(--dark-text);
+    vertical-align: top;
+}
+
+.regions-table td:first-child {
+    font-weight: 600;
+    color: var(--primary-dark-blue);
+    min-width: 200px;
+}
+
+.regions-table td:nth-child(2) {
+    font-weight: 500;
+    min-width: 180px;
+}
+
+.regions-table td:nth-child(3) {
+    min-width: 180px;
+}
+
+.regions-table td:nth-child(4),
+.regions-table td:nth-child(5) {
+    min-width: 160px;
+}
+
+.regions-table td a {
+    color: var(--primary-dark-blue);
+    text-decoration: none;
+    transition: var(--transition);
     display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(0, 42, 85, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--primary-dark-blue);
-    animation: spin 1s ease-in-out infinite;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+.regions-table td a:hover {
+    color: var(--accent-red);
+    transform: translateX(3px);
 }
 
-/* Success/Error messages */
-.message {
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin: 20px 0;
+/* Стили для мобильной таблицы */
+.regions-table-mobile {
+    display: none;
+}
+
+.region-card-mobile {
+    background: var(--light-text);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-dark-blue);
+}
+
+.region-field {
     display: flex;
-    align-items: center;
-    gap: 15px;
-    animation: slideIn 0.3s ease-out;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-@keyframes slideIn {
+.region-field:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.region-label {
+    font-weight: 600;
+    color: var(--primary-dark-blue);
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.region-value {
+    color: var(--dark-text);
+    flex: 1;
+}
+
+/* Анимация появления строк таблицы */
+@keyframes fadeInRow {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
@@ -1243,60 +1176,146 @@ textarea.form-control {
     }
 }
 
-.message.success {
-    background: rgba(39, 174, 96, 0.1);
-    border: 2px solid var(--accent-green);
-    color: var(--accent-green);
+.regions-table tbody tr {
+    animation: fadeInRow 0.5s ease-out;
+    animation-fill-mode: both;
 }
 
-.message.error {
-    background: rgba(231, 76, 60, 0.1);
-    border: 2px solid var(--accent-red);
-    color: var(--accent-red);
+.regions-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.regions-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.regions-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.regions-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+.regions-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+.regions-table tbody tr:nth-child(6) { animation-delay: 0.6s; }
+.regions-table tbody tr:nth-child(7) { animation-delay: 0.7s; }
+.regions-table tbody tr:nth-child(8) { animation-delay: 0.8s; }
+.regions-table tbody tr:nth-child(9) { animation-delay: 0.9s; }
+
+/* Стили для подсветки поиска */
+.search-highlight {
+    background-color: var(--accent-yellow);
+    color: var(--primary-dark-blue);
+    font-weight: 600;
+    padding: 0 2px;
+    border-radius: 3px;
 }
 
-.message.info {
-    background: rgba(52, 152, 219, 0.1);
-    border: 2px solid #3498db;
-    color: #3498db;
-}
-
-.message i {
-    font-size: 1.5rem;
-}
-
-/* Back to top button */
-.back-to-top {
+/* Стили для модального окна руководителя */
+.leader-modal {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
-    color: var(--light-text);
-    border: none;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
-    z-index: 99;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 0.3s ease;
 }
 
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
+.leader-modal .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
 }
 
-.back-to-top:hover {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    background: linear-gradient(135deg, #001a33, #00254d);
+.leader-modal .modal-content {
+    position: relative;
+    z-index: 1001;
+    width: 90%;
+    max-width: 500px;
+    background: var(--light-text);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.leader-modal .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #f0f0f0;
+    color: var(--dark-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.leader-modal .modal-close:hover {
+    background: var(--accent-red);
+    color: var(--light-text);
+    transform: rotate(90deg);
+}
+
+.leader-modal .modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--accent-yellow);
+}
+
+.leader-modal .modal-header h3 {
+    font-size: 1.8rem;
+    color: var(--primary-dark-blue);
+    margin-bottom: 10px;
+}
+
+.leader-modal .modal-position {
+    color: var(--accent-red);
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.leader-modal .info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
+}
+
+.leader-modal .info-item i {
+    color: var(--primary-dark-blue);
+    font-size: 1.2rem;
+    width: 25px;
+}
+
+.leader-modal .modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.leader-modal .modal-actions .btn {
+    flex: 1;
+    min-width: 200px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Кнопки экспорта */
+.export-actions {
+    margin-top: 30px;
+    text-align: center;
 }
 
 /* =========================== */
@@ -1663,6 +1682,316 @@ textarea.form-control {
     text-align: center;
 }
 
+/* Contact section */
+.contact-section {
+    margin: 40px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-info {
+    background: var(--light-text);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.contact-method:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-text);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.contact-details h3 {
+    color: var(--primary-dark-blue);
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.contact-details p,
+.contact-details a {
+    color: var(--dark-text);
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.contact-details a:hover {
+    color: var(--primary-dark-blue);
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-dark-blue);
+    color: var(--light-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: var(--secondary-dark-blue);
+}
+
+.contact-form {
+    background: var(--light-text);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-dark-blue);
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #f8f9fa;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-dark-blue);
+    background: var(--light-text);
+    box-shadow: 0 0 0 3px rgba(0, 42, 85, 0.1);
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-submit {
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
+    color: var(--light-text);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-submit:hover {
+    background: linear-gradient(135deg, #001a33, #00254d);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Statistics section */
+.stats-section {
+    margin: 40px 0;
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
+    padding: 40px;
+    border-radius: 15px;
+    color: var(--light-text);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-yellow);
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 42, 85, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-dark-blue);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Success/Error messages */
+.message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.success {
+    background: rgba(39, 174, 96, 0.1);
+    border: 2px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.message.error {
+    background: rgba(231, 76, 60, 0.1);
+    border: 2px solid var(--accent-red);
+    color: var(--accent-red);
+}
+
+.message.info {
+    background: rgba(52, 152, 219, 0.1);
+    border: 2px solid #3498db;
+    color: #3498db;
+}
+
+.message i {
+    font-size: 1.5rem;
+}
+
+/* Global message styles */
+.global-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-dark-blue), var(--secondary-dark-blue));
+    color: var(--light-text);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 99;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #001a33, #00254d);
+}
+
 /* Админ-панель */
 .admin-tab,
 .admin-panel,
@@ -2002,28 +2331,6 @@ textarea.form-control {
     font-size: 0.9em;
 }
 
-/* Global message styles */
-.global-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10000;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    animation: slideInRight 0.3s ease-out;
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 /* Эффект загрузки изображений */
 img[data-src] {
     opacity: 0;
@@ -2159,7 +2466,8 @@ img.loaded {
     .news-grid,
     .competitions-list,
     .benefits-grid,
-    .programs-container {
+    .programs-container,
+    .leadership-grid {
         grid-template-columns: 1fr; /* [ОПТИМИЗАЦИЯ 23] На мобильных — одна колонка */
         gap: 20px;
     }
@@ -2172,7 +2480,8 @@ img.loaded {
     .news-card,
     .competition-card,
     .benefit-card,
-    .program-card {
+    .program-card,
+    .leader-card {
         padding: 20px;
     }
 
@@ -2235,6 +2544,45 @@ img.loaded {
         gap: 15px;
     }
     
+    /* Адаптивность для страницы структуры */
+    .leader-card {
+        padding: 20px;
+    }
+    
+    .leader-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+    
+    .leader-name {
+        font-size: 1.3rem;
+    }
+    
+    /* Скрываем обычную таблицу на мобильных, показываем мобильную версию */
+    .regions-table-container {
+        display: none;
+    }
+    
+    .regions-table-mobile {
+        display: block;
+        margin-top: 20px;
+    }
+    
+    .table-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .table-search {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    
+    .table-filter {
+        justify-content: center;
+    }
+    
     .admin-panel {
         width: 100%;
         right: -100%;
@@ -2257,6 +2605,23 @@ img.loaded {
         height: 35px;
         font-size: 1rem;
     }
+    
+    /* Адаптивность модального окна руководителя */
+    .leader-modal .modal-content {
+        padding: 20px;
+    }
+    
+    .leader-modal .modal-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .leader-modal .modal-actions {
+        flex-direction: column;
+    }
+    
+    .leader-modal .modal-actions .btn {
+        min-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2272,7 +2637,8 @@ img.loaded {
     .news-card,
     .competition-card,
     .benefit-card,
-    .program-card {
+    .program-card,
+    .leader-card {
         padding: 15px;
     }
 
@@ -2341,6 +2707,30 @@ img.loaded {
         width: 100%;
         padding: 10px;
     }
+    
+    /* Адаптивность для страницы структуры */
+    .leader-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .leader-icon {
+        align-self: center;
+    }
+    
+    .leader-region {
+        justify-content: center;
+    }
+    
+    .region-field {
+        flex-direction: column;
+    }
+    
+    .region-label {
+        margin-bottom: 5px;
+        min-width: auto;
+    }
 }
 
 /* [ОПТИМИЗАЦИЯ 25] Улучшенная печать */
@@ -2401,10 +2791,6 @@ img.loaded {
         color: #000 !important;
     }
     
-    .btn {
-        display: none !important;
-    }
-    
     .contact-form {
         display: none !important;
     }
@@ -2412,7 +2798,8 @@ img.loaded {
     .tile-icon,
     .leader-photo,
     .contact-icon,
-    .social-links {
+    .social-links,
+    .leader-icon {
         display: none !important;
     }
     
@@ -2429,5 +2816,27 @@ img.loaded {
     
     .no-print {
         display: none !important;
+    }
+    
+    /* Печатные стили для страницы структуры */
+    .leader-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+    }
+    
+    .regions-table {
+        min-width: auto;
+    }
+    
+    .regions-table th {
+        background: #ddd !important;
+        color: #000 !important;
+    }
+    
+    .regions-table-container {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
     }
 }
