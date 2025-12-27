@@ -1,464 +1,241 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Календарь соревнований | Комиссия по фигурному управлению мотоциклом | МФР</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Календарь соревнований | Комиссия по фигурному управлению мотоциклом | МФР</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo-left">
-                    <img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
-                </div>
-                <div class="logo-right">
-                    <div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
-                    <div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
-                </div>
-            </div>
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="nav-link">Главная</a></li>
-                    <li><a href="about.html" class="nav-link">О комиссии</a></li>
-                    <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
-                    <li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
-                    <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-                    <li><a href="partners.html" class="nav-link">Партнеры</a></li>
-                </ul>
-            </nav>
-            
-            <!-- Mobile menu -->
-            <nav class="mobile-menu">
-                <div class="mobile-nav">
-                    <ul>
-                        <li><a href="index.html" class="nav-link">Главная</a></li>
-                        <li><a href="about.html" class="nav-link">О комиссии</a></li>
-                        <li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
-                        <li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
-                        <li><a href="documents.html" class="nav-link">Полезные документы</a></li>
-                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
-                        <li><a href="partners.html" class="nav-link">Партнеры</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <main class="content">
-            <h1 class="page-title">Календарь соревнований 2025 года</h1>
-            
-            <section class="calendar-section">
-                <div class="calendar-controls">
-                    <button class="calendar-btn" id="prev-month">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <h2 class="current-month" id="current-month">Май 2025</h2>
-                    <button class="calendar-btn" id="next-month">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <div class="calendar-grid" id="calendar-grid">
-                    <!-- Days of calendar will be added via JavaScript -->
-                </div>
-            </section>
-            
-            <section class="competitions-section">
-                <h2 class="section-title">Предстоящие соревнования</h2>
-                
-                <div class="competitions-list" id="competitions-container">
-                    <!-- Competitions will be loaded from localStorage -->
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logos">
-                    <a href="https://www.mfr.ru/" target="_blank">
-                        <img src="images/mfr_logo.png" alt="Логотип МФР">
-                    </a>
-                    <a href="https://www.minsport.gov.ru/" target="_blank">
-                        <img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
-                    </a>
-                </div>
-                <div class="footer-links">
-                    <a href="documents.html" class="document-link">Документы комиссии</a>
-                    <a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
-                    <a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
-                </div>
-                <div class="footer-contacts">
-                    <p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
-                    <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
-                </div>
-                <div class="copyright">
-                    © 2025 Мотоциклетная Федерация России
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Admin tab -->
-    <div class="admin-tab" id="admin-tab">
-        <i class="fas fa-cog"></i>
-    </div>
-
-    <!-- Admin panel -->
-    <div class="admin-panel" id="admin-panel">
-        <div class="admin-header">
-            <h2>Админ-панель</h2>
-            <button class="close-admin-panel" id="close-admin-panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="admin-tabs">
-            <button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
-            <button class="tab-btn" data-tab="documents">Документы</button>
-            <button class="tab-btn" data-tab="structure">Структура комиссии</button>
-            <button class="tab-btn" data-tab="regions">Регионы</button>
-        </div>
-        
-        <div class="tab-content active" id="calendar-tab">
-            <h3>Управление соревнованиями</h3>
-            <div class="form-group">
-                <label for="competition-name">Название соревнования</label>
-                <input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
-            </div>
-            <div class="form-group">
-                <label for="competition-date">Дата проведения</label>
-                <input type="date" id="competition-date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="competition-location">Место проведения</label>
-                <input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
-            </div>
-            <div class="form-group">
-                <label for="competition-contact">Контактное лицо</label>
-                <input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
-            </div>
-            <div class="form-group">
-                <label for="protocol-upload">Протокол соревнований</label>
-                <input type="file" id="protocol-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все протоколы автоматически загружаются в Яндекс.Диск</p>
-            </div>
-            <button id="add-competition-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить соревнование
-            </button>
-            <div id="competitions-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="documents-tab" style="display: none;">
-            <h3>Управление документами</h3>
-            <div class="form-group">
-                <label for="document-name">Название документа</label>
-                <input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
-            </div>
-            <div class="form-group">
-                <label for="document-upload">Файл документа</label>
-                <input type="file" id="document-upload" class="form-control" accept=".pdf,.doc,.docx">
-                <p class="help-text">Все документы автоматически загружаются в Яндекс.Диск</p>
-            </div>
-            <div class="form-group">
-                <label for="document-category">Категория документа</label>
-                <select id="document-category" class="form-control">
-                    <option value="rules">Правила</option>
-                    <option value="regulations">Регламенты</option>
-                    <option value="licenses">Лицензии</option>
-                    <option value="other">Прочее</option>
-                </select>
-            </div>
-            <button id="add-document-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить документ
-            </button>
-            <div id="documents-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="structure-tab" style="display: none;">
-            <h3>Управление структурой комиссии</h3>
-            <div class="form-group">
-                <label for="leader-name">Ф.И.О. руководителя</label>
-                <input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="leader-position">Должность</label>
-                <input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="leader-region">Регион</label>
-                <input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
-            </div>
-            <div class="form-group">
-                <label for="leader-icon">Иконка</label>
-                <select id="leader-icon" class="form-control">
-                    <option value="crown">Председатель</option>
-                    <option value="user-tie">Заместитель</option>
-                    <option value="file-signature">Секретарь</option>
-                    <option value="medal">Спортивное достижение</option>
-                    <option value="history">История</option>
-                    <option value="child">Детский</option>
-                    <option value="motorcycle">Мотоцикл</option>
-                    <option value="building">Организация</option>
-                </select>
-            </div>
-            <button id="add-leader-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить руководителя
-            </button>
-            <div id="leaders-list" class="admin-list"></div>
-        </div>
-        
-        <div class="tab-content" id="regions-tab" style="display: none;">
-            <h3>Управление региональными представителями</h3>
-            <div class="form-group">
-                <label for="region-name">Регион</label>
-                <input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
-            </div>
-            <div class="form-group">
-                <label for="representative-name">Ф.И.О. представителя</label>
-                <input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
-            </div>
-            <div class="form-group">
-                <label for="representative-position">Должность</label>
-                <input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
-            </div>
-            <div class="form-group">
-                <label for="representative-phone">Телефон</label>
-                <input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-            </div>
-            <div class="form-group">
-                <label for="representative-email">Email</label>
-                <input type="email" id="representative-email" class="form-control" placeholder="Введите email">
-            </div>
-            <button id="add-region-btn" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Добавить представителя
-            </button>
-            <div id="regions-list" class="admin-list"></div>
-        </div>
-
-        <div class="admin-login">
-            <div class="form-group">
-                <label for="admin-password">Пароль</label>
-                <input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
-            </div>
-            <button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-        </div>
-    </div>
-    
-    <!-- Модальное окно подтверждения -->
-    <div class="modal" id="confirmation-modal">
-        <div class="modal-content">
-            <h3>Подтверждение действия</h3>
-            <p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
-            <div class="modal-buttons">
-                <button class="btn btn-secondary" id="modal-cancel">Отмена</button>
-                <button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to get saved competitions
-            function getCompetitions() {
-                const savedCompetitions = localStorage.getItem('competitionsList');
-                return savedCompetitions ? JSON.parse(savedCompetitions) : [
-                    {
-                        id: 1,
-                        date: '2025-05-12',
-                        name: '2 этап Кубка России по фигурному управлению мотоциклом',
-                        location: 'Смоленск',
-                        contact: 'Глеб Симдянкин',
-                        contactPhone: '+7 (910) 345-67-89',
-                        protocol: ''
-                    },
-                    {
-                        id: 2,
-                        date: '2025-05-20',
-                        name: 'Кубок Москвы',
-                        location: 'Москва',
-                        contact: 'Александр Ципилев',
-                        contactPhone: '+7 (903) 123-45-67',
-                        protocol: ''
-                    },
-                    {
-                        id: 3,
-                        date: '2025-06-15',
-                        name: 'Чемпионат России',
-                        location: 'Тверская область',
-                        contact: 'Дмитрий Серов',
-                        contactPhone: '+7 (977) 823-63-90',
-                        protocol: ''
-                    },
-                    {
-                        id: 4,
-                        date: '2025-08-05',
-                        name: 'Женский Кубок МФР',
-                        location: 'Нижний Новгород',
-                        contact: 'Алексей Фатьянов',
-                        contactPhone: '+7 (905) 234-56-78',
-                        protocol: ''
-                    },
-                    {
-                        id: 5,
-                        date: '2025-09-12',
-                        name: 'Кубок юниоров',
-                        location: 'Вологда',
-                        contact: 'Наталия Недайводина',
-                        contactPhone: '+7 (911) 456-78-90',
-                        protocol: ''
-                    }
-                ];
-            }
-
-            // Function to save competitions
-            function saveCompetitions(competitions) {
-                localStorage.setItem('competitionsList', JSON.stringify(competitions));
-            }
-
-            // Display competitions list
-            function renderCompetitions() {
-                const competitions = getCompetitions();
-                const container = document.getElementById('competitions-container');
-                container.innerHTML = '';
-                
-                if (competitions.length === 0) {
-                    container.innerHTML = '<p class="no-competitions">Пока нет запланированных соревнований</p>';
-                    return;
-                }
-                
-                competitions.forEach(comp => {
-                    const compDate = new Date(comp.date);
-                    const today = new Date();
-                    const isPast = compDate < today;
-                    
-                    const compCard = document.createElement('div');
-                    compCard.className = `competition-card ${isPast ? 'past-competition' : ''}`;
-                    compCard.innerHTML = `
-                        <div class="competition-date">${formatDate(comp.date)}</div>
-                        <h3 class="competition-title">${comp.name}</h3>
-                        <div class="competition-location">${comp.location}</div>
-                        <div class="competition-contact">
-                            <i class="fas fa-user"></i> ${comp.contact}<br>
-                            <i class="fas fa-phone"></i> ${comp.contactPhone}
-                        </div>
-                        ${comp.protocol ? `<div class="protocol-link">
-                            <i class="fas fa-file-pdf"></i> <a href="${comp.protocol}" target="_blank" rel="noopener noreferrer" download>Скачать протокол</a>
-                        </div>` : ''}
-                    `;
-                    container.appendChild(compCard);
-                });
-            }
-
-            // Format date function
-            function formatDate(dateString) {
-                const date = new Date(dateString);
-                const day = date.getDate();
-                const month = date.toLocaleString('ru-RU', { month: 'long' });
-                const year = date.getFullYear();
-                return `${day} ${month} ${year}`;
-            }
-
-            // Calendar functionality
-            const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
-                              "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-            const dayNames = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-            
-            let currentDate = new Date();
-            let currentMonth = 4; // May (0-indexed)
-            let currentYear = 2025;
-            
-            // Render calendar function
-            function renderCalendar(month, year) {
-                const calendarGrid = document.getElementById('calendar-grid');
-                calendarGrid.innerHTML = '';
-                
-                // Update current month title
-                document.getElementById('current-month').textContent = `${monthNames[month]} ${year}`;
-                
-                // Add day headers
-                dayNames.forEach(day => {
-                    const dayHeader = document.createElement('div');
-                    dayHeader.className = 'calendar-day-header';
-                    dayHeader.textContent = day;
-                    calendarGrid.appendChild(dayHeader);
-                });
-                
-                // Get first day of month and days in month
-                const firstDay = new Date(year, month, 1);
-                const lastDay = new Date(year, month + 1, 0);
-                const daysInMonth = lastDay.getDate();
-                const firstDayIndex = firstDay.getDay(); // 0 = Sunday
-                
-                // Add empty days at the beginning of the month
-                for (let i = 0; i < firstDayIndex; i++) {
-                    const emptyDay = document.createElement('div');
-                    emptyDay.className = 'calendar-day empty';
-                    calendarGrid.appendChild(emptyDay);
-                }
-                
-                // Add days of the month
-                const competitions = getCompetitions();
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dayElement = document.createElement('div');
-                    dayElement.className = 'calendar-day';
-                    dayElement.innerHTML = `<div class="day-number">${day}</div>`;
-                    
-                    // Check for competitions on this day
-                    const competitionDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-                    const dayCompetitions = competitions.filter(comp => comp.date === competitionDate);
-                    
-                    if (dayCompetitions.length > 0) {
-                        dayElement.classList.add('has-competition');
-                        
-                        // Create container for competitions
-                        const competitionsContainer = document.createElement('div');
-                        competitionsContainer.className = 'day-competitions';
-                        
-                        dayCompetitions.forEach(comp => {
-                            const compElement = document.createElement('div');
-                            compElement.className = 'competition-item';
-                            compElement.textContent = comp.name;
-                            competitionsContainer.appendChild(compElement);
-                        });
-                        
-                        dayElement.appendChild(competitionsContainer);
-                    }
-                    
-                    calendarGrid.appendChild(dayElement);
-                }
-            }
-            
-            // Navigation handlers
-            document.getElementById('prev-month').addEventListener('click', function() {
-                currentMonth--;
-                if (currentMonth < 0) {
-                    currentMonth = 11;
-                    currentYear--;
-                }
-                renderCalendar(currentMonth, currentYear);
-            });
-            
-            document.getElementById('next-month').addEventListener('click', function() {
-                currentMonth++;
-                if (currentMonth > 11) {
-                    currentMonth = 0;
-                    currentYear++;
-                }
-                renderCalendar(currentMonth, currentYear);
-            });
-            
-            // Initial rendering
-            renderCalendar(currentMonth, currentYear);
-            renderCompetitions();
-        });
-    </script>
+<div class="container">
+<header class="header">
+<div class="logo-container">
+<div class="logo-left">
+<img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
+</div>
+<div class="logo-right">
+<div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
+<div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
+</div>
+</div>
+<button class="menu-toggle">
+<i class="fas fa-bars"></i>
+</button>
+<nav class="main-nav">
+<ul>
+<li><a href="index.html" class="nav-link">Главная</a></li>
+<li><a href="about.html" class="nav-link">О комиссии</a></li>
+<li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+<li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
+<li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+<li><a href="contacts.html" class="nav-link">Контакты</a></li>
+<li><a href="partners.html" class="nav-link">Партнеры</a></li>
+</ul>
+</nav>
+<!-- Mobile menu -->
+<nav class="mobile-menu">
+<div class="mobile-nav">
+<ul>
+<li><a href="index.html" class="nav-link">Главная</a></li>
+<li><a href="about.html" class="nav-link">О комиссии</a></li>
+<li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+<li><a href="calendar.html" class="nav-link active">Календарь соревнований</a></li>
+<li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+<li><a href="contacts.html" class="nav-link">Контакты</a></li>
+<li><a href="partners.html" class="nav-link">Партнеры</a></li>
+</ul>
+</div>
+</nav>
+</header>
+<main class="content">
+<h1 class="page-title">Календарь соревнований 2025 года</h1>
+<section class="calendar-section">
+<div class="calendar-controls">
+<button class="calendar-btn" id="prev-month">
+<i class="fas fa-chevron-left"></i>
+</button>
+<h2 class="current-month" id="current-month">Май 2025</h2>
+<button class="calendar-btn" id="next-month">
+<i class="fas fa-chevron-right"></i>
+</button>
+</div>
+<div class="calendar-grid" id="calendar-grid">
+<!-- Days of calendar will be added via JavaScript -->
+</div>
+</section>
+<section class="competitions-section">
+<h2 class="section-title">Предстоящие соревнования</h2>
+<div class="competitions-list" id="competitions-container">
+<!-- Competitions will be loaded from localStorage -->
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-logos">
+<a href="https://www.mfr.ru/" target="_blank">
+<img src="images/mfr_logo.png" alt="Логотип МФР">
+</a>
+<a href="https://www.minsport.gov.ru/" target="_blank">
+<img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ">
+</a>
+</div>
+<div class="footer-links">
+<a href="documents.html" class="document-link">Документы комиссии</a>
+<a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+<a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+</div>
+<div class="footer-contacts">
+<p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
+<p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
+</div>
+<div class="copyright">
+© 2025 Мотоциклетная Федерация России
+</div>
+</div>
+</footer>
+</div>
+<!-- Admin tab -->
+<div class="admin-tab" id="admin-tab">
+<i class="fas fa-cog"></i>
+</div>
+<!-- Admin panel -->
+<div class="admin-panel" id="admin-panel">
+<div class="admin-header">
+<h2>Админ-панель</h2>
+<button class="close-admin-panel" id="close-admin-panel">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<div class="admin-tabs">
+<button class="tab-btn active" data-tab="calendar">Календарь соревнований</button>
+<button class="tab-btn" data-tab="documents">Документы</button>
+<button class="tab-btn" data-tab="structure">Структура комиссии</button>
+<button class="tab-btn" data-tab="regions">Регионы</button>
+</div>
+<div class="tab-content active" id="calendar-tab">
+<h3>Управление соревнованиями</h3>
+<div class="form-group">
+<label for="competition-name">Название соревнования</label>
+<input type="text" id="competition-name" class="form-control" placeholder="Введите название соревнования">
+</div>
+<div class="form-group">
+<label for="competition-date">Дата проведения</label>
+<input type="date" id="competition-date" class="form-control">
+</div>
+<div class="form-group">
+<label for="competition-location">Место проведения</label>
+<input type="text" id="competition-location" class="form-control" placeholder="Введите место проведения">
+</div>
+<div class="form-group">
+<label for="competition-contact">Контактное лицо</label>
+<input type="text" id="competition-contact" class="form-control" placeholder="Введите контактное лицо">
+</div>
+<button id="add-competition-btn" class="btn btn-primary">
+<i class="fas fa-plus"></i> Добавить соревнование
+</button>
+<div id="competitions-list" class="admin-list"></div>
+</div>
+<div class="tab-content" id="documents-tab" style="display: none;">
+<h3>Управление документами</h3>
+<div class="form-group">
+<label for="document-name">Название документа</label>
+<input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
+</div>
+<div class="form-group">
+<label for="document-category">Категория документа</label>
+<select id="document-category" class="form-control">
+<option value="rules">Правила</option>
+<option value="regulations">Регламенты</option>
+<option value="licenses">Лицензии</option>
+<option value="other">Прочее</option>
+</select>
+</div>
+<button id="add-document-btn" class="btn btn-primary">
+<i class="fas fa-plus"></i> Добавить документ
+</button>
+<div id="documents-list" class="admin-list"></div>
+</div>
+<div class="tab-content" id="structure-tab" style="display: none;">
+<h3>Управление структурой комиссии</h3>
+<div class="form-group">
+<label for="leader-name">Ф.И.О. руководителя</label>
+<input type="text" id="leader-name" class="form-control" placeholder="Введите ФИО">
+</div>
+<div class="form-group">
+<label for="leader-position">Должность</label>
+<input type="text" id="leader-position" class="form-control" placeholder="Введите должность">
+</div>
+<div class="form-group">
+<label for="leader-region">Регион</label>
+<input type="text" id="leader-region" class="form-control" placeholder="Введите регион">
+</div>
+<div class="form-group">
+<label for="leader-icon">Иконка</label>
+<select id="leader-icon" class="form-control">
+<option value="crown">Председатель</option>
+<option value="user-tie">Заместитель</option>
+<option value="file-signature">Секретарь</option>
+<option value="medal">Спортивное достижение</option>
+<option value="history">История</option>
+<option value="child">Детский</option>
+<option value="motorcycle">Мотоцикл</option>
+<option value="building">Организация</option>
+</select>
+</div>
+<button id="add-leader-btn" class="btn btn-primary">
+<i class="fas fa-plus"></i> Добавить руководителя
+</button>
+<div id="leaders-list" class="admin-list"></div>
+</div>
+<div class="tab-content" id="regions-tab" style="display: none;">
+<h3>Управление региональными представителями</h3>
+<div class="form-group">
+<label for="region-name">Регион</label>
+<input type="text" id="region-name" class="form-control" placeholder="Введите название региона">
+</div>
+<div class="form-group">
+<label for="representative-name">Ф.И.О. представителя</label>
+<input type="text" id="representative-name" class="form-control" placeholder="Введите ФИО">
+</div>
+<div class="form-group">
+<label for="representative-position">Должность</label>
+<input type="text" id="representative-position" class="form-control" placeholder="Введите должность">
+</div>
+<div class="form-group">
+<label for="representative-phone">Телефон</label>
+<input type="tel" id="representative-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
+</div>
+<div class="form-group">
+<label for="representative-email">Email</label>
+<input type="email" id="representative-email" class="form-control" placeholder="Введите email">
+</div>
+<button id="add-region-btn" class="btn btn-primary">
+<i class="fas fa-plus"></i> Добавить представителя
+</button>
+<div id="regions-list" class="admin-list"></div>
+</div>
+<div class="admin-login">
+<div class="form-group">
+<label for="admin-password">Пароль</label>
+<input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
+</div>
+<button class="btn btn-secondary" id="login-admin-btn">Войти</button>
+</div>
+</div>
+<!-- Модальное окно подтверждения -->
+<div class="modal" id="confirmation-modal">
+<div class="modal-content">
+<h3>Подтверждение действия</h3>
+<p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
+<div class="modal-buttons">
+<button class="btn btn-secondary" id="modal-cancel">Отмена</button>
+<button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
+</div>
+</div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
