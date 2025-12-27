@@ -236,7 +236,8 @@
 <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
 </div>
 <div class="copyright">
-© 2025 Мотоциклетная Федерация России
+<p>© 2025 Мотоциклетная Федерация России</p>
+<p class="powered-by">powered by Motogymkhana NN</p>
 </div>
 </div>
 </footer>
@@ -244,130 +245,6 @@
 <!-- Admin tab -->
 <div class="admin-tab" id="admin-tab">
 <i class="fas fa-cog"></i>
-</div>
-<!-- Admin panel -->
-<div class="admin-panel" id="admin-panel">
-<div class="admin-header">
-<h2>Админ-панель</h2>
-<button class="close-admin-panel" id="close-admin-panel">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<div class="admin-tabs">
-<button class="tab-btn active" data-tab="documents">Документы</button>
-<button class="tab-btn" data-tab="categories">Категории</button>
-<button class="tab-btn" data-tab="stats">Статистика</button>
-<button class="tab-btn" data-tab="settings">Настройки</button>
-</div>
-<div class="tab-content active" id="documents-tab">
-<h3>Управление документами</h3>
-<div class="form-group">
-<label for="document-name">Название документа</label>
-<input type="text" id="document-name" class="form-control" placeholder="Введите название документа">
-</div>
-<div class="form-group">
-<label for="document-category">Категория документа</label>
-<select id="document-category" class="form-control">
-<option value="rules">Правила</option>
-<option value="regulations">Регламенты</option>
-<option value="licenses">Лицензии</option>
-<option value="other">Прочее</option>
-</select>
-</div>
-<div class="form-group">
-<label for="document-description">Описание</label>
-<textarea id="document-description" class="form-control" rows="3" placeholder="Введите описание документа"></textarea>
-</div>
-<div class="form-group">
-<label for="document-url">Ссылка на документ (Яндекс.Диск)</label>
-<input type="url" id="document-url" class="form-control" placeholder="https://disk.yandex.ru/...">
-</div>
-<button id="add-document-btn" class="btn btn-primary">
-<i class="fas fa-plus"></i> Добавить документ
-</button>
-<div id="documents-list" class="admin-list"></div>
-</div>
-<div class="tab-content" id="categories-tab">
-<h3>Управление категориями</h3>
-<div class="form-group">
-<label for="category-name">Название категории</label>
-<input type="text" id="category-name" class="form-control" placeholder="Введите название категории">
-</div>
-<div class="form-group">
-<label for="category-icon">Иконка категории</label>
-<select id="category-icon" class="form-control">
-<option value="balance-scale">Весы (Правила)</option>
-<option value="calendar-alt">Календарь (Регламенты)</option>
-<option value="id-card">ID карта (Лицензии)</option>
-<option value="file-alt">Файл (Прочее)</option>
-</select>
-</div>
-<div class="form-group">
-<label for="category-color">Цвет категории</label>
-<input type="color" id="category-color" class="form-control" value="#e74c3c">
-</div>
-<button id="add-category-btn" class="btn btn-primary">
-<i class="fas fa-plus"></i> Добавить категорию
-</button>
-<div id="categories-list" class="admin-list"></div>
-</div>
-<div class="tab-content" id="stats-tab">
-<h3>Статистика документов</h3>
-<div class="stats-container">
-<div class="stat-card">
-<i class="fas fa-file-alt stat-icon-large"></i>
-<h4>Всего документов</h4>
-<span class="stat-number-large">24</span>
-</div>
-<div class="stat-card">
-<i class="fas fa-download stat-icon-large"></i>
-<h4>Всего загрузок</h4>
-<span class="stat-number-large">156</span>
-</div>
-<div class="stat-card">
-<i class="fas fa-user stat-icon-large"></i>
-<h4>Активных пользователей</h4>
-<span class="stat-number-large">42</span>
-</div>
-<div class="stat-card">
-<i class="fas fa-chart-line stat-icon-large"></i>
-<h4>Средний размер</h4>
-<span class="stat-number-large">1.5 МБ</span>
-</div>
-</div>
-</div>
-<div class="tab-content" id="settings-tab">
-<h3>Настройки страницы</h3>
-<div class="form-group">
-<label for="page-title">Заголовок страницы</label>
-<input type="text" id="page-title" class="form-control" value="Полезные документы | Комиссия по фигурному управлению мотоциклом | МФР">
-</div>
-<div class="form-group">
-<label for="meta-description">Мета-описание</label>
-<textarea id="meta-description" class="form-control" rows="2">Документы комиссии по фигурному управлению мотоциклом (мотоджимхане) при Мотоциклетной Федерации России - правила, регламенты, лицензии</textarea>
-</div>
-<button id="save-settings-btn" class="btn btn-primary">
-<i class="fas fa-save"></i> Сохранить настройки
-</button>
-</div>
-<div class="admin-login">
-<div class="form-group">
-<label for="admin-password">Пароль</label>
-<input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
-</div>
-<button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-</div>
-</div>
-<!-- Модальное окно подтверждения -->
-<div class="modal" id="confirmation-modal">
-<div class="modal-content">
-<h3>Подтверждение действия</h3>
-<p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
-<div class="modal-buttons">
-<button class="btn btn-secondary" id="modal-cancel">Отмена</button>
-<button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
-</div>
-</div>
 </div>
 <script src="script.js"></script>
 </body>
