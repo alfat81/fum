@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -86,84 +87,167 @@
 </p>
 </div>
 </div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Глеб Симдянкин</h3>
+<p class="leader-position">Секретарь комиссии</p>
+<p class="leader-region">Смоленская область</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (910) 345-67-89<br>
+<i class="fas fa-envelope"></i> smolensk-fum@mfr.ru
+</p>
+</div>
+</div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Наталия Недайводина</h3>
+<p class="leader-position">Член комиссии</p>
+<p class="leader-region">Вологодская область</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (911) 456-78-90<br>
+<i class="fas fa-envelope"></i> vologda-fum@mfr.ru
+</p>
+</div>
+</div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Александр Ципилев</h3>
+<p class="leader-position">Член комиссии</p>
+<p class="leader-region">Москва</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (903) 123-45-67<br>
+<i class="fas fa-envelope"></i> moscow-fum@mfr.ru
+</p>
+</div>
+</div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Андрей Сальников</h3>
+<p class="leader-position">Член комиссии</p>
+<p class="leader-region">Ульяновская область</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (923) 567-89-01<br>
+<i class="fas fa-envelope"></i> ul-fum@mfr.ru
+</p>
+</div>
+</div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Ильшат Сафаров</h3>
+<p class="leader-position">Член комиссии</p>
+<p class="leader-region">Республика Татарстан</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (934) 678-90-12<br>
+<i class="fas fa-envelope"></i> tatarstan-fum@mfr.ru
+</p>
+</div>
+</div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Максим Гаранин</h3>
+<p class="leader-position">Член комиссии</p>
+<p class="leader-region">Калужская область</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (945) 789-01-23<br>
+<i class="fas fa-envelope"></i> kaluga-fum@mfr.ru
+</p>
+</div>
+</div>
+<div class="leader-card">
+<div class="leader-photo">
+<div class="leader-placeholder">
+<i class="fas fa-user"></i>
+</div>
+</div>
+<div class="leader-info">
+<h3 class="leader-name">Александр Акимов</h3>
+<p class="leader-position">Член комиссии</p>
+<p class="leader-region">Тульская область</p>
+<p class="leader-contact">
+<i class="fas fa-phone"></i> +7 (956) 890-12-34<br>
+<i class="fas fa-envelope"></i> tula-fum@mfr.ru
+</p>
+</div>
+</div>
 </div>
 </section>
-<section class="regional-representatives">
-<h2 class="section-title">Региональные представители</h2>
-<div class="regions-grid">
-<div class="region-card">
-<div class="region-header">
-<h3 class="region-name">Центральный ФО</h3>
+<section class="regional-commissions">
+<h2 class="section-title">Региональные комиссии по фигурному управлению мотоциклом</h2>
+<div class="table-container">
+<table class="regional-table" id="regionalTable">
+<thead>
+<tr>
+<th>Область/Регион</th>
+<th>ФИО</th>
+<th>Телефон</th>
+<th>Почта</th>
+<th>Краткая информация</th>
+</tr>
+</thead>
+<tbody id="regionalTableBody">
+<!-- Данные будут загружены из JSON -->
+</tbody>
+</table>
 </div>
-<div class="region-members">
-<div class="member">
-<h4 class="member-name">Евгений Кораблев</h4>
-<p class="member-position">Москва</p>
-<p class="member-contact">+7 (904) 060-34-80</p>
+<div class="json-editor-section">
+<h3 class="section-subtitle">Редактирование таблицы через JSON</h3>
+<p class="json-instruction">Для редактирования таблицы скопируйте JSON-структуру ниже, внесите изменения и вставьте в поле. Нажмите "Обновить таблицу" для применения изменений.</p>
+<textarea id="jsonDataEditor" class="json-editor" rows="10" placeholder='// Вставьте JSON-данные здесь
+[
+  {
+    "region": "Тверская область",
+    "name": "Дмитрий Серов",
+    "phone": "+7 (977) 823-63-90",
+    "email": "serovdima@list.ru",
+    "info": "Председатель комиссии, судья всероссийской категории"
+  },
+  {
+    "region": "Нижний Новгород",
+    "name": "Алексей Фатьянов",
+    "phone": "+7 (920) 111-91-77",
+    "email": "motogymkhana-nn@yandex.ru", 
+    "info": "Заместитель председателя, организатор соревнований"
+  }
+]'></textarea>
+<div class="editor-buttons">
+<button id="updateTableBtn" class="btn btn-primary">
+<i class="fas fa-sync-alt"></i> Обновить таблицу
+</button>
+<button id="copyJsonBtn" class="btn btn-secondary">
+<i class="fas fa-copy"></i> Скопировать текущий JSON
+</button>
 </div>
-<div class="member">
-<h4 class="member-name">Илья Труфанов</h4>
-<p class="member-position">Тульская область</p>
-<p class="member-contact">+7 (953) 428-78-15</p>
-</div>
-<div class="member">
-<h4 class="member-name">Егор Попов</h4>
-<p class="member-position">Московская область</p>
-<p class="member-contact">+7 (917) 592-35-11</p>
-</div>
-</div>
-</div>
-<div class="region-card">
-<div class="region-header">
-<h3 class="region-name">Северо-Западный ФО</h3>
-</div>
-<div class="region-members">
-<div class="member">
-<h4 class="member-name">Игорь Васильев</h4>
-<p class="member-position">Вологодская область</p>
-<p class="member-contact">+7 (952) 202-44-10</p>
-</div>
-<div class="member">
-<h4 class="member-name">Андрей Смирнов</h4>
-<p class="member-position">Санкт-Петербург</p>
-<p class="member-contact">+7 (911) 234-56-78</p>
-</div>
-</div>
-</div>
-<div class="region-card">
-<div class="region-header">
-<h3 class="region-name">Приволжский ФО</h3>
-</div>
-<div class="region-members">
-<div class="member">
-<h4 class="member-name">Антон Соколов</h4>
-<p class="member-position">Пермский край</p>
-<p class="member-contact">+7 (904) 800-25-39</p>
-</div>
-<div class="member">
-<h4 class="member-name">Михаил Ефимов</h4>
-<p class="member-position">Свердловская область</p>
-<p class="member-contact">+7 (904) 800-70-00</p>
-</div>
-</div>
-</div>
-<div class="region-card">
-<div class="region-header">
-<h3 class="region-name">Уральский ФО</h3>
-</div>
-<div class="region-members">
-<div class="member">
-<h4 class="member-name">Сергей Петров</h4>
-<p class="member-position">Челябинская область</p>
-<p class="member-contact">+7 (912) 345-67-89</p>
-</div>
-<div class="member">
-<h4 class="member-name">Дмитрий Козлов</h4>
-<p class="member-position">Курганская область</p>
-<p class="member-contact">+7 (917) 654-32-10</p>
-</div>
-</div>
-</div>
+<div id="jsonStatus" class="json-status"></div>
 </div>
 </section>
 <section class="responsibilities-section">
@@ -213,7 +297,7 @@
 <p><strong>Дата создания:</strong> 2020 год (официальное создание при МФР)</p>
 <p><strong>Текущий состав:</strong> Утвержден 31 октября 2025 года на Конференции МФР</p>
 <p><strong>Срок полномочий:</strong> 4 года (до 2029 года)</p>
-<p><strong>Численность:</strong> 1 председатель, 1 заместитель, 12 региональных представителей</p>
+<p><strong>Численность:</strong> 1 председатель, 1 заместитель, 1 секретарь, 6 членов комиссии</p>
 <p><strong>Регионы присутствия:</strong> 18 субъектов Российской Федерации</p>
 </div>
 </section>
@@ -247,9 +331,60 @@
 <script src="script.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize mobile menu
+    initMobileMenu();
+    
+    // Initialize animations
+    initAnimations();
+    
+    // Load regional commissions data
+    loadRegionalCommissions();
+    
+    // Setup JSON editor buttons
+    setupJsonEditor();
+});
+
+// Initialize mobile menu
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+    
+    if (!menuToggle || !mobileMenu) return;
+    
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
+    });
+    
+    // Close menu when clicking on links
+    document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.style.display = 'none';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            body.style.overflow = 'auto';
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.style.display === 'block' && 
+            !mobileMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            mobileMenu.style.display = 'none';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Initialize animations
+function initAnimations() {
     // Animate cards on scroll
     const animateCards = () => {
-        const cards = document.querySelectorAll('.leader-card, .region-card, .responsibility-card');
+        const cards = document.querySelectorAll('.leader-card, .responsibility-card');
         cards.forEach((card, index) => {
             const cardPosition = card.getBoundingClientRect().top;
             const screenPosition = window.innerHeight / 1.3;
@@ -263,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Set initial card styles
-    const cards = document.querySelectorAll('.leader-card, .region-card, .responsibility-card');
+    const cards = document.querySelectorAll('.leader-card, .responsibility-card');
     cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -273,7 +408,189 @@ document.addEventListener('DOMContentLoaded', function() {
     // Trigger animations
     window.addEventListener('load', animateCards);
     window.addEventListener('scroll', animateCards);
-});
+}
+
+// Load regional commissions data
+function loadRegionalCommissions() {
+    const tableBody = document.getElementById('regionalTableBody');
+    if (!tableBody) return;
+    
+    // Default data for regional commissions
+    const defaultData = [
+        {
+            region: "Тверская область",
+            name: "Дмитрий Серов",
+            phone: "+7 (977) 823-63-90",
+            email: "serovdima@list.ru",
+            info: "Председатель комиссии, судья всероссийской категории"
+        },
+        {
+            region: "Нижний Новгород",
+            name: "Алексей Фатьянов",
+            phone: "+7 (920) 111-91-77",
+            email: "motogymkhana-nn@yandex.ru",
+            info: "Заместитель председателя, организатор соревнований"
+        },
+        {
+            region: "Смоленская область",
+            name: "Глеб Симдянкин",
+            phone: "+7 (910) 345-67-89",
+            email: "smolensk-fum@mfr.ru",
+            info: "Секретарь комиссии, координатор региональных соревнований"
+        },
+        {
+            region: "Вологодская область",
+            name: "Наталия Недайводина",
+            phone: "+7 (911) 456-78-90",
+            email: "vologda-fum@mfr.ru",
+            info: "Ответственный за детский спорт и женские соревнования"
+        },
+        {
+            region: "Москва",
+            name: "Александр Ципилев",
+            phone: "+7 (903) 123-45-67",
+            email: "moscow-fum@mfr.ru",
+            info: "Координатор соревнований Центрального ФО"
+        },
+        {
+            region: "Ульяновская область",
+            name: "Андрей Сальников",
+            phone: "+7 (923) 567-89-01",
+            email: "ul-fum@mfr.ru",
+            info: "Ответственный за развитие регионов ПФО"
+        },
+        {
+            region: "Республика Татарстан",
+            name: "Ильшат Сафаров",
+            phone: "+7 (934) 678-90-12",
+            email: "tatarstan-fum@mfr.ru",
+            info: "Координатор соревнований Приволжского ФО"
+        },
+        {
+            region: "Калужская область",
+            name: "Максим Гаранин",
+            phone: "+7 (945) 789-01-23",
+            email: "kaluga-fum@mfr.ru",
+            info: "Ответственный за юношеские соревнования"
+        },
+        {
+            region: "Тульская область",
+            name: "Александр Акимов",
+            phone: "+7 (956) 890-12-34",
+            email: "tula-fum@mfr.ru",
+            info: "Организатор соревнований Центрального ФО"
+        },
+        {
+            region: "Ленинградская область",
+            name: "Игорь Васильев",
+            phone: "+7 (952) 202-44-10",
+            email: "leningrad-fum@mfr.ru",
+            info: "Координатор соревнований Северо-Западного ФО"
+        },
+        {
+            region: "Свердловская область",
+            name: "Михаил Ефимов",
+            phone: "+7 (904) 800-70-00",
+            email: "ekb-fum@mfr.ru",
+            info: "Координатор соревнований Уральского ФО"
+        },
+        {
+            region: "Пермский край",
+            name: "Антон Соколов",
+            phone: "+7 (904) 800-25-39",
+            email: "perm-fum@mfr.ru",
+            info: "Ответственный за развитие регионов Уральского ФО"
+        }
+    ];
+    
+    // Check if there's saved data in localStorage
+    const savedData = localStorage.getItem('regionalCommissions');
+    const dataToUse = savedData ? JSON.parse(savedData) : defaultData;
+    
+    // Save to localStorage if using default data
+    if (!savedData) {
+        localStorage.setItem('regionalCommissions', JSON.stringify(defaultData));
+    }
+    
+    // Render table
+    renderRegionalTable(dataToUse);
+    
+    // Pre-fill JSON editor with current data
+    const jsonEditor = document.getElementById('jsonDataEditor');
+    if (jsonEditor) {
+        jsonEditor.value = JSON.stringify(dataToUse, null, 2);
+    }
+}
+
+// Render regional table
+function renderRegionalTable(data) {
+    const tableBody = document.getElementById('regionalTableBody');
+    if (!tableBody) return;
+    
+    tableBody.innerHTML = '';
+    
+    data.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td data-label="Область/Регион">${item.region}</td>
+            <td data-label="ФИО">${item.name}</td>
+            <td data-label="Телефон">${item.phone}</td>
+            <td data-label="Почта"><a href="mailto:${item.email}">${item.email}</a></td>
+            <td data-label="Краткая информация">${item.info}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Setup JSON editor functionality
+function setupJsonEditor() {
+    const updateBtn = document.getElementById('updateTableBtn');
+    const copyBtn = document.getElementById('copyJsonBtn');
+    const jsonEditor = document.getElementById('jsonDataEditor');
+    const statusElement = document.getElementById('jsonStatus');
+    
+    if (updateBtn && jsonEditor) {
+        updateBtn.addEventListener('click', function() {
+            try {
+                const jsonData = JSON.parse(jsonEditor.value);
+                localStorage.setItem('regionalCommissions', JSON.stringify(jsonData));
+                renderRegionalTable(jsonData);
+                
+                // Show success message
+                statusElement.textContent = 'Таблица успешно обновлена!';
+                statusElement.style.color = '#27ae60';
+                statusElement.style.display = 'block';
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    statusElement.style.display = 'none';
+                }, 3000);
+            } catch (e) {
+                // Show error message
+                statusElement.textContent = 'Ошибка в JSON данных: ' + e.message;
+                statusElement.style.color = '#e74c3c';
+                statusElement.style.display = 'block';
+            }
+        });
+    }
+    
+    if (copyBtn && jsonEditor) {
+        copyBtn.addEventListener('click', function() {
+            const currentData = JSON.parse(localStorage.getItem('regionalCommissions') || '[]');
+            jsonEditor.value = JSON.stringify(currentData, null, 2);
+            
+            // Show success message
+            statusElement.textContent = 'Текущие данные скопированы в редактор!';
+            statusElement.style.color = '#27ae60';
+            statusElement.style.display = 'block';
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        });
+    }
+}
 </script>
 </body>
 </html>
