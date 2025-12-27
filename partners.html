@@ -167,28 +167,20 @@
 <section class="current-partners">
 <h2 class="section-title"><i class="fas fa-star"></i> Наши текущие партнеры</h2>
 <div class="partners-grid">
-<div class="partner-card">
-<div class="partner-logo-placeholder">
-<div class="partner-placeholder-text">Генеральный<br>партнер</div>
-</div>
+<div class="partner-logo">
+<div class="partner-placeholder"></div>
 <div class="partner-name">Генеральный партнер</div>
 </div>
-<div class="partner-card">
-<div class="partner-logo-placeholder">
-<div class="partner-placeholder-text">Официальный<br>партнер</div>
-</div>
+<div class="partner-logo">
+<div class="partner-placeholder"></div>
 <div class="partner-name">Официальный партнер</div>
 </div>
-<div class="partner-card">
-<div class="partner-logo-placeholder">
-<div class="partner-placeholder-text">Партнер по<br>экипировке</div>
-</div>
+<div class="partner-logo">
+<div class="partner-placeholder"></div>
 <div class="partner-name">Партнер по экипировке</div>
 </div>
-<div class="partner-card">
-<div class="partner-logo-placeholder">
-<div class="partner-placeholder-text">Технический<br>партнер</div>
-</div>
+<div class="partner-logo">
+<div class="partner-placeholder"></div>
 <div class="partner-name">Технический партнер</div>
 </div>
 </div>
@@ -232,10 +224,9 @@
 <label for="message">Дополнительная информация</label>
 <textarea id="message" class="form-control" rows="4" placeholder="Расскажите подробнее о вашем предложении"></textarea>
 </div>
-<button id="submit-partner-form" class="btn btn-primary">
+<button class="btn btn-primary submit-partner-form">
 <i class="fas fa-paper-plane"></i> Отправить заявку
 </button>
-<div class="login-message" id="form-message"></div>
 </div>
 <div class="contact-info">
 <h3>Или свяжитесь с нами напрямую:</h3>
@@ -272,127 +263,5 @@
 </footer>
 </div>
 <script src="script.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Form submission handler
-    const form = document.querySelector('.contact-form');
-    const submitBtn = document.getElementById('submit-partner-form');
-    const messageElement = document.getElementById('form-message');
-    
-    if (submitBtn && form) {
-        submitBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const companyName = document.getElementById('company-name').value.trim();
-            const contactPerson = document.getElementById('contact-person').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const partnerType = document.getElementById('partner-type').value;
-            
-            // Validate required fields
-            if (!companyName || !contactPerson || !phone || !email || !partnerType) {
-                showMessage('Пожалуйста, заполните все обязательные поля (*)', 'error');
-                return;
-            }
-            
-            // Basic phone validation
-            const phoneRegex = /^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/;
-            if (!phoneRegex.test(phone.replace(/[^\d+()\-]/g, ''))) {
-                showMessage('Пожалуйста, введите корректный номер телефона в формате +7 (XXX) XXX-XX-XX', 'error');
-                return;
-            }
-            
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showMessage('Пожалуйста, введите корректный email адрес', 'error');
-                return;
-            }
-            
-            // Simulate form submission (in real app, this would send data to server)
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-            
-            setTimeout(() => {
-                // Reset form
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
-                
-                showMessage('Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
-            }, 1500);
-        });
-    }
-    
-    // Function to show messages
-    function showMessage(text, type) {
-        messageElement.textContent = text;
-        messageElement.style.color = type === 'success' ? '#27ae60' : '#e74c3c';
-        messageElement.style.minHeight = '20px';
-        
-        // Hide message after 5 seconds
-        if (type === 'success') {
-            setTimeout(() => {
-                messageElement.textContent = '';
-            }, 5000);
-        }
-    }
-    
-    // Program card buttons
-    const programButtons = document.querySelectorAll('.program-cta button');
-    programButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Scroll to contact form
-            const contactForm = document.getElementById('contact-form');
-            if (contactForm) {
-                contactForm.scrollIntoView({ behavior: 'smooth' });
-                
-                // Set partner type based on button clicked
-                let partnerType = '';
-                if (this.classList.contains('btn-primary')) {
-                    partnerType = 'general';
-                } else if (this.classList.contains('btn-secondary')) {
-                    partnerType = 'stage';
-                } else if (this.classList.contains('btn-tertiary')) {
-                    partnerType = 'prizes';
-                }
-                
-                const partnerTypeSelect = document.getElementById('partner-type');
-                if (partnerTypeSelect) {
-                    partnerTypeSelect.value = partnerType;
-                }
-            }
-        });
-    });
-    
-    // Animate cards on scroll
-    const animateCards = () => {
-        const cards = document.querySelectorAll('.benefit-card, .program-card, .partner-card');
-        cards.forEach((card, index) => {
-            const cardPosition = card.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            
-            if (cardPosition < screenPosition) {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-                card.style.transitionDelay = `${index * 0.1}s`;
-            }
-        });
-    };
-    
-    // Set initial card styles
-    const cards = document.querySelectorAll('.benefit-card, .program-card, .partner-card');
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // Trigger animations
-    window.addEventListener('load', animateCards);
-    window.addEventListener('scroll', animateCards);
-});
-</script>
 </body>
 </html>
