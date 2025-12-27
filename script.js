@@ -1,76 +1,80 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация мобильного меню
+    console.log('Сайт комиссии по мотоджимхане успешно загружен');
+    
+    // Load header and footer
+    fetchHeaderAndFooter();
+    
+    // Initialize mobile menu
+    initMobileMenu();
+    
+    // Initialize animations
+    initAnimations();
+    
+    // Admin panel functionality
+    initAdminPanel();
+    
+    // Load competition data
+    loadCompetitionsData();
+});
+
+// Function to load header and footer
+function fetchHeaderAndFooter() {
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('.site-header').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading header:', error));
+    
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('.site-footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+}
+
+// Initialize mobile menu
+function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
     const body = document.body;
     
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-            menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
-        });
-        
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.style.display = 'none';
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            });
-        });
-        
-        // Закрытие меню при клике вне его
-        document.addEventListener('click', function(e) {
-            if (mobileMenu.style.display === 'block' && 
-                !mobileMenu.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                mobileMenu.style.display = 'none';
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            }
-        });
-        
-        // Закрытие меню при изменении размера окна
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && mobileMenu.style.display === 'block') {
-                mobileMenu.style.display = 'none';
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            }
-        });
-    }
+    if (!menuToggle || !mobileMenu) return;
     
-    console.log('Сайт комиссии по мотоджимхане успешно загружен');
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
+    });
     
-    // Анимация появления элементов при загрузке
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-        document.body.style.transition = 'opacity 0.5s ease';
-    }, 100);
-    
-    // Плавные переходы при навигации
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Получаем путь к следующей странице
-            const href = this.getAttribute('href');
-            
-            // Добавляем эффект исчезания
-            document.body.style.opacity = '0';
-            
-            // Переходим на следующую страницу с задержкой
-            setTimeout(() => {
-                window.location.href = href;
-            }, 300);
+    // Close menu when clicking on links
+    document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.style.display = 'none';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            body.style.overflow = 'auto';
         });
     });
     
-    // Эффекты при прокрутке
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.style.display === 'block' && 
+            !mobileMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            mobileMenu.style.display = 'none';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Initialize animations
+function initAnimations() {
+    // Fade in elements on scroll
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.tile, .timeline-item, .practical-card, .leader-card, .news-card');
+        const elements = document.querySelectorAll('.card, .timeline-item, .leader-card, .news-card, .competition-card, .document-card, .partner-card');
         
         elements.forEach((element, index) => {
             const elementPosition = element.getBoundingClientRect().top;
@@ -84,40 +88,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
     
-    // Установка начальных стилей для анимации
-    const elements = document.querySelectorAll('.tile, .timeline-item, .practical-card, .leader-card, .news-card');
+    // Set initial transition styles
+    const elements = document.querySelectorAll('.card, .timeline-item, .leader-card, .news-card, .competition-card, .document-card, .partner-card');
     elements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
     
-    // Вызов анимации при загрузке и прокрутке
+    // Trigger animations
     window.addEventListener('load', animateOnScroll);
     window.addEventListener('scroll', animateOnScroll);
+}
+
+// Admin panel functionality
+function initAdminPanel() {
+    const adminTab = document.querySelector('.admin-tab');
+    const adminPanel = document.querySelector('.admin-panel');
+    const closeAdminPanel = document.querySelector('.close-admin-panel');
     
-    // Админ-панель
-    const adminTab = document.getElementById('admin-tab');
-    const adminPanel = document.getElementById('admin-panel');
-    const closeAdminPanel = document.getElementById('close-admin-panel');
-    const loginAdminBtn = document.getElementById('login-admin-btn');
-    const adminPassword = document.getElementById('admin-password');
+    if (!adminTab || !adminPanel || !closeAdminPanel) return;
     
-    // Показать админ-панель при клике на язычок
-    if (adminTab) {
-        adminTab.addEventListener('click', function() {
-            adminPanel.style.right = '0';
-        });
-    }
+    // Open admin panel
+    adminTab.addEventListener('click', function() {
+        adminPanel.style.right = '0';
+    });
     
-    // Закрыть админ-панель
-    if (closeAdminPanel) {
-        closeAdminPanel.addEventListener('click', function() {
-            adminPanel.style.right = '-400px';
-        });
-    }
+    // Close admin panel
+    closeAdminPanel.addEventListener('click', function() {
+        adminPanel.style.right = '-400px';
+    });
     
-    // Закрытие админ-панели при клике вне ее
+    // Close on outside click
     document.addEventListener('click', function(e) {
         if (adminPanel.style.right === '0px' && 
             !adminPanel.contains(e.target) && 
@@ -125,291 +127,190 @@ document.addEventListener('DOMContentLoaded', function() {
             adminPanel.style.right = '-400px';
         }
     });
-    
-    // Обработка входа в админ-панель
-    if (loginAdminBtn) {
-        loginAdminBtn.addEventListener('click', function() {
-            if (adminPassword.value === 'fum2025admin') {
-                document.querySelector('.admin-login').style.display = 'none';
-                document.querySelector('.tab-content.active').style.display = 'block';
-                alert('Вход выполнен успешно!');
-            } else {
-                alert('Неверный пароль! Обратитесь к Председателю комиссии для получения доступа.');
-            }
-        });
-    }
-    
-    // Переключение вкладок в админ-панели
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            this.classList.add('active');
-            document.getElementById(`${this.dataset.tab}-tab`).classList.add('active');
-        });
-    });
-    
-    // Добавление соревнования
-    const addCompetitionBtn = document.getElementById('add-competition-btn');
-    if (addCompetitionBtn) {
-        addCompetitionBtn.addEventListener('click', function() {
-            const name = document.getElementById('competition-name').value.trim();
-            const date = document.getElementById('competition-date').value;
-            const location = document.getElementById('competition-location').value.trim();
-            const contact = document.getElementById('competition-contact').value.trim();
-            const protocolFile = document.getElementById('protocol-upload').files[0];
-            
-            if (!name || !date || !location || !contact) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const competitions = getCompetitions();
-            const newId = competitions.length > 0 ? 
-                Math.max(...competitions.map(c => c.id)) + 1 : 1;
-            
-            const newCompetition = {
-                id: newId,
-                name,
-                date,
-                location,
-                contact,
-                contactPhone: '',
-                protocol: protocolFile ? URL.createObjectURL(protocolFile) : ''
-            };
-            
-            competitions.push(newCompetition);
-            saveCompetitions(competitions);
-            
-            // Очистка формы
-            document.getElementById('competition-name').value = '';
-            document.getElementById('competition-date').value = '';
-            document.getElementById('competition-location').value = '';
-            document.getElementById('competition-contact').value = '';
-            document.getElementById('protocol-upload').value = '';
-            
-            alert('Соревнование успешно добавлено!');
-            
-            // Обновление списка
-            if (document.getElementById('competitions-list')) {
-                renderCompetitionsList();
-            }
-        });
-    }
-    
-    // Добавление документа
-    const addDocumentBtn = document.getElementById('add-document-btn');
-    if (addDocumentBtn) {
-        addDocumentBtn.addEventListener('click', function() {
-            const name = document.getElementById('document-name').value.trim();
-            const docFile = document.getElementById('document-upload').files[0];
-            const category = document.getElementById('document-category').value;
-            
-            if (!name || !docFile || !category) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const documents = getDocuments();
-            const newId = documents.length > 0 ? 
-                Math.max(...documents.map(d => d.id)) + 1 : 1;
-            
-            const newDocument = {
-                id: newId,
-                name,
-                url: URL.createObjectURL(docFile),
-                category,
-                date: new Date().toLocaleDateString('ru-RU'),
-                size: `${(docFile.size / 1024 / 1024).toFixed(1)} МБ`
-            };
-            
-            documents.push(newDocument);
-            saveDocuments(documents);
-            
-            // Очистка формы
-            document.getElementById('document-name').value = '';
-            document.getElementById('document-upload').value = '';
-            document.getElementById('document-category').value = 'rules';
-            
-            alert('Документ успешно добавлен!');
-            
-            // Обновление списка
-            if (document.getElementById('documents-list')) {
-                renderDocumentsList();
-            }
-        });
-    }
-    
-    // Добавление руководителя
-    const addLeaderBtn = document.getElementById('add-leader-btn');
-    if (addLeaderBtn) {
-        addLeaderBtn.addEventListener('click', function() {
-            const name = document.getElementById('leader-name').value.trim();
-            const position = document.getElementById('leader-position').value.trim();
-            const region = document.getElementById('leader-region').value.trim();
-            const icon = document.getElementById('leader-icon').value;
-            
-            if (!name || !position || !region) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const leaders = getLeaders();
-            const newId = leaders.length > 0 ? 
-                Math.max(...leaders.map(l => l.id)) + 1 : 1;
-            
-            const newLeader = {
-                id: newId,
-                name,
-                position,
-                region,
-                icon
-            };
-            
-            leaders.push(newLeader);
-            saveLeaders(leaders);
-            
-            // Очистка формы
-            document.getElementById('leader-name').value = '';
-            document.getElementById('leader-position').value = '';
-            document.getElementById('leader-region').value = '';
-            document.getElementById('leader-icon').value = 'crown';
-            
-            alert('Руководитель успешно добавлен!');
-            
-            // Обновление списка
-            if (document.getElementById('leaders-list')) {
-                renderLeadersList();
-            }
-        });
-    }
-    
-    // Добавление регионального представителя
-    const addRegionBtn = document.getElementById('add-region-btn');
-    if (addRegionBtn) {
-        addRegionBtn.addEventListener('click', function() {
-            const region = document.getElementById('region-name').value.trim();
-            const name = document.getElementById('representative-name').value.trim();
-            const position = document.getElementById('representative-position').value.trim();
-            const phone = document.getElementById('representative-phone').value.trim();
-            const email = document.getElementById('representative-email').value.trim();
-            
-            if (!region || !name || !position || !phone || !email) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            const regions = getRegions();
-            const newId = regions.length > 0 ? 
-                Math.max(...regions.map(r => r.id)) + 1 : 1;
-            
-            const newRegion = {
-                id: newId,
-                region,
-                name,
-                position,
-                phone,
-                email
-            };
-            
-            regions.push(newRegion);
-            saveRegions(regions);
-            
-            // Очистка формы
-            document.getElementById('region-name').value = '';
-            document.getElementById('representative-name').value = '';
-            document.getElementById('representative-position').value = '';
-            document.getElementById('representative-phone').value = '';
-            document.getElementById('representative-email').value = '';
-            
-            alert('Региональный представитель успешно добавлен!');
-            
-            // Обновление списка
-            if (document.getElementById('regions-list')) {
-                renderRegionsList();
-            }
-        });
-    }
-    
-    // Функции для работы с localStorage
-    function getCompetitions() {
-        const savedCompetitions = localStorage.getItem('competitionsList');
-        return savedCompetitions ? JSON.parse(savedCompetitions) : [];
-    }
-    
-    function saveCompetitions(competitions) {
-        localStorage.setItem('competitionsList', JSON.stringify(competitions));
-    }
-    
-    function getDocuments() {
-        const savedDocuments = localStorage.getItem('documentsList');
-        return savedDocuments ? JSON.parse(savedDocuments) : [];
-    }
-    
-    function saveDocuments(documents) {
-        localStorage.setItem('documentsList', JSON.stringify(documents));
-    }
-    
-    function getLeaders() {
-        const savedLeaders = localStorage.getItem('leadersList');
-        return savedLeaders ? JSON.parse(savedLeaders) : [];
-    }
-    
-    function saveLeaders(leaders) {
-        localStorage.setItem('leadersList', JSON.stringify(leaders));
-    }
-    
-    function getRegions() {
-        const savedRegions = localStorage.getItem('regionsList');
-        return savedRegions ? JSON.parse(savedRegions) : [];
-    }
-    
-    function saveRegions(regions) {
-        localStorage.setItem('regionsList', JSON.stringify(regions));
-    }
-    
-    // Навигация по стрелкам
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            const prevLink = document.querySelector('.nav-link.active').previousElementSibling?.querySelector('a');
-            if (prevLink) prevLink.click();
-        } else if (e.key === 'ArrowRight') {
-            const nextLink = document.querySelector('.nav-link.active').nextElementSibling?.querySelector('a');
-            if (nextLink) nextLink.click();
+}
+
+// Load competitions data
+function loadCompetitionsData() {
+    // Sample data for competitions
+    const competitions = [
+        {
+            id: 1,
+            date: '2025-05-12',
+            name: '2 этап Кубка России по фигурному управлению мотоциклом',
+            location: 'Смоленск',
+            contact: 'Глеб Симдянкин',
+            contactPhone: '+7 (910) 345-67-89',
+            protocol: ''
+        },
+        {
+            id: 2,
+            date: '2025-05-20',
+            name: 'Кубок Москвы',
+            location: 'Москва',
+            contact: 'Александр Ципилев',
+            contactPhone: '+7 (903) 123-45-67',
+            protocol: ''
+        },
+        {
+            id: 3,
+            date: '2025-06-15',
+            name: 'Чемпионат России',
+            location: 'Тверская область',
+            contact: 'Дмитрий Серов',
+            contactPhone: '+7 (977) 823-63-90',
+            protocol: ''
+        },
+        {
+            id: 4,
+            date: '2025-08-05',
+            name: 'Женский Кубок МФР',
+            location: 'Нижний Новгород',
+            contact: 'Алексей Фатьянов',
+            contactPhone: '+7 (905) 234-56-78',
+            protocol: ''
+        },
+        {
+            id: 5,
+            date: '2025-09-12',
+            name: 'Кубок юниоров',
+            location: 'Вологда',
+            contact: 'Наталия Недайводина',
+            contactPhone: '+7 (911) 456-78-90',
+            protocol: ''
         }
+    ];
+    
+    // Store in localStorage for persistence
+    localStorage.setItem('competitionsList', JSON.stringify(competitions));
+}
+
+// Get competitions from localStorage
+function getCompetitions() {
+    const savedCompetitions = localStorage.getItem('competitionsList');
+    return savedCompetitions ? JSON.parse(savedCompetitions) : [];
+}
+
+// Format date function
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('ru-RU', { month: 'long' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+}
+
+// Render calendar function
+function renderCalendar(month, year) {
+    const calendarGrid = document.querySelector('.calendar-grid');
+    if (!calendarGrid) return;
+    
+    calendarGrid.innerHTML = '';
+    
+    // Month names
+    const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
+                      "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    
+    // Day names
+    const dayNames = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+    
+    // Update current month title
+    const currentMonthElement = document.querySelector('.current-month');
+    if (currentMonthElement) {
+        currentMonthElement.textContent = `${monthNames[month]} ${year}`;
+    }
+    
+    // Add day headers
+    dayNames.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'calendar-day-header';
+        dayHeader.textContent = day;
+        calendarGrid.appendChild(dayHeader);
     });
     
-    // Эффекты для кнопок
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px)';
-        });
+    // Get first day of month and days in month
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const firstDayIndex = firstDay.getDay(); // 0 = Sunday
+    
+    // Add empty days at the beginning of the month
+    for (let i = 0; i < firstDayIndex; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day empty';
+        calendarGrid.appendChild(emptyDay);
+    }
+    
+    // Add days of the month
+    const competitions = getCompetitions();
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        dayElement.innerHTML = `<div class="day-number">${day}</div>`;
         
-        btn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+        // Check for competitions on this day
+        const competitionDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        const dayCompetitions = competitions.filter(comp => comp.date === competitionDate);
+        
+        if (dayCompetitions.length > 0) {
+            dayElement.classList.add('has-competition');
+            
+            // Create container for competitions
+            const competitionsContainer = document.createElement('div');
+            competitionsContainer.className = 'day-competitions';
+            
+            dayCompetitions.forEach(comp => {
+                const compElement = document.createElement('div');
+                compElement.className = 'competition-item';
+                compElement.textContent = comp.name;
+                competitionsContainer.appendChild(compElement);
+            });
+            
+            dayElement.appendChild(competitionsContainer);
+        }
+        
+        calendarGrid.appendChild(dayElement);
+    }
+}
+
+// Initialize calendar if exists
+function initCalendar() {
+    const prevMonthBtn = document.querySelector('#prev-month');
+    const nextMonthBtn = document.querySelector('#next-month');
+    const calendarGrid = document.querySelector('.calendar-grid');
+    
+    if (!calendarGrid) return;
+    
+    let currentMonth = 4; // May (0-indexed)
+    let currentYear = 2025;
+    
+    // Initial rendering
+    renderCalendar(currentMonth, currentYear);
+    
+    // Navigation handlers
+    if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar(currentMonth, currentYear);
         });
-    });
+    }
+    
+    if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+    }
+}
+
+// Initialize calendar when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initCalendar();
 });
-
-// Функция для получения данных из localStorage
-function getLocalStorageData(key) {
-    try {
-        const data = localStorage.getItem(key);
-        return data ? JSON.parse(data) : null;
-    } catch (error) {
-        console.error(`Ошибка при получении данных из localStorage: ${error}`);
-        return null;
-    }
-}
-
-// Функция для сохранения данных в localStorage
-function saveToLocalStorage(key, data) {
-    try {
-        localStorage.setItem(key, JSON.stringify(data));
-        return true;
-    } catch (error) {
-        console.error(`Ошибка при сохранении данных в localStorage: ${error}`);
-        return false;
-    }
-}
