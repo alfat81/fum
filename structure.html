@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -215,7 +214,90 @@
 </tr>
 </thead>
 <tbody id="regionalTableBody">
-<!-- Данные будут загружены из JSON -->
+<tr>
+<td>Тверская область</td>
+<td>Дмитрий Серов</td>
+<td>+7 (977) 823-63-90</td>
+<td>serovdima@list.ru</td>
+<td>Председатель комиссии, судья всероссийской категории</td>
+</tr>
+<tr>
+<td>Нижний Новгород</td>
+<td>Алексей Фатьянов</td>
+<td>+7 (920) 111-91-77</td>
+<td>motogymkhana-nn@yandex.ru</td>
+<td>Заместитель председателя, организатор соревнований</td>
+</tr>
+<tr>
+<td>Смоленская область</td>
+<td>Глеб Симдянкин</td>
+<td>+7 (910) 345-67-89</td>
+<td>smolensk-fum@mfr.ru</td>
+<td>Секретарь комиссии, координатор региональных соревнований</td>
+</tr>
+<tr>
+<td>Вологодская область</td>
+<td>Наталия Недайводина</td>
+<td>+7 (911) 456-78-90</td>
+<td>vologda-fum@mfr.ru</td>
+<td>Ответственный за детский спорт и женские соревнования</td>
+</tr>
+<tr>
+<td>Москва</td>
+<td>Александр Ципилев</td>
+<td>+7 (903) 123-45-67</td>
+<td>moscow-fum@mfr.ru</td>
+<td>Координатор соревнований Центрального ФО</td>
+</tr>
+<tr>
+<td>Ульяновская область</td>
+<td>Андрей Сальников</td>
+<td>+7 (923) 567-89-01</td>
+<td>ul-fum@mfr.ru</td>
+<td>Ответственный за развитие регионов ПФО</td>
+</tr>
+<tr>
+<td>Республика Татарстан</td>
+<td>Ильшат Сафаров</td>
+<td>+7 (934) 678-90-12</td>
+<td>tatarstan-fum@mfr.ru</td>
+<td>Координатор соревнований Приволжского ФО</td>
+</tr>
+<tr>
+<td>Калужская область</td>
+<td>Максим Гаранин</td>
+<td>+7 (945) 789-01-23</td>
+<td>kaluga-fum@mfr.ru</td>
+<td>Ответственный за юношеские соревнования</td>
+</tr>
+<tr>
+<td>Тульская область</td>
+<td>Александр Акимов</td>
+<td>+7 (956) 890-12-34</td>
+<td>tula-fum@mfr.ru</td>
+<td>Организатор соревнований Центрального ФО</td>
+</tr>
+<tr>
+<td>Ленинградская область</td>
+<td>Игорь Васильев</td>
+<td>+7 (952) 202-44-10</td>
+<td>leningrad-fum@mfr.ru</td>
+<td>Координатор соревнований Северо-Западного ФО</td>
+</tr>
+<tr>
+<td>Свердловская область</td>
+<td>Михаил Ефимов</td>
+<td>+7 (904) 800-70-00</td>
+<td>ekb-fum@mfr.ru</td>
+<td>Координатор соревнований Уральского ФО</td>
+</tr>
+<tr>
+<td>Пермский край</td>
+<td>Антон Соколов</td>
+<td>+7 (904) 800-25-39</td>
+<td>perm-fum@mfr.ru</td>
+<td>Ответственный за развитие регионов Уральского ФО</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -337,54 +419,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize animations
     initAnimations();
     
-    // Load regional commissions data
-    loadRegionalCommissions();
-    
     // Setup JSON editor buttons
     setupJsonEditor();
-});
-
-// Initialize mobile menu
-function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const body = document.body;
     
-    if (!menuToggle || !mobileMenu) return;
-    
-    menuToggle.addEventListener('click', function() {
-        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-        menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
-            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
+    // Initialize card animations
+    const cards = document.querySelectorAll('.leader-card, .responsibility-card');
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
     
-    // Close menu when clicking on links
-    document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.style.display = 'none';
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            body.style.overflow = 'auto';
-        });
-    });
+    // Trigger animations on scroll
+    window.addEventListener('scroll', animateCards);
+    window.addEventListener('load', animateCards);
     
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (mobileMenu.style.display === 'block' && 
-            !mobileMenu.contains(e.target) && 
-            !menuToggle.contains(e.target)) {
-            mobileMenu.style.display = 'none';
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Initialize animations
-function initAnimations() {
-    // Animate cards on scroll
-    const animateCards = () => {
-        const cards = document.querySelectorAll('.leader-card, .responsibility-card');
+    function animateCards() {
         cards.forEach((card, index) => {
             const cardPosition = card.getBoundingClientRect().top;
             const screenPosition = window.innerHeight / 1.3;
@@ -395,169 +445,146 @@ function initAnimations() {
                 card.style.transitionDelay = `${index * 0.1}s`;
             }
         });
-    };
+    }
     
-    // Set initial card styles
-    const cards = document.querySelectorAll('.leader-card, .responsibility-card');
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
+    function initMobileMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const body = document.body;
+        
+        if (!menuToggle || !mobileMenu) return;
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+            menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileMenu.style.display === 'block' && 
+                !mobileMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                mobileMenu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            }
+        });
+    }
     
-    // Trigger animations
-    window.addEventListener('load', animateCards);
-    window.addEventListener('scroll', animateCards);
-}
-
-// Load regional commissions data
-function loadRegionalCommissions() {
-    const tableBody = document.getElementById('regionalTableBody');
-    if (!tableBody) return;
+    function initAnimations() {
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.card, .timeline-item, .leader-card, .news-card, .competition-card, .document-card, .partner-card');
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                    element.style.transitionDelay = `${index * 0.1}s`;
+                }
+            });
+        };
+        
+        const elements = document.querySelectorAll('.card, .timeline-item, .leader-card, .news-card, .competition-card, .document-card, .partner-card');
+        elements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    }
     
-    // Default data for regional commissions
-    const defaultData = [
-        {
-            region: "Тверская область",
-            name: "Дмитрий Серов",
-            phone: "+7 (977) 823-63-90",
-            email: "serovdima@list.ru",
-            info: "Председатель комиссии, судья всероссийской категории"
-        },
-        {
-            region: "Нижний Новгород",
-            name: "Алексей Фатьянов",
-            phone: "+7 (920) 111-91-77",
-            email: "motogymkhana-nn@yandex.ru",
-            info: "Заместитель председателя, организатор соревнований"
-        },
-        {
-            region: "Смоленская область",
-            name: "Глеб Симдянкин",
-            phone: "+7 (910) 345-67-89",
-            email: "smolensk-fum@mfr.ru",
-            info: "Секретарь комиссии, координатор региональных соревнований"
-        },
-        {
-            region: "Вологодская область",
-            name: "Наталия Недайводина",
-            phone: "+7 (911) 456-78-90",
-            email: "vologda-fum@mfr.ru",
-            info: "Ответственный за детский спорт и женские соревнования"
-        },
-        {
-            region: "Москва",
-            name: "Александр Ципилев",
-            phone: "+7 (903) 123-45-67",
-            email: "moscow-fum@mfr.ru",
-            info: "Координатор соревнований Центрального ФО"
-        },
-        {
-            region: "Ульяновская область",
-            name: "Андрей Сальников",
-            phone: "+7 (923) 567-89-01",
-            email: "ul-fum@mfr.ru",
-            info: "Ответственный за развитие регионов ПФО"
-        },
-        {
-            region: "Республика Татарстан",
-            name: "Ильшат Сафаров",
-            phone: "+7 (934) 678-90-12",
-            email: "tatarstan-fum@mfr.ru",
-            info: "Координатор соревнований Приволжского ФО"
-        },
-        {
-            region: "Калужская область",
-            name: "Максим Гаранин",
-            phone: "+7 (945) 789-01-23",
-            email: "kaluga-fum@mfr.ru",
-            info: "Ответственный за юношеские соревнования"
-        },
-        {
-            region: "Тульская область",
-            name: "Александр Акимов",
-            phone: "+7 (956) 890-12-34",
-            email: "tula-fum@mfr.ru",
-            info: "Организатор соревнований Центрального ФО"
-        },
-        {
-            region: "Ленинградская область",
-            name: "Игорь Васильев",
-            phone: "+7 (952) 202-44-10",
-            email: "leningrad-fum@mfr.ru",
-            info: "Координатор соревнований Северо-Западного ФО"
-        },
-        {
-            region: "Свердловская область",
-            name: "Михаил Ефимов",
-            phone: "+7 (904) 800-70-00",
-            email: "ekb-fum@mfr.ru",
-            info: "Координатор соревнований Уральского ФО"
-        },
-        {
-            region: "Пермский край",
-            name: "Антон Соколов",
-            phone: "+7 (904) 800-25-39",
-            email: "perm-fum@mfr.ru",
-            info: "Ответственный за развитие регионов Уральского ФО"
+    function setupJsonEditor() {
+        const updateBtn = document.getElementById('updateTableBtn');
+        const copyBtn = document.getElementById('copyJsonBtn');
+        const jsonEditor = document.getElementById('jsonDataEditor');
+        const statusElement = document.getElementById('jsonStatus');
+        const tableBody = document.getElementById('regionalTableBody');
+        
+        // Load current JSON data into editor
+        const currentData = Array.from(tableBody.querySelectorAll('tr')).map(row => {
+            const cells = row.querySelectorAll('td');
+            return {
+                region: cells[0].textContent,
+                name: cells[1].textContent,
+                phone: cells[2].textContent,
+                email: cells[3].textContent,
+                info: cells[4].textContent
+            };
+        });
+        
+        jsonEditor.value = JSON.stringify(currentData, null, 2);
+        
+        if (updateBtn && jsonEditor) {
+            updateBtn.addEventListener('click', function() {
+                try {
+                    const jsonData = JSON.parse(jsonEditor.value);
+                    
+                    // Clear table body
+                    tableBody.innerHTML = '';
+                    
+                    // Populate table with new data
+                    jsonData.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.region}</td>
+                            <td>${item.name}</td>
+                            <td>${item.phone}</td>
+                            <td><a href="mailto:${item.email}">${item.email}</a></td>
+                            <td>${item.info}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    
+                    // Show success message
+                    statusElement.textContent = 'Таблица успешно обновлена!';
+                    statusElement.style.color = '#27ae60';
+                    statusElement.style.display = 'block';
+                    
+                    // Hide message after 3 seconds
+                    setTimeout(() => {
+                        statusElement.style.display = 'none';
+                    }, 3000);
+                } catch (e) {
+                    // Show error message
+                    statusElement.textContent = 'Ошибка в JSON данных: ' + e.message;
+                    statusElement.style.color = '#e74c3c';
+                    statusElement.style.display = 'block';
+                }
+            });
         }
-    ];
-    
-    // Check if there's saved data in localStorage
-    const savedData = localStorage.getItem('regionalCommissions');
-    const dataToUse = savedData ? JSON.parse(savedData) : defaultData;
-    
-    // Save to localStorage if using default data
-    if (!savedData) {
-        localStorage.setItem('regionalCommissions', JSON.stringify(defaultData));
-    }
-    
-    // Render table
-    renderRegionalTable(dataToUse);
-    
-    // Pre-fill JSON editor with current data
-    const jsonEditor = document.getElementById('jsonDataEditor');
-    if (jsonEditor) {
-        jsonEditor.value = JSON.stringify(dataToUse, null, 2);
-    }
-}
-
-// Render regional table
-function renderRegionalTable(data) {
-    const tableBody = document.getElementById('regionalTableBody');
-    if (!tableBody) return;
-    
-    tableBody.innerHTML = '';
-    
-    data.forEach((item, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td data-label="Область/Регион">${item.region}</td>
-            <td data-label="ФИО">${item.name}</td>
-            <td data-label="Телефон">${item.phone}</td>
-            <td data-label="Почта"><a href="mailto:${item.email}">${item.email}</a></td>
-            <td data-label="Краткая информация">${item.info}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Setup JSON editor functionality
-function setupJsonEditor() {
-    const updateBtn = document.getElementById('updateTableBtn');
-    const copyBtn = document.getElementById('copyJsonBtn');
-    const jsonEditor = document.getElementById('jsonDataEditor');
-    const statusElement = document.getElementById('jsonStatus');
-    
-    if (updateBtn && jsonEditor) {
-        updateBtn.addEventListener('click', function() {
-            try {
-                const jsonData = JSON.parse(jsonEditor.value);
-                localStorage.setItem('regionalCommissions', JSON.stringify(jsonData));
-                renderRegionalTable(jsonData);
+        
+        if (copyBtn && jsonEditor) {
+            copyBtn.addEventListener('click', function() {
+                const currentData = Array.from(tableBody.querySelectorAll('tr')).map(row => {
+                    const cells = row.querySelectorAll('td');
+                    return {
+                        region: cells[0].textContent,
+                        name: cells[1].textContent,
+                        phone: cells[2].textContent,
+                        email: cells[3].textContent,
+                        info: cells[4].textContent
+                    };
+                });
+                
+                jsonEditor.value = JSON.stringify(currentData, null, 2);
                 
                 // Show success message
-                statusElement.textContent = 'Таблица успешно обновлена!';
+                statusElement.textContent = 'Текущие данные скопированы в редактор!';
                 statusElement.style.color = '#27ae60';
                 statusElement.style.display = 'block';
                 
@@ -565,32 +592,10 @@ function setupJsonEditor() {
                 setTimeout(() => {
                     statusElement.style.display = 'none';
                 }, 3000);
-            } catch (e) {
-                // Show error message
-                statusElement.textContent = 'Ошибка в JSON данных: ' + e.message;
-                statusElement.style.color = '#e74c3c';
-                statusElement.style.display = 'block';
-            }
-        });
+            });
+        }
     }
-    
-    if (copyBtn && jsonEditor) {
-        copyBtn.addEventListener('click', function() {
-            const currentData = JSON.parse(localStorage.getItem('regionalCommissions') || '[]');
-            jsonEditor.value = JSON.stringify(currentData, null, 2);
-            
-            // Show success message
-            statusElement.textContent = 'Текущие данные скопированы в редактор!';
-            statusElement.style.color = '#27ae60';
-            statusElement.style.display = 'block';
-            
-            // Hide message after 3 seconds
-            setTimeout(() => {
-                statusElement.style.display = 'none';
-            }, 3000);
-        });
-    }
-}
+});
 </script>
 </body>
 </html>
