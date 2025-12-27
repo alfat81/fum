@@ -50,352 +50,36 @@
 </nav>
 </header>
 <main class="content">
-<h1 class="page-title">Календарь соревнований 2026</h1>
-<section class="calendar-intro">
-<div class="calendar-banner">
-<h2>Официальный календарь соревнований по фигурному управлению мотоциклом на 2026 год</h2>
-<p>Следите за обновлениями и регистрируйтесь на соревнования заранее</p>
+<h1 class="page-title">Календарь соревнований 2025 года</h1>
+<section class="calendar-layout">
+<div class="calendar-column">
+<div class="calendar-section">
+<div class="calendar-controls">
+<button class="calendar-btn" id="prev-month">
+<i class="fas fa-chevron-left"></i>
+</button>
+<h2 class="current-month" id="current-month">Май 2025</h2>
+<button class="calendar-btn" id="next-month">
+<i class="fas fa-chevron-right"></i>
+</button>
 </div>
-</section>
-<section class="competitions-calendar">
-<h2 class="section-title"><i class="fas fa-calendar-alt"></i> Соревнования по месяцам</h2>
-<div class="month-section">
-<h3 class="month-title">Апрель 2026</h3>
-<div class="competitions-grid">
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">25.04.2026</div>
-<div class="category-badge regional">Региональные</div>
+<div class="calendar-grid" id="calendar-grid">
+<!-- Days of calendar will be added via JavaScript -->
 </div>
-<div class="card-body">
-<h3 class="competition-name">1 этап Кубка Тверской области</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Тверская область, г. Тверь
 </div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
 </div>
-<p class="description">Первый этап Кубка Тверской области по фигурному управлению мотоциклом. Открытые соревнования для всех возрастных категорий.</p>
+<div class="event-column">
+<div class="event-card" id="event-card">
+<div class="event-card-header">
+<h3 class="event-title">Выберите дату соревнования</h3>
 </div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 10:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
+<div class="event-card-content">
+<p class="event-description">Нажмите на любую дату в календаре со значком соревнования, чтобы увидеть подробную информацию о мероприятии.</p>
+<div class="event-placeholder">
+<i class="fas fa-calendar-alt"></i>
 </div>
 </div>
 </div>
-</div>
-<div class="month-section">
-<h3 class="month-title">Май 2026</h3>
-<div class="competitions-grid">
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">16.05.2026</div>
-<div class="category-badge national">Кубок России</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">1 этап Кубка России по ФУМ</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Нижний Новгород"
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Алексей Фатьянов
-<i class="fas fa-phone"></i> +7 (920) 111-91-77
-</div>
-<p class="description">Первый этап официального Кубка России по фигурному управлению мотоциклом. Соревнования проводятся в соответствии с правилами МФР.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 09:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-</div>
-</div>
-<div class="month-section">
-<h3 class="month-title">Июнь 2026</h3>
-<div class="competitions-grid">
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">06.06.2026</div>
-<div class="category-badge interregional">Межрегиональные</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">Межрегиональные соревнования на Игоре Драйв</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Ленинградская область, Игора Драйв
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Межрегиональные соревнования по фигурному управлению мотоциклом на трассе Игора Драйв. Открытые соревнования для всех регионов России.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 09:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">07.06.2026</div>
-<div class="category-badge national">Кубок России</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">2 этап Кубка России по ФУМ на Игоре Драйв</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Ленинградская область, Игора Драйв
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Второй этап Кубка России по фигурному управлению мотоциклом. Соревнования проводятся в рамках официального календаря МФР.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 09:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">13.06.2026</div>
-<div class="category-badge children">Детские</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">Мотоджимахна. Дети</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Тверь
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Евгений Кораблев
-<i class="fas fa-phone"></i> +7 (904) 060-34-80
-</div>
-<p class="description">Детские соревнования по мотоджимхане для юных спортсменов 8-16 лет. </p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 11:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">13.06.2026</div>
-<div class="category-badge interregional">Межрегиональные</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">Межрегиональные соревнования в Череповце</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Вологодская область, г. Череповец
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Игорь Васильев
-<i class="fas fa-phone"></i> +7 (952) 202-44-10
-</div>
-<p class="description">Межрегиональные соревнования по фигурному управлению мотоциклом в г. Череповец. Открытые соревнования для всех регионов Северо-Западного федерального округа.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 10:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">27.06.2026</div>
-<div class="category-badge national">Кубок России</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">3 этап Кубка России</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Московская область
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Третий этап Кубка России по фигурному управлению мотоциклом. Соревнования проводятся в соответствии с правилами МФР.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 09:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-</div>
-</div>
-<div class="month-section">
-<h3 class="month-title">Июль 2026</h3>
-<div class="competitions-grid">
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">25.07.2026</div>
-<div class="category-badge national">Кубок России</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">5 этап Кубка России по ФУМ</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Санкт-Петербург
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Пятый этап Кубка России по фигурному управлению мотоциклом. Соревнования проводятся в историческом центре Санкт-Петербурга.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 09:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">26.07.2026</div>
-<div class="category-badge children">Детские</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">ПЕРВЕНСТВО МФР. Детские соревнования</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Санкт-Петербург
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Официальное первенство МФР по фигурному управлению мотоциклом среди детей и юношей. Соревнования проводятся в возрастных категориях 8-10, 11-13, 14-16 лет.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 10:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-</div>
-</div>
-<div class="month-section">
-<h3 class="month-title">Август 2026</h3>
-<div class="competitions-grid">
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">29.08.2026</div>
-<div class="category-badge regional">Региональные</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">3 этап Кубка Тверской области</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Тверская область, г. Тверь
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Третий этап Кубка Тверской области по фигурному управлению мотоциклом. Заключительные соревнования регионального чемпионата.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 10:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">29.08.2026</div>
-<div class="category-badge interregional">Межрегиональные</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">Межрегиональные соревнования в Екатеринбурге</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Свердловская область, г. Екатеринбург
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Михаил Ефимов
-<i class="fas fa-phone"></i> +7 (904) 800-70-00
-</div>
-<p class="description">Межрегиональные соревнования по фигурному управлению мотоциклом в г. Екатеринбург. Открытые соревнования для всех регионов Уральского федерального округа.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 11:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-</div>
-</div>
-<div class="month-section">
-<h3 class="month-title">Сентябрь 2026</h3>
-<div class="competitions-grid">
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">12.09.2026</div>
-<div class="category-badge regional">Региональные</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">4 этап Кубка Тверской области</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Тверская область, г. Тверь
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Четвертый этап Кубка Тверской области по фигурному управлению мотоциклом. Финальные соревнования регионального чемпионата.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 10:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">12.09.2026</div>
-<div class="category-badge national">Кубок России</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">7 этап Кубка России</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Москва
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Дмитрий Серов
-<i class="fas fa-phone"></i> +7 (977) 823-63-90
-</div>
-<p class="description">Седьмой этап Кубка России по фигурному управлению мотоциклом. Предпоследние соревнования в календаре Кубка России.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 09:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-<div class="competition-card">
-<div class="card-header">
-<div class="date-badge">19.09.2026</div>
-<div class="category-badge interregional">Межрегиональные</div>
-</div>
-<div class="card-body">
-<h3 class="competition-name">Межрегиональные соревнования в Перми</h3>
-<div class="location">
-<i class="fas fa-map-marker-alt"></i> Пермский край, г. Пермь
-</div>
-<div class="contact">
-<i class="fas fa-user"></i> Антон Соколов
-<i class="fas fa-phone"></i> +7 (904) 800-25-39
-</div>
-<p class="description">Межрегиональные соревнования по фигурному управлению мотоциклом в г. Пермь. Открытые соревнования для всех регионов Приволжского федерального округа.</p>
-</div>
-<div class="card-footer">
-<div class="time"><i class="fas fa-clock"></i> 10:00</div>
-<a href="#" class="btn btn-sm">Подробнее</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="calendar-registration">
-<h2 class="section-title"><i class="fas fa-clipboard-list"></i> Регистрация на соревнования</h2>
-<div class="registration-info">
-<p>Для участия в соревнованиях необходимо пройти регистрацию заранее. Регистрация открывается за 30 дней до начала соревнований.</p>
-<p>Требования к участникам:</p>
-<ul>
-<li>Наличие спортивной лицензии МФР</li>
-<li>Страховой полис от несчастных случаев</li>
-<li>Мотоцикл в исправном техническом состоянии</li>
-<li>Соответствующая экипировка (шлем, защита)</li>
-</ul>
-<a href="contacts.html" class="btn btn-primary">Контакты для регистрации</a>
 </div>
 </section>
 </main>
@@ -427,44 +111,267 @@
 </div>
 <script src="script.js"></script>
 <script>
+// Sample competitions data
+const competitions = [
+{
+id: 1,
+date: '2025-05-12',
+name: '2 этап Кубка России по фигурному управлению мотоциклом',
+location: 'Смоленск',
+contactPerson: 'Глеб Симдянкин',
+contactPhone: '+7 (910) 345-67-89',
+description: 'Второй этап Кубка России по фигурному управлению мотоциклом в Смоленске. Соревнования пройдут на специально подготовленной площадке у стадиона "Спартак".',
+category: 'Кубок России',
+ageCategory: '18+',
+startTime: '10:00',
+address: 'г. Смоленск, ул. Стадионная, 15'
+},
+{
+id: 2,
+date: '2025-05-20',
+name: 'Кубок Москвы',
+location: 'Москва',
+contactPerson: 'Александр Ципилев',
+contactPhone: '+7 (903) 123-45-67',
+description: 'Традиционный Кубок Москвы по мотоджимхане. Соревнования соберут лучших спортсменов столицы и Московской области.',
+category: 'Региональные соревнования',
+ageCategory: '16+',
+startTime: '11:00',
+address: 'г. Москва, Лужники, парковка Южная'
+},
+{
+id: 3,
+date: '2025-06-15',
+name: 'Чемпионат России',
+location: 'Тверская область',
+contactPerson: 'Дмитрий Серов',
+contactPhone: '+7 (977) 823-63-90',
+description: 'Главное событие сезона - Чемпионат России по фигурному управлению мотоциклом. В программе соревнований классические и экстремальные упражнения.',
+category: 'Чемпионат',
+ageCategory: '18+',
+startTime: '09:00',
+address: 'Тверская область, г. Вышний Волочёк, автодром "Волочёк"'
+},
+{
+id: 4,
+date: '2025-08-05',
+name: 'Женский Кубок МФР',
+location: 'Нижний Новгород',
+contactPerson: 'Алексей Фатьянов',
+contactPhone: '+7 (905) 234-56-78',
+description: 'Специализированные соревнования для женщин-мотоциклистов. Отдельный зачет и призы для лучших спортсменок.',
+category: 'Специальные соревнования',
+ageCategory: '18+',
+startTime: '10:00',
+address: 'г. Нижний Новгород, пл. Горького, 10'
+},
+{
+id: 5,
+date: '2025-09-12',
+name: 'Кубок юниоров',
+location: 'Вологда',
+contactPerson: 'Наталия Недайводина',
+contactPhone: '+7 (911) 456-78-90',
+description: 'Соревнования для юных спортсменов 12-17 лет. Отличная возможность для начинающих мотоциклистов показать свои навыки и получить опыт выступлений.',
+category: 'Юношеские соревнования',
+ageCategory: '12-17 лет',
+startTime: '12:00',
+address: 'г. Вологда, ул. Мира, 45'
+}
+];
+// Store in localStorage
+localStorage.setItem('competitionsList', JSON.stringify(competitions));
+// Format date function
+function formatDate(dateString) {
+const date = new Date(dateString);
+const day = date.getDate();
+const month = date.toLocaleString('ru-RU', { month: 'long' });
+const year = date.getFullYear();
+return `${day} ${month} ${year}`;
+}
+// Format time function
+function formatTime(dateString) {
+const date = new Date(dateString);
+return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+}
+// Get competitions from localStorage
+function getCompetitions() {
+const savedCompetitions = localStorage.getItem('competitionsList');
+return savedCompetitions ? JSON.parse(savedCompetitions) : [];
+}
+// Render event card
+function renderEventCard(competition) {
+if (!competition) return;
+const eventCard = document.getElementById('event-card');
+eventCard.classList.add('active');
+eventCard.innerHTML = `
+<div class="event-card-header">
+<h3 class="event-title">${competition.name}</h3>
+<div class="event-date">
+<i class="fas fa-calendar-alt"></i> ${formatDate(competition.date)}
+</div>
+</div>
+<div class="event-card-content">
+<div class="event-meta">
+<span class="event-location"><i class="fas fa-map-marker-alt"></i> ${competition.location}</span>
+<span class="event-category">${competition.category}</span>
+<span class="event-age"><i class="fas fa-user-clock"></i> ${competition.ageCategory}</span>
+</div>
+<p class="event-description">${competition.description}</p>
+<div class="event-contact">
+<h4>Контактное лицо:</h4>
+<p><i class="fas fa-user"></i> ${competition.contactPerson}</p>
+<p><i class="fas fa-phone"></i> ${competition.contactPhone}</p>
+<p><i class="fas fa-clock"></i> Начало в ${competition.startTime}</p>
+<p><i class="fas fa-map-marker-alt"></i> ${competition.address}</p>
+</div>
+<a href="#" class="event-register-btn">
+<i class="fas fa-clipboard-list"></i> Зарегистрироваться на соревнование
+</a>
+</div>
+<div class="event-footer">
+<p class="event-footer-text">Для регистрации необходимо иметь действующую спортивную лицензию и медицинскую справку установленного образца.</p>
+</div>
+`;
+// Add event listener to register button
+const registerBtn = eventCard.querySelector('.event-register-btn');
+if (registerBtn) {
+registerBtn.addEventListener('click', function(e) {
+e.preventDefault();
+alert('Регистрация на соревнование будет доступна за месяц до начала мероприятия. Следите за обновлениями на сайте.');
+});
+}
+}
+// Clear event card
+function clearEventCard() {
+const eventCard = document.getElementById('event-card');
+eventCard.classList.remove('active');
+eventCard.innerHTML = `
+<div class="event-card-header">
+<h3 class="event-title">Выберите дату соревнования</h3>
+</div>
+<div class="event-card-content">
+<p class="event-description">Нажмите на любую дату в календаре со значком соревнования, чтобы увидеть подробную информацию о мероприятии.</p>
+<div class="event-placeholder">
+<i class="fas fa-calendar-alt"></i>
+</div>
+</div>
+`;
+}
+// Render calendar function
+function renderCalendar(month, year) {
+const calendarGrid = document.getElementById('calendar-grid');
+if (!calendarGrid) return;
+calendarGrid.innerHTML = '';
+// Month names
+const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+"Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+// Day names
+const dayNames = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+// Update current month title
+const currentMonthElement = document.getElementById('current-month');
+if (currentMonthElement) {
+currentMonthElement.textContent = `${monthNames[month]} ${year}`;
+}
+// Add day headers
+dayNames.forEach(day => {
+const dayHeader = document.createElement('div');
+dayHeader.className = 'calendar-day-header';
+dayHeader.textContent = day;
+calendarGrid.appendChild(dayHeader);
+});
+// Get first day of month and days in month
+const firstDay = new Date(year, month, 1);
+const lastDay = new Date(year, month + 1, 0);
+const daysInMonth = lastDay.getDate();
+const firstDayIndex = firstDay.getDay(); // 0 = Sunday
+// Add empty days at the beginning of the month
+for (let i = 0; i < firstDayIndex; i++) {
+const emptyDay = document.createElement('div');
+emptyDay.className = 'calendar-day empty';
+calendarGrid.appendChild(emptyDay);
+}
+// Add days of the month
+const competitions = getCompetitions();
+for (let day = 1; day <= daysInMonth; day++) {
+const dayElement = document.createElement('div');
+dayElement.className = 'calendar-day';
+dayElement.innerHTML = `<div class="day-number">${day}</div>`;
+// Check for competitions on this day
+const competitionDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+const dayCompetitions = competitions.filter(comp => comp.date === competitionDate);
+if (dayCompetitions.length > 0) {
+dayElement.classList.add('has-competition');
+// Create container for competitions
+const competitionsContainer = document.createElement('div');
+competitionsContainer.className = 'day-competitions';
+dayCompetitions.forEach(comp => {
+const compElement = document.createElement('div');
+compElement.className = 'competition-item';
+compElement.textContent = comp.name;
+compElement.dataset.id = comp.id;
+compElement.addEventListener('click', function(e) {
+e.stopPropagation();
+const selectedComp = competitions.find(c => c.id == this.dataset.id);
+renderEventCard(selectedComp);
+});
+competitionsContainer.appendChild(compElement);
+});
+dayElement.appendChild(competitionsContainer);
+// Add click event to the day element
+dayElement.addEventListener('click', function() {
+renderEventCard(dayCompetitions[0]);
+});
+}
+calendarGrid.appendChild(dayElement);
+}
+// Clear event card when clicking on empty days
+document.querySelectorAll('.calendar-day:not(.has-competition)').forEach(day => {
+day.addEventListener('click', clearEventCard);
+});
+}
+// Initialize calendar if exists
+function initCalendar() {
+const prevMonthBtn = document.getElementById('prev-month');
+const nextMonthBtn = document.getElementById('next-month');
+const calendarGrid = document.getElementById('calendar-grid');
+if (!calendarGrid) return;
+let currentMonth = 4; // May (0-indexed)
+let currentYear = 2025;
+// Initial rendering
+renderCalendar(currentMonth, currentYear);
+// Navigation handlers
+if (prevMonthBtn) {
+prevMonthBtn.addEventListener('click', function() {
+currentMonth--;
+if (currentMonth < 0) {
+currentMonth = 11;
+currentYear--;
+}
+renderCalendar(currentMonth, currentYear);
+});
+}
+if (nextMonthBtn) {
+nextMonthBtn.addEventListener('click', function() {
+currentMonth++;
+if (currentMonth > 11) {
+currentMonth = 0;
+currentYear++;
+}
+renderCalendar(currentMonth, currentYear);
+});
+}
+// Clear event card when clicking outside
+document.addEventListener('click', function(e) {
+if (!e.target.closest('.calendar-day') && !e.target.closest('.event-card')) {
+clearEventCard();
+}
+});
+}
+// Initialize calendar when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Animate cards on scroll
-    const animateCards = () => {
-        const cards = document.querySelectorAll('.competition-card');
-        cards.forEach((card, index) => {
-            const cardPosition = card.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            
-            if (cardPosition < screenPosition) {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-                card.style.transitionDelay = `${index * 0.1}s`;
-            }
-        });
-    };
-    
-    // Set initial card styles
-    const cards = document.querySelectorAll('.competition-card');
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // Trigger animations
-    window.addEventListener('load', animateCards);
-    window.addEventListener('scroll', animateCards);
-    
-    // Button click handlers
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (this.textContent.includes('Подробнее')) {
-                e.preventDefault();
-                alert('Информация о соревновании будет доступна позже. Следите за обновлениями на сайте.');
-            }
-        });
-    });
+initCalendar();
+clearEventCard();
 });
 </script>
 </body>
