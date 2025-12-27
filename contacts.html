@@ -128,7 +128,8 @@
 <p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
 </div>
 <div class="copyright">
-© 2025 Мотоциклетная Федерация России
+<p>© 2025 Мотоциклетная Федерация России</p>
+<p class="powered-by">powered by Motogymkhana NN</p>
 </div>
 </div>
 </footer>
@@ -136,99 +137,6 @@
 <!-- Admin tab -->
 <div class="admin-tab" id="admin-tab">
 <i class="fas fa-cog"></i>
-</div>
-<!-- Admin panel -->
-<div class="admin-panel" id="admin-panel">
-<div class="admin-header">
-<h2>Админ-панель</h2>
-<button class="close-admin-panel" id="close-admin-panel">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<div class="admin-tabs">
-<button class="tab-btn active" data-tab="contacts">Контакты</button>
-<button class="tab-btn" data-tab="social">Социальные сети</button>
-<button class="tab-btn" data-tab="settings">Настройки</button>
-</div>
-<div class="tab-content active" id="contacts-tab">
-<h3>Управление контактами</h3>
-<div class="form-group">
-<label for="contact-title">Заголовок контакта</label>
-<input type="text" id="contact-title" class="form-control" placeholder="Введите заголовок">
-</div>
-<div class="form-group">
-<label for="contact-phone">Телефон</label>
-<input type="tel" id="contact-phone" class="form-control" placeholder="+7 (XXX) XXX-XX-XX">
-</div>
-<div class="form-group">
-<label for="contact-email">Email</label>
-<input type="email" id="contact-email" class="form-control" placeholder="Введите email">
-</div>
-<div class="form-group">
-<label for="contact-address">Адрес</label>
-<textarea id="contact-address" class="form-control" rows="2" placeholder="Введите адрес"></textarea>
-</div>
-<button id="add-contact-btn" class="btn btn-primary">
-<i class="fas fa-plus"></i> Добавить контакт
-</button>
-<div id="contacts-list" class="admin-list"></div>
-</div>
-<div class="tab-content" id="social-tab">
-<h3>Управление социальными сетями</h3>
-<div class="form-group">
-<label for="social-name">Название соцсети</label>
-<input type="text" id="social-name" class="form-control" placeholder="Введите название">
-</div>
-<div class="form-group">
-<label for="social-url">Ссылка</label>
-<input type="url" id="social-url" class="form-control" placeholder="Введите URL">
-</div>
-<div class="form-group">
-<label for="social-icon">Иконка</label>
-<select id="social-icon" class="form-control">
-<option value="vk">ВКонтакте</option>
-<option value="telegram">Telegram</option>
-<option value="instagram">Instagram</option>
-<option value="youtube">YouTube</option>
-</select>
-</div>
-<button id="add-social-btn" class="btn btn-primary">
-<i class="fas fa-plus"></i> Добавить соцсеть
-</button>
-<div id="social-list" class="admin-list"></div>
-</div>
-<div class="tab-content" id="settings-tab">
-<h3>Настройки страницы</h3>
-<div class="form-group">
-<label for="page-title">Заголовок страницы</label>
-<input type="text" id="page-title" class="form-control" value="Контакты | Комиссия по фигурному управлению мотоциклом | МФР">
-</div>
-<div class="form-group">
-<label for="meta-description">Мета-описание</label>
-<textarea id="meta-description" class="form-control" rows="2">Контактная информация комиссии по фигурному управлению мотоциклом (мотоджимхане) при Мотоциклетной Федерации России</textarea>
-</div>
-<button id="save-settings-btn" class="btn btn-primary">
-<i class="fas fa-save"></i> Сохранить настройки
-</button>
-</div>
-<div class="admin-login">
-<div class="form-group">
-<label for="admin-password">Пароль</label>
-<input type="password" id="admin-password" class="form-control" placeholder="Введите пароль">
-</div>
-<button class="btn btn-secondary" id="login-admin-btn">Войти</button>
-</div>
-</div>
-<!-- Модальное окно подтверждения -->
-<div class="modal" id="confirmation-modal">
-<div class="modal-content">
-<h3>Подтверждение действия</h3>
-<p id="modal-message">Вы уверены, что хотите выполнить это действие?</p>
-<div class="modal-buttons">
-<button class="btn btn-secondary" id="modal-cancel">Отмена</button>
-<button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
-</div>
-</div>
 </div>
 <script src="script.js"></script>
 </body>
