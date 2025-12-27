@@ -1,26 +1,153 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Главная | Комиссия по фигурному управлению мотоциклом | МФР</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Главная | Комиссия по фигурному управлению мотоциклом | МФР</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div class="site-header-container"></div>
-    
-    <main class="content">
-      <h1 class="page-title">Мотоджимхана России</h1>
-      
-      <section class="quick-links">
-        <h2 class="section-title">Быстрые ссылки</h2>
-        <div class="competitions-grid">
-          <div class="unified-card">
-            <div class="card-header">
-              <h3 class="card-title">О комиссии</h3>
-            </div>
-            <div class="card-body">
-           
+<div class="container">
+<header class="header">
+<div class="logo-container">
+<div class="logo-left">
+<img src="images/logo_sm.png" alt="Логотип комиссии" class="logo-img">
+</div>
+<div class="logo-right">
+<div class="official-name">МОТОЦИКЛЕТНАЯ ФЕДЕРАЦИЯ РОССИИ</div>
+<div class="commission-name">КОМИССИЯ ПО ФИГУРНОМУ УПРАВЛЕНИЮ МОТОЦИКЛОМ (МОТОДЖИМХАНА)</div>
+</div>
+</div>
+<button class="menu-toggle">
+<i class="fas fa-bars"></i>
+</button>
+<nav class="main-nav">
+<ul>
+<li><a href="index.html" class="nav-link active">Главная</a></li>
+<li><a href="about.html" class="nav-link">О комиссии</a></li>
+<li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+<li><a href="calendar.html" class="nav-link">Соревнования</a></li>
+<li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+<li><a href="partners.html" class="nav-link">Партнеры</a></li>
+</ul>
+</nav>
+<!-- Mobile menu -->
+<nav class="mobile-menu">
+<div class="mobile-nav">
+<ul>
+<li><a href="index.html" class="nav-link active">Главная</a></li>
+<li><a href="about.html" class="nav-link">О комиссии</a></li>
+<li><a href="structure.html" class="nav-link">Структура комиссии</a></li>
+<li><a href="calendar.html" class="nav-link">Соревнования</a></li>
+<li><a href="documents.html" class="nav-link">Полезные документы</a></li>
+<li><a href="partners.html" class="nav-link">Партнеры</a></li>
+</ul>
+</div>
+</nav>
+</header>
+<main class="content">
+<!-- Hero section с параллакс-эффектом -->
+<section class="hero-section parallax" style="background-image: url('images/hero-bg.jpg');">
+<div class="hero-overlay">
+<h1 class="hero-title">Мотоджимхана России</h1>
+<p class="hero-subtitle">Фигурное управление мотоциклом - спорт для всех</p>
+<a href="about.html" class="hero-btn">Узнать больше</a>
+</div>
+</section>
+<!-- Quick links cards -->
+<section class="quick-links">
+<h2 class="section-title">Быстрые ссылки</h2>
+<div class="cards-container">
+<div class="card">
+<div class="card-icon motorcycle"></div>
+<h3 class="card-title">О комиссии</h3>
+<p class="card-description">История создания, цели и задачи комиссии по фигурному управлению мотоциклом</p>
+<a href="about.html" class="card-link">Подробнее →</a>
+</div>
+<div class="card">
+<div class="card-icon calendar"></div>
+<h3 class="card-title">Соревнования</h3>
+<p class="card-description">Расписание предстоящих мероприятий и результаты прошедших</p>
+<a href="calendar.html" class="card-link">Подробнее →</a>
+</div>
+<div class="card">
+<div class="card-icon structure"></div>
+<h3 class="card-title">Структура комиссии</h3>
+<p class="card-description">Руководство и региональные представители по всей России</p>
+<a href="structure.html" class="card-link">Подробнее →</a>
+</div>
+<div class="card">
+<div class="card-icon documents"></div>
+<h3 class="card-title">Полезные документы</h3>
+<p class="card-description">Правила, регламенты и другие нормативные документы</p>
+<a href="documents.html" class="card-link">Подробнее →</a>
+</div>
+</div>
+</section>
+<!-- News section -->
+<section class="news-section">
+<h2 class="section-title">Анонсы и новости</h2>
+<div class="news-container">
+<div class="news-card">
+<div class="news-date">15.12.2025</div>
+<h3 class="news-title">Утвержден календарь соревнований на 2026 год</h3>
+<p class="news-excerpt">31 октября на Конференции Федерации мотоциклетного спорта России был утвержден новый состав Комиссии фигурного управления мотоциклом и календарь соревнований на 2026 год.</p>
+<a href="#" class="news-link">Читать подробнее</a>
+</div>
+<div class="news-card">
+<div class="news-date">08.11.2025</div>
+<h3 class="news-title">Составлен новый состав комиссии</h3>
+<p class="news-excerpt">Председателем комиссии переизбран Дмитрий Серов. В новом составе появились новые региональные представители из Тульской области и Москвы.</p>
+<a href="structure.html" class="news-link">Читать подробнее</a>
+</div>
+<div class="news-card">
+<div class="news-date">25.10.2025</div>
+<h3 class="news-title">Обновлены правила соревнований</h3>
+<p class="news-excerpt">Утверждена новая редакция правил соревнований по фигурному управлению мотоциклом с изменениями в системе оценки и требованиям к экипировке.</p>
+<a href="documents.html" class="news-link">Читать подробнее</a>
+</div>
+</div>
+</section>
+<!-- About section -->
+<section class="about-section parallax" style="background-image: url('images/about-bg.jpg');">
+<div class="about-overlay">
+<h2 class="section-title">Что такое мотоджимхана?</h2>
+<div class="about-content">
+<p>Мотоджимхана (фигурное управление мотоциклом) - это дисциплина мотоциклетного спорта, в которой участники на время проходят трассу с набором фигурных элементов.</p>
+<p>Этот вид спорта развивает навыки управления мотоциклом на низких скоростях, баланс и точность. Соревнования проводятся на асфальтовых площадках с использованием пластиковых конусов (красных, синих и желтых).</p>
+<a href="about.html" class="about-btn">Подробнее о комиссии</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-logos">
+<a href="https://www.mfr.ru/" target="_blank">
+<img src="images/mfr_logo.png" alt="Логотип МФР" style="opacity: 0.9;">
+</a>
+<a href="https://www.minsport.gov.ru/" target="_blank">
+<img src="images/logo_minsport.png" alt="Логотип Министерства спорта РФ" style="opacity: 0.9;">
+</a>
+</div>
+<div class="footer-links">
+<a href="documents.html" class="document-link">Документы комиссии</a>
+<a href="https://www.mfr.ru/" target="_blank">Официальный сайт МФР</a>
+<a href="https://www.mfr.ru/disciplines/motodzhimkhana/" target="_blank">Страница мотоджимханы на сайте МФР</a>
+</div>
+<div class="footer-contacts">
+<p><i class="fas fa-envelope"></i> serovdima@list.ru</p>
+<p><i class="fas fa-phone"></i> +7 (977) 823-63-90</p>
+</div>
+<div class="copyright">
+<p>© 2025 Мотоциклетная Федерация России</p>
+<p class="powered-by">powered by Motogymkhana NN</p>
+</div>
+</div>
+</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
