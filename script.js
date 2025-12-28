@@ -1,189 +1,171 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Load header and footer
-  loadHeaderAndFooter();
-  
-  // Initialize mobile menu
-  initMobileMenu();
-  
-  // Load competitions data
-  loadCompetitionsData();
-  
-  // Initialize protocol buttons
-  initProtocolButtons();
+    console.log('Сайт комиссии по мотоджимхане успешно загружен');
+    
+    // Инициализация мобильного меню
+    initMobileMenu();
+    
+    // Инициализация анимаций
+    initAnimations();
+    
+    // Инициализация фильтров документов
+    initDocumentFilters();
+    
+    // Инициализация формы партнеров
+    initPartnerForm();
 });
 
-// Function to load header and footer
-function loadHeaderAndFooter() {
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.querySelector('.site-header-container').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading header:', error));
-  
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.querySelector('.site-footer-container').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading footer:', error));
-}
-
-// Initialize mobile menu
+// Инициализация мобильного меню
 function initMobileMenu() {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  
-  if (!menuToggle || !mobileMenu) return;
-  
-  menuToggle.addEventListener('click', function() {
-    mobileMenu.classList.toggle('active');
-    menuToggle.innerHTML = mobileMenu.classList.contains('active') 
-      ? '<i class="fas fa-times"></i>' 
-      : '<i class="fas fa-bars"></i>';
-  });
-  
-  // Close menu when clicking on links
-  document.querySelectorAll('.mobile-nav ul li a').forEach(link => {
-    link.addEventListener('click', function() {
-      mobileMenu.classList.remove('active');
-      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-  });
-  
-  // Close menu when clicking outside
-  document.addEventListener('click', function(e) {
-    if (mobileMenu.classList.contains('active') &&
-        !mobileMenu.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
-      mobileMenu.classList.remove('active');
-      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    }
-  });
-}
-
-// Load competitions data
-function loadCompetitionsData() {
-  const competitions = [
-    {
-      id: 1,
-      date: '2025-05-12',
-      name: '2 этап Кубка России по фигурному управлению мотоциклом',
-      location: 'Смоленск',
-      time: '10:00',
-      organizer: 'Глеб Симдянкин',
-      phone: '+7 (910) 345-67-89',
-      protocol: 'https://disk.yandex.ru/d/protocol1'
-    },
-    {
-      id: 2,
-      date: '2025-05-20',
-      name: 'Кубок Москвы',
-      location: 'Москва',
-      time: '11:00',
-      organizer: 'Александр Ципилев',
-      phone: '+7 (903) 123-45-67',
-      protocol: 'https://disk.yandex.ru/d/protocol2'
-    },
-    {
-      id: 3,
-      date: '2025-06-15',
-      name: 'Чемпионат России',
-      location: 'Тверская область',
-      time: '09:00',
-      organizer: 'Дмитрий Серов',
-      phone: '+7 (977) 823-63-90',
-      protocol: 'https://disk.yandex.ru/d/protocol3'
-    },
-    {
-      id: 4,
-      date: '2025-08-05',
-      name: 'Женский Кубок МФР',
-      location: 'Нижний Новгород',
-      time: '10:00',
-      organizer: 'Алексей Фатьянов',
-      phone: '+7 (905) 234-56-78',
-      protocol: 'https://disk.yandex.ru/d/protocol4'
-    },
-    {
-      id: 5,
-      date: '2025-09-12',
-      name: 'Кубок юниоров',
-      location: 'Вологда',
-      time: '12:00',
-      organizer: 'Наталия Недайводина',
-      phone: '+7 (911) 456-78-90',
-      protocol: 'https://disk.yandex.ru/d/protocol5'
-    }
-  ];
-  
-  // Store in localStorage for persistence
-  localStorage.setItem('competitionsList', JSON.stringify(competitions));
-  
-  // Render competitions
-  renderCompetitions();
-}
-
-// Render competitions
-function renderCompetitions() {
-  const competitionsGrid = document.querySelector('.competitions-grid');
-  if (!competitionsGrid) return;
-  
-  const competitions = getCompetitions();
-  competitionsGrid.innerHTML = '';
-  
-  competitions.forEach(comp => {
-    const compDate = new Date(comp.date);
-    const formattedDate = `${compDate.getDate()} ${compDate.toLocaleString('ru-RU', { month: 'long' })} ${compDate.getFullYear()}`;
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
     
-    const competitionCard = document.createElement('div');
-    competitionCard.className = 'unified-card competition-card';
-    competitionCard.innerHTML = `
-      <div class="card-header">
-        <span class="highlight-date">${formattedDate}</span>
-        <h3 class="card-title">${comp.name}</h3>
-      </div>
-      <div class="card-body">
-        <p><i class="fas fa-map-marker-alt"></i> <strong>Регион:</strong> ${comp.location}</p>
-        <p><i class="fas fa-clock"></i> <strong>Время:</strong> ${comp.time}</p>
-        <p><i class="fas fa-user"></i> <strong>Организатор:</strong> ${comp.organizer}</p>
-        <p><i class="fas fa-phone"></i> <strong>Телефон:</strong> ${comp.phone}</p>
-      </div>
-      <div class="card-footer">
-        <button class="protocol-btn" data-competition-id="${comp.id}">
-          <i class="fas fa-file-alt"></i> Протокол
-        </button>
-      </div>
-    `;
-    competitionsGrid.appendChild(competitionCard);
-  });
+    if (!menuToggle || !mobileMenu) return;
+    
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        menuToggle.innerHTML = mobileMenu.style.display === 'block' ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        body.style.overflow = mobileMenu.style.display === 'block' ? 'hidden' : 'auto';
+    });
+    
+    // Закрытие меню при клике на ссылки
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.style.display = 'none';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            body.style.overflow = 'auto';
+        });
+    });
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.style.display === 'block' && 
+            !mobileMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            mobileMenu.style.display = 'none';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            body.style.overflow = 'auto';
+        }
+    });
 }
 
-// Get competitions from localStorage
-function getCompetitions() {
-  const savedCompetitions = localStorage.getItem('competitionsList');
-  return savedCompetitions ? JSON.parse(savedCompetitions) : [];
+// Инициализация анимаций
+function initAnimations() {
+    // Плавное появление элементов при скролле
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.card, .news-card, .competition-card, .document-card, .leader-card');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Начальные стили для анимации
+    document.querySelectorAll('.card, .news-card, .competition-card, .document-card, .leader-card').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    // Запуск анимаций
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
 }
 
-// Initialize protocol buttons
-function initProtocolButtons() {
-  document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('protocol-btn') || e.target.closest('.protocol-btn')) {
-      const button = e.target.closest('.protocol-btn');
-      const competitionId = button.dataset.competitionId;
-      loadProtocol(competitionId);
+// Инициализация фильтров документов
+function initDocumentFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const documentCards = document.querySelectorAll('.document-card');
+    const searchInput = document.getElementById('document-search');
+    
+    if (!filterButtons.length || !documentCards.length) return;
+    
+    // Фильтрация по кнопкам
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Обновление активной кнопки
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Фильтрация карточек
+            documentCards.forEach(card => {
+                if (filter === 'all' || card.classList.contains(`document-${filter}`)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Поиск по документам
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            documentCards.forEach(card => {
+                const title = card.querySelector('.document-title').textContent.toLowerCase();
+                const description = card.querySelector('.document-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     }
-  });
 }
 
-// Load protocol
-function loadProtocol(competitionId) {
-  const competitions = getCompetitions();
-  const competition = competitions.find(comp => comp.id == competitionId);
-  
-  if (competition && competition.protocol) {
-    window.open(competition.protocol, '_blank');
-  } else {
-    alert('Протокол для этого соревнования будет доступен после его проведения');
-  }
+// Инициализация формы партнеров
+function initPartnerForm() {
+    const partnerForm = document.querySelector('.submit-partner-form');
+    
+    if (!partnerForm) return;
+    
+    partnerForm.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const companyName = document.getElementById('company-name').value;
+        const contactPerson = document.getElementById('contact-person').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const partnerType = document.getElementById('partner-type').value;
+        
+        if (!companyName || !contactPerson || !phone || !email || !partnerType) {
+            alert('Пожалуйста, заполните все обязательные поля (отмечены *)');
+            return;
+        }
+        
+        // Здесь должна быть логика отправки формы на сервер
+        // Временно покажем сообщение об успехе
+        alert('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.');
+        
+        // Сброс формы
+        document.querySelector('.contact-form').reset();
+    });
+}
+
+// Форматирование даты
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('ru-RU', { month: 'long' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+}
+
+// Получение соревнований из localStorage
+function getCompetitions() {
+    const savedCompetitions = localStorage.getItem('competitionsList');
+    return savedCompetitions ? JSON.parse(savedCompetitions) : [];
 }
